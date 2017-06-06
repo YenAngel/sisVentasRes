@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ventas.presentacion;
+import ventas.presentacion.Mesa.jpMesa;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.frmPrincipal;
-import ventas.presentacion.jpMesa;
+import ventas.presentacion.Mesa.jpMesa;
 
 public class BDData {
     public static int user(String sucursal, String user, String password){

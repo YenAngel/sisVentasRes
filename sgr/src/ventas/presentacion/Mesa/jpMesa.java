@@ -1,6 +1,7 @@
 
-package ventas.presentacion;
+package ventas.presentacion.Mesa;
 
+import ventas.presentacion.Mesa.jpEditarMesa;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -92,10 +93,10 @@ public class jpMesa extends javax.swing.JPanel{
         
         mesa.txtCodigo.setText((String)dtm.getValueAt(idx,1));
         mesa.cboNroMesa.setSelectedItem(dtm.getValueAt(idx,2));
-        mesa.txtCantidad.setText((String)dtm.getValueAt(idx,2));
-        mesa.cboTipoMesa.setSelectedItem(dtm.getValueAt(idx,2));
-        mesa.cboNroPiso.setSelectedItem(dtm.getValueAt(idx,2));
-        mesa.lblEstado.setText((String)dtm.getValueAt(idx,2));
+        mesa.txtCantidad.setText((String)dtm.getValueAt(idx,3));
+        mesa.cboTipoMesa.setSelectedItem(dtm.getValueAt(idx,4));
+        mesa.cboNroPiso.setSelectedItem(dtm.getValueAt(idx,5));
+        mesa.lblEstado.setText((String)dtm.getValueAt(idx,6));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
