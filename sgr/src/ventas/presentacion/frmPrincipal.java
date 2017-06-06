@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ventas.presentacion;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -15,19 +16,24 @@ import ventas.modelo.DevClass;
  * @author Test
  */
 public class frmPrincipal extends javax.swing.JFrame {
-    JPanel nPanel;
-    int widthvar, heightvar;
+    public static JPanel nPanel;
+   public static int widthvar, heightvar;
     
     public frmPrincipal() {
         initComponents();
         getContentPane().setLayout(null);
         Login frmL = new Login();
-        
+        getContentPane().setLayout(null);
         setExtendedState(MAXIMIZED_BOTH);
         widthvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         heightvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-  
+        pTop.setLayout(null);
         pTop.setBounds(0,0,widthvar, 59);
+        jLabel15.setLocation(800, 15);
+        pMenu.setVisible(false);
+        pPedido.setVisible(false);
+        pReporte.setVisible(false);
+        //jpContenedor.setBounds(255, 59, widthvar-255, heightvar-59);
         Validar(frmL.id);
     }
 
@@ -41,6 +47,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pTop = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         pMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,27 +66,50 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuario = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jpContenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 252, 230));
+        setUndecorated(true);
+        setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pTop.setBackground(new java.awt.Color(0, 148, 90));
+        pTop.setBackground(new java.awt.Color(68, 134, 187));
+
+        jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Mantenimiento");
 
         javax.swing.GroupLayout pTopLayout = new javax.swing.GroupLayout(pTop);
         pTop.setLayout(pTopLayout);
         pTopLayout.setHorizontalGroup(
             pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1214, Short.MAX_VALUE)
+            .addGroup(pTopLayout.createSequentialGroup()
+                .addGap(550, 550, 550)
+                .addComponent(jLabel15)
+                .addContainerGap(569, Short.MAX_VALUE))
         );
         pTopLayout.setVerticalGroup(
             pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 59, Short.MAX_VALUE)
+            .addGroup(pTopLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(pTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pMenu.setBackground(new java.awt.Color(0, 152, 205));
+        pMenu.setBackground(new java.awt.Color(24, 168, 255));
         pMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pMenuMouseClicked(evt);
@@ -99,8 +129,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             pMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pMenuLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(78, 78, 78))
         );
@@ -117,9 +147,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, -1, -1));
+        getContentPane().add(pMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
 
-        pPedido.setBackground(new java.awt.Color(0, 152, 205));
+        pPedido.setBackground(new java.awt.Color(24, 168, 255));
         pPedido.setPreferredSize(new java.awt.Dimension(255, 120));
         pPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,9 +190,9 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel4.getAccessibleContext().setAccessibleDescription("");
 
-        getContentPane().add(pPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 179, -1, -1));
+        getContentPane().add(pPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, -1, -1));
 
-        pProducts.setBackground(new java.awt.Color(0, 152, 205));
+        pProducts.setBackground(new java.awt.Color(24, 168, 255));
         pProducts.setPreferredSize(new java.awt.Dimension(255, 120));
         pProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,9 +230,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 659, -1, -1));
+        getContentPane().add(pProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 299, -1, -1));
 
-        pMesas.setBackground(new java.awt.Color(0, 152, 205));
+        pMesas.setBackground(new java.awt.Color(24, 168, 255));
         pMesas.setPreferredSize(new java.awt.Dimension(255, 120));
         pMesas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,9 +270,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 539, -1, -1));
+        getContentPane().add(pMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 179, -1, -1));
 
-        pReporte.setBackground(new java.awt.Color(0, 152, 205));
+        pReporte.setBackground(new java.awt.Color(24, 168, 255));
         pReporte.setPreferredSize(new java.awt.Dimension(255, 120));
         pReporte.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,9 +310,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 419, -1, -1));
+        getContentPane().add(pReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
 
-        pUsuario.setBackground(new java.awt.Color(0, 152, 205));
+        pUsuario.setBackground(new java.awt.Color(24, 168, 255));
         pUsuario.setPreferredSize(new java.awt.Dimension(255, 120));
         pUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -301,23 +331,38 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuarioLayout.setHorizontalGroup(
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel9)
                 .addGap(41, 41, 41))
         );
         pUsuarioLayout.setVerticalGroup(
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(jLabel9)
                 .addGap(45, 45, 45))
+            .addGroup(pUsuarioLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 299, -1, -1));
+        getContentPane().add(pUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, -1, -1));
+
+        javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
+        jpContenedor.setLayout(jpContenedorLayout);
+        jpContenedorLayout.setHorizontalGroup(
+            jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jpContenedorLayout.setVerticalGroup(
+            jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jpContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,16 +375,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         pMesas.setBackground(new java.awt.Color(0,152,205));
         pProducts.setBackground(new java.awt.Color(0,152,205));
         try {
-        if(nPanel != null){
-        getContentPane().remove(nPanel);
-        getContentPane().repaint();
-        }
-        nPanel = new jpMenu();
-        nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+        
+        
+        nPanel = new Usuarios_new();
+        nPanel.setBounds(0, 0, widthvar-255, heightvar-59);
         
         getContentPane().add(nPanel);
-        this.validate();
+        this.revalidate();
+        this.repaint();
         } catch (Exception e) {
+            System.err.println(e);
         }
         
     }//GEN-LAST:event_pMenuMouseClicked
@@ -375,32 +420,52 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void pUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pUsuarioMouseClicked
        pUsuario.setBackground(new java.awt.Color(255,51,51));
-       pPedido.setBackground(new java.awt.Color(0,152,205));
-       pMenu.setBackground(new java.awt.Color(0,152,205));
-       pReporte.setBackground(new java.awt.Color(0,152,205));
+       //pPedido.setBackground(new java.awt.Color(0,152,205));
+       //pMenu.setBackground(new java.awt.Color(0,152,205));
+       //pReporte.setBackground(new java.awt.Color(0,152,205));
        pMesas.setBackground(new java.awt.Color(0,152,205));
        pProducts.setBackground(new java.awt.Color(0,152,205));
+       try {
+        if(nPanel != null){
+        getContentPane().remove(nPanel);
+        getContentPane().repaint();
+        }
+        nPanel = new Trabajador_new();
+        nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+        
+        getContentPane().add(nPanel);
+        this.validate();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_pUsuarioMouseClicked
 
     private void pMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pMesasMouseClicked
        pUsuario.setBackground(new java.awt.Color(0,152,205));
-       pPedido.setBackground(new java.awt.Color(0,152,205));
-       pMenu.setBackground(new java.awt.Color(0,152,205));
-       pReporte.setBackground(new java.awt.Color(0,152,205));
+       //pPedido.setBackground(new java.awt.Color(0,152,205));
+       //pMenu.setBackground(new java.awt.Color(0,152,205));
+       //pReporte.setBackground(new java.awt.Color(0,152,205));
        pMesas.setBackground(new java.awt.Color(255,51,51));
        pProducts.setBackground(new java.awt.Color(0,152,205));
     }//GEN-LAST:event_pMesasMouseClicked
 
     private void pProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pProductsMouseClicked
        pUsuario.setBackground(new java.awt.Color(0,152,205));
-       pPedido.setBackground(new java.awt.Color(0,152,205));
-       pMenu.setBackground(new java.awt.Color(0,152,205));
-       pReporte.setBackground(new java.awt.Color(0,152,205));
+       //pPedido.setBackground(new java.awt.Color(0,152,205));
+       //pMenu.setBackground(new java.awt.Color(0,152,205));
+       //pReporte.setBackground(new java.awt.Color(0,152,205));
        pMesas.setBackground(new java.awt.Color(0,152,205));
        pProducts.setBackground(new java.awt.Color(255,51,51));
     }//GEN-LAST:event_pProductsMouseClicked
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+       
+    }//GEN-LAST:event_formWindowStateChanged
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        //jpContenedor.validate();// TODO add your handling code here:
+    }//GEN-LAST:event_formComponentResized
     public void Validar(int id){
-        int vis = 6;
+        /*int vis = 6;
         int size = 0;
         
         if(id == 1){
@@ -465,7 +530,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel3.setBounds(110, size/2 - 20, 73, 26);
         jLabel4.setBounds(36, size/2 - 30, 48, 48);
         //System.out.println(pPedido.getLocation().toString());
-        }
+        }*/
     }
     /**
      * @param args the command line arguments
@@ -509,12 +574,14 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public static javax.swing.JPanel jpContenedor;
     private javax.swing.JPanel pMenu;
     private javax.swing.JPanel pMesas;
     private javax.swing.JPanel pPedido;

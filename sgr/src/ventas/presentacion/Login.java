@@ -1,10 +1,13 @@
 
 package ventas.presentacion;
 
+import ventas.persistencia.util.BDUtil;
+
 public class Login extends javax.swing.JFrame {
     public static int id;
     public Login() {
         initComponents();
+        BDUtil.conectar();
         txtPassword.setEchoChar((char)0);
         txtPassword.setText("Ingresar Password");                
         txtUsuario.setText("Ingresar Usuario");
