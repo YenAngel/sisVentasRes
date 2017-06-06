@@ -8,14 +8,14 @@ import java.sql.SQLException;
 
 public class BDUtil {    
     private static String driver="com.mysql.jdbc.Driver";
-    private static String url="jdbc:mysql://localhost:3306/dbpedido?zeroDateTimeBehavior=convertToNull";
+    private static String url="jdbc:mysql://localhost:3306/srg_ventas?zeroDateTimeBehavior=convertToNull";
     private static Connection cnn;
     
     public static boolean conectar(){
         try {
             Class.forName(driver);
             try {
-                cnn = (Connection) DriverManager.getConnection(url,"root","ventas");               
+                cnn = (Connection) DriverManager.getConnection(url,"root","angel");               
                 return true;
             } catch (Exception e) {
                 System.err.println("Error al conectar a la Base de Datos " + e.getMessage());

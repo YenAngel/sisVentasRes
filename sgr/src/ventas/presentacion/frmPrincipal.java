@@ -15,8 +15,8 @@ import ventas.modelo.DevClass;
  * @author Test
  */
 public class frmPrincipal extends javax.swing.JFrame {
-    JPanel nPanel;
-    int widthvar, heightvar;
+    public JPanel nPanel;
+    public int widthvar, heightvar;
     
     public frmPrincipal() {
         initComponents();
@@ -389,6 +389,19 @@ public class frmPrincipal extends javax.swing.JFrame {
        pReporte.setBackground(new java.awt.Color(0,152,205));
        pMesas.setBackground(new java.awt.Color(255,51,51));
        pProducts.setBackground(new java.awt.Color(0,152,205));
+       try {
+            if(nPanel != null){
+                getContentPane().remove(nPanel);
+                getContentPane().repaint();
+            }
+            nPanel = new jpMesa();
+            nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+        
+            getContentPane().add(nPanel);
+            this.validate();
+        } catch (Exception e) {
+        }
+        
     }//GEN-LAST:event_pMesasMouseClicked
 
     private void pProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pProductsMouseClicked
@@ -405,48 +418,87 @@ public class frmPrincipal extends javax.swing.JFrame {
         
         if(id == 1){
             vis = 6;
-        size = (heightvar - pTop.getHeight())/vis;    
-        pMesas.setVisible(true);
-        pProducts.setVisible(true);
-        pReporte.setVisible(true);
-        pUsuario.setVisible(true);
-        pMenu.setLayout(null);
-        pPedido.setLayout(null);
-        pUsuario.setLayout(null);
-        pReporte.setLayout(null);
-        pMesas.setLayout(null);
-        pProducts.setLayout(null);
-        
-        pMenu.setBounds(0, 59, 250,size);
-        jLabel1.setBounds(110, size/2 - 20, 57, 26);
-        jLabel2.setBounds(36, size/2 - 50, 82, 77);
-        //System.out.println(pMenu.getLocation().toString());
-        
-        pPedido.setBounds(0, 59 + size, 250, size);
-        jLabel3.setBounds(110, size/2 - 20, 73, 26);
-        jLabel4.setBounds(36, size/2 - 30, 48, 48);
-        //System.out.println(pPedido.getLocation().toString());
-        
-        pUsuario.setBounds(0, 59 + size*2,250,size);
-        jLabel9.setBounds(110, size/2 - 20, 95, 26);
-        jLabel10.setBounds(36, size/2 - 30, 48, 48);
-       // System.out.println(pUsuario.getLocation().toString());
-        
-        pReporte.setBounds(0,59 + size*3,250,size);
-        jLabel7.setBounds(110, size/2 - 20, 85, 26);
-        jLabel8.setBounds(36, size/2 - 40, 64, 64);
-        //System.out.println(pReporte.getLocation().toString());
-        
-        pMesas.setBounds(0, 59 + size*4, 250, size);
-        jLabel11.setBounds(110, size/2 - 20,68 ,26);
-        jLabel12.setBounds(36, size/2 - 40,64 ,64);
-       // System.out.println(pMesas.getLocation().toString());
-        
-        pProducts.setBounds(0, 59 + size*5, 250, size);
-        jLabel13.setBounds(110, size/2 - 20,109 ,26);
-        jLabel14.setBounds(36, size/2 -40,64 ,64);
-        //System.out.println(pProducts.getLocation().toString());
-            
+            size = (heightvar - pTop.getHeight())/vis;    
+            pMesas.setVisible(true);
+            pProducts.setVisible(true);
+            pReporte.setVisible(true);
+            pUsuario.setVisible(true);
+            pMenu.setLayout(null);
+            pPedido.setLayout(null);
+            pUsuario.setLayout(null);
+            pReporte.setLayout(null);
+            pMesas.setLayout(null);
+            pProducts.setLayout(null);
+
+            pMenu.setBounds(0, 59, 250,size);
+            jLabel1.setBounds(110, size/2 - 20, 57, 26);
+            jLabel2.setBounds(36, size/2 - 50, 82, 77);
+            //System.out.println(pMenu.getLocation().toString());
+
+            pPedido.setBounds(0, 59 + size, 250, size);
+            jLabel3.setBounds(110, size/2 - 20, 73, 26);
+            jLabel4.setBounds(36, size/2 - 30, 48, 48);
+            //System.out.println(pPedido.getLocation().toString());
+
+            pUsuario.setBounds(0, 59 + size*2,250,size);
+            jLabel9.setBounds(110, size/2 - 20, 95, 26);
+            jLabel10.setBounds(36, size/2 - 30, 48, 48);
+           // System.out.println(pUsuario.getLocation().toString());
+
+            pReporte.setBounds(0,59 + size*3,250,size);
+            jLabel7.setBounds(110, size/2 - 20, 85, 26);
+            jLabel8.setBounds(36, size/2 - 40, 64, 64);
+            //System.out.println(pReporte.getLocation().toString());
+
+            pMesas.setBounds(0, 59 + size*4, 250, size);
+            jLabel11.setBounds(110, size/2 - 20,68 ,26);
+            jLabel12.setBounds(36, size/2 - 40,64 ,64);
+           // System.out.println(pMesas.getLocation().toString());
+
+            pProducts.setBounds(0, 59 + size*5, 250, size);
+            jLabel13.setBounds(110, size/2 - 20,109 ,26);
+            jLabel14.setBounds(36, size/2 -40,64 ,64);
+            //System.out.println(pProducts.getLocation().toString());
+
+        }else if(id==2){
+            vis = 5;
+            size = (heightvar - pTop.getHeight())/vis;    
+            pMesas.setVisible(true);
+            pProducts.setVisible(true);
+            //pReporte.setVisible(true);
+            pUsuario.setVisible(true);
+            pMenu.setLayout(null);
+            pPedido.setLayout(null);
+            pUsuario.setLayout(null);
+            //pReporte.setLayout(null);
+            pMesas.setLayout(null);
+            pProducts.setLayout(null);
+
+            pMenu.setBounds(0, 59, 250,size);
+            jLabel1.setBounds(110, size/2 - 20, 57, 26);
+            jLabel2.setBounds(36, size/2 - 50, 82, 77);
+            //System.out.println(pMenu.getLocation().toString());
+
+            pPedido.setBounds(0, 59 + size, 250, size);
+            jLabel3.setBounds(110, size/2 - 20, 73, 26);
+            jLabel4.setBounds(36, size/2 - 30, 48, 48);
+            //System.out.println(pPedido.getLocation().toString());
+
+            pUsuario.setBounds(0, 59 + size*2,250,size);
+            jLabel9.setBounds(110, size/2 - 20, 95, 26);
+            jLabel10.setBounds(36, size/2 - 30, 48, 48);
+           // System.out.println(pUsuario.getLocation().toString());
+
+            pMesas.setBounds(0, 59 + size*3, 250, size);
+            jLabel11.setBounds(110, size/2 - 20,68 ,26);
+            jLabel12.setBounds(36, size/2 - 40,64 ,64);
+           // System.out.println(pMesas.getLocation().toString());
+
+            pProducts.setBounds(0, 59 + size*4, 250, size);
+            jLabel13.setBounds(110, size/2 - 20,109 ,26);
+            jLabel14.setBounds(36, size/2 -40,64 ,64);
+            //System.out.println(pProducts.getLocation().toString());
+
         }else{
             vis = 2;
             size = (heightvar - pTop.getHeight())/vis;
