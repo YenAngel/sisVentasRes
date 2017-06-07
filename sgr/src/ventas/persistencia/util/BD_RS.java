@@ -41,6 +41,42 @@ public class BD_RS {
         }
         
     }
+    public static DefaultComboBoxModel ListarCBOCargo(){
+        DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
+        try {
+            String sql = "SELECT no_cargo from mae_cargo";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CBOT.addElement(rs.getString(1));
+            }
+            
+            return CBOT;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+            return null;
+        }
+        
+    }
+    public static DefaultComboBoxModel ListarCBORoles(){
+        DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
+        try {
+            String sql = "SELECT no_perfil from mae_perfil";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CBOT.addElement(rs.getString(1));
+            }
+            
+            return CBOT;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+            return null;
+        }
+        
+    }
     public static DefaultTableModel ListarTrabajador(){
         try {
             DefaultTableModel dtm = FormatearTabla();
@@ -83,9 +119,13 @@ public class BD_RS {
             cs.setDate(10, (Date) trabajador.getFec_mod());
             cs.setInt(11, tipo);
             cs.executeQuery();
+            return true;
         } catch (SQLException e) {
             System.err.println(e);
+            return false;
         }
-        return false;
+        
     }
+    
+    
 }
