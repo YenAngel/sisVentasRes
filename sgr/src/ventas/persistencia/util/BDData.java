@@ -2,6 +2,7 @@
 package ventas.persistencia.util;
 
 import java.awt.Component;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.frmPrincipal;
-import ventas.presentacion.Mesa.jpMesa;
+import ventas.presentacion.Mesa.jpListarMesa;
 
 public class BDData {
     public static int user(String sucursal, String user, String password){
@@ -62,5 +63,21 @@ public class BDData {
             System.out.println(e);
             return null;
         }
+    }
+    public static boolean nuevaMesa(int mesa, int silla, String tipo, int piso, int user){
+        String sql="Call sgr_spi_addmesa(?,?,?,?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,mesa);
+            cs.setInt(2,silla);
+            cs.setString(3,tipo);
+            cs.setInt(4,piso);
+            cs.setInt(5,user);
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
     }
 }

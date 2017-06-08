@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ventas.presentacion;
-import ventas.presentacion.Mesa.jpMesa;
+import ventas.presentacion.Mesa.jpListarMesa;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -395,7 +395,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-            nPanel = new jpMesa();
+            nPanel = new jpListarMesa();
             nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
         
             getContentPane().add(nPanel);
