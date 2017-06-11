@@ -14,6 +14,7 @@ public class Splash extends javax.swing.JFrame {
     public Splash() {
         initComponents(); 
         setLocationRelativeTo(null);
+       
        al=new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
