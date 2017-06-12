@@ -1,24 +1,16 @@
 
 package ventas.presentacion.Mesa;
 
+import ventas.presentacion.frmPrincipal;
+import static ventas.presentacion.frmPrincipal.heightvar;
+import static ventas.presentacion.frmPrincipal.nPanel;
+import static ventas.presentacion.frmPrincipal.widthvar;
+
 public class jpEditarMesa extends javax.swing.JPanel {
         
     public jpEditarMesa() {
         initComponents();
-        /*frmPrincipal frm=new frmPrincipal();
-        try {
-             if(frm.nPanel != null){
-                 frm.getContentPane().remove(nPanel);
-                 frm.getContentPane().repaint();
-             }
-             frm.nPanel = new jpMesa();
-             frm.nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
-
-             frm.getContentPane().add(nPanel);
-             this.validate();
-        } catch (Exception e) {
-            System.out.println(e);
-        }*/
+        
     }
 
     @SuppressWarnings("unchecked")

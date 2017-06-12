@@ -1,4 +1,4 @@
-
+    
 package ventas.modelo;
 
 public class DevClass {

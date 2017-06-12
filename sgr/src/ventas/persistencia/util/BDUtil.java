@@ -15,7 +15,8 @@ public class BDUtil {
         try {
             Class.forName(driver);
             try {
-                cnn = (Connection) DriverManager.getConnection(url,"root","angel");               
+                cnn = (Connection) DriverManager.getConnection(url,"root","angel");  
+                System.out.println("Conectado");
                 return true;
             } catch (Exception e) {
                 System.err.println("Error al conectar a la Base de Datos " + e.getMessage());

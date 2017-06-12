@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.frmPrincipal;
+import static ventas.presentacion.frmPrincipal.heightvar;
+import static ventas.presentacion.frmPrincipal.nPanel;
+import static ventas.presentacion.frmPrincipal.widthvar;
 
 public class jpListarMesa extends javax.swing.JPanel{
     
@@ -86,17 +90,28 @@ public class jpListarMesa extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jpListarMesa frm= new jpListarMesa();        
-        frm.setVisible(true);
+        frmPrincipal frm=new frmPrincipal();
+        try {
+             if(frm.nPanel != null){
+                 frm.getContentPane().remove(nPanel);
+                 frm.getContentPane().repaint();
+             }
+             frm.nPanel = new jpEditarMesa();
+             frm.nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+
+             frm.getContentPane().add(nPanel);
+             this.validate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         int idx=tblMesa.getSelectedRow();        
-        jpEditarMesa mesa=new jpEditarMesa();
         
-        mesa.txtCodigo.setText((String)dtm.getValueAt(idx,1));
+        /*txtCodigo.setText((String)dtm.getValueAt(idx,1));
         mesa.cboNroMesa.setSelectedItem(dtm.getValueAt(idx,2));
         mesa.txtCantidad.setText((String)dtm.getValueAt(idx,3));
         mesa.cboTipoMesa.setSelectedItem(dtm.getValueAt(idx,4));
         mesa.cboNroPiso.setSelectedItem(dtm.getValueAt(idx,5));
-        mesa.lblEstado.setText((String)dtm.getValueAt(idx,6));
+        mesa.lblEstado.setText((String)dtm.getValueAt(idx,6));*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

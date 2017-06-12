@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/sisVentasRes/sgr/src/ventas/modelo/DevClass.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpNuevoPiso.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Mesa/jpListarMesa.java</file>
@@ -22,6 +23,14 @@
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Local/jpListaLocal.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
+=======
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BD_RS.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Login.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Trabajador/Trabajador_new.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Usuario/Usuarios_new.java</file>
+>>>>>>> 60977b18c3150c0d83d4d0ae69d668cd790c5d8c
         </group>
     </open-files>
 </project-private>
