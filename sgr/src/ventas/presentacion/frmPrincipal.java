@@ -5,6 +5,8 @@ import ventas.presentacion.Usuario.Usuarios_new;
 import ventas.presentacion.Trabajador.Trabajador_new;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JPanel;
@@ -18,9 +20,11 @@ import ventas.presentacion.Trabajador.Mant_Trabajador;
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
     public static int widthvar, heightvar;
+    public static Container c ;
     
     public frmPrincipal() {
         initComponents();
+        c = getContentPane();
         getContentPane().setLayout(null);
         Login frmL = new Login();
         getContentPane().setLayout(null);
@@ -29,6 +33,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         heightvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         pTop.setLayout(null);
         pTop.setBounds(0,0,widthvar, 59);
+        
+        jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
+        jpContenedor.setVisible(false);
         jLabel15.setLocation(800, 15);
         pMenu.setVisible(false);
         pPedido.setVisible(false);
@@ -355,14 +362,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         jpContenedor.setLayout(jpContenedorLayout);
         jpContenedorLayout.setHorizontalGroup(
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         jpContenedorLayout.setVerticalGroup(
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+        getContentPane().add(jpContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 10, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -407,7 +414,26 @@ public class frmPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_pPedidoMouseClicked
-
+    public static void Recep(JPanel l){
+        
+    }
+    public static void Comp(JPanel j){
+        try {
+            nPanel.setVisible(false);
+        if(nPanel != null){
+            
+        c.remove(nPanel);
+        
+        c.repaint();
+        }
+        nPanel = j;
+        nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+        nPanel.setVisible(true);
+        c.add(nPanel);
+        c.validate();
+        } catch (Exception e) {
+        }
+    }
     private void pReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pReporteMouseClicked
        pReporte.setBackground(new java.awt.Color(255,51,51));
        pPedido.setBackground(new java.awt.Color(0,152,205));
@@ -450,8 +476,8 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-            nPanel = new jpListaLocal();
-            nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+            nPanel = new jpListarMesa();
+            nPanel.setBounds(0,0, widthvar-255, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();

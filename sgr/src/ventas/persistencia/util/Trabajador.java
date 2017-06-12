@@ -4,18 +4,18 @@ package ventas.persistencia.util;
 import java.util.Date;
 
 public class Trabajador {
-    private String codigo;
-    private String dni;
-    private String nombre;
-    private String ApePaterno;
-    private String ApeMaterno;
-    private Date fec_ingreso;
-    private int Cargo;
-    private Date fec_creacion;
-    private Date fec_mod;
-    private int estado;
-    private int usuario_c;
-    private int usuario_m;
+    private static String codigo = null;
+    private static String dni = null;
+    private static String nombre = null;
+    private static String ApePaterno = null;
+    private static String ApeMaterno = null;
+    private static Date fec_ingreso = null;
+    private static int Cargo ;
+    private static Date fec_creacion = null;
+    private static Date fec_mod = null;
+    private static int estado;
+    private static int usuario_c;
+    private static int usuario_m;
 
     public String getCodigo() {
         return codigo;

@@ -5,8 +5,11 @@
  */
 package ventas.presentacion.Trabajador;
 
-import ventas.persistencia.util.BDUtil;
+import java.sql.Date;
+import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.Trabajador;
+import ventas.presentacion.frmPrincipal;
 
 /**
  *
@@ -70,6 +73,11 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -114,8 +122,29 @@ public class Mant_Trabajador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        Trabajador_new n = new Trabajador_new();
+        frmPrincipal.Comp(n);
         
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int indx = tblTrabajador.getSelectedRow();
+        if(indx >= 0){
+            Trabajador t = new Trabajador();
+            t.setCodigo(tblTrabajador.getValueAt(indx, 0).toString());
+            t.setDni(tblTrabajador.getValueAt(indx, 1).toString());
+            t.setNombre(tblTrabajador.getValueAt(indx, 2).toString());
+            t.setApePaterno(tblTrabajador.getValueAt(indx, 3).toString());
+            t.setApeMaterno(tblTrabajador.getValueAt(indx, 4).toString());
+            t.setFec_ingreso(Date.valueOf(tblTrabajador.getValueAt(indx, 5).toString()));
+            t.setCargo(BD_RS.GetIdCargo(tblTrabajador.getValueAt(indx, 6).toString()));
+            t.setEstado(BD_RS.GetIdEstado(tblTrabajador.getValueAt(indx, 7).toString()));
+            Trabajador_Editar te = new Trabajador_Editar();
+            frmPrincipal.Comp(te);        
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

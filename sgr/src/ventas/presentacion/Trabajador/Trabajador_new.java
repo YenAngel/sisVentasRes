@@ -7,8 +7,11 @@ package ventas.presentacion.Trabajador;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
 import ventas.persistencia.util.Trabajador;
+import static ventas.presentacion.Usuario.Usuarios_new.cboTipo;
+import ventas.presentacion.frmPrincipal;
 
 /**
  *
@@ -66,6 +69,11 @@ public class Trabajador_new extends javax.swing.JPanel {
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
         btnReturn.setText("RETORNAR");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -172,6 +180,11 @@ public class Trabajador_new extends javax.swing.JPanel {
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clear_new.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -212,8 +225,13 @@ public class Trabajador_new extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String cod;
+        if(cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
+           
+          cod =  String.format("T%04d%n", BD_RS.CodTrab());
+          System.out.println(cod);
         Trabajador trabajador = new Trabajador();
-        trabajador.setCodigo("T0003"); //Falta autogenerar
+        trabajador.setCodigo(cod);
         trabajador.setNombre(txtNombres.getText());
         trabajador.setApePaterno(txtApePat.getText());
         trabajador.setApeMaterno(txtApeMat.getText());
@@ -221,9 +239,31 @@ public class Trabajador_new extends javax.swing.JPanel {
         trabajador.setCargo(cboCargo.getSelectedIndex()+1);
         trabajador.setEstado(1);
         trabajador.setFec_creacion(Date.valueOf(LocalDate.now()));
-        if(BD_RS.CTrabajador(trabajador, 1)) System.out.println("Registro Guardado");
-        else System.out.println("Error al guardar registro");
+        if(BD_RS.CTrabajador(trabajador, 1)) {
+            JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+            Mant_Trabajador n = new Mant_Trabajador();
+            frmPrincipal.Comp(n);
+        }
+        else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el registro","Mensaje",JOptionPane.WARNING_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       txtApeMat.setText("");
+       txtApePat.setText("");
+       cboCargo.setSelectedIndex(-1);
+       txtDNI.setText("");
+       txtNombres.setText("");
+       txtApePat.requestFocus();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        Mant_Trabajador n = new Mant_Trabajador();
+        frmPrincipal.Comp(n);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
