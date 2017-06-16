@@ -5,8 +5,13 @@
  */
 package ventas.presentacion.Usuario;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.EN_DES;
+import ventas.persistencia.util.Usuario;
+import ventas.presentacion.frmPrincipal;
 
 /**
  *
@@ -154,6 +159,11 @@ public class Usuarios_new extends javax.swing.JPanel {
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
         btnReturn.setText("RETORNAR");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 11, 180, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -196,11 +206,32 @@ public class Usuarios_new extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if(cboTipo.getSelectedIndex() != -1 && cboTrabajador.getSelectedIndex()!= -1 && txtUser.getText().trim().length() != 0 && txtPass.getText().length() != 0){
-            
+            try {
+                Usuario usuario = new Usuario();
+                usuario.setUser(txtUser.getText().trim());
+                usuario.setPssEnc(EN_DES.Encrypt_S(txtPass.getText()));
+                usuario.setEstado(1);
+                usuario.setRol(cboTipo.getSelectedIndex()+1);
+                usuario.setCodT(BD_RS.GetIdTrab(cboTrabajador.getSelectedItem().toString().substring(0, 5)));
+                if(BD_RS.CUsuario(usuario, 1)) {
+                    JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    Mant_Usuarios n = new Mant_Usuarios();
+                    frmPrincipal.Comp(n);
+                }
+                else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el registro","Mensaje",JOptionPane.WARNING_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(Usuarios_new.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         }else{
             JOptionPane.showMessageDialog(null, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        Mant_Usuarios mu = new Mant_Usuarios();
+        frmPrincipal.Comp(mu);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

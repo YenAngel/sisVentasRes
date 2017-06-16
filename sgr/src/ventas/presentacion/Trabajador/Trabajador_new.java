@@ -6,6 +6,7 @@
 package ventas.presentacion.Trabajador;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
@@ -50,6 +51,8 @@ public class Trabajador_new extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         btnLimpiar = new javax.swing.JButton();
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -116,6 +119,11 @@ public class Trabajador_new extends javax.swing.JPanel {
         txtDNI.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         txtDNI.setSelectionColor(new java.awt.Color(204, 204, 0));
 
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel21.setText("Ingreso Laboral:");
+
+        jDateChooser1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,6 +132,12 @@ public class Trabajador_new extends javax.swing.JPanel {
                 .addGap(426, 426, 426)
                 .addComponent(jLabel17)
                 .addContainerGap(720, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addGap(35, 35, 35)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -148,10 +162,17 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)))
+                .addGap(53, 53, 53))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -226,8 +247,8 @@ public class Trabajador_new extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String cod;
-        if(cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
-           
+        if(jDateChooser1.getDate() != null && cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
+           SimpleDateFormat FormatoFecha = new SimpleDateFormat("yyyy-MM-dd");
           cod =  String.format("T%04d%n", BD_RS.CodTrab());
           System.out.println(cod);
         Trabajador trabajador = new Trabajador();
@@ -238,6 +259,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         trabajador.setDni(txtDNI.getText());
         trabajador.setCargo(cboCargo.getSelectedIndex()+1);
         trabajador.setEstado(1);
+        trabajador.setFec_ingreso(Date.valueOf(FormatoFecha.format(jDateChooser1.getDate())));
         trabajador.setFec_creacion(Date.valueOf(LocalDate.now()));
         if(BD_RS.CTrabajador(trabajador, 1)) {
             JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
@@ -271,12 +293,14 @@ public class Trabajador_new extends javax.swing.JPanel {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     private static javax.swing.JComboBox<String> cboCargo;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApeMat;
     private javax.swing.JTextField txtApePat;

@@ -6,7 +6,9 @@
 package ventas.presentacion.Trabajador;
 
 import java.sql.Date;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import ventas.persistencia.util.BD_RS;
 import ventas.persistencia.util.Trabajador;
 import ventas.presentacion.frmPrincipal;
@@ -22,7 +24,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
      */
     public Mant_Trabajador() {
         initComponents();
-        tblTrabajador.setModel(BD_RS.ListarTrabajador());
+        LoadTBL();
     }
 
     /**
@@ -43,6 +45,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
 
+        tblTrabajador.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tblTrabajador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -53,7 +56,15 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblTrabajador);
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -83,6 +94,11 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("ELIMINAR");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,7 +136,17 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 .addContainerGap(200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void LoadTBL(){
+        tblTrabajador.setModel(BD_RS.ListarTrabajador());
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int i = 0; i < 8; i++){
+            tblTrabajador.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            
+        }
+        tblTrabajador.setDefaultEditor(Object.class, null);
+        tblTrabajador.getTableHeader().setReorderingAllowed(false); 
+    }
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         Trabajador_new n = new Trabajador_new();
         frmPrincipal.Comp(n);
@@ -145,6 +171,28 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+       int indx = tblTrabajador.getSelectedRow();
+        if(indx >= 0){
+             if(tblTrabajador.getValueAt(indx, 7).toString().contains("Inactivo")){
+                 JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+             }else{
+                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblTrabajador.getValueAt(indx, 0).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                 if(r == 0){
+                    Trabajador trabajador = new Trabajador();
+                    trabajador.setEstado(2);
+                    trabajador.setCodigo(tblTrabajador.getValueAt(indx, 0).toString());
+                    if(BD_RS.CTrabajador(trabajador, 3)) {
+                       JOptionPane.showMessageDialog(this, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                       LoadTBL();
+                     }else JOptionPane.showMessageDialog(this, "RHa ocurrido un error al eliminar el registro","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                 }
+             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a eliminar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

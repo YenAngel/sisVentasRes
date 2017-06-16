@@ -13,7 +13,7 @@ import ventas.presentacion.frmPrincipal;
 import ventas.presentacion.Mesa.jpMesa;
 
 public class BDData {
-    public static int user(String sucursal, String user, String password){
+    public static int user(String sucursal, String user, String password) throws Exception{
         int idCredential=0;        
         String sql="SELECT us.nid_perfil "+
                 "FROM mae_usuario us " +
@@ -24,7 +24,7 @@ public class BDData {
             PreparedStatement ps;
             ps= BDUtil.getCnn().prepareStatement(sql);
             ps.setString(1, user);
-            ps.setString(2, password);
+            ps.setString(2, EN_DES.Encrypt_S(password));
             ResultSet rs=ps.executeQuery();
             if (rs.next()) {
                 idCredential=rs.getInt(1);

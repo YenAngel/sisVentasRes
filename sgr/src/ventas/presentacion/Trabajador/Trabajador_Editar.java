@@ -195,7 +195,7 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
-        btnSave.setText("GUARDAR");
+        btnSave.setText("<html>GUARDAR CAMBIOS<html>");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -256,14 +256,12 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         if(cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
             SimpleDateFormat FormatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             Trabajador trabajador = new Trabajador();
-            
             trabajador.setNombre(txtNombres.getText());
             trabajador.setApePaterno(txtApePat.getText());
             trabajador.setApeMaterno(txtApeMat.getText());
             trabajador.setDni(txtDNI.getText());
             trabajador.setCargo(cboCargo.getSelectedIndex()+1);
             trabajador.setEstado(cboEstado.getSelectedIndex()+1);
-            trabajador.setFec_creacion(Date.valueOf(LocalDate.now()));
             trabajador.setFec_ingreso(Date.valueOf(FormatoFecha.format(jdcIngreso.getDate())));
             trabajador.setFec_mod(Date.valueOf(LocalDate.now()));
             if(BD_RS.CTrabajador(trabajador, 2)) {

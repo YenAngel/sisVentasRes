@@ -4,7 +4,10 @@ package ventas.presentacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
+import ventas.persistencia.util.EN_DES;
 
 public class Splash extends javax.swing.JFrame {
     
@@ -12,27 +15,30 @@ public class Splash extends javax.swing.JFrame {
     private ActionListener al;
     
     public Splash() {
-        initComponents(); 
-        setLocationRelativeTo(null);
-       
-       al=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (pbarInicio.getValue()<100) {
-                    pbarInicio.setValue(pbarInicio.getValue()+5);
-                }else{
-                    t.stop(); 
-                    setVisible(false);                                        
-                    Login frm =new Login();
-                    if (!frm.isVisible()){
-                        frm.setVisible(true);
-                        frm.setLocationRelativeTo(null);
+        try {
+            initComponents();
+            setLocationRelativeTo(null);
+            al=new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (pbarInicio.getValue()<100) {
+                        pbarInicio.setValue(pbarInicio.getValue()+5);
+                    }else{
+                        t.stop();
+                        setVisible(false);
+                        Login frm =new Login();
+                        if (!frm.isVisible()){
+                            frm.setVisible(true);
+                            frm.setLocationRelativeTo(null);
+                        }
                     }
                 }
-            }
-        };
-       t=new Timer(200, al);
-       t.start();
+            };
+            t=new Timer(200, al);
+            t.start();
+        } catch (Exception ex) {
+            Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
     @SuppressWarnings("unchecked")        
