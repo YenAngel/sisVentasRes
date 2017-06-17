@@ -12,18 +12,19 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Empresa;
 import ventas.modelo.Local;
-import ventas.modelo.Usuario;
+import ventas.modelo.Piso;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.frmPrincipal;
 import ventas.presentacion.Mesa.jpListarMesa;
 
 public class BDData {
-    public static ResultSet user(Usuario usuario){
+    public static ResultSet user(Login_User usuario){        
         String sql="Call sgr_sps_usuario(?,?)";                
         try{
             CallableStatement cs= BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, usuario.getNo_usuario());
-            cs.setString(2, usuario.getNo_clave());            
+            cs.setString(2, usuario.getNo_clave());              
             ResultSet rs=cs.executeQuery();            
             return rs;
         }catch (SQLException ex) {
@@ -32,8 +33,7 @@ public class BDData {
         }        
     }            
     public static DefaultTableModel listarMesa( DefaultTableModel dtm){
-        String sql="SELECT m.nid_mesa,m.nu_mesa, m.qt_silla, m.co_tipo_mesa, p.nu_piso, m.nid_estado " +
-                "FROM mae_mesa m INNER JOIN mae_piso p ON p.nid_piso=m.nid_piso WHERE m.nid_estado=1";
+        String sql="SELECT * FROM sgr_listarMesa";
         try {
             PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs=ps.executeQuery();            
@@ -130,24 +130,26 @@ public class BDData {
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,empresa.getNid_empresa());
+            System.out.println(empresa.getNid_empresa());
             cs.setString(2,empresa.getNo_razon_social());
             cs.setString(3,empresa.getNo_comercial());
             cs.setString(4,empresa.getNu_ruc());
             cs.setInt(5, getNid_estado);
             cs.setInt(6,empresa.getNid_usuario_modi());
+            System.out.println(empresa.getNid_usuario_modi());
             cs.executeUpdate();
-            return true;
+            return true;   
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }        
     }
     public static boolean eliminarEmpresa(Empresa empresa){        
-        String sql="Call sgr_spd_empresa(?,?)";
+        String sql="Call sgr_spd_empresa(?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,empresa.getNid_empresa());
-            cs.setInt(2,empresa.getNid_usuario_modi());
+            //cs.setInt(2,empresa.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -192,17 +194,17 @@ public class BDData {
             return false;
         }        
     }
-    /*public static boolean editarLocal(Local empresa){        
-        String sql="Call sgr_spu_empresa(?,?,?,?,?,?)";
-        int getNid_estado=empresa.getNo_estado().equals("Activo")?1:2;
+    public static boolean editarLocal(Local local){        
+        String sql="Call sgr_spu_local(?,?,?,?,?,?)";
+        int getNid_estado=local.getNo_estado().equals("Activo")?1:2;
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-            cs.setInt(1,empresa.getNid_empresa());
-            cs.setString(2,empresa.getNo_razon_social());
-            cs.setString(3,empresa.getNo_comercial());
-            cs.setString(4,empresa.getNu_ruc());
+            cs.setInt(1,local.getNid_local());
+            cs.setString(2,local.getNo_local());
+            cs.setString(3,local.getTx_direccion());
+            cs.setString(4,local.getNo_empresa());
             cs.setInt(5, getNid_estado);
-            cs.setInt(6,empresa.getNid_usuario_modi());
+            cs.setInt(6,local.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -210,17 +212,80 @@ public class BDData {
             return false;
         }        
     }
-    public static boolean eliminarLocal(Local empresa){        
-        String sql="Call sgr_spd_empresa(?,?)";
+    public static boolean eliminarLocal(Local local){        
+        String sql="Call sgr_spd_local(?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-            cs.setInt(1,empresa.getNid_empresa());
-            cs.setInt(2,empresa.getNid_usuario_modi());
+            cs.setInt(1,local.getNid_local());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }        
-    }*/
+    }
+    public static DefaultTableModel listarPiso(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarPiso";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getInt(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static boolean nuevoPiso(Piso piso){        
+        String sql="Call sgr_spi_piso(?,?,?,?)";
+        int getNid_estado=piso.getNo_estado().equals("Activo")?1:2;
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,piso.getNu_piso());
+            cs.setString(2,piso.getNo_local());
+            cs.setInt(3,getNid_estado);
+            cs.setInt(4, piso.getNid_usuario_crea());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarPiso(Piso piso){        
+        String sql="Call sgr_spu_piso(?,?,?,?,?)";
+        int getNid_estado=piso.getNo_estado().equals("Activo")?1:2;
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,piso.getNid_piso());
+            cs.setInt(2,piso.getNu_piso());
+            cs.setString(3,piso.getNo_local());          
+            cs.setInt(4, getNid_estado);
+            cs.setInt(5,piso.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean eliminarPiso(Piso piso){        
+        String sql="Call sgr_spd_piso(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,piso.getNid_piso());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
 }

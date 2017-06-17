@@ -1,9 +1,9 @@
 
 package ventas.modelo;
 
-public class Usuario {
-    int         ndi_usuario;
-    int         nid_perfil;
+public class Login_User {
+    public      static      int         ndi_usuario;
+    public      static      int         nid_perfil;
     String      no_usuario;
     String      no_clave;
 

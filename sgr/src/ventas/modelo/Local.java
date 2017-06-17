@@ -4,15 +4,15 @@ package ventas.modelo;
 import java.util.Date;
 
 public class Local {
-    int             nid_local;
-    String          no_local;
-    String          tx_direccion;
-    String          no_empresa;
-    String          no_estado;
-    Date            fe_creacion;
-    Date            fe_modificacion;
-    int             nid_usuario_crea;
-    int             nid_usuario_modi;
+    public     int             nid_local;
+    public     String          no_local;
+    public     String          tx_direccion;
+    public     String          no_empresa;
+    public     String          no_estado;
+    public     Date            fe_creacion;
+    public     Date            fe_modificacion;
+    public     int             nid_usuario_crea;
+    public     int             nid_usuario_modi;
 
     public int getNid_local() {
         return nid_local;

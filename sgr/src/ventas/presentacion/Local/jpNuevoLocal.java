@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ventas.modelo.Local;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.frmPrincipal;
 
 public class jpNuevoLocal extends javax.swing.JPanel {
     
@@ -18,8 +19,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         initComponents();
         addItems();
         cboEmpresa.setSelectedIndex(-1);
-        icon("Inactivo");
-        
+        icon("Inactivo");        
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +53,11 @@ public class jpNuevoLocal extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         jButton1.setText("Retornar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -91,9 +96,9 @@ public class jpNuevoLocal extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(cboEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,6 +154,11 @@ public class jpNuevoLocal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jpListaLocal listaLocal=new jpListaLocal();
+        frmPrincipal.Comp(listaLocal);
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
             String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";

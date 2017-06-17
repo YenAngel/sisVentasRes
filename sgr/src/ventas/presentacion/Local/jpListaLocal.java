@@ -1,19 +1,26 @@
 
 package ventas.presentacion.Local;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ventas.modelo.Local;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.Empresa.jpEditarEmpresa;
+import ventas.presentacion.frmPrincipal;
 
 public class jpListaLocal extends javax.swing.JPanel {
     
-    DefaultTableModel dtm =new DefaultTableModel();
+    DefaultTableModel dtm;
+    Local local =new Local();
+    Login_User usuario=new Login_User();
     public jpListaLocal() {
         initComponents();
         listarLocal();
     }
     
-        private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Local","Nombre de Local","Dirección","Empresa","Estado"};
+    private DefaultTableModel formatearTabla(){
+        String[] theader={"Id Piso","Numero de Piso","Local","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -116,26 +123,34 @@ public class jpListaLocal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
+        jpNuevoLocal nuevoLocal=new jpNuevoLocal();
+        frmPrincipal.Comp(nuevoLocal);        
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblLocal.getSelectedRow();
-      /*  empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));
-        empresa.setNo_razon_social((String)dtm.getValueAt(idx, 2));
-        empresa.setNo_comercial((String)dtm.getValueAt(idx, 3));
-        empresa.setNu_ruc((String)dtm.getValueAt(idx, 4));
-        empresa.setNo_estado((String)dtm.getValueAt(idx, 5));
-        empresa.setNid_usuario_modi(1);*/
+        jpEditarLocal editarLocal=new jpEditarLocal();
+        local.setNid_local(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+        local.setNo_local((String)dtm.getValueAt(idx, 1));
+        local.setTx_direccion((String)dtm.getValueAt(idx, 2));
+        local.setNo_empresa((String)dtm.getValueAt(idx, 3));
+        local.setNo_estado((String)dtm.getValueAt(idx, 4));
+        local.setNid_usuario_modi(usuario.getNdi_usuario());        
+        if(idx >= 0){            
+            frmPrincipal.Comp(editarLocal);                                   
+            jpEditarLocal.cargarLocal(local);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        /*int idx=tblEmpresa.getSelectedRow();
-        empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));
-        empresa.setNid_usuario_modi(1);
-        if (BDData.eliminarEmpresa(empresa)) {
+        int idx=tblLocal.getSelectedRow();
+        local.setNid_local(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
+        if (BDData.eliminarLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
-        }*/
+            listarLocal();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 

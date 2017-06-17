@@ -2,14 +2,17 @@
 package ventas.presentacion;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import ventas.persistencia.util.BDUtil;
 import java.util.Vector;
-import ventas.modelo.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ventas.persistencia.util.BDData;
+import ventas.modelo.Login_User;
 
 public class Login extends javax.swing.JFrame {
-    public static int id;
-    Usuario usuario=new Usuario();
+    
+    Login_User login=new Login_User();   
     public Login() {
         initComponents();
         BDUtil.conectar();
@@ -19,7 +22,7 @@ public class Login extends javax.swing.JFrame {
         txtPassword.requestFocus(false);
         txtUsuario.requestFocus(false);
         btnAceptar.requestFocus(false);
-        //Login frm = new Login();
+        //Login frm = new Login_User();
         //frm.setExtendedState();
     }
 
@@ -229,37 +232,37 @@ public class Login extends javax.swing.JFrame {
       
     }//GEN-LAST:event_txtPasswordActionPerformed
     private void validUser(){        
-        ResultSet rs = BDData.user(usuario);
+        ResultSet rs = BDData.user(login);
         try {
             if (rs.next()) {
-                usuario.setNdi_usuario(rs.getInt(1));
-                usuario.setNid_perfil(rs.getInt(2));
-            }
-            if (usuario.getNid_perfil()==1) {
+                login.setNdi_usuario(rs.getInt(1));
+                login.setNid_perfil(rs.getInt(2));                
+            }                             
+            if (login.getNid_perfil()==1) {
                 this.setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
-                frmP.Validar(1);
+                //frmP.Validar(1);
                 frmP.setVisible(true);            
-            }else if (usuario.getNid_perfil()==2) {
+            }/*else if (id==2) {
                 this.setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
                 frmP.Validar(2);
                 frmP.setVisible(true);            
-            }else if (usuario.getNid_perfil()==3) {
+            }else if (id==3) {
                 this.setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
                 frmP.Validar(3);
                 frmP.setVisible(true);            
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+            }*/
+        }catch(Exception e){
+        
         }
     }
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        usuario.setNo_usuario(txtUsuario.getText());
-        usuario.setNo_clave(txtPassword.getText());
-        validUser();
+        login.setNo_usuario(txtUsuario.getText());
+        login.setNo_clave(txtPassword.getText());
+        validUser();        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public static void main(String args[]) {

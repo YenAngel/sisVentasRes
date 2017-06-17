@@ -4,12 +4,15 @@ package ventas.presentacion.Empresa;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Empresa;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.frmPrincipal;
 
 public class jpListarEmpresa extends javax.swing.JPanel {
     
     DefaultTableModel dtm=new DefaultTableModel();
     Empresa empresa=new Empresa();
+    Login_User usuario=new Login_User();
     public jpListarEmpresa() {
         initComponents();
         listarEmpresa();
@@ -41,6 +44,11 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpresaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEmpresa);
 
         btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
@@ -119,26 +127,39 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblEmpresa.getSelectedRow();
-        empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));
-        empresa.setNo_razon_social((String)dtm.getValueAt(idx, 2));
-        empresa.setNo_comercial((String)dtm.getValueAt(idx, 3));
-        empresa.setNu_ruc((String)dtm.getValueAt(idx, 4));
-        empresa.setNo_estado((String)dtm.getValueAt(idx, 5));
-        empresa.setNid_usuario_modi(1);
+        jpEditarEmpresa editarEmpresa=new jpEditarEmpresa();
+        empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+        empresa.setNo_razon_social(dtm.getValueAt(idx, 1).toString());
+        empresa.setNo_comercial(dtm.getValueAt(idx, 2).toString());
+        empresa.setNu_ruc(dtm.getValueAt(idx, 3).toString());
+        empresa.setNo_estado(dtm.getValueAt(idx, 4).toString());
+        empresa.setNid_usuario_modi(usuario.getNdi_usuario()); 
+        if(idx >= 0){            
+            frmPrincipal.Comp(editarEmpresa);                                   
+            jpEditarEmpresa.cargarEmpresa(empresa);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblEmpresa.getSelectedRow();
-        empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));        
-        empresa.setNid_usuario_modi(1);
+        empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
+        //empresa.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarEmpresa(empresa)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            listarEmpresa();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
+        jpNuevaEmpresa nuevaEmpresa=new jpNuevaEmpresa();        
+        frmPrincipal.Comp(nuevaEmpresa);        
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void tblEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpresaMouseClicked
+        
+    }//GEN-LAST:event_tblEmpresaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

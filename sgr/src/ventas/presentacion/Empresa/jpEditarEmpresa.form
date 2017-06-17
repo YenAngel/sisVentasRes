@@ -54,12 +54,10 @@
                       <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnClear" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                       <Component id="btnHome" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -77,34 +75,24 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtRUC" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtRazonSocial" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNombreComercial" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEstado" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtRazonSocial" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEstado" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtNombreComercial" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnClear" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="btnHome" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,14 +104,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstado">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\sisVentasRes\sgr\src\recursos\security-high.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Activo"/>
-      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEstadoMouseClicked"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -143,7 +128,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -169,14 +154,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Retornar"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnClear">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\sisVentasRes\sgr\src\recursos\Arrow-reload-2-icon.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Limpiar"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
@@ -191,17 +171,17 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtRazonSocial">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreComercial">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRUC">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
   </SubComponents>

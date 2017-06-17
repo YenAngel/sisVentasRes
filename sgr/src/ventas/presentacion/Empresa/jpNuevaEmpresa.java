@@ -2,18 +2,43 @@
 package ventas.presentacion.Empresa;
 
 import java.net.URL;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ventas.modelo.Empresa;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import static ventas.presentacion.Empresa.jpEditarEmpresa.lblEstado;
+import ventas.presentacion.frmPrincipal;
 
 public class jpNuevaEmpresa extends javax.swing.JPanel {
 
     Empresa empresa= new Empresa();
+    Login_User usuario=new  Login_User();
     public jpNuevaEmpresa() {
         initComponents();
+        icon("Inactivo");
     }
-
+    
+    private void icon(String iconic){
+        if (iconic.equals("Activo")) {            
+            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
+            //URL url = this.getClass().getResource(path);
+            ImageIcon imageIcon = new ImageIcon(path);
+            Icon icon= new ImageIcon(imageIcon.getImage());
+            lblEstado.setIcon(icon);
+            lblEstado.setText("Inactivo");
+            this.repaint();
+        }else{            
+            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
+            //URL url = this.getClass().getResource(path);
+            ImageIcon imageIcon = new ImageIcon(path);
+            Icon icon= new ImageIcon(imageIcon.getImage());
+            lblEstado.setIcon(icon);
+            lblEstado.setText("Activo");
+            this.repaint();
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -23,9 +48,9 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         txtruc = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
         lblEstado = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnClean = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtRazonSocial = new javax.swing.JTextField();
@@ -39,19 +64,22 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
 
         jLabel1.setText("Razón Social:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        jButton1.setText("Retornar");
+        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
+        btnHome.setText("Retornar");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
 
-        lblEstado.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\security-high.png")); // NOI18N
-        lblEstado.setText("Activo");
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEstadoMouseClicked(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Arrow-reload-2-icon.png")); // NOI18N
-        jButton2.setText("Limpiar");
+        btnClean.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Arrow-reload-2-icon.png")); // NOI18N
+        btnClean.setText("Limpiar");
 
         btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
@@ -93,11 +121,11 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(140, 140, 140))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,8 +151,8 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -134,33 +162,26 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         empresa.setNo_comercial(txtNombreC.getText());
         empresa.setNu_ruc(txtruc.getText());
         empresa.setNo_estado(lblEstado.getText());
-        empresa.setNid_usuario_crea(1);
+        empresa.setNid_usuario_crea(usuario.ndi_usuario);
         if (BDData.nuevaEmpresa(empresa)) {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
-        if (lblEstado.getText().equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";  
-            URL url = this.getClass().getResource(path);  
-            ImageIcon icon = new ImageIcon(url);            
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";  
-            URL url = this.getClass().getResource(path);  
-            ImageIcon icon = new ImageIcon(url);            
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-        }
+        icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        jpListarEmpresa listarEmpresa=new jpListarEmpresa();        
+        frmPrincipal.Comp(listarEmpresa); 
+    }//GEN-LAST:event_btnHomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClean;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
