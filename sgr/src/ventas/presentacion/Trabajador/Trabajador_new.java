@@ -248,9 +248,14 @@ public class Trabajador_new extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String cod;
         if(jDateChooser1.getDate() != null && cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
+            if(txtDNI.getText().trim().length() != 8 || !Digits(txtDNI.getText())){
+                JOptionPane.showMessageDialog(this, "Ingrese un número de DNI correcto (8 dígitos)","Mensaje",JOptionPane.WARNING_MESSAGE);
+                txtDNI.setText("");
+                txtDNI.requestFocus();
+                return;
+            }
            SimpleDateFormat FormatoFecha = new SimpleDateFormat("yyyy-MM-dd");
           cod =  String.format("T%04d%n", BD_RS.CodTrab());
-          System.out.println(cod);
         Trabajador trabajador = new Trabajador();
         trabajador.setCodigo(cod);
         trabajador.setNombre(txtNombres.getText());
@@ -272,7 +277,14 @@ public class Trabajador_new extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    private boolean Digits(String cad){
+        for(int i = 0; i < cad.length(); i++){
+            if(!Character.isDigit(cad.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        txtApeMat.setText("");
        txtApePat.setText("");

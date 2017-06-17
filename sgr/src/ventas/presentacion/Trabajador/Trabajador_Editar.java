@@ -254,6 +254,12 @@ public class Trabajador_Editar extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
         if(cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
+            if(txtDNI.getText().trim().length() != 8 || !Digits(txtDNI.getText())){
+                JOptionPane.showMessageDialog(this, "Ingrese un número de DNI correcto (8 dígitos)","Mensaje",JOptionPane.WARNING_MESSAGE);
+                txtDNI.setText("");
+                txtDNI.requestFocus();
+                return;
+            }
             SimpleDateFormat FormatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             Trabajador trabajador = new Trabajador();
             trabajador.setNombre(txtNombres.getText());
@@ -277,7 +283,14 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    private boolean Digits(String cad){
+        for(int i = 0; i < cad.length(); i++){
+            if(!Character.isDigit(cad.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         Mant_Trabajador n = new Mant_Trabajador();
         frmPrincipal.Comp(n);

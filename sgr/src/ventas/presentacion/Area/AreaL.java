@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ventas.presentacion.Cargo;
+package ventas.presentacion.Area;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -11,24 +11,23 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import ventas.modelo.Area;
-import ventas.modelo.Cargo;
-import ventas.persistencia.util.BDData;
+import ventas.presentacion.Cargo.*;
 import ventas.persistencia.util.BD_RS;
 
 /**
  *
  * @author AnibalMA
  */
-public class CargoL extends javax.swing.JPanel {
+public class AreaL extends javax.swing.JPanel {
 
     /**
      * Creates new form CargoL
      */
-    public CargoL() {
+    public AreaL() {
         initComponents();
         cboEstado.setModel(BD_RS.ListarCBOEstado());
-        cboArea.setModel(BD_RS.ListarCBOAreas());
-        tblCargos.setModel(BD_RS.ListarCargos());
+        tblAreas.setModel(BD_RS.ListarAreas());
+        cboEstado.setSelectedIndex(0);
         LoadTable();
     }
 
@@ -50,9 +49,7 @@ public class CargoL extends javax.swing.JPanel {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCargos = new javax.swing.JTable();
-        jLabel18 = new javax.swing.JLabel();
-        cboArea = new javax.swing.JComboBox<>();
+        tblAreas = new javax.swing.JTable();
 
         btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -68,7 +65,7 @@ public class CargoL extends javax.swing.JPanel {
         jLabel15.setText("ESTADO:");
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("GESTIÓN - CARGO");
+        jLabel16.setText("GESTIÓN - ÁREAS");
 
         txtName_Cargo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
@@ -95,8 +92,8 @@ public class CargoL extends javax.swing.JPanel {
             }
         });
 
-        tblCargos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tblCargos.setModel(new javax.swing.table.DefaultTableModel(
+        tblAreas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tblAreas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,44 +104,34 @@ public class CargoL extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblCargos);
-
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel18.setText("ÁREA:");
+        jScrollPane1.setViewportView(tblAreas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel17))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtName_Cargo)
-                                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(104, 104, 104)
-                                .addComponent(jLabel18)
-                                .addGap(26, 26, 26)
-                                .addComponent(cboArea, 0, 273, Short.MAX_VALUE)
-                                .addGap(204, 204, 204))
+                                .addGap(403, 403, 403)
+                                .addComponent(jLabel16))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(496, 496, 496)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel17)
+                                .addGap(26, 26, 26)
+                                .addComponent(txtName_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabel15)
+                                .addGap(26, 26, 26)
+                                .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1))
                 .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
@@ -154,16 +141,16 @@ public class CargoL extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtName_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtName_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,35 +164,36 @@ public class CargoL extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     private void LoadTable(){
-        tblCargos.setDefaultEditor(Object.class, null);
+        tblAreas.setDefaultEditor(Object.class, null);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0; i < tblCargos.getColumnCount(); i++){
-            tblCargos.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        for(int i = 0; i < tblAreas.getColumnCount(); i++){
+            tblAreas.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             
         }
-        for(int i = 0; i < tblCargos.getRowCount(); i++)
-            tblCargos.setRowHeight(i, 45);
+        for(int i = 0; i < tblAreas.getRowCount(); i++)
+            tblAreas.setRowHeight(i, 45);
+    
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if(txtName_Cargo.getText().trim().length() != 0 && cboEstado.getSelectedIndex() != -1){
-            if(BD_RS.ExistCargo(txtName_Cargo.getText())){
-               JOptionPane.showMessageDialog(this, "Ya existe el Cargo " + txtName_Cargo.getText() ,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+            if(BD_RS.ExistArea(txtName_Cargo.getText())){
+               JOptionPane.showMessageDialog(this, "Ya existe el Área " + txtName_Cargo.getText() ,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
                txtName_Cargo.setText("");
                txtName_Cargo.requestFocus();
                return; 
             }
-            Cargo cargo = new Cargo();
-            cargo.setArea(BD_RS.GetIdArea(cboArea.getSelectedItem().toString()));
-            cargo.setNombre(txtName_Cargo.getText());
-            cargo.setEstado(cboEstado.getSelectedIndex()+1);
-            cargo.setFe_creacion(Date.valueOf(LocalDate.now()));
-            if(BD_RS.CCargo(cargo, 1)) {
-                    JOptionPane.showMessageDialog(this, "Cargo Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    tblCargos.setModel(BD_RS.ListarCargos());
+            Area area = new Area();
+            area.setId(BD_RS.CodArea());
+            area.setEstado(cboEstado.getSelectedIndex()+1);
+            area.setFe_creacion(Date.valueOf(LocalDate.now()));
+            area.setNombre(txtName_Cargo.getText());
+            if(BD_RS.CArea(area, 1)) {
+                    JOptionPane.showMessageDialog(this, "Área Guardada","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    tblAreas.setModel(BD_RS.ListarAreas());
                     LoadTable();
                 }
-                else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el Cargo","Mensaje",JOptionPane.WARNING_MESSAGE);
+                else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el Área","Mensaje",JOptionPane.WARNING_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
         }
@@ -224,14 +212,12 @@ public class CargoL extends javax.swing.JPanel {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSave;
-    private static javax.swing.JComboBox<String> cboArea;
     private static javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblCargos;
+    private javax.swing.JTable tblAreas;
     private javax.swing.JTextField txtName_Cargo;
     // End of variables declaration//GEN-END:variables
 }

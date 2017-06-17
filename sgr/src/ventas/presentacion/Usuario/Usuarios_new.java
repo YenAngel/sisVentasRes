@@ -189,9 +189,15 @@ public class Usuarios_new extends javax.swing.JPanel {
             try {
                 Usuario usuario = new Usuario();
                 String trabj = cboTrabajador.getSelectedItem().toString().substring(0, 5);
-                if(BD_RS.ExistUser(BD_RS.GetIdTrab(trabj))){
+                if(BD_RS.ExistTrabAcc(BD_RS.GetIdTrab(trabj))){
                         JOptionPane.showMessageDialog(this, "Ya existe un usuario para el Trabajador " + trabj,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
                         cboTrabajador.requestFocus();
+                        return;  
+                }
+                if(BD_RS.ExistUser(txtUser.getText())){
+                        JOptionPane.showMessageDialog(this, "Ya existe el usuario " + txtUser.getText(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        txtUser.setText("");
+                        txtUser.requestFocus();
                         return;  
                 }
                 usuario.setUser(txtUser.getText().trim());

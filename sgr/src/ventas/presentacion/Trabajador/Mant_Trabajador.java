@@ -144,6 +144,8 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             tblTrabajador.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             
         }
+        for(int i = 0; i < tblTrabajador.getRowCount(); i++)
+            tblTrabajador.setRowHeight(i, 45);
         tblTrabajador.setDefaultEditor(Object.class, null);
         tblTrabajador.getTableHeader().setReorderingAllowed(false); 
     }

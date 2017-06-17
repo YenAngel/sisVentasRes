@@ -221,7 +221,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 Usuario usuario = new Usuario();
                 String trabj = cboTrabajador.getSelectedItem().toString().substring(0, 5);
                 if(BD_RS.GetIdTrab(trabj)!= usuario.getCodT()){
-                    if(BD_RS.ExistUser(BD_RS.GetIdTrab(trabj))){
+                    if(BD_RS.ExistTrabAcc(BD_RS.GetIdTrab(trabj))){
                         JOptionPane.showMessageDialog(this, "Ya existe un usuario para el Trabajador " + trabj,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
                         cboTrabajador.requestFocus();
                         return;
@@ -230,6 +230,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 if(!usuario.getPssEnc().equals(txtPass.getText())){
                     if(txtPass.getText().length() > 8){
                         JOptionPane.showMessageDialog(this, "La contraseña debe tener una logitud menor o igual a 8","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        txtPass.setText("");
                         txtPass.requestFocus();
                         return;
                     }else usuario.setPssEnc(EN_DES.Encrypt_S(txtPass.getText()));
