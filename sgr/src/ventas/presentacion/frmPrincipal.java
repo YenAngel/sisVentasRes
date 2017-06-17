@@ -29,15 +29,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         c = getContentPane();
         getContentPane().setLayout(null);
         Login frmL = new Login();
-        getContentPane().setLayout(null);
         setExtendedState(MAXIMIZED_BOTH);
         widthvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         heightvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         pTop.setLayout(null);
         pTop.setBounds(0,0,widthvar, 59);
-        
-        jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
-        jpContenedor.setVisible(false);
+            pMesas.setVisible(false);
+            pPiso.setVisible(false);
+            pReporte.setVisible(false);
+            pUsuario.setVisible(false);
+            pTrabajador.setVisible(false);
+            pPedido.setVisible(false);
+        //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
+        //jpContenedor.setVisible(false);
         jLabel15.setLocation(800, 15);
         //jpContenedor.setBounds(255, 59, widthvar-255, heightvar-59);
         Validar(frmL.id);
@@ -60,7 +64,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPedido = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        pProducts = new javax.swing.JPanel();
+        pPiso = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         pMesas = new javax.swing.JPanel();
@@ -158,6 +162,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().add(pTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 179, 255, 120));
 
         pPedido.setBackground(new java.awt.Color(24, 168, 255));
+        pPedido.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
         pPedido.setPreferredSize(new java.awt.Dimension(255, 120));
         pPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -192,20 +197,20 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pPedidoLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel3)
-                        .addGap(0, 9, Short.MAX_VALUE)))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addGap(45, 45, 45))
         );
 
         jLabel4.getAccessibleContext().setAccessibleDescription("");
 
-        getContentPane().add(pPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, -1, -1));
+        getContentPane().add(pPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 659, -1, -1));
 
-        pProducts.setBackground(new java.awt.Color(24, 168, 255));
-        pProducts.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
-        pProducts.setPreferredSize(new java.awt.Dimension(255, 120));
-        pProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+        pPiso.setBackground(new java.awt.Color(24, 168, 255));
+        pPiso.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        pPiso.setPreferredSize(new java.awt.Dimension(255, 120));
+        pPiso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pProductsMouseClicked(evt);
+                pPisoMouseClicked(evt);
             }
         });
 
@@ -215,31 +220,31 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
 
-        javax.swing.GroupLayout pProductsLayout = new javax.swing.GroupLayout(pProducts);
-        pProducts.setLayout(pProductsLayout);
-        pProductsLayout.setHorizontalGroup(
-            pProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pProductsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pPisoLayout = new javax.swing.GroupLayout(pPiso);
+        pPiso.setLayout(pPisoLayout);
+        pPisoLayout.setHorizontalGroup(
+            pPisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPisoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addGap(61, 61, 61)
                 .addComponent(jLabel13)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
-        pProductsLayout.setVerticalGroup(
-            pProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pProductsLayout.createSequentialGroup()
-                .addGroup(pProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pProductsLayout.createSequentialGroup()
+        pPisoLayout.setVerticalGroup(
+            pPisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pPisoLayout.createSequentialGroup()
+                .addGroup(pPisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pPisoLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel13))
-                    .addGroup(pProductsLayout.createSequentialGroup()
+                    .addGroup(pPisoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel14)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 419, -1, -1));
+        getContentPane().add(pPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 419, -1, -1));
 
         pMesas.setBackground(new java.awt.Color(24, 168, 255));
         pMesas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
@@ -283,6 +288,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().add(pMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 299, -1, -1));
 
         pReporte.setBackground(new java.awt.Color(24, 168, 255));
+        pReporte.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
         pReporte.setPreferredSize(new java.awt.Dimension(255, 120));
         pReporte.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -317,10 +323,10 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pReporteLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel7)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
+        getContentPane().add(pReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 539, -1, -1));
 
         pUsuario.setBackground(new java.awt.Color(24, 168, 255));
         pUsuario.setPreferredSize(new java.awt.Dimension(255, 120));
@@ -385,7 +391,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuario.setBackground(new java.awt.Color(24,168,255));
         pReporte.setBackground(new java.awt.Color(24,168,255));
         pMesas.setBackground(new java.awt.Color(24,168,255));
-        pProducts.setBackground(new java.awt.Color(24,168,255));
+        pPiso.setBackground(new java.awt.Color(24,168,255));
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -405,7 +411,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuario.setBackground(new java.awt.Color(24,168,255));
         pReporte.setBackground(new java.awt.Color(24,168,255));
         pMesas.setBackground(new java.awt.Color(24,168,255));
-        pProducts.setBackground(new java.awt.Color(24,168,255));
+        pPiso.setBackground(new java.awt.Color(24,168,255));
         
     }//GEN-LAST:event_pPedidoMouseClicked
     public static void Comp(JPanel j){
@@ -431,7 +437,7 @@ public class frmPrincipal extends javax.swing.JFrame {
        pTrabajador.setBackground(new java.awt.Color(24,168,255));
        pUsuario.setBackground(new java.awt.Color(24,168,255));
        pMesas.setBackground(new java.awt.Color(24,168,255));
-       pProducts.setBackground(new java.awt.Color(24,168,255));
+       pPiso.setBackground(new java.awt.Color(24,168,255));
     }//GEN-LAST:event_pReporteMouseClicked
 
     private void pUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pUsuarioMouseClicked
@@ -440,7 +446,7 @@ public class frmPrincipal extends javax.swing.JFrame {
        pTrabajador.setBackground(new java.awt.Color(24,168,255));
        pReporte.setBackground(new java.awt.Color(24,168,255));
        pMesas.setBackground(new java.awt.Color(24,168,255));
-       pProducts.setBackground(new java.awt.Color(24,168,255));
+       pPiso.setBackground(new java.awt.Color(24,168,255));
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -464,23 +470,18 @@ public class frmPrincipal extends javax.swing.JFrame {
 
        pUsuario.setBackground(new java.awt.Color(0,152,205));
        //pPedido.setBackground(new java.awt.Color(0,152,205));
-       //pMenu.setBackground(new java.awt.Color(0,152,205));
+       //pTrabajador.setBackground(new java.awt.Color(0,152,205));
        //pReporte.setBackground(new java.awt.Color(0,152,205));
 
        pMesas.setBackground(new java.awt.Color(255,51,51));
-       pProducts.setBackground(new java.awt.Color(24,168,255));
+       pPiso.setBackground(new java.awt.Color(24,168,255));
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-
             nPanel = new jpListarMesa();
             nPanel.setBounds(255,59, widthvar-255, heightvar-59);
-
-            nPanel = new jpListarMesa();
-            nPanel.setBounds(0,0, widthvar-255, heightvar-59);
-
         
             getContentPane().add(nPanel);
             this.validate();
@@ -489,14 +490,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_pMesasMouseClicked
 
-    private void pProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pProductsMouseClicked
+    private void pPisoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPisoMouseClicked
        pUsuario.setBackground(new java.awt.Color(24,168,255));
        pPedido.setBackground(new java.awt.Color(24,168,255));
        pTrabajador.setBackground(new java.awt.Color(24,168,255));
        pReporte.setBackground(new java.awt.Color(24,168,255));
        pMesas.setBackground(new java.awt.Color(24,168,255));
-       pProducts.setBackground(new java.awt.Color(255,51,51));
-    }//GEN-LAST:event_pProductsMouseClicked
+       pPiso.setBackground(new java.awt.Color(255,51,51));
+    }//GEN-LAST:event_pPisoMouseClicked
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
        
@@ -506,111 +507,104 @@ public class frmPrincipal extends javax.swing.JFrame {
         //jpContenedor.validate();// TODO add your handling code here:
     }//GEN-LAST:event_formComponentResized
     public void Validar(int id){
-        /*int vis = 6;
+        int vis = 6;
         int size = 0;
         
         if(id == 1){
-            vis = 6;
-            size = (heightvar - pTop.getHeight())/vis;    
+            vis = 6; //Cantidad de paneles se va a mostrar
+            size = (heightvar - pTop.getHeight())/vis;    //Alto de cada panel
+            
+            //Al cargar el frame todos están FALSE, aquí se elige los que serán visibles (debe ser de acuerdo a la variable VIS)
             pMesas.setVisible(true);
-            pProducts.setVisible(true);
+            pPiso.setVisible(true);
             pReporte.setVisible(true);
             pUsuario.setVisible(true);
-            pMenu.setLayout(null);
+            pTrabajador.setVisible(true);
+            pPedido.setVisible(true);
+            
+            //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
+            pTrabajador.setLayout(null);
             pPedido.setLayout(null);
             pUsuario.setLayout(null);
             pReporte.setLayout(null);
             pMesas.setLayout(null);
-            pProducts.setLayout(null);
+            pPiso.setLayout(null);
+            
+            //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
+            pUsuario.setBounds(0, 59 ,255,size);
+            jLabel9.setBounds(105, size/2 - 15, 95, 26);
+            jLabel10.setBounds(17, size/2 - 30, 64, 64);
+            
+            pTrabajador.setBounds(0, 59 + size, 255,size);
+            jLabel1.setBounds(105, size/2 - 20, 142, 26);
+            jLabel2.setBounds(17, size/2 - 50, 64, 64);
+            
+            pMesas.setBounds(0, 59 + size*2, 255, size);
+            jLabel11.setBounds(105, size/2 - 20,68 ,26);
+            jLabel12.setBounds(17, size/2 - 40,64 ,64);
+            
+            pPiso.setBounds(0, 59 + size*3, 255, size);
+            jLabel13.setBounds(105, size/2 - 15,46 ,26);
+            jLabel14.setBounds(17, size/2 -40,64 ,64);
+            
+            pPedido.setBounds(0, 59 + size*4, 255, size);
+            jLabel3.setBounds(105, size/2 - 15, 73, 26);
+            jLabel4.setBounds(17, size/2 - 30, 64, 64);
 
-            pMenu.setBounds(0, 59, 250,size);
-            jLabel1.setBounds(110, size/2 - 20, 57, 26);
-            jLabel2.setBounds(36, size/2 - 50, 82, 77);
-            //System.out.println(pMenu.getLocation().toString());
-
-            pPedido.setBounds(0, 59 + size, 250, size);
-            jLabel3.setBounds(110, size/2 - 20, 73, 26);
-            jLabel4.setBounds(36, size/2 - 30, 48, 48);
-            //System.out.println(pPedido.getLocation().toString());
-
-            pUsuario.setBounds(0, 59 + size*2,250,size);
-            jLabel9.setBounds(110, size/2 - 20, 95, 26);
-            jLabel10.setBounds(36, size/2 - 30, 48, 48);
-           // System.out.println(pUsuario.getLocation().toString());
-
-            pReporte.setBounds(0,59 + size*3,250,size);
-            jLabel7.setBounds(110, size/2 - 20, 85, 26);
-            jLabel8.setBounds(36, size/2 - 40, 64, 64);
-            //System.out.println(pReporte.getLocation().toString());
-
-            pMesas.setBounds(0, 59 + size*4, 250, size);
-            jLabel11.setBounds(110, size/2 - 20,68 ,26);
-            jLabel12.setBounds(36, size/2 - 40,64 ,64);
-           // System.out.println(pMesas.getLocation().toString());
-
-            pProducts.setBounds(0, 59 + size*5, 250, size);
-            jLabel13.setBounds(110, size/2 - 20,109 ,26);
-            jLabel14.setBounds(36, size/2 -40,64 ,64);
-            //System.out.println(pProducts.getLocation().toString());
-
+            pReporte.setBounds(0,59 + size*5,255,size);
+            jLabel7.setBounds(105, size/2 - 15, 85, 26);
+            jLabel8.setBounds(17, size/2 - 40, 64, 64);
+            
         }else if(id==2){
             vis = 5;
             size = (heightvar - pTop.getHeight())/vis;    
             pMesas.setVisible(true);
-            pProducts.setVisible(true);
-            //pReporte.setVisible(true);
+            pPiso.setVisible(true);
             pUsuario.setVisible(true);
-            pMenu.setLayout(null);
+            pTrabajador.setVisible(true);
+            pPedido.setVisible(true);
+            pTrabajador.setLayout(null);
             pPedido.setLayout(null);
             pUsuario.setLayout(null);
-            //pReporte.setLayout(null);
             pMesas.setLayout(null);
-            pProducts.setLayout(null);
-
-            pMenu.setBounds(0, 59, 250,size);
-            jLabel1.setBounds(110, size/2 - 20, 57, 26);
-            jLabel2.setBounds(36, size/2 - 50, 82, 77);
-            //System.out.println(pMenu.getLocation().toString());
-
-            pPedido.setBounds(0, 59 + size, 250, size);
-            jLabel3.setBounds(110, size/2 - 20, 73, 26);
-            jLabel4.setBounds(36, size/2 - 30, 48, 48);
-            //System.out.println(pPedido.getLocation().toString());
-
-            pUsuario.setBounds(0, 59 + size*2,250,size);
-            jLabel9.setBounds(110, size/2 - 20, 95, 26);
-            jLabel10.setBounds(36, size/2 - 30, 48, 48);
-           // System.out.println(pUsuario.getLocation().toString());
-
-            pMesas.setBounds(0, 59 + size*3, 250, size);
-            jLabel11.setBounds(110, size/2 - 20,68 ,26);
-            jLabel12.setBounds(36, size/2 - 40,64 ,64);
-           // System.out.println(pMesas.getLocation().toString());
-
-            pProducts.setBounds(0, 59 + size*4, 250, size);
-            jLabel13.setBounds(110, size/2 - 20,109 ,26);
-            jLabel14.setBounds(36, size/2 -40,64 ,64);
-            //System.out.println(pProducts.getLocation().toString());
-
+            pPiso.setLayout(null);
+            
+            pUsuario.setBounds(0, 59 ,255,size);
+            jLabel9.setBounds(105, size/2 - 15, 95, 26);
+            jLabel10.setBounds(17, size/2 - 30, 64, 64);
+            
+            pTrabajador.setBounds(0, 59 + size, 255,size);
+            jLabel1.setBounds(105, size/2 - 20, 142, 26);
+            jLabel2.setBounds(17, size/2 - 50, 64, 64);
+            
+            pMesas.setBounds(0, 59 + size*2, 255, size);
+            jLabel11.setBounds(105, size/2 - 20,68 ,26);
+            jLabel12.setBounds(17, size/2 - 40,64 ,64);
+            
+            pPiso.setBounds(0, 59 + size*3, 255, size);
+            jLabel13.setBounds(105, size/2 - 15,46 ,26);
+            jLabel14.setBounds(17, size/2 -40,64 ,64);
+            
+            pPedido.setBounds(0, 59 + size*4, 255, size);
+            jLabel3.setBounds(105, size/2 - 15, 73, 26);
+            jLabel4.setBounds(17, size/2 - 30, 64, 64);
         }else{
             vis = 2;
             size = (heightvar - pTop.getHeight())/vis;
-        pMesas.setVisible(false);
-        pProducts.setVisible(false);
-        pReporte.setVisible(false);
-        pUsuario.setVisible(false);
-        pMenu.setLayout(null);
-        pPedido.setLayout(null);
-         pMenu.setBounds(0, 59, 250,size);
-        jLabel1.setBounds(110, size/2 - 20, 57, 26);
-        jLabel2.setBounds(36, size/2 - 50, 82, 77);
-       // System.out.println(pMenu.getLocation().toString());
+            
+            pMesas.setVisible(true);
+            pPedido.setVisible(true);
+            pPedido.setLayout(null);
+            pMesas.setLayout(null);
         
-        pPedido.setBounds(0, 59 + size, 250, size);
-        jLabel3.setBounds(110, size/2 - 20, 73, 26);
-        jLabel4.setBounds(36, size/2 - 30, 48, 48);
-        //System.out.println(pPedido.getLocation().toString());
-        }*/
+            pMesas.setBounds(0, 59, 255, size);
+            jLabel11.setBounds(105, size/2 - 20,68 ,26);
+            jLabel12.setBounds(17, size/2 - 40,64 ,64);
+            
+            pPedido.setBounds(0, 59 + size, 255, size);
+            jLabel3.setBounds(105, size/2 - 15, 73, 26);
+            jLabel4.setBounds(17, size/2 - 30, 64, 64);
+        }
     }
     
     public static void main(String args[]) {
@@ -662,7 +656,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JPanel jpContenedor;
     private javax.swing.JPanel pMesas;
     private javax.swing.JPanel pPedido;
-    private javax.swing.JPanel pProducts;
+    private javax.swing.JPanel pPiso;
     private javax.swing.JPanel pReporte;
     private javax.swing.JPanel pTop;
     private javax.swing.JPanel pTrabajador;
