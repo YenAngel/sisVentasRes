@@ -49,7 +49,6 @@ public class Usuarios_new extends javax.swing.JPanel {
         txtPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
@@ -142,18 +141,7 @@ public class Usuarios_new extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 11, 180, 80));
-
-        btnLimpiar.setBackground(new java.awt.Color(153, 153, 255));
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clear_new.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 10, 180, 80));
+        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 180, 80));
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -164,7 +152,7 @@ public class Usuarios_new extends javax.swing.JPanel {
                 btnReturnActionPerformed(evt);
             }
         });
-        jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 11, 180, 80));
+        jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 180, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -196,18 +184,16 @@ public class Usuarios_new extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        cboTipo.setSelectedIndex(-1);
-        cboTrabajador.setSelectedIndex(-1);
-        txtUser.setText("");
-        txtPass.setText("");
-        cboTrabajador.requestFocus();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if(cboTipo.getSelectedIndex() != -1 && cboTrabajador.getSelectedIndex()!= -1 && txtUser.getText().trim().length() != 0 && txtPass.getText().length() != 0){
             try {
                 Usuario usuario = new Usuario();
+                String trabj = cboTrabajador.getSelectedItem().toString().substring(0, 5);
+                if(BD_RS.ExistUser(BD_RS.GetIdTrab(trabj))){
+                        JOptionPane.showMessageDialog(this, "Ya existe un usuario para el Trabajador " + trabj,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        cboTrabajador.requestFocus();
+                        return;  
+                }
                 usuario.setUser(txtUser.getText().trim());
                 usuario.setPssEnc(EN_DES.Encrypt_S(txtPass.getText()));
                 usuario.setEstado(1);
@@ -215,8 +201,7 @@ public class Usuarios_new extends javax.swing.JPanel {
                 usuario.setCodT(BD_RS.GetIdTrab(cboTrabajador.getSelectedItem().toString().substring(0, 5)));
                 if(BD_RS.CUsuario(usuario, 1)) {
                     JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    Mant_Usuarios n = new Mant_Usuarios();
-                    frmPrincipal.Comp(n);
+                    ResetControls();
                 }
                 else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el registro","Mensaje",JOptionPane.WARNING_MESSAGE);
             } catch (Exception ex) {
@@ -232,10 +217,15 @@ public class Usuarios_new extends javax.swing.JPanel {
         Mant_Usuarios mu = new Mant_Usuarios();
         frmPrincipal.Comp(mu);
     }//GEN-LAST:event_btnReturnActionPerformed
-
+    private void ResetControls(){
+        txtPass.setText("");
+        txtUser.setText("");
+        cboTipo.setSelectedIndex(-1);
+        cboTrabajador.setSelectedIndex(-1);
+        cboTrabajador.requestFocus();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboTipo;

@@ -1,13 +1,17 @@
 
 package ventas.presentacion;
 
+import java.sql.ResultSet;
 import ventas.persistencia.util.BDUtil;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ventas.modelo.Usuario;
 import ventas.persistencia.util.BDData;
-
 
 public class Login extends javax.swing.JFrame {
     public static int id;
+    Usuario usuario=new Usuario();
     public Login() {
         initComponents();
         txtPassword.setEchoChar((char)0);
@@ -112,32 +116,30 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(411, 411, 411)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(jLabel2)
-                .addGap(33, 33, 33)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(411, 411, 411)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(jSeparator2))))
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,19 +148,17 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel1))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(11, 11, 11)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,9 +182,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,28 +229,42 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
       
     }//GEN-LAST:event_txtPasswordActionPerformed
-    private void validUser(){
-        int id=BDData.user(cboSucursal.getSelectedItem().toString(), txtUsuario.getText(), txtPassword.getText());
-        if (id==1) {
-            this.setVisible(false);
-            frmPrincipal frmP = new frmPrincipal();
-            frmP.Validar(1);
-            frmP.setVisible(true);            
-        }else if (id==2) {
-            this.setVisible(false);
-            frmPrincipal frmP = new frmPrincipal();
-            frmP.Validar(2);
-            frmP.setVisible(true);            
-        }else if (id==3) {
-            this.setVisible(false);
-            frmPrincipal frmP = new frmPrincipal();
-            frmP.Validar(3);
-            frmP.setVisible(true);            
+    private void validUser() throws Exception{        
+        ResultSet rs = BDData.user(usuario);
+        try {
+            if (rs.next()) {
+                usuario.setNdi_usuario(rs.getInt(1));
+                usuario.setNid_perfil(rs.getInt(2));
+            }
+            if (usuario.getNid_perfil()==1) {
+                this.setVisible(false);
+                frmPrincipal frmP = new frmPrincipal();
+                frmP.Validar(1);
+                frmP.setVisible(true);            
+            }else if (usuario.getNid_perfil()==2) {
+                this.setVisible(false);
+                frmPrincipal frmP = new frmPrincipal();
+                frmP.Validar(2);
+                frmP.setVisible(true);            
+            }else if (usuario.getNid_perfil()==3) {
+                this.setVisible(false);
+                frmPrincipal frmP = new frmPrincipal();
+                frmP.Validar(3);
+                frmP.setVisible(true);            
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        validUser();
+        try {
+            usuario.setNo_usuario(txtUsuario.getText());
+            usuario.setNo_clave(txtPassword.getText());
+            validUser();
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public static void main(String args[]) {

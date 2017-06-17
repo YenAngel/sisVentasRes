@@ -36,7 +36,7 @@
               <Component id="btnLimpiar" min="-2" pref="180" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnReturn" min="-2" pref="180" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="301" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,7 +53,7 @@
                   <Component id="btnSave" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="btnLimpiar" alignment="3" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="424" max="32767" attributes="0"/>
+              <EmptySpace pref="419" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

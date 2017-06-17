@@ -36,7 +36,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSave" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="btnReturn" alignment="3" min="-2" pref="80" max="-2" attributes="0"/>
@@ -62,24 +62,33 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="1036" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btn_change_pass" min="-2" pref="64" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="cboEstado" min="-2" pref="230" max="-2" attributes="0"/>
+                  <EmptySpace pref="625" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cboTipo" min="-2" pref="230" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cboTrabajador" min="-2" pref="230" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="cboTipo" pref="230" max="32767" attributes="0"/>
+                          <Component id="cboTrabajador" pref="230" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -99,9 +108,14 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                  <EmptySpace pref="89" max="32767" attributes="0"/>
                   <Component id="btn_change_pass" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel21" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="cboEstado" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -132,7 +146,7 @@
                           </Group>
                           <Component id="jLabel19" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="68" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -209,6 +223,20 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_change_passActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboEstado">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="15" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Estado"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

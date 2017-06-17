@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventas.presentacion;
+import ventas.presentacion.Mesa.jpListarMesa;
 import ventas.presentacion.Usuario.Usuarios_new;
 import ventas.presentacion.Trabajador.Trabajador_new;
 import java.awt.BorderLayout;
-import ventas.presentacion.Mesa.jpMesa;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -15,13 +11,14 @@ import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JPanel;
 import ventas.modelo.DevClass;
+import ventas.persistencia.util.BDUtil;
+import ventas.presentacion.Empresa.jpListarEmpresa;
+import ventas.presentacion.Empresa.jpNuevaEmpresa;
+import ventas.presentacion.Local.jpListaLocal;
+import ventas.presentacion.Local.jpNuevoLocal;
 import ventas.presentacion.Trabajador.Mant_Trabajador;
 import ventas.presentacion.Usuario.Mant_Usuarios;
 
-/**
- *
- * @author Test
- */
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
     public static int widthvar, heightvar;
@@ -239,7 +236,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pProductsLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel14)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         getContentPane().add(pProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 419, -1, -1));
@@ -338,9 +335,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel9.setText("Usuarios");
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/users.png"))); // NOI18N
-        jLabel10.setMaximumSize(new java.awt.Dimension(64, 64));
-        jLabel10.setMinimumSize(new java.awt.Dimension(64, 64));
-        jLabel10.setPreferredSize(new java.awt.Dimension(64, 64));
 
         javax.swing.GroupLayout pUsuarioLayout = new javax.swing.GroupLayout(pUsuario);
         pUsuario.setLayout(pUsuarioLayout);
@@ -348,7 +342,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(41, 41, 41))
@@ -362,7 +356,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
                         .addGap(24, 24, 24))))
         );
 
@@ -384,7 +378,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTrabajadorMouseClicked
+
+    private void pTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {                                         
         pPedido.setBackground(new java.awt.Color(24,168,255));
         pTrabajador.setBackground(new java.awt.Color(255,51,51));
         pUsuario.setBackground(new java.awt.Color(24,168,255));
@@ -401,10 +396,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         
             getContentPane().add(nPanel);
             this.validate();
-        } catch (Exception e) {
-        }
-        
-    }//GEN-LAST:event_pTrabajadorMouseClicked
+            } catch (Exception e) {
+        }}
 
     private void pPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPedidoMouseClicked
         pPedido.setBackground(new java.awt.Color(255,51,51));
@@ -463,10 +456,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pUsuarioMouseClicked
 
     private void pMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pMesasMouseClicked
+
        pUsuario.setBackground(new java.awt.Color(24,168,255));
        pPedido.setBackground(new java.awt.Color(24,168,255));
        pTrabajador.setBackground(new java.awt.Color(24,168,255));
        pReporte.setBackground(new java.awt.Color(24,168,255));
+
+       pUsuario.setBackground(new java.awt.Color(0,152,205));
+       //pPedido.setBackground(new java.awt.Color(0,152,205));
+       //pMenu.setBackground(new java.awt.Color(0,152,205));
+       //pReporte.setBackground(new java.awt.Color(0,152,205));
+
        pMesas.setBackground(new java.awt.Color(255,51,51));
        pProducts.setBackground(new java.awt.Color(24,168,255));
        try {
@@ -474,8 +474,13 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-            nPanel = new jpMesa();
+
+            nPanel = new jpListarMesa();
             nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+
+            nPanel = new jpListarMesa();
+            nPanel.setBounds(0,0, widthvar-255, heightvar-59);
+
         
             getContentPane().add(nPanel);
             this.validate();
@@ -607,9 +612,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         //System.out.println(pPedido.getLocation().toString());
         }*/
     }
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

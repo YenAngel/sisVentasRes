@@ -96,6 +96,11 @@ public class Mant_Usuarios extends javax.swing.JPanel {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         jButton4.setText("ELIMINAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -168,6 +173,28 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnModActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       int indx = tblUsuarios.getSelectedRow();
+        if(indx >= 0){
+             if(tblUsuarios.getValueAt(indx, 5).toString().contains("Inactivo")){
+                 JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+             }else{
+                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblUsuarios.getValueAt(indx, 0).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                 if(r == 0){
+                    Usuario user = new Usuario();
+                    user.setEstado(2);
+                    user.setId(Integer.parseInt(tblUsuarios.getValueAt(indx, 0).toString()));
+                    if(BD_RS.CUsuario(user, 3)) {
+                       JOptionPane.showMessageDialog(this, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                       LoadTBL();
+                     }else JOptionPane.showMessageDialog(this, "RHa ocurrido un error al eliminar el registro","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                 }
+             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a eliminar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

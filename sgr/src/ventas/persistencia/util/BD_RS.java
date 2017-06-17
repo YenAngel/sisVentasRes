@@ -185,16 +185,6 @@ public class BD_RS {
         String sp = "Call sp_trabajador(?,?,?,?,?,?,?,?,?,?,?)";
         
         try {
-            /*System.out.println(trabajador.getCodigo());
-            System.out.println(trabajador.getDni());
-            System.out.println(trabajador.getNombre());
-            System.out.println(trabajador.getApePaterno());
-            System.out.println(trabajador.getApeMaterno());
-            System.out.println(trabajador.getFec_ingreso());
-            System.out.println(trabajador.getCargo());
-            System.out.println(trabajador.getEstado());
-            System.out.println(trabajador.getFec_creacion());
-            System.out.println(trabajador.getFec_mod());*/
             CallableStatement cs = BDUtil.getCnn().prepareCall(sp);
             cs.setString(1,trabajador.getCodigo());
             cs.setString(2,trabajador.getDni());
@@ -220,13 +210,12 @@ public class BD_RS {
         String sp = "Call sp_usuario(?,?,?,?,?,?,?)";
         try {
             CallableStatement cs = BDUtil.getCnn().prepareCall(sp);
-            
-            cs.setString(1,usuario.getUser());
-            cs.setString(2,usuario.getPssEnc());
-            cs.setInt(3,usuario.getEstado());
-            cs.setInt(4,usuario.getCodT());
-            cs.setObject(5, usuario.getRol());
-            cs.setInt(6,usuario.getId());
+            cs.setInt(1, usuario.getId());
+            cs.setString(2,usuario.getUser());
+            cs.setString(3,usuario.getPssEnc());
+            cs.setInt(4,usuario.getEstado());
+            cs.setInt(5,usuario.getCodT());
+            cs.setInt(6, usuario.getRol());
             cs.setInt(7,tipo);
             cs.executeQuery();
             return true;
@@ -308,6 +297,36 @@ public class BD_RS {
         } catch (SQLException ex) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
+        }
+    }
+    public static String GetCodTrab(int id){
+        try {
+            String sql = "SELECT co_trabajador FROM mae_trabajador where nid_trabajador = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    public static boolean ExistUser(int id){
+        try {
+            String sql = "SELECT 1 FROM mae_usuario where nid_trabajador = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 }
