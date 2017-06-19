@@ -236,12 +236,10 @@ public class Login extends javax.swing.JFrame {
                 usuario.setNdi_usuario(rs.getInt(1));
                 usuario.setNid_perfil(rs.getInt(2));
             }
-            System.out.println(usuario.getNid_perfil());
             if (usuario.getNid_perfil() == 1) {
                 this.setVisible(false);
                 id = 1;
                 frmPrincipal frmP = new frmPrincipal();
-                System.out.println(id);
                 frmP.setVisible(true);            
             }else if (usuario.getNid_perfil()==2) {
                 id = 2;

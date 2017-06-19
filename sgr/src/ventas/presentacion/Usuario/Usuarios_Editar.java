@@ -227,6 +227,13 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                         return;
                     }
                 }
+                if(!usuario.getUser().equals(txtUser.getText())){
+                    if(BD_RS.ExistUser(txtUser.getText())){
+                        JOptionPane.showMessageDialog(this, "Ya existe el usuario " + txtUser.getText(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        txtUser.requestFocus();
+                        return;
+                    }
+                }
                 if(!usuario.getPssEnc().equals(txtPass.getText())){
                     if(txtPass.getText().length() > 8){
                         JOptionPane.showMessageDialog(this, "La contraseña debe tener una logitud menor o igual a 8","Mensaje",JOptionPane.INFORMATION_MESSAGE);
@@ -235,6 +242,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                         return;
                     }else usuario.setPssEnc(EN_DES.Encrypt_S(txtPass.getText()));
                 }
+                
                 txtPass.setEditable(false);
                 usuario.setUser(txtUser.getText().trim());
                 usuario.setEstado(cboEstado.getSelectedIndex()+1);

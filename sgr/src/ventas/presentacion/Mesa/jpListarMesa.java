@@ -46,7 +46,6 @@ public class jpListarMesa extends javax.swing.JPanel{
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\icons\\Files-2-icon.png")); // NOI18N
         jLabel1.setText("Gestión de Mesa");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
@@ -65,11 +64,14 @@ public class jpListarMesa extends javax.swing.JPanel{
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 127));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
         jButton1.setText("Nuevo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 60));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +80,6 @@ public class jpListarMesa extends javax.swing.JPanel{
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 140, 60));
 
-        jButton3.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.setPreferredSize(new java.awt.Dimension(130, 57));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -90,20 +91,9 @@ public class jpListarMesa extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        frmPrincipal frm=new frmPrincipal();
-        try {
-             if(frm.nPanel != null){
-                 frm.getContentPane().remove(nPanel);
-                 frm.getContentPane().repaint();
-             }
-             frm.nPanel = new jpEditarMesa();
-             frm.nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
-
-             frm.getContentPane().add(nPanel);
-             this.validate();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+       jpEditarMesa em = new jpEditarMesa();
+        frmPrincipal.Comp(em);
+            
         int idx=tblMesa.getSelectedRow();        
         
         /*txtCodigo.setText((String)dtm.getValueAt(idx,1));
@@ -117,6 +107,10 @@ public class jpListarMesa extends javax.swing.JPanel{
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
