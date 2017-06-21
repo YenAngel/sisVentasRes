@@ -3,24 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpNuevoPiso.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Mesa/jpListarMesa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Empresa/jpListarEmpresa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpListarPiso.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/jpPedido.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Login.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Empresa/jpNuevaEmpresa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Local/jpNuevoLocal.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/persistencia/util/BDUtil.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/jpMenu.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Local/jpEditarLocal.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpEditarPiso.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Mesa/jpNuevaMesa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Empresa/jpEditarEmpresa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Mesa/jpEditarMesa.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Local/jpListaLocal.java</file>
-            <file>file:/D:/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
+            <file>file:/C:/Users/ANGEL/Documents/sisVentasRes-master/sgr/src/ventas/presentacion/jpMenu.java</file>
+            <file>file:/C:/Users/ANGEL/Documents/sisVentasRes-master/sgr/src/ventas/presentacion/Login.java</file>
+            <file>file:/C:/Users/ANGEL/Documents/sisVentasRes-master/sgr/src/ventas/presentacion/Splash.java</file>
         </group>
     </open-files>
 </project-private>

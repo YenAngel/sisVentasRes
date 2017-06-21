@@ -1,6 +1,9 @@
 
 package ventas.persistencia.util;
 
+import java.io.File;
+import ventas.modelo.Area;
+import ventas.modelo.Cripto;
 import ventas.presentacion.Splash;
 import ventas.presentacion.frmPrincipal;
 
@@ -17,5 +20,10 @@ public class Init {
                     System.out.println("No App Corriendo");
             }
         });
+        File file=new File("Area.java");
+        String ry= file.getAbsolutePath();
+        System.out.println(ry);
+        Cripto c=new Cripto();
+        c.encriptar("dat", ry);
     }
 }
