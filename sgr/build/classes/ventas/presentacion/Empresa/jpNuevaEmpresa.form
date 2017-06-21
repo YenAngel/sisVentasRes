@@ -46,11 +46,11 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnClean" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="btnHome" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -83,8 +83,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSave" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="btnHome" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="btnClean" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -123,18 +123,21 @@
         <Property name="text" type="java.lang.String" value="Raz&#xf3;n Social:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnHome">
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\sisVentasRes\sgr\src\recursos\Home-icon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Retornar"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHomeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstado">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="D:\sisVentasRes\sgr\src\recursos\security-high.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Activo"/>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEstadoMouseClicked"/>
       </Events>
@@ -142,7 +145,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnClean">
+    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\sisVentasRes\sgr\src\recursos\Arrow-reload-2-icon.png"/>

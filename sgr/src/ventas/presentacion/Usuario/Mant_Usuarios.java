@@ -5,6 +5,13 @@
  */
 package ventas.presentacion.Usuario;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.Usuario;
+import ventas.presentacion.frmPrincipal;
+
 /**
  *
  * @author AnibalMA
@@ -16,8 +23,23 @@ public class Mant_Usuarios extends javax.swing.JPanel {
      */
     public Mant_Usuarios() {
         initComponents();
+        LoadTBL();
     }
-
+    private void LoadTBL(){
+        tblUsuarios.setModel(BD_RS.ListarUsuarios());
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int i = 0; i < 6; i++){
+            tblUsuarios.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            
+        }
+        for(int i = 0; i < tblUsuarios.getRowCount(); i++)
+            tblUsuarios.setRowHeight(i, 45);
+        tblUsuarios.setDefaultEditor(Object.class, null);
+        tblUsuarios.getTableHeader().setReorderingAllowed(false);
+        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tblUsuarios.getColumnModel().getColumn(0).setResizable(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,15 +50,16 @@ public class Mant_Usuarios extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnNew = new javax.swing.JButton();
+        btnMod = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,30 +70,40 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUsuarios);
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel15.setText("Gestión de Usuarios");
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-        jButton2.setText("NUEVO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNew.setBackground(new java.awt.Color(153, 153, 255));
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
+        btnNew.setText("NUEVO");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNewActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(153, 153, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-        jButton3.setText("MODIFICAR");
+        btnMod.setBackground(new java.awt.Color(153, 153, 255));
+        btnMod.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+        btnMod.setText("MODIFICAR");
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(153, 153, 255));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-        jButton4.setText("ELIMINAR");
+        btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,11 +116,11 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(349, 349, 349)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(510, 510, 510)
                         .addComponent(jLabel15)))
@@ -100,19 +133,20 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         
-       /* Usuarios_new nu = new Usuarios_new();
-        try {
+        Usuarios_new nu = new Usuarios_new();
+        frmPrincipal.Comp(nu);
+        /*try {
         frmPrincipal s = new frmPrincipal();
         
         //nu.setBounds(255, 59, frmPrincipal.widthvar-255, frmPrincipal.heightvar-59);
@@ -123,15 +157,55 @@ public class Mant_Usuarios extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println(e);
         }*/
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+       int indx = tblUsuarios.getSelectedRow();
+        if(indx >= 0){
+            Usuario u = new Usuario();
+            u.setId(Integer.parseInt(tblUsuarios.getValueAt(indx, 0).toString()));
+            u.setUser(tblUsuarios.getValueAt(indx, 1).toString());
+            u.setPssEnc(tblUsuarios.getValueAt(indx, 2).toString());
+            u.setCodT(BD_RS.GetIdTrab(tblUsuarios.getValueAt(indx, 3).toString()));
+            u.setRol(BD_RS.GetIdRol(tblUsuarios.getValueAt(indx, 4).toString()));
+            u.setEstado(BD_RS.GetIdEstado(tblUsuarios.getValueAt(indx, 5).toString()));
+            
+            Usuarios_Editar ue = new Usuarios_Editar();
+            frmPrincipal.Comp(ue);        
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+       int indx = tblUsuarios.getSelectedRow();
+        if(indx >= 0){
+             if(tblUsuarios.getValueAt(indx, 5).toString().contains("Inactivo")){
+                 JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+             }else{
+                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblUsuarios.getValueAt(indx, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                 if(r == 0){
+                    Usuario user = new Usuario();
+                    user.setEstado(2);
+                    user.setId(Integer.parseInt(tblUsuarios.getValueAt(indx, 0).toString()));
+                    if(BD_RS.CUsuario(user, 3)) {
+                       JOptionPane.showMessageDialog(this, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                       LoadTBL();
+                     }else JOptionPane.showMessageDialog(this, "Ha ocurrido un error al eliminar el registro","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                 }
+             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a eliminar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    public static javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnEliminar;
+    public static javax.swing.JButton btnMod;
+    private javax.swing.JButton btnNew;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }

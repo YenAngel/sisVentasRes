@@ -1,2 +1,0 @@
-# sisVentasRes
-Sistema de Restaruante

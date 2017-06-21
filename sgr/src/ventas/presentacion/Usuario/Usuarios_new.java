@@ -5,8 +5,13 @@
  */
 package ventas.presentacion.Usuario;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.EN_DES;
+import ventas.persistencia.util.Usuario;
+import ventas.presentacion.frmPrincipal;
 
 /**
  *
@@ -44,7 +49,6 @@ public class Usuarios_new extends javax.swing.JPanel {
         txtPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
@@ -137,24 +141,18 @@ public class Usuarios_new extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 11, 180, 80));
-
-        btnLimpiar.setBackground(new java.awt.Color(153, 153, 255));
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clear_new.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 10, 180, 80));
+        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 180, 80));
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
         btnReturn.setText("RETORNAR");
-        jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 11, 180, 80));
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 180, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -186,25 +184,54 @@ public class Usuarios_new extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        cboTipo.setSelectedIndex(-1);
-        cboTrabajador.setSelectedIndex(-1);
-        txtUser.setText("");
-        txtPass.setText("");
-        cboTrabajador.requestFocus();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if(cboTipo.getSelectedIndex() != -1 && cboTrabajador.getSelectedIndex()!= -1 && txtUser.getText().trim().length() != 0 && txtPass.getText().length() != 0){
-            
+            try {
+                Usuario usuario = new Usuario();
+                String trabj = cboTrabajador.getSelectedItem().toString().substring(0, 5);
+                if(BD_RS.ExistTrabAcc(BD_RS.GetIdTrab(trabj))){
+                        JOptionPane.showMessageDialog(this, "Ya existe un usuario para el Trabajador " + trabj,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        cboTrabajador.requestFocus();
+                        return;  
+                }
+                if(BD_RS.ExistUser(txtUser.getText())){
+                        JOptionPane.showMessageDialog(this, "Ya existe el usuario " + txtUser.getText(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        txtUser.setText("");
+                        txtUser.requestFocus();
+                        return;  
+                }
+                usuario.setUser(txtUser.getText().trim());
+                usuario.setPssEnc(EN_DES.Encrypt_S(txtPass.getText()));
+                usuario.setEstado(1);
+                usuario.setRol(cboTipo.getSelectedIndex()+1);
+                usuario.setCodT(BD_RS.GetIdTrab(cboTrabajador.getSelectedItem().toString().substring(0, 5)));
+                if(BD_RS.CUsuario(usuario, 1)) {
+                    JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    ResetControls();
+                }
+                else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el registro","Mensaje",JOptionPane.WARNING_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(Usuarios_new.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         }else{
             JOptionPane.showMessageDialog(null, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        Mant_Usuarios mu = new Mant_Usuarios();
+        frmPrincipal.Comp(mu);
+    }//GEN-LAST:event_btnReturnActionPerformed
+    private void ResetControls(){
+        txtPass.setText("");
+        txtUser.setText("");
+        cboTipo.setSelectedIndex(-1);
+        cboTrabajador.setSelectedIndex(-1);
+        cboTrabajador.requestFocus();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboTipo;

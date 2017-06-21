@@ -34,14 +34,14 @@ public class jpEditarLocal extends javax.swing.JPanel {
         cboEmpresa.setSelectedItem(local.getNo_empresa());
         lblEstado.setText(local.getNo_estado());
     }         
-        private void initIcon(String iconic){
-            if (iconic.equals("Inactivo")) {            
+    private void initIcon(String iconic){
+        if (iconic.equals("Inactivo")) {            
             String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
             lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
+            lblEstado.setText("Inactivo");
             this.repaint();
         }else{            
             String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
@@ -49,7 +49,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
             lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
+            lblEstado.setText("Activo");
             this.repaint();
         }
     }
@@ -226,4 +226,5 @@ public class jpEditarLocal extends javax.swing.JPanel {
     public static javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNombreLocal;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -32,7 +32,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblEstado" alignment="1" min="-2" pref="260" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="cboPiso" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <Component id="cboLocal" min="-2" pref="260" max="-2" attributes="0"/>
                                   <Component id="txtNroPiso" min="-2" pref="260" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -64,7 +64,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="cboPiso" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="cboLocal" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cboPiso">
+    <Component class="javax.swing.JComboBox" name="cboLocal">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -114,7 +114,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Estado:"/>
+        <Property name="text" type="java.lang.String" value="halo"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEstadoMouseClicked"/>

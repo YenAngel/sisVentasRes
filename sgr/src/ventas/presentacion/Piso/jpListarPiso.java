@@ -1,16 +1,27 @@
 
 package ventas.presentacion.Piso;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ventas.modelo.Login_User;
+import ventas.modelo.Piso;
+import ventas.persistencia.util.BDData;
+import ventas.presentacion.frmPrincipal;
 
 public class jpListarPiso extends javax.swing.JPanel {
     
+    Login_User login_User=new Login_User();
+    Piso piso=new Piso();
     DefaultTableModel dtm;
     public jpListarPiso() {
         initComponents();
+        listarPiso();
+    }
+    private void listarPiso(){
+        tblPiso.setModel(BDData.listarPiso(formatearTabla()));
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Local","Nombre de Local","Dirección","Empresa","Estado"};
+        String[] theader={"Id Piso","Numero de Piso","Local","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -21,7 +32,7 @@ public class jpListarPiso extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmpresa = new javax.swing.JTable();
+        tblPiso = new javax.swing.JTable();
         btnNew = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -30,7 +41,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon("D:\\icons\\Files-2-icon.png")); // NOI18N
         jLabel1.setText("Gestión de Mesa");
 
-        tblEmpresa.setModel(new javax.swing.table.DefaultTableModel(
+        tblPiso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -41,7 +52,7 @@ public class jpListarPiso extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblEmpresa);
+        jScrollPane1.setViewportView(tblPiso);
 
         btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
         btnNew.setText("Nuevo");
@@ -108,26 +119,34 @@ public class jpListarPiso extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        
+        jpNuevoPiso nuevoPiso= new jpNuevoPiso();
+        frmPrincipal.Comp(nuevoPiso);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        /*int idx=tblEmpresa.getSelectedRow();
-        empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));
-        empresa.setNo_razon_social((String)dtm.getValueAt(idx, 2));
-        empresa.setNo_comercial((String)dtm.getValueAt(idx, 3));
-        empresa.setNu_ruc((String)dtm.getValueAt(idx, 4));
-        empresa.setNo_estado((String)dtm.getValueAt(idx, 5));
-        empresa.setNid_usuario_modi(1);*/
+        int idx=tblPiso.getSelectedRow();
+        piso.setNid_piso(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+        piso.setNu_piso(Integer.parseInt(dtm.getValueAt(idx, 1).toString()));
+        piso.setNo_local((String)dtm.getValueAt(idx, 2));        
+        piso.setNo_estado((String)dtm.getValueAt(idx, 3));
+        piso.setNid_usuario_modi(login_User.getNdi_usuario());
+        if(idx >= 0){            
+            jpEditarPiso editarPiso=new jpEditarPiso();
+            frmPrincipal.Comp(editarPiso);
+            editarPiso.cargarPiso(piso);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }        
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        /*int idx=tblEmpresa.getSelectedRow();
-        empresa.setNid_empresa((int)dtm.getValueAt(idx, 1));
-        empresa.setNid_usuario_modi(1);
-        if (BDData.eliminarEmpresa(empresa)) {
+        int idx=tblPiso.getSelectedRow();
+        piso.setNid_piso(Integer.parseInt(dtm.getValueAt(idx,0).toString()));
+        piso.setNid_usuario_modi(login_User.ndi_usuario);
+        if (BDData.eliminarPiso(piso)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
-        }*/
+            listarPiso();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 
@@ -137,6 +156,6 @@ public class jpListarPiso extends javax.swing.JPanel {
     private javax.swing.JButton btnNew;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblEmpresa;
+    private javax.swing.JTable tblPiso;
     // End of variables declaration//GEN-END:variables
 }

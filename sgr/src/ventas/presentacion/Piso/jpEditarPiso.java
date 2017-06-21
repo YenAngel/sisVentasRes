@@ -16,27 +16,26 @@ import ventas.presentacion.frmPrincipal;
 public class jpEditarPiso extends javax.swing.JPanel {
     
     DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
-    Piso piso;
+    Piso piso=new Piso();
     public jpEditarPiso() {
         initComponents();
         addItems();
-        cargarPiso(piso);
-        cboPiso.setSelectedIndex(-1);
+        cboLocal.setSelectedIndex(-1);
         initIcon(lblEstado.getText());
         //cboPiso.setModel(dcbm);
     }
     private void addItems(){
-        dcbm=BDData.getEmpresa();        
-        cboPiso.setModel(dcbm);
+        dcbm=BDData.getLocal();        
+        cboLocal.setModel(dcbm);
     }
     public static void cargarPiso(Piso p){
         txtCodigo.setText(p.getNid_piso()+"");
         txtNroPiso.setText(p.getNu_piso()+"");
-        cboPiso.setSelectedItem(p.getNo_local());        
+        cboLocal.setSelectedItem(p.getNo_local());        
         lblEstado.setText(p.getNo_estado());
     }         
-        private void initIcon(String iconic){
-            if (iconic.equals("Inactivo")) {            
+    private void initIcon(String iconic){
+        if (iconic.equals("Inactivo")) {            
             String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
@@ -78,7 +77,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void initComponents() {
 
         txtNroPiso = new javax.swing.JTextField();
-        cboPiso = new javax.swing.JComboBox<>();
+        cboLocal = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -88,11 +87,11 @@ public class jpEditarPiso extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
 
-        cboPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Local:");
 
-        lblEstado.setText("Estado:");
+        lblEstado.setText("halo");
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEstadoMouseClicked(evt);
@@ -140,7 +139,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNroPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -162,7 +161,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +180,9 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         piso=new Piso();
         Login_User login=new Login_User();
-        piso.setNid_piso(Integer.parseInt(txtNroPiso.getText()));
+        piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
         piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
-        piso.setNo_local(cboPiso.getSelectedItem().toString());
+        piso.setNo_local(cboLocal.getSelectedItem().toString());
         piso.setNo_estado(lblEstado.getText());        
         piso.setNid_usuario_modi(login.getNdi_usuario());   
         if (BDData.editarPiso(piso)) {
@@ -204,7 +203,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnSave;
-    public static javax.swing.JComboBox<String> cboPiso;
+    public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

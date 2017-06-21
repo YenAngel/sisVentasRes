@@ -20,7 +20,7 @@ public class jpListaLocal extends javax.swing.JPanel {
     }
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Piso","Numero de Piso","Local","Estado"};
+        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -138,7 +138,7 @@ public class jpListaLocal extends javax.swing.JPanel {
         local.setNid_usuario_modi(usuario.getNdi_usuario());        
         if(idx >= 0){            
             frmPrincipal.Comp(editarLocal);                                   
-            jpEditarLocal.cargarLocal(local);
+            editarLocal.cargarLocal(local);
         }else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }

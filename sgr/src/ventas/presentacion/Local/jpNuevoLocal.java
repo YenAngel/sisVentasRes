@@ -8,11 +8,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ventas.modelo.Local;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 import ventas.presentacion.frmPrincipal;
 
 public class jpNuevoLocal extends javax.swing.JPanel {
     
+    Login_User login_User=new Login_User();
     Local local=new Local();
     DefaultComboBoxModel dcbm;
     public jpNuevoLocal() {
@@ -149,7 +151,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         local.setTx_direccion(txtDireccion.getText());
         local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
         local.setNo_estado(lblEstado.getText());
-        local.setNid_usuario_crea(1);
+        local.setNid_usuario_crea(login_User.getNdi_usuario());
         if (BDData.nuevoLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
