@@ -165,7 +165,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         empresa.setNo_comercial(txtNombreC.getText());
         empresa.setNu_ruc(txtruc.getText());
         empresa.setNo_estado(lblEstado.getText());
-        
+
         empresa.setNid_usuario_crea(login_User.getNdi_usuario());
         if (BDData.nuevaEmpresa(empresa)) {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -177,8 +177,8 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
     }//GEN-LAST:event_lblEstadoMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarEmpresa listarEmpresa=new jpListarEmpresa();        
-        frmPrincipal.Comp(listarEmpresa); 
+        jpListarEmpresa listarEmpresa=new jpListarEmpresa();
+        frmPrincipal.Comp(listarEmpresa);
     }//GEN-LAST:event_btnHomeActionPerformed
 
 
@@ -191,9 +191,9 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel lblEstado;
-    public javax.swing.JTextField txtNombreC;
-    public javax.swing.JTextField txtRazonSocial;
-    public javax.swing.JTextField txtruc;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JTextField txtNombreC;
+    private javax.swing.JTextField txtRazonSocial;
+    private javax.swing.JTextField txtruc;
     // End of variables declaration//GEN-END:variables
 }
