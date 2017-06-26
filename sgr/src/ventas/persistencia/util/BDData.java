@@ -10,11 +10,16 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ventas.modelo.Categoria;
+import ventas.modelo.Cliente;
+import ventas.modelo.Comprobante;
 import ventas.modelo.Empresa;
 import ventas.modelo.Local;
 import ventas.modelo.Login_User;
 import ventas.modelo.Mesa;
 import ventas.modelo.Piso;
+import ventas.modelo.Plato;
+import ventas.modelo.PlatoLocal;
 import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.frmPrincipal;
 import ventas.presentacion.Mesa.jpListarMesa;
@@ -26,7 +31,6 @@ public class BDData {
             CallableStatement cs= BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, usuario.getNo_usuario());
             cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));  
-            System.out.println(EN_DES.Encrypt_S(usuario.getNo_clave()));
             ResultSet rs=cs.executeQuery();                        
             return rs;
 
@@ -353,5 +357,383 @@ public class BDData {
             System.out.println(e);
             return false;
         }        
+    }   
+    public static DefaultTableModel listarCliente(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarCliente";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));  
+                v.add(rs.getString(6));  
+                v.add(rs.getString(7));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }    
+    public static boolean nuevoCliente(Cliente cliente){        
+        String sql="Call sgr_spi_cliente(?,?,?,?,?,?)";
+        //int getNid_estado=piso.getNo_estado().equals("Activo")?1:2;
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1,cliente.getNo_cliente());
+            cs.setString(2, cliente.getNo_ape_paterno());
+            cs.setString(3, cliente.getNo_ape_materno());
+            cs.setString(4,cliente.getCo_tipo_documento());
+            cs.setString(5,cliente.getNu_documento());            
+            cs.setInt(6, cliente.getNid_usuario_crea());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarCliente(Cliente cliente){        
+        String sql="Call sgr_spu_cliente(?,?,?,?,?,?,?,?)";
+        int getNid_estado=cliente.getNo_estado().equals("Activo")?1:2;
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,cliente.getNid_cliente());
+            cs.setString(2,cliente.getNo_cliente());
+            cs.setString(3,cliente.getNo_ape_paterno());          
+            cs.setString(4,cliente.getNo_ape_materno());
+            cs.setString(5,cliente.getCo_tipo_documento());          
+            cs.setString(6,cliente.getNu_documento());          
+            cs.setInt(7, getNid_estado);
+            cs.setInt(8,cliente.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean eliminarCliente(Cliente cliente){        
+        String sql="Call sgr_spd_cliente(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,cliente.getNid_cliente());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }    
+    public static DefaultTableModel listarCategoria(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarCategoria";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }    
+    public static DefaultComboBoxModel getCategoria(){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="select * from sgr_getCategoria";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }    
+    public static boolean nuevoCategoria(Categoria categoria){                        
+        try {
+            if (categoria.getNo_padre_categoria()==null) {                
+                String sql="Call sgr_spi_categoriaSecond(?,?,?)"; 
+                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+                cs.setInt(1, (categoria.getNu_nivel()+1));            
+                cs.setString(2, categoria.getNo_categoria_plato());   
+                cs.setInt(3, categoria.getNid_usuario_crea());            
+                cs.executeUpdate();
+                return true;
+            }else{                
+                String sql="Call sgr_spi_categoria(?,?,?,?)";        
+                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+                cs.setString(1,categoria.getNo_padre_categoria());            
+                cs.setInt(2, (categoria.getNu_nivel()+1));            
+                cs.setString(3, categoria.getNo_categoria_plato());   
+                cs.setInt(4, categoria.getNid_usuario_crea());            
+                cs.executeUpdate();
+                return true;
+            }                        
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarCategoria(Categoria categoria){                
+        int getNid_estado=categoria.getNo_estado().equals("Activo")?1:2;        
+        try {
+            if (categoria.getNo_padre_categoria()==null) {   
+                String sql="Call sgr_spu_categoriaSecond(?,?,?,?,?)";
+                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+                cs.setInt(1,categoria.getNid_categoria_plato());                
+                cs.setInt(2,(categoria.getNu_nivel()+1));          
+                cs.setString(3,categoria.getNo_categoria_plato());                    
+                cs.setInt(4, getNid_estado);
+                cs.setInt(5,categoria.getNid_usuario_modi());
+                cs.executeUpdate();
+                return true;
+            }else{
+                String sql="Call sgr_spu_categoria(?,?,?,?,?,?)";
+                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+                cs.setInt(1,categoria.getNid_categoria_plato());
+                cs.setString(2,categoria.getNo_padre_categoria());
+                cs.setInt(3,(categoria.getNu_nivel()+1));          
+                cs.setString(4,categoria.getNo_categoria_plato());                    
+                cs.setInt(5, getNid_estado);
+                cs.setInt(6,categoria.getNid_usuario_modi());
+                cs.executeUpdate();
+                return true;
+            }            
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }          
+    }
+    public static boolean eliminarCategoria(Categoria categoria){        
+        String sql="Call sgr_spd_categoria(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,categoria.getNid_categoria_plato());
+            cs.setInt(2, categoria.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }     
+    public static DefaultTableModel listarPlato(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarPlato";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));                
+                v.add(rs.getString(6));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static DefaultComboBoxModel getCategories(){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="select * from sgr_getCategorias";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
+    public static boolean nuevoPlato(Plato plato){                        
+        try {                        
+            String sql="Call sgr_spi_plato(?,?,?,?,?)"; 
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, plato.getNo_plato());            
+            cs.setString(2, plato.getNo_categoria1_plato());   
+            cs.setString(3, plato.getNo_categoria2_plato());   
+            cs.setString(4, plato.getNo_categoria3_plato());   
+            cs.setInt(5, plato.getNid_usuario_crea());            
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarPlato(Plato plato){                
+        int getNid_estado=plato.getNo_estado().equals("Activo")?1:2;           
+        try {            
+            String sql="Call sgr_spu_plato(?,?,?,?,?,?,?)";
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,plato.getNid_plato());
+            cs.setString(2,plato.getNo_plato());
+            cs.setString(3,plato.getNo_categoria1_plato());                      
+            cs.setString(4,plato.getNo_categoria2_plato());                      
+            cs.setString(5,plato.getNo_categoria3_plato());                      
+            cs.setInt(6, getNid_estado);
+            cs.setInt(7,plato.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;            
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }         
+    }
+    public static boolean eliminarPlato(Plato plato){        
+        String sql="Call sgr_spd_plato(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,plato.getNid_plato());
+            cs.setInt(2, plato.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }       
+    }        
+    public static DefaultTableModel listarLocalPlato(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarPlatoLocal";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getDouble(3));                
+                v.add(rs.getString(4));                
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }    
+    public static DefaultComboBoxModel getPlato(){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="select * from sgr_getPlato";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
+    public static boolean nuevoPlatoLocal(PlatoLocal platoLocal){    
+        int getVip=platoLocal.getFl_vip().equals("SI")?1:0;
+        try {                        
+            String sql="Call sgr_spi_precio(?,?,?,?,?)"; 
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, platoLocal.getNo_plato());            
+            cs.setString(2, platoLocal.getNo_local());   
+            cs.setDouble(3, platoLocal.getMt_precio());   
+            cs.setInt(4, getVip);   
+            cs.setInt(5, platoLocal.getNid_usuario_crea());            
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarPlatoLocal(PlatoLocal platoLocal){                
+        int getVip=platoLocal.getFl_vip().equals("SI")?1:0;
+        try {            
+            String sql="Call sgr_spu_precio(?,?,?,?,?)";
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1,platoLocal.getNo_local());
+            cs.setString(2,platoLocal.getNo_plato());
+            cs.setDouble(3,platoLocal.getMt_precio());                      
+            cs.setInt(4,getVip);                                      
+            cs.setInt(5,platoLocal.getNid_usuario_modi());
+            cs.executeUpdate();
+            return true;            
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }         
+    }    
+    public static DefaultTableModel listarComprobante(DefaultTableModel dtm){
+        String sql="SELECT * FROM sgr_listarComprobante";
+        try {
+            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));                
+                v.add(rs.getString(4));                
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static boolean nuevoComprobante(Comprobante comprobante){    
+        try {                        
+            String sql="Call sgr_spi_comprobante(?,?,?,?,?)"; 
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, comprobante.getNo_local());   
+            cs.setString(2, comprobante.getCo_comprobante());            
+            cs.setString(3, comprobante.getNu_serie());   
+            cs.setString(4, comprobante.getNu_correlativo());               
+            cs.setInt(5, comprobante.getNid_usuario_crea());            
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    public static boolean editarComprobante(Comprobante comprobante){                
+        try {            
+            String sql="Call sgr_spu_comprobante(?,?,?,?,?)";
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, comprobante.getNo_local());   
+            cs.setString(2, comprobante.getCo_comprobante());            
+            cs.setString(3, comprobante.getNu_serie());   
+            cs.setString(4, comprobante.getNu_correlativo());               
+            cs.setInt(5, comprobante.getNid_usuario_modi());       
+            cs.executeUpdate();
+            return true;            
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }         
     }
 }
