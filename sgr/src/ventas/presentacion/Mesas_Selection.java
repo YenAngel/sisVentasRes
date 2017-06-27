@@ -5,6 +5,7 @@
  */
 package ventas.presentacion;
 
+import javax.swing.table.DefaultTableModel;
 import ventas.presentacion.Pedido.frmPedido;
 
 /**
@@ -18,8 +19,15 @@ public class Mesas_Selection extends javax.swing.JFrame {
      */
     public Mesas_Selection() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        
     }
-
+    public static DefaultTableModel FormatearTabla(){
+        DefaultTableModel dtm = new DefaultTableModel();
+        String [] cab = {"Descripción","Cantidad"};
+        dtm.setColumnIdentifiers(cab);
+        return dtm;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +38,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel16 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboPiso = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -45,6 +53,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel16.setText("Piso:");
@@ -220,7 +229,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(1017, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +273,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,7 +302,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        if(jPanel2.getBackground().equals("0,126,41")){
+        if(jPanel2.getBackground().getRGB()==-16744919){
             this.setVisible(false);
             frmPedido frmPe = new frmPedido();
             frmPe.setVisible(true);
@@ -337,7 +346,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboPiso;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

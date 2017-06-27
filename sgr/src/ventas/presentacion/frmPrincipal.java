@@ -1474,7 +1474,33 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pPlatoLocalMouseClicked
 
     private void mpReservacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReservacionMouseClicked
-        // TODO add your handling code here:
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(255,51,51));
+       
+        mpMante.setVisible(false);
+        mpPedido.setVisible(false);
+        mpReporte.setVisible(false);
+        mpCaja.setVisible(false);
+        mpCarta.setVisible(false);
+        mpReservacion.setVisible(false);
+
+        //pnelActive = 1;
+        try {
+            if(nPanel != null){
+                getContentPane().remove(nPanel);
+                getContentPane().repaint();
+            }
+            nPanel = new jpReservacion();
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+        
+            getContentPane().add(nPanel);
+            this.validate();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_mpReservacionMouseClicked
 
     private void pCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCategoriaMouseClicked
