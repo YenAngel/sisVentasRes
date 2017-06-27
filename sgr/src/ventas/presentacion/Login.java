@@ -228,13 +228,14 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
       
     }//GEN-LAST:event_txtPasswordActionPerformed
-    private void validUser(){                
+    private void validUser(Login_User login_User){                
         try {
-            ResultSet rs = BDData.user(usuario);
-            if (rs.next()) {
-                usuario.setNdi_usuario(rs.getInt(1));
+            ResultSet rs = BDData.user(login_User);
+            while(rs.next()) {
+                usuario.setNdi_usuario(rs.getInt(1));                
                 usuario.setNid_perfil(rs.getInt(2));                
             }
+            System.out.println(usuario.getNid_perfil());
             if (usuario.getNid_perfil()==1) {
                 this.setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
@@ -260,7 +261,7 @@ public class Login extends javax.swing.JFrame {
         try {
             usuario.setNo_usuario(txtUsuario.getText());
             usuario.setNo_clave(txtPassword.getText());
-            validUser();            
+            validUser(usuario);            
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -313,9 +313,6 @@ public class BD_RS {
         }
         
     }
-    public void FilterUser(String user){
-        
-    }
     public static int CodTrab(){
         try {
             String sql = "SELECT count(*) FROM mae_trabajador";
@@ -493,118 +490,5 @@ public class BD_RS {
             return false;
         }
     }
-    public static DefaultTableModel CUsuarioFiltro(String user){
-       DefaultTableModel dtm = FormatearTablaUsuario();
-       try {
-           
-            String sqlcmd = "CALL USP_USER_FILTRO(?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sqlcmd);
-            cs.setString(1,user + "%" );
-            ResultSet rs =  cs.executeQuery();
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));
-                v.add(rs.getString(5));
-                v.add(rs.getString(6));
-                dtm.addRow(v);
-            }
-            return dtm;
-        } catch (SQLException ex) {
-            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
-            return dtm;
-        }
-    }
-    /*
-    while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getDate(4));
-                v.add(rs.getString(5));
-                dtm.addRow(v);
-            }
-            return dtm;
-    */
-    public static DefaultTableModel CTrabajadorFiltro(String tr, int tbl){
-       DefaultTableModel dtm = FormatearTablaTrabajador();
-       try {
-            
-            String sqlcmd = "CALL USP_TRABAJADOR_FILTRO(?,?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sqlcmd);
-            cs.setString(1, tr + "%");
-            cs.setInt(2, tbl);
-            
-            ResultSet rs =  cs.executeQuery();
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getString(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));
-                v.add(rs.getString(5));
-                v.add(rs.getDate(6));
-                v.add(rs.getString(7));
-                v.add(rs.getString(8));
-                dtm.addRow(v);
-            }
-            return dtm;
-        } catch (SQLException ex) {
-            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println(ex);
-            return dtm;
-        }
-    }
-    public static DefaultTableModel CCargoFiltro(String tr){
-       DefaultTableModel dtm = FormatearTablaCargos();
-       try {
-            
-            String sqlcmd = "CALL USP_CARGO_FILTRO(?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sqlcmd);
-            cs.setString(1, tr + "%");
-            
-            ResultSet rs =  cs.executeQuery();
-            while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getDate(4));
-                v.add(rs.getString(5));
-                dtm.addRow(v);
-            }
-            return dtm;
-        } catch (SQLException ex) {
-            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println(ex);
-            return dtm;
-        }
-    }
-    public static DefaultTableModel CAreasFiltro(String tr){
-       DefaultTableModel dtm = FormatearTablaAreas();
-       try {
-            
-            String sqlcmd = "CALL USP_AREA_FILTRO(?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sqlcmd);
-            cs.setString(1, tr + "%");
-            
-            ResultSet rs =  cs.executeQuery();
-             while(rs.next()){
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getDate(3));
-                v.add(rs.getString(4));
-                dtm.addRow(v);
-            }
-            return dtm;
-        } catch (SQLException ex) {
-            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println(ex);
-            return dtm;
-        }
-    }
+    
 }

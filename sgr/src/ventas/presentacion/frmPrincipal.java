@@ -25,6 +25,7 @@ import ventas.presentacion.Plato.jpListarPlato;
 import ventas.presentacion.Plato_Local.jpListarPlatoLocal;
 import ventas.presentacion.Trabajador.Mant_Trabajador;
 import ventas.presentacion.Usuario.Mant_Usuarios;
+import ventas.presentacion.Venta.frmCaja;
 
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
@@ -50,22 +51,24 @@ public class frmPrincipal extends javax.swing.JFrame {
             pTrabajador.setVisible(false);
             pArea.setVisible(false);
             pCliente.setVisible(false);
-            pCargo.setVisible(false);
-            pCategoria.setVisible(false);
+            pCargo.setVisible(false);            
             pEmpresa.setVisible(false);
             pLocal.setVisible(false);
             pPlato.setVisible(false);
             pPlatoLocal.setVisible(false);
             pPiso.setVisible(false);            
+            pCategoria.setVisible(false); 
             mpMante.setVisible(false);
             mpReporte.setVisible(false);
             mpPedido.setVisible(false);
-            mpMante.setVisible(false);
+            mpCarta.setVisible(false);
+            mpCaja.setVisible(false);
+            mpReservacion.setVisible(false);
         //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
         jpContenedor.setVisible(false);
         jLabel15.setLocation(widthvar/2, 15);
         //jpContenedor.setBounds(255, 59, widthvar-255, heightvar-59);
-       // Validar(frmL.id);
+       //Validar(usuario.getNid_perfil());
     }
 
     @SuppressWarnings("unchecked")
@@ -119,12 +122,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        pCategoria = new javax.swing.JPanel();
+        mpCaja = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         pPlatoLocal = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        mpReservacion = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        pCategoria = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        mpCarta = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 252, 230));
@@ -455,7 +467,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Comprobante");
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clipboard.png"))); // NOI18N
 
         javax.swing.GroupLayout pComprobanteLayout = new javax.swing.GroupLayout(pComprobante);
         pComprobante.setLayout(pComprobanteLayout);
@@ -625,7 +637,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Empresa");
 
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cityscape.png"))); // NOI18N
 
         javax.swing.GroupLayout pEmpresaLayout = new javax.swing.GroupLayout(pEmpresa);
         pEmpresa.setLayout(pEmpresaLayout);
@@ -666,7 +678,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Cliente");
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/suit-and-bow-tie.png"))); // NOI18N
 
         javax.swing.GroupLayout pClienteLayout = new javax.swing.GroupLayout(pCliente);
         pCliente.setLayout(pClienteLayout);
@@ -707,7 +719,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Local");
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/store.png"))); // NOI18N
 
         javax.swing.GroupLayout pLocalLayout = new javax.swing.GroupLayout(pLocal);
         pLocal.setLayout(pLocalLayout);
@@ -748,7 +760,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Plato");
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salad.png"))); // NOI18N
 
         javax.swing.GroupLayout pPlatoLayout = new javax.swing.GroupLayout(pPlato);
         pPlato.setLayout(pPlatoLayout);
@@ -776,46 +788,46 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(pPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
-        pCategoria.setBackground(new java.awt.Color(24, 168, 255));
-        pCategoria.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
-        pCategoria.setPreferredSize(new java.awt.Dimension(255, 120));
-        pCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+        mpCaja.setBackground(new java.awt.Color(24, 168, 255));
+        mpCaja.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpCaja.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpCaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pCategoriaMouseClicked(evt);
+                mpCajaMouseClicked(evt);
             }
         });
 
         jLabel32.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Categoria");
+        jLabel32.setText("Caja");
 
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cash-counter.png"))); // NOI18N
 
-        javax.swing.GroupLayout pCategoriaLayout = new javax.swing.GroupLayout(pCategoria);
-        pCategoria.setLayout(pCategoriaLayout);
-        pCategoriaLayout.setHorizontalGroup(
-            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCategoriaLayout.createSequentialGroup()
+        javax.swing.GroupLayout mpCajaLayout = new javax.swing.GroupLayout(mpCaja);
+        mpCaja.setLayout(mpCajaLayout);
+        mpCajaLayout.setHorizontalGroup(
+            mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCajaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel33)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel32)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
-        pCategoriaLayout.setVerticalGroup(
-            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCategoriaLayout.createSequentialGroup()
-                .addGroup(pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pCategoriaLayout.createSequentialGroup()
+        mpCajaLayout.setVerticalGroup(
+            mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCajaLayout.createSequentialGroup()
+                .addGroup(mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpCajaLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel32))
-                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                    .addGroup(mpCajaLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel33)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
+        getContentPane().add(mpCaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, -1, -1));
 
         pPlatoLocal.setBackground(new java.awt.Color(24, 168, 255));
         pPlatoLocal.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
@@ -830,7 +842,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Plato Local");
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereals.png"))); // NOI18N
 
         javax.swing.GroupLayout pPlatoLocalLayout = new javax.swing.GroupLayout(pPlatoLocal);
         pPlatoLocal.setLayout(pPlatoLocalLayout);
@@ -857,6 +869,129 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(pPlatoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, -1, -1));
+
+        mpReservacion.setBackground(new java.awt.Color(24, 168, 255));
+        mpReservacion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpReservacion.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpReservacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mpReservacionMouseClicked(evt);
+            }
+        });
+
+        jLabel37.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Reservación");
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/customer-service.png"))); // NOI18N
+
+        javax.swing.GroupLayout mpReservacionLayout = new javax.swing.GroupLayout(mpReservacion);
+        mpReservacion.setLayout(mpReservacionLayout);
+        mpReservacionLayout.setHorizontalGroup(
+            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpReservacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel37)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        mpReservacionLayout.setVerticalGroup(
+            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpReservacionLayout.createSequentialGroup()
+                .addGroup(mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpReservacionLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel37))
+                    .addGroup(mpReservacionLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel38)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(mpReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
+
+        pCategoria.setBackground(new java.awt.Color(24, 168, 255));
+        pCategoria.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        pCategoria.setPreferredSize(new java.awt.Dimension(255, 120));
+        pCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pCategoriaMouseClicked(evt);
+            }
+        });
+
+        jLabel39.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Categoria");
+
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/groceries.png"))); // NOI18N
+
+        javax.swing.GroupLayout pCategoriaLayout = new javax.swing.GroupLayout(pCategoria);
+        pCategoria.setLayout(pCategoriaLayout);
+        pCategoriaLayout.setHorizontalGroup(
+            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCategoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel39)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        pCategoriaLayout.setVerticalGroup(
+            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCategoriaLayout.createSequentialGroup()
+                .addGroup(pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel39))
+                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel40)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
+
+        mpCarta.setBackground(new java.awt.Color(24, 168, 255));
+        mpCarta.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpCarta.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpCarta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mpCartaMouseClicked(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel41.setText("Carta");
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/carta2.png"))); // NOI18N
+
+        javax.swing.GroupLayout mpCartaLayout = new javax.swing.GroupLayout(mpCarta);
+        mpCarta.setLayout(mpCartaLayout);
+        mpCartaLayout.setHorizontalGroup(
+            mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCartaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel41)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        mpCartaLayout.setVerticalGroup(
+            mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCartaLayout.createSequentialGroup()
+                .addGroup(mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpCartaLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel41))
+                    .addGroup(mpCartaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel42)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(mpCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -916,6 +1051,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         c.add(nPanel);
         c.validate();
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
     private void mpReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReporteMouseClicked
@@ -987,25 +1123,29 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pMesasMouseClicked
 
     private void mpManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpManteMouseClicked
-            pMesas.setBackground(new java.awt.Color(24,168,255));
-            pUsuario.setBackground(new java.awt.Color(24,168,255));
-            pTrabajador.setBackground(new java.awt.Color(24,168,255));
-            pCargo.setBackground(new java.awt.Color(24,168,255));
-            pArea.setBackground(new java.awt.Color(24,168,255));
-            pComprobante.setBackground(new java.awt.Color(24,168,255));
+        pMesas.setBackground(new java.awt.Color(24,168,255));
+        pUsuario.setBackground(new java.awt.Color(24,168,255));
+        pTrabajador.setBackground(new java.awt.Color(24,168,255));
+        pCargo.setBackground(new java.awt.Color(24,168,255));
+        pArea.setBackground(new java.awt.Color(24,168,255));
+        pComprobante.setBackground(new java.awt.Color(24,168,255));
         //pUsuario.setBackground(new java.awt.Color(24,168,255));
-       mpPedido.setBackground(new java.awt.Color(24,168,255));
-       //pTrabajador.setBackground(new java.awt.Color(24,168,255));
-       mpReporte.setBackground(new java.awt.Color(24,168,255));
-       //pMesas.setBackground(new java.awt.Color(24,168,255));
-       mpMante.setBackground(new java.awt.Color(255,51,51));
-       //pArea.setBackground(new java.awt.Color(24,168,255));
-       //pCargo.setBackground(new java.awt.Color(24,168,255));}
-       mpMante.setVisible(false);
-       mpPedido.setVisible(false);
-       mpReporte.setVisible(false);
-       ValidarSub(usuario.getNid_perfil());
-       pnelActive = 1;
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
+        //pTrabajador.setBackground(new java.awt.Color(24,168,255));
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(255,51,51));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+       
+        mpMante.setVisible(false);
+        mpPedido.setVisible(false);
+        mpReporte.setVisible(false);
+        mpCaja.setVisible(false);
+        mpCarta.setVisible(false);
+        mpReservacion.setVisible(false);
+        ValidarSub(usuario.getNid_perfil());
+        pnelActive = 1;
     }//GEN-LAST:event_mpManteMouseClicked
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
@@ -1079,15 +1219,13 @@ public class frmPrincipal extends javax.swing.JFrame {
         pTrabajador.setBackground(new java.awt.Color(24,168,255));
         pArea.setBackground(new java.awt.Color(24,168,255));
         pCliente.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
         pCargo.setBackground(new java.awt.Color(24,168,255));
         pCategoria.setBackground(new java.awt.Color(24,168,255));
         pEmpresa.setBackground(new java.awt.Color(24,168,255));
         pLocal.setBackground(new java.awt.Color(24,168,255));
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(255,51,51));
+        pPiso.setBackground(new java.awt.Color(24,168,255));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -1103,33 +1241,41 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pComprobanteMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-            if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
-            pMesas.setVisible(true);
-            pComprobante.setVisible(true);
-            pUsuario.setVisible(true);
-            pTrabajador.setVisible(true);
-            pArea.setVisible(true);
-            pCliente.setVisible(true);
-            pComprobante.setVisible(true);
-            pCargo.setVisible(true);
-            pCategoria.setVisible(true);
-            pEmpresa.setVisible(true);
-            pLocal.setVisible(true);
-            pPlato.setVisible(true);
-            pPlatoLocal.setVisible(true);
-            pPiso.setVisible(true);
-            pComprobante.setVisible(true);
-            
+        if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
+            pMesas.setVisible(false);
+            pComprobante.setVisible(false);
+            pUsuario.setVisible(false);
+            pTrabajador.setVisible(false);
+            pArea.setVisible(false);
+            pCliente.setVisible(false);
+            pComprobante.setVisible(false);
+            pCargo.setVisible(false);
+            pCategoria.setVisible(false);
+            pEmpresa.setVisible(false);
+            pLocal.setVisible(false);
+            pPlato.setVisible(false);
+            pPlatoLocal.setVisible(false);
+            pPiso.setVisible(false);
+            pComprobante.setVisible(false);
+
             mpMante.setVisible(true);
             mpPedido.setVisible(true);
-            mpReporte.setVisible(true);}
+            mpReporte.setVisible(true);
+            mpCaja.setVisible(true);
+            mpCarta.setVisible(true);
+            
+            mpReservacion.setVisible(true);
             mpPedido.setBackground(new java.awt.Color(24,168,255));
             mpReporte.setBackground(new java.awt.Color(24,168,255));
             mpMante.setBackground(new java.awt.Color(24,168,255));
+            mpCaja.setBackground(new java.awt.Color(24,168,255));
+            mpCarta.setBackground(new java.awt.Color(24,168,255));
+            mpReservacion.setBackground(new java.awt.Color(24,168,255));
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
+        }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void pPisoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPisoMouseClicked
@@ -1278,6 +1424,59 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pPlatoMouseClicked
 
+    private void mpCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpCajaMouseClicked
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(255,51,51));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+       
+        mpMante.setVisible(false);
+        mpPedido.setVisible(false);
+        mpReporte.setVisible(false);
+        mpCaja.setVisible(false);
+        mpCarta.setVisible(false);
+        mpReservacion.setVisible(false);
+
+        //pnelActive = 1;
+        setVisible(false);
+        frmCaja caja=new frmCaja();
+        caja.setVisible(true);
+    }//GEN-LAST:event_mpCajaMouseClicked
+
+    private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
+        pMesas.setBackground(new java.awt.Color(24,168,255));
+        pComprobante.setBackground(new java.awt.Color(24,168,255));
+        pUsuario.setBackground(new java.awt.Color(24,168,255));
+        pTrabajador.setBackground(new java.awt.Color(24,168,255));
+        pArea.setBackground(new java.awt.Color(24,168,255));
+        pCliente.setBackground(new java.awt.Color(24,168,255));
+        pCargo.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        pEmpresa.setBackground(new java.awt.Color(24,168,255));
+        pLocal.setBackground(new java.awt.Color(24,168,255));
+        pPlato.setBackground(new java.awt.Color(24,168,255));
+        pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
+        pPiso.setBackground(new java.awt.Color(24,168,255));
+        try {
+            if(nPanel != null){
+                getContentPane().remove(nPanel);
+                getContentPane().repaint();
+            }
+            nPanel = new jpListarPlatoLocal();
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+        
+            getContentPane().add(nPanel);
+            this.validate();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_pPlatoLocalMouseClicked
+
+    private void mpReservacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReservacionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mpReservacionMouseClicked
+
     private void pCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCategoriaMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
@@ -1306,33 +1505,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pCategoriaMouseClicked
 
-    private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
-        pMesas.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
-        pUsuario.setBackground(new java.awt.Color(24,168,255));
-        pTrabajador.setBackground(new java.awt.Color(24,168,255));
-        pArea.setBackground(new java.awt.Color(24,168,255));
-        pCliente.setBackground(new java.awt.Color(24,168,255));
-        pCargo.setBackground(new java.awt.Color(24,168,255));
-        pCategoria.setBackground(new java.awt.Color(24,168,255));
-        pEmpresa.setBackground(new java.awt.Color(24,168,255));
-        pLocal.setBackground(new java.awt.Color(24,168,255));
-        pPlato.setBackground(new java.awt.Color(24,168,255));
-        pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        try {
-            if(nPanel != null){
-                getContentPane().remove(nPanel);
-                getContentPane().repaint();
-            }
-            nPanel = new jpListarPlatoLocal();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
-        
-            getContentPane().add(nPanel);
-            this.validate();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_pPlatoLocalMouseClicked
+    private void mpCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpCartaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mpCartaMouseClicked
     public void ValidarSub(int id){
         int vis = 13;
         int size = 0;
@@ -1393,8 +1568,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel21.setBounds(17, size/2 -40,64 ,64);
             
             pCategoria.setBounds(0,59 + (size*6),255,size);
-            jLabel32.setBounds(105, size/2 - 20,68 ,26);
-            jLabel33.setBounds(17, size/2 - 40, 64, 64);
+            jLabel39.setBounds(105, size/2 - 20,68 ,26);
+            jLabel40.setBounds(17, size/2 - 40, 64, 64);
             
             pCliente.setBounds(0,59 + (size*7),255,size);
             jLabel26.setBounds(105, size/2 - 20,68 ,26);
@@ -1424,31 +1599,29 @@ public class frmPrincipal extends javax.swing.JFrame {
     public void Validar(int id){
         int vis = 3;
         int size = 0;
-        
         if(id == 1){
             
-            vis = 3; //Cantidad de paneles se va a mostrar
+            vis = 6; //Cantidad de paneles se va a mostrar
             size = (heightvar - pTop.getHeight())/vis;    //Alto de cada panel
             
             //Al cargar el frame todos están FALSE, aquí se elige los que serán visibles (debe ser de acuerdo a la variable VIS)
             //pMesas.setVisible(true);
             mpMante.setVisible(true);
-            mpReporte.setVisible(true);
-            //pUsuario.setVisible(true);
-            //pTrabajador.setVisible(true);
+            mpReporte.setVisible(true);            
             mpPedido.setVisible(true);
-            //pCargo.setVisible(true);
-            //pArea.setVisible(true);
+            mpCaja.setVisible(true);
+            mpCarta.setVisible(true);
+            mpReservacion.setVisible(true);
             
             //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
             //pTrabajador.setLayout(null);
             mpPedido.setLayout(null);
             //pUsuario.setLayout(null);
-            mpReporte.setLayout(null);
-            //pMesas.setLayout(null);
+            mpReporte.setLayout(null);            
             mpMante.setLayout(null);
-            //pCargo.setLayout(null);
-            //pArea.setLayout(null);
+            mpCaja.setLayout(null);
+            mpCarta.setLayout(null);
+            mpReservacion.setLayout(null);
             
             //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
             /*
@@ -1467,14 +1640,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpMante.setBounds(0, 59, 255, size);
             jLabel13.setBounds(90, size/2 - 15,160 ,26);
             jLabel14.setBounds(17, size/2 -40,64 ,64);
-            /*
-            pCargo.setBounds(0, 59 + size*4, 255, size);
-            jLabel16.setBounds(105, size/2 - 20,68 ,26);
-            jLabel17.setBounds(17, size/2 - 40,64 ,64);
-            
-            pArea.setBounds(0, 59 + size*5, 255, size);
-            jLabel18.setBounds(105, size/2 - 20,68 ,26);
-            jLabel19.setBounds(17, size/2 - 40,64 ,64);*/
             
             mpPedido.setBounds(0, 59 + size, 255, size);
             jLabel3.setBounds(105, size/2 - 15, 73, 26);
@@ -1484,6 +1649,17 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel7.setBounds(105, size/2 - 15, 85, 26);
             jLabel8.setBounds(17, size/2 - 40, 64, 64);
             
+            mpCaja.setBounds(0,59 + size*3,255,size);
+            jLabel41.setBounds(105, size/2 - 15, 85, 26);
+            jLabel42.setBounds(17, size/2 -40,64 ,64);
+            
+            mpCarta.setBounds(0,59 + size*4,255,size);
+            jLabel32.setBounds(105, size/2 - 15, 85, 26);
+            jLabel33.setBounds(17, size/2 - 30, 64, 64);
+            
+            mpReservacion.setBounds(0,59 + size*5,255,size);
+            jLabel37.setBounds(90, size/2 - 15,160 ,26);
+            jLabel38.setBounds(17, size/2 - 40, 64, 64);
         }else if(id==2){
             vis = 2;
             size = (heightvar - pTop.getHeight())/vis;    
@@ -1612,14 +1788,23 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JPanel jpContenedor;
+    private javax.swing.JPanel mpCaja;
+    private javax.swing.JPanel mpCarta;
     private javax.swing.JPanel mpMante;
     private javax.swing.JPanel mpPedido;
     private javax.swing.JPanel mpReporte;
+    private javax.swing.JPanel mpReservacion;
     private javax.swing.JPanel pArea;
     private javax.swing.JPanel pCargo;
     private javax.swing.JPanel pCategoria;

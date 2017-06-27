@@ -27,7 +27,7 @@ import ventas.presentacion.Mesa.jpListarMesa;
 public class BDData {    
     public static ResultSet user(Login_User usuario) throws Exception{
         String sql="Call sgr_sps_usuario(?,?)";                
-        try{
+        try{            
             CallableStatement cs= BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, usuario.getNo_usuario());
             cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));  
