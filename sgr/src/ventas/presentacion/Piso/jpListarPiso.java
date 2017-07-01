@@ -119,8 +119,8 @@ public class jpListarPiso extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        jpNuevoPiso nuevoPiso= new jpNuevoPiso();
-        frmPrincipal.Comp(nuevoPiso);
+        jpNuevoPiso piso=new jpNuevoPiso();
+        frmPrincipal.Comp(piso);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -130,7 +130,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         piso.setNo_local((String)dtm.getValueAt(idx, 2));        
         piso.setNo_estado((String)dtm.getValueAt(idx, 3));
         piso.setNid_usuario_modi(login_User.getNdi_usuario());
-        if(idx >= 0){            
+        if(idx >=0){            
             jpEditarPiso editarPiso=new jpEditarPiso();
             frmPrincipal.Comp(editarPiso);
             editarPiso.cargarPiso(piso);

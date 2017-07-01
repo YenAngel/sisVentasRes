@@ -1,16 +1,30 @@
 
 package ventas.presentacion.Venta;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import ventas.persistencia.util.BDData;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.frmPrincipal;
 
 public class frmCaja extends javax.swing.JFrame {
 
+    Date d=new Date();
     public frmCaja() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        getLocal();
+        dcActual.setDate(d);
+        cboCliente.setEnabled(false);
+        cboComprobante.setEnabled(false);
+        cboLocal.setEnabled(false);
+        dcActual.setEnabled(false);
+        
     }
-
+    
+    private void getLocal(){
+        cboLocal.setModel(BDData.getLocal());
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,10 +35,9 @@ public class frmCaja extends javax.swing.JFrame {
         cboCliente = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cboEstado = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        cboComprobante = new javax.swing.JComboBox<>();
+        dcActual = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         Codigo = new javax.swing.JLabel();
@@ -40,11 +53,10 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         lblHome1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        cboEstado1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1200, 768));
         setMinimumSize(new java.awt.Dimension(1200, 768));
-        setPreferredSize(new java.awt.Dimension(1200, 768));
         setSize(new java.awt.Dimension(1200, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,45 +73,59 @@ public class frmCaja extends javax.swing.JFrame {
         });
         getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(1098, 11, -1, -1));
 
-        getContentPane().add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 93, 260, 50));
+        cboLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLocalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 260, 50));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Local:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 108, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, -1, -1));
 
-        getContentPane().add(cboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 161, 260, 50));
+        cboCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboClienteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 260, 50));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Cliente:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 176, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Estado:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 244, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, -1, -1));
 
-        getContentPane().add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 229, 260, 50));
+        cboComprobante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboComprobanteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 260, 50));
 
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 297, 260, 50));
+        dcActual.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        getContentPane().add(dcActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, 260, 50));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Fecha de Emisión:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 310, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 365, 260, 50));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 433, 260, 50));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 501, 260, 50));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 260, 50));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, 260, 50));
 
         Codigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo.setText("Codigo:");
-        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 380, -1, -1));
+        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Serie:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 448, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Correlativo:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 516, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,22 +140,22 @@ public class frmCaja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 93, -1, 254));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 365, 260, 50));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 433, 260, 50));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 501, 260, 50));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 100, 360, 254));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 260, 50));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 260, 50));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 260, 50));
 
         Codigo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo1.setText("SubTotal:");
-        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 380, -1, -1));
+        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("IGV:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 448, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Total:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 516, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
 
         lblHome1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/notes.png"))); // NOI18N
@@ -149,6 +175,13 @@ public class frmCaja extends javax.swing.JFrame {
         jButton2.setPreferredSize(new java.awt.Dimension(100, 210));
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 360, -1, 190));
 
+        cboEstado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEstado1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 260, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,6 +194,22 @@ public class frmCaja extends javax.swing.JFrame {
     private void lblHome1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHome1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblHome1MouseClicked
+
+    private void cboLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboLocalActionPerformed
+
+    private void cboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboClienteActionPerformed
+
+    private void cboComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboComprobanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboComprobanteActionPerformed
+
+    private void cboEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEstado1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,10 +250,11 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel Codigo;
     private javax.swing.JLabel Codigo1;
     public static javax.swing.JComboBox<String> cboCliente;
-    public static javax.swing.JComboBox<String> cboEstado;
+    public static javax.swing.JComboBox<String> cboComprobante;
+    public static javax.swing.JComboBox<String> cboEstado1;
     public static javax.swing.JComboBox<String> cboLocal;
+    private com.toedter.calendar.JDateChooser dcActual;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -215,7 +265,6 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

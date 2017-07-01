@@ -1,18 +1,30 @@
 
 package ventas.presentacion;
 
+import java.io.File;
 import java.sql.ResultSet;
+import java.util.Timer;
+import java.util.TimerTask;
 import ventas.persistencia.util.BDUtil;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 
 public class Login extends javax.swing.JFrame {
+    
     Login_User usuario=new Login_User();
+    private int count=0;
     public Login() {
-        initComponents();
+        initComponents();        
+        init();
+    }
+
+    private void init(){
         txtPassword.setEchoChar((char)0);
         txtPassword.setText("Ingresar Password");                
         txtUsuario.setText("Ingresar Usuario");
@@ -22,7 +34,6 @@ public class Login extends javax.swing.JFrame {
         //Login frm = new Login();
         //frm.setExtendedState();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,6 +50,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cboSucursal = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -177,17 +189,24 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        lblEstado.setText("Recuerde: Solo tiene 3 intentos para acceder al sistema.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 59, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -228,29 +247,81 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
       
     }//GEN-LAST:event_txtPasswordActionPerformed
+    private void getStatus(String status){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
+        //URL url = this.getClass().getResource(path);
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        if (status.startsWith("success")) {
+            lblEstado.setText("Bienvenido al sistema...");
+        }else if (status.startsWith("warning")) {
+            lblEstado.setText("Advertencia: Intento fallido ingrese la contraseña y usuario correctamente.");
+        }else if (status.startsWith("error"))
+            lblEstado.setText("Usted ha superado el limite de intentos.");
+         
+        this.repaint();
+    }
     private void validUser(Login_User login_User){                
         try {
-            ResultSet rs = BDData.user(login_User);
-            while(rs.next()) {
-                usuario.setNdi_usuario(rs.getInt(1));                
-                usuario.setNid_perfil(rs.getInt(2));                
-            }
-            System.out.println(usuario.getNid_perfil());
+            ResultSet rs = BDData.user(login_User);                
+                while(rs.next()) {
+                    usuario.setNdi_usuario(rs.getInt(1));                
+                    usuario.setNid_perfil(rs.getInt(2));                
+                }                                  
             if (usuario.getNid_perfil()==1) {
-                this.setVisible(false);
-                frmPrincipal frmP = new frmPrincipal();
-                frmP.Validar(usuario.getNid_perfil());
-                frmP.setVisible(true);            
+                getStatus("success");
+                Timer t= new Timer();
+                TimerTask task =new TimerTask() {
+                    @Override
+                    public void run() {
+                        setVisible(false);
+                        frmPrincipal frmP = new frmPrincipal();
+                        frmP.Validar(usuario.getNid_perfil());
+                        frmP.setVisible(true);
+                    }
+                };
+                t.schedule(task, 2000);                                    
             }else if (usuario.getNid_perfil()==2) {
-                this.setVisible(false);
+                setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
                 frmP.Validar(2);
                 frmP.setVisible(true);            
             }else if (usuario.getNid_perfil()==3) {
-                this.setVisible(false);
+                setVisible(false);
                 frmPrincipal frmP = new frmPrincipal();
                 frmP.Validar(3);
                 frmP.setVisible(true);            
+            }else{
+                count++;
+                txtPassword.setText("");
+                txtUsuario.setText("");
+                getStatus("warning");
+                init();
+            }
+            if (count==3) {
+                getStatus("error");
+                Timer t= new Timer();
+                TimerTask task =new TimerTask() {
+                    @Override
+                    public void run() {
+                        txtPassword.setEnabled(false);
+                        txtUsuario.setEnabled(false);
+                        btnAceptar.setEnabled(false);
+                        System.exit(0);
+                    }
+                };
+                t.schedule(task, 2000);                        
+            }else{
+                Timer t= new Timer();
+                TimerTask task =new TimerTask() {
+                    @Override
+                    public void run() {
+                        lblEstado.setText("");
+                        getStatus("");
+                    }
+                };
+                t.schedule(task, 2000);        
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -311,6 +382,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

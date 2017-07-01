@@ -149,7 +149,7 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cboPlatoActionPerformed
 
 

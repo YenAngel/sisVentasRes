@@ -9,12 +9,12 @@ import ventas.persistencia.util.BDData;
 import ventas.presentacion.Empresa.jpEditarEmpresa;
 import ventas.presentacion.frmPrincipal;
 
-public class jpListaLocal extends javax.swing.JPanel {
+public class jpListarLocal extends javax.swing.JPanel {
     
     DefaultTableModel dtm;
     Local local =new Local();
     Login_User usuario=new Login_User();
-    public jpListaLocal() {
+    public jpListarLocal() {
         initComponents();
         listarLocal();
     }

@@ -107,8 +107,8 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        jpNuevoPlatoLocal nuevoPlatoLocal=new jpNuevoPlatoLocal();
-        frmPrincipal.Comp(nuevoPlatoLocal);
+        jpNuevoPlatoLocal local=new jpNuevoPlatoLocal();
+        frmPrincipal.Comp(local);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

@@ -37,6 +37,12 @@ public class jpNuevaCategoria extends javax.swing.JPanel {
 
         jLabel5.setText("Nombre de Categoria:");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Add-icon.png")); // NOI18N
         jLabel8.setText("Nuevo Cliente");
@@ -138,6 +144,15 @@ public class jpNuevaCategoria extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c=evt.getKeyChar(); 
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume();             
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

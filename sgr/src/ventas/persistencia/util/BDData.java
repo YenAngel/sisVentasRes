@@ -38,7 +38,7 @@ public class BDData {
             System.out.println(ex.toString());   
             return null;
         }        
-    }            
+    }       
     public static DefaultTableModel listarMesa( DefaultTableModel dtm){
         String sql="SELECT * FROM sgr_listarMesa";
         try {
@@ -163,15 +163,13 @@ public class BDData {
         }
     }
     public static boolean nuevaEmpresa(Empresa empresa){        
-        String sql="Call sgr_spi_empresa(?,?,?,?,?)";
-        int getNid_estado=empresa.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spi_empresa(?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1,empresa.getNo_razon_social());
             cs.setString(2,empresa.getNo_comercial());
             cs.setString(3,empresa.getNu_ruc());
-            cs.setInt(4, getNid_estado);
-            cs.setInt(5,empresa.getNid_usuario_crea());
+            cs.setInt(4,empresa.getNid_usuario_crea());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -314,14 +312,13 @@ public class BDData {
         }        
     }
     public static boolean nuevoPiso(Piso piso){        
-        String sql="Call sgr_spi_piso(?,?,?,?)";
+        String sql="Call sgr_spi_piso(?,?,?)";
         //int getNid_estado=piso.getNo_estado().equals("Activo")?1:2;
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,piso.getNu_piso());
             cs.setString(2,piso.getNo_local());
-            cs.setInt(3,1);
-            cs.setInt(4, piso.getNid_usuario_crea());
+            cs.setInt(3, piso.getNid_usuario_crea());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -449,7 +446,22 @@ public class BDData {
             System.out.println(e);
             return null;
         }
-    }    
+    }   
+    public static DefaultComboBoxModel getCliente(){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="select * from sgr_getCliente";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
     public static DefaultComboBoxModel getCategoria(){
        DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
         String sql="select * from sgr_getCategoria";

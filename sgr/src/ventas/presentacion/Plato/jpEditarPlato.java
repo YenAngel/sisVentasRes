@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import ventas.modelo.Login_User;
 import ventas.modelo.Plato;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.Piso.jpEditarPiso;
 import ventas.presentacion.frmPrincipal;
 
 public class jpEditarPlato extends javax.swing.JPanel {
@@ -14,7 +15,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
     Plato plato=new Plato();
     public jpEditarPlato() {
         initComponents();
-        addItems();
+        addItems();        
     }
     private void addItems(){
         cboCategoria1.setModel(BDData.getCategories());
@@ -28,25 +29,16 @@ public class jpEditarPlato extends javax.swing.JPanel {
         cboCategoria2.setSelectedItem(p.getNo_categoria2_plato());        
         cboCategoria3.setSelectedItem(p.getNo_categoria3_plato());        
         lblEstado.setText(p.getNo_estado());
+        initIcon(lblEstado.getText());
     }         
-    private void initIcon(String iconic){
-        if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
@@ -192,8 +184,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
                 .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    public void savePlato(){
         Login_User login_User=new Login_User();
 
         if (cboCategoria1.getSelectedIndex()==-1)
@@ -218,11 +209,14 @@ public class jpEditarPlato extends javax.swing.JPanel {
         if (BDData.editarPlato(plato)) {
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
         }
+    }
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarPlato listarPlato=new jpListarPlato();
-        frmPrincipal.Comp(listarPlato);
+        jpListarPlato listarPlato=new jpListarPlato();        
+        frmPrincipal.Comp(listarPlato);        
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked

@@ -31,6 +31,12 @@ public class jpNuevoPiso extends javax.swing.JPanel {
 
         jLabel4.setText("Numero de Piso:");
 
+        txtNroPiso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroPisoKeyTyped(evt);
+            }
+        });
+
         cboLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Local:");
@@ -106,6 +112,16 @@ public class jpNuevoPiso extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtNroPisoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

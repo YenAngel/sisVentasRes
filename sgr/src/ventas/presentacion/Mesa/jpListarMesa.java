@@ -128,8 +128,8 @@ public class jpListarMesa extends javax.swing.JPanel{
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        jpNuevaMesa nuevaMesa=new jpNuevaMesa();
-        frmPrincipal.Comp(nuevaMesa);
+        jpNuevaMesa mesa =new jpNuevaMesa();
+        frmPrincipal.Comp(mesa);
     }//GEN-LAST:event_btnNewActionPerformed
 
 

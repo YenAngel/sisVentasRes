@@ -133,11 +133,11 @@ public class jpListarCliente extends javax.swing.JPanel {
         int idx=tblCliente.getSelectedRow();
         jpEditarCliente editarCliente=new jpEditarCliente();
         cliente.setNid_cliente(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
-        cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 1));
-        cliente.setNu_documento((String)dtm.getValueAt(idx, 2));
-        cliente.setNo_cliente((String)dtm.getValueAt(idx, 3));
-        cliente.setNo_ape_paterno((String)dtm.getValueAt(idx, 4));
-        cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 5));
+        cliente.setNo_cliente((String)dtm.getValueAt(idx, 1));
+        cliente.setNo_ape_paterno((String)dtm.getValueAt(idx, 2));
+        cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 3));
+        cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 4));
+        cliente.setNu_documento((String)dtm.getValueAt(idx, 5));        
         cliente.setNo_estado((String)dtm.getValueAt(idx, 6));
         cliente.setNid_usuario_modi(usuario.getNdi_usuario());
         if(idx >= 0){

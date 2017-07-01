@@ -13,8 +13,7 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
     Login_User usuario= new Login_User();
     Empresa empresa=new Empresa();
     public jpEditarEmpresa() {
-        initComponents();        
-        initIcon(lblEstado.getText());        
+        initComponents();                
     }
     
     public static void cargarEmpresa(Empresa empresa){
@@ -23,25 +22,16 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         txtNombreComercial.setText(empresa.getNo_comercial());
         txtRUC.setText(empresa.getNu_ruc());
         lblEstado.setText(empresa.getNo_estado());
+        initIcon(lblEstado.getText().toLowerCase());        
     }
-    private void initIcon(String iconic){
-            if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
