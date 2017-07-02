@@ -20,8 +20,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
     public jpNuevoLocal() {
         initComponents();
         addItems();
-        cboEmpresa.setSelectedIndex(-1);
-        icon("Inactivo");        
+        cboEmpresa.setSelectedIndex(-1);    
     }
 
     @SuppressWarnings("unchecked")
@@ -30,19 +29,15 @@ public class jpNuevoLocal extends javax.swing.JPanel {
 
         jLabel4 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreLocal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        lblEstado = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         cboEmpresa = new javax.swing.JComboBox<>();
 
         jLabel4.setText("Empresa:");
-
-        jLabel6.setText("Estado:");
 
         jLabel5.setText("Nombre del Local:");
 
@@ -57,12 +52,6 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEstadoMouseClicked(evt);
             }
         });
 
@@ -90,13 +79,9 @@ public class jpNuevoLocal extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtNombreLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(88, 88, 88)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(cboEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(350, Short.MAX_VALUE)
@@ -124,9 +109,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,15 +118,10 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
-        icon(lblEstado.getText());
-    }//GEN-LAST:event_lblEstadoMouseClicked
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         local.setNo_local(txtNombreLocal.getText());
         local.setTx_direccion(txtDireccion.getText());
         local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
-        local.setNo_estado(lblEstado.getText());
         local.setNid_usuario_crea(login_User.getNdi_usuario());
         if (BDData.nuevoLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -151,28 +129,10 @@ public class jpNuevoLocal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jpListaLocal listaLocal=new jpListaLocal();
+        jpListarLocal listaLocal=new jpListarLocal();
         frmPrincipal.Comp(listaLocal);
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void icon(String iconic){
-        if (iconic.equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
-    }
+    
     private void addItems(){
         dcbm=BDData.getEmpresa();        
         cboEmpresa.setModel(dcbm);
@@ -184,9 +144,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel lblEstado;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtNombreLocal;
     // End of variables declaration//GEN-END:variables

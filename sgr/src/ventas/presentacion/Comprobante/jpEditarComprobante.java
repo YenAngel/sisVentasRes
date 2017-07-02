@@ -19,7 +19,7 @@ public class jpEditarComprobante extends javax.swing.JPanel {
     }
     public static void cargarComprobante(Comprobante c){
         cboLocal.setSelectedItem(c.getNo_local());
-        txtComprobante.setText(c.getCo_comprobante());
+        cboComprobante.setSelectedItem(c.getCo_comprobante());
         txtSerie.setText(c.getNu_serie());        
         txtCorrelativo.setText(c.getNu_correlativo());
     }             
@@ -33,10 +33,10 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         cboLocal = new javax.swing.JComboBox<>();
-        txtComprobante = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
+        cboComprobante = new javax.swing.JComboBox<>();
 
         jLabel9.setText("Serie:");
 
@@ -58,9 +58,11 @@ public class jpEditarComprobante extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setText("Codigo de Comprobante:");
+        jLabel8.setText("Comprobante:");
 
         jLabel5.setText("Local:");
+
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -73,7 +75,7 @@ public class jpEditarComprobante extends javax.swing.JPanel {
                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -90,7 +92,7 @@ public class jpEditarComprobante extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(txtComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
@@ -102,9 +104,9 @@ public class jpEditarComprobante extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -112,7 +114,7 @@ public class jpEditarComprobante extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCorrelativo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,7 +128,7 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         comprobante.setNo_local(cboLocal.getSelectedItem().toString());
         comprobante.setNu_correlativo(txtCorrelativo.getText());
         comprobante.setNu_serie(txtSerie.getText());
-        comprobante.setCo_comprobante(txtComprobante.getText());
+        comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
         comprobante.setNid_usuario_modi(login_User.getNdi_usuario());
         if (BDData.editarComprobante(comprobante)) {
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
@@ -142,12 +144,12 @@ public class jpEditarComprobante extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     public javax.swing.JButton btnSave;
+    public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    public static javax.swing.JTextField txtComprobante;
     public static javax.swing.JTextField txtCorrelativo;
     public static javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables

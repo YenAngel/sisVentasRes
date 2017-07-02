@@ -15,9 +15,9 @@ public class jpEditarCategoria extends javax.swing.JPanel {
     DefaultComboBoxModel dcbm;
     Categoria categoria=new Categoria();
     public jpEditarCategoria() {
-        initComponents();
-        initIcon(lblEstado.getText());
+        initComponents();        
         addItems();
+        txtCodigo.setEnabled(false);       
     }
     private void addItems(){
         cboPadreCategoria.setModel(BDData.getCategoria());
@@ -28,25 +28,16 @@ public class jpEditarCategoria extends javax.swing.JPanel {
         cboNivel.setSelectedIndex(c.getNu_nivel());
         txtNombre.setText(c.getNo_categoria_plato());        
         lblEstado.setText(c.getNo_estado());
+        initIcon(lblEstado.getText().toLowerCase());
     }         
-    private void initIcon(String iconic){
-        if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
@@ -94,13 +85,22 @@ public class jpEditarCategoria extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Nivel:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Categoria Superior:");
 
         cboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Superior", "Intermedio", "Inferior" }));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre de Categoria:");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Add-icon.png")); // NOI18N
@@ -114,6 +114,13 @@ public class jpEditarCategoria extends javax.swing.JPanel {
             }
         });
 
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Id Categoria");
 
         lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/security-medium.png"))); // NOI18N
@@ -123,6 +130,7 @@ public class jpEditarCategoria extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Estado:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -163,14 +171,14 @@ public class jpEditarCategoria extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -219,6 +227,24 @@ public class jpEditarCategoria extends javax.swing.JPanel {
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
         icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c=evt.getKeyChar();                       
+        if(!Character.isDigit(c)) { 
+            getToolkit().beep();                
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        } 
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c=evt.getKeyChar(); 
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume();             
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -313,9 +313,6 @@ public class BD_RS {
         }
         
     }
-    public void FilterUser(String user){
-        
-    }
     public static int CodTrab(){
         try {
             String sql = "SELECT count(*) FROM mae_trabajador";

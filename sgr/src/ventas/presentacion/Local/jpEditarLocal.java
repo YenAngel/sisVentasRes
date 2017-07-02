@@ -21,7 +21,6 @@ public class jpEditarLocal extends javax.swing.JPanel {
         initComponents();
         addItems();
         cboEmpresa.setSelectedIndex(-1);
-        initIcon(lblEstado.getText());
     }
     private void addItems(){
         dcbm=BDData.getEmpresa();        
@@ -33,25 +32,16 @@ public class jpEditarLocal extends javax.swing.JPanel {
         txtDireccion.setText(local.getTx_direccion());
         cboEmpresa.setSelectedItem(local.getNo_empresa());
         lblEstado.setText(local.getNo_estado());
+        initIcon(lblEstado.getText().toLowerCase());
     }         
-    private void initIcon(String iconic){
-        if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
@@ -191,7 +181,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListaLocal listarLocal=new jpListaLocal();
+        jpListarLocal listarLocal=new jpListarLocal();
         frmPrincipal.Comp(listarLocal);
     }//GEN-LAST:event_btnHomeActionPerformed
 

@@ -102,8 +102,8 @@ public class jpListarComprobante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        jpNuevoComprobante nuevoComprobante=new jpNuevoComprobante();
-        frmPrincipal.Comp(nuevoComprobante);
+        jpNuevoComprobante comprobante=new jpNuevoComprobante();
+        frmPrincipal.Comp(comprobante);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

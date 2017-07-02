@@ -153,8 +153,8 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        jpNuevaEmpresa nuevaEmpresa=new jpNuevaEmpresa();        
-        frmPrincipal.Comp(nuevaEmpresa);        
+        jpNuevaEmpresa empresa=new jpNuevaEmpresa();
+        frmPrincipal.Comp(empresa);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void tblEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpresaMouseClicked

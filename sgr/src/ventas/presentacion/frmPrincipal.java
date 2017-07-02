@@ -1,35 +1,68 @@
 
 package ventas.presentacion;
+import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import ventas.presentacion.Reservacion.jpReservacion;
 import ventas.presentacion.Mesa.jpListarMesa;
 import ventas.presentacion.Usuario.Usuarios_new;
 import ventas.presentacion.Trabajador.Trabajador_new;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Panel;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.List;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
+import ventas.modelo.Plato;
 import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
+import ventas.presentacion.Categoria.jpNuevaCategoria;
 import ventas.presentacion.Cliente.jpListarCliente;
+import ventas.presentacion.Cliente.jpNuevoCliente;
 import ventas.presentacion.Comprobante.jpListarComprobante;
+import ventas.presentacion.Comprobante.jpNuevoComprobante;
 import ventas.presentacion.Empresa.jpListarEmpresa;
 import ventas.presentacion.Empresa.jpNuevaEmpresa;
-import ventas.presentacion.Local.jpListaLocal;
+import ventas.presentacion.Local.jpListarLocal;
 import ventas.presentacion.Local.jpNuevoLocal;
+import ventas.presentacion.Mesa.jpNuevaMesa;
 import ventas.presentacion.Piso.jpListarPiso;
+import ventas.presentacion.Piso.jpNuevoPiso;
+import ventas.presentacion.Plato.jpEditarPlato;
 import ventas.presentacion.Plato.jpListarPlato;
+import ventas.presentacion.Plato.jpNuevoPlato;
 import ventas.presentacion.Plato_Local.jpListarPlatoLocal;
+import ventas.presentacion.Plato_Local.jpNuevoPlatoLocal;
 import ventas.presentacion.Trabajador.Mant_Trabajador;
 import ventas.presentacion.Usuario.Mant_Usuarios;
+import ventas.presentacion.Venta.frmCaja;
 
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
     public static int widthvar, heightvar;
     public static Container c ;
+    public String namePanel;
+    public int idx;
     Login_User usuario =new Login_User();
     Login frmL;
     public int pnelActive = 0;
@@ -50,22 +83,30 @@ public class frmPrincipal extends javax.swing.JFrame {
             pTrabajador.setVisible(false);
             pArea.setVisible(false);
             pCliente.setVisible(false);
-            pCargo.setVisible(false);
-            pCategoria.setVisible(false);
+            pCargo.setVisible(false);            
             pEmpresa.setVisible(false);
             pLocal.setVisible(false);
             pPlato.setVisible(false);
             pPlatoLocal.setVisible(false);
             pPiso.setVisible(false);            
+            pCategoria.setVisible(false); 
             mpMante.setVisible(false);
             mpReporte.setVisible(false);
             mpPedido.setVisible(false);
-            mpMante.setVisible(false);
+            mpCarta.setVisible(false);
+            mpCaja.setVisible(false);
+            mpReservacion.setVisible(false);
+            opBuscar.setVisible(false);
+            opEditar.setVisible(false);
+            opEliminar.setVisible(false);
+            opNuevo.setVisible(false); 
+            opGuardar.setVisible(false);
+            opHome.setVisible(false);
         //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
         jpContenedor.setVisible(false);
         jLabel15.setLocation(widthvar/2, 15);
         //jpContenedor.setBounds(255, 59, widthvar-255, heightvar-59);
-       // Validar(frmL.id);
+       //Validar(usuario.getNid_perfil());
     }
 
     @SuppressWarnings("unchecked")
@@ -119,12 +160,27 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        pCategoria = new javax.swing.JPanel();
+        mpCaja = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         pPlatoLocal = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        mpReservacion = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        pCategoria = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        mpCarta = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        opNuevo = new javax.swing.JLabel();
+        opEditar = new javax.swing.JLabel();
+        opEliminar = new javax.swing.JLabel();
+        opBuscar = new javax.swing.JLabel();
+        opGuardar = new javax.swing.JLabel();
+        opHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 252, 230));
@@ -258,7 +314,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(mpPedidoLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel3)
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(45, 45, 45))
         );
 
@@ -455,7 +511,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Comprobante");
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clipboard.png"))); // NOI18N
 
         javax.swing.GroupLayout pComprobanteLayout = new javax.swing.GroupLayout(pComprobante);
         pComprobante.setLayout(pComprobanteLayout);
@@ -625,7 +681,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Empresa");
 
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cityscape.png"))); // NOI18N
 
         javax.swing.GroupLayout pEmpresaLayout = new javax.swing.GroupLayout(pEmpresa);
         pEmpresa.setLayout(pEmpresaLayout);
@@ -666,7 +722,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Cliente");
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/suit-and-bow-tie.png"))); // NOI18N
 
         javax.swing.GroupLayout pClienteLayout = new javax.swing.GroupLayout(pCliente);
         pCliente.setLayout(pClienteLayout);
@@ -707,7 +763,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Local");
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/store.png"))); // NOI18N
 
         javax.swing.GroupLayout pLocalLayout = new javax.swing.GroupLayout(pLocal);
         pLocal.setLayout(pLocalLayout);
@@ -748,7 +804,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Plato");
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salad.png"))); // NOI18N
 
         javax.swing.GroupLayout pPlatoLayout = new javax.swing.GroupLayout(pPlato);
         pPlato.setLayout(pPlatoLayout);
@@ -776,46 +832,46 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(pPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
-        pCategoria.setBackground(new java.awt.Color(24, 168, 255));
-        pCategoria.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
-        pCategoria.setPreferredSize(new java.awt.Dimension(255, 120));
-        pCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+        mpCaja.setBackground(new java.awt.Color(24, 168, 255));
+        mpCaja.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpCaja.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpCaja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pCategoriaMouseClicked(evt);
+                mpCajaMouseClicked(evt);
             }
         });
 
         jLabel32.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Categoria");
+        jLabel32.setText("Caja");
 
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cash-counter.png"))); // NOI18N
 
-        javax.swing.GroupLayout pCategoriaLayout = new javax.swing.GroupLayout(pCategoria);
-        pCategoria.setLayout(pCategoriaLayout);
-        pCategoriaLayout.setHorizontalGroup(
-            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCategoriaLayout.createSequentialGroup()
+        javax.swing.GroupLayout mpCajaLayout = new javax.swing.GroupLayout(mpCaja);
+        mpCaja.setLayout(mpCajaLayout);
+        mpCajaLayout.setHorizontalGroup(
+            mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCajaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel33)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel32)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
-        pCategoriaLayout.setVerticalGroup(
-            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCategoriaLayout.createSequentialGroup()
-                .addGroup(pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pCategoriaLayout.createSequentialGroup()
+        mpCajaLayout.setVerticalGroup(
+            mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCajaLayout.createSequentialGroup()
+                .addGroup(mpCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpCajaLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel32))
-                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                    .addGroup(mpCajaLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel33)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
+        getContentPane().add(mpCaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, -1, -1));
 
         pPlatoLocal.setBackground(new java.awt.Color(24, 168, 255));
         pPlatoLocal.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
@@ -830,7 +886,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Plato Local");
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stairs.png"))); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cereals.png"))); // NOI18N
 
         javax.swing.GroupLayout pPlatoLocalLayout = new javax.swing.GroupLayout(pPlatoLocal);
         pPlatoLocal.setLayout(pPlatoLocalLayout);
@@ -858,6 +914,225 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(pPlatoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, -1, -1));
 
+        mpReservacion.setBackground(new java.awt.Color(24, 168, 255));
+        mpReservacion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpReservacion.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpReservacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mpReservacionMouseClicked(evt);
+            }
+        });
+
+        jLabel37.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Reservación");
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/customer-service.png"))); // NOI18N
+
+        javax.swing.GroupLayout mpReservacionLayout = new javax.swing.GroupLayout(mpReservacion);
+        mpReservacion.setLayout(mpReservacionLayout);
+        mpReservacionLayout.setHorizontalGroup(
+            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpReservacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel37)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        mpReservacionLayout.setVerticalGroup(
+            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpReservacionLayout.createSequentialGroup()
+                .addGroup(mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpReservacionLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel37))
+                    .addGroup(mpReservacionLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel38)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(mpReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
+
+        pCategoria.setBackground(new java.awt.Color(24, 168, 255));
+        pCategoria.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        pCategoria.setPreferredSize(new java.awt.Dimension(255, 120));
+        pCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pCategoriaMouseClicked(evt);
+            }
+        });
+
+        jLabel39.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Categoria");
+
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/groceries.png"))); // NOI18N
+
+        javax.swing.GroupLayout pCategoriaLayout = new javax.swing.GroupLayout(pCategoria);
+        pCategoria.setLayout(pCategoriaLayout);
+        pCategoriaLayout.setHorizontalGroup(
+            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCategoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel39)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        pCategoriaLayout.setVerticalGroup(
+            pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pCategoriaLayout.createSequentialGroup()
+                .addGroup(pCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel39))
+                    .addGroup(pCategoriaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel40)))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
+
+        mpCarta.setBackground(new java.awt.Color(24, 168, 255));
+        mpCarta.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpCarta.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpCarta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mpCartaMouseClicked(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel41.setText("Carta");
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/carta2.png"))); // NOI18N
+
+        javax.swing.GroupLayout mpCartaLayout = new javax.swing.GroupLayout(mpCarta);
+        mpCarta.setLayout(mpCartaLayout);
+        mpCartaLayout.setHorizontalGroup(
+            mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCartaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel41)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        mpCartaLayout.setVerticalGroup(
+            mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpCartaLayout.createSequentialGroup()
+                .addGroup(mpCartaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpCartaLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel41))
+                    .addGroup(mpCartaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel42)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(mpCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, -1, -1));
+
+        opNuevo.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/adder.png"))); // NOI18N
+        opNuevo.setText("Nuevo");
+        opNuevo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opNuevo.setMaximumSize(new java.awt.Dimension(80, 89));
+        opNuevo.setPreferredSize(new java.awt.Dimension(80, 177));
+        opNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opNuevoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 80, 120));
+
+        opEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit.png"))); // NOI18N
+        opEditar.setText("Editar");
+        opEditar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opEditar.setMaximumSize(new java.awt.Dimension(80, 89));
+        opEditar.setPreferredSize(new java.awt.Dimension(80, 177));
+        opEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opEditarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 80, 120));
+
+        opEliminar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
+        opEliminar.setText("Quitar");
+        opEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opEliminar.setMaximumSize(new java.awt.Dimension(80, 89));
+        opEliminar.setPreferredSize(new java.awt.Dimension(80, 177));
+        opEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opEliminarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 80, 120));
+
+        opBuscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
+        opBuscar.setText("Buscar");
+        opBuscar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opBuscar.setMaximumSize(new java.awt.Dimension(80, 89));
+        opBuscar.setPreferredSize(new java.awt.Dimension(80, 177));
+        opBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opBuscarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 80, 120));
+
+        opGuardar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        opGuardar.setText("Guardar");
+        opGuardar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opGuardar.setMaximumSize(new java.awt.Dimension(80, 89));
+        opGuardar.setPreferredSize(new java.awt.Dimension(80, 177));
+        opGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opGuardarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 660, 80, 120));
+
+        opHome.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/home.png"))); // NOI18N
+        opHome.setText("Home");
+        opHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opHome.setMaximumSize(new java.awt.Dimension(80, 89));
+        opHome.setPreferredSize(new java.awt.Dimension(80, 177));
+        opHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opHomeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(opHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 660, 80, 120));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -876,13 +1151,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
+        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new Mant_Trabajador();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -898,8 +1174,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         //pMesas.setBackground(new java.awt.Color(24,168,255));
         mpMante.setBackground(new java.awt.Color(24,168,255));
         //pArea.setBackground(new java.awt.Color(24,168,255));
-        //pCargo.setBackground(new java.awt.Color(24,168,255));
-        pnelActive = 2;
+        //pCargo.setBackground(new java.awt.Color(24,168,255));        
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                pnelActive = 2;
+            }
+        };
+        t.schedule(task, 1000);        
     }//GEN-LAST:event_mpPedidoMouseClicked
     public static void Comp(JPanel j){
         try {
@@ -911,11 +1194,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         c.repaint();
         }
         nPanel = j;
-        nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
+        nPanel.setBounds(335, 59, widthvar-335, heightvar-59);
         nPanel.setVisible(true);
         c.add(nPanel);
         c.validate();
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
     private void mpReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReporteMouseClicked
@@ -926,8 +1210,15 @@ public class frmPrincipal extends javax.swing.JFrame {
        //pMesas.setBackground(new java.awt.Color(24,168,255));
        mpMante.setBackground(new java.awt.Color(24,168,255));
        //pArea.setBackground(new java.awt.Color(24,168,255));
-       //pCargo.setBackground(new java.awt.Color(24,168,255));
-       pnelActive = 3;
+       //pCargo.setBackground(new java.awt.Color(24,168,255));       
+       Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                pnelActive = 3;
+            }
+        };
+        t.schedule(task, 1000);        
     }//GEN-LAST:event_mpReporteMouseClicked
 
     private void pUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pUsuarioMouseClicked
@@ -950,7 +1241,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new Mant_Usuarios();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -972,13 +1263,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
-       try {
+        jpListarMesa lp=new jpListarMesa();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarMesa();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -987,25 +1280,29 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pMesasMouseClicked
 
     private void mpManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpManteMouseClicked
-            pMesas.setBackground(new java.awt.Color(24,168,255));
-            pUsuario.setBackground(new java.awt.Color(24,168,255));
-            pTrabajador.setBackground(new java.awt.Color(24,168,255));
-            pCargo.setBackground(new java.awt.Color(24,168,255));
-            pArea.setBackground(new java.awt.Color(24,168,255));
-            pComprobante.setBackground(new java.awt.Color(24,168,255));
-        //pUsuario.setBackground(new java.awt.Color(24,168,255));
-       mpPedido.setBackground(new java.awt.Color(24,168,255));
-       //pTrabajador.setBackground(new java.awt.Color(24,168,255));
-       mpReporte.setBackground(new java.awt.Color(24,168,255));
-       //pMesas.setBackground(new java.awt.Color(24,168,255));
-       mpMante.setBackground(new java.awt.Color(255,51,51));
-       //pArea.setBackground(new java.awt.Color(24,168,255));
-       //pCargo.setBackground(new java.awt.Color(24,168,255));}
-       mpMante.setVisible(false);
-       mpPedido.setVisible(false);
-       mpReporte.setVisible(false);
-       ValidarSub(usuario.getNid_perfil());
-       pnelActive = 1;
+        mpPedido.setBackground(new java.awt.Color(24,168,255));        
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(255,51,51));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+        
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {                
+                mpMante.setVisible(false);
+                mpPedido.setVisible(false);
+                mpReporte.setVisible(false);
+                mpCaja.setVisible(false);
+                mpCarta.setVisible(false);
+                mpReservacion.setVisible(false);
+                ValidarSub(usuario.getNid_perfil());
+                pnelActive = 1;
+            }
+        };        
+        t.schedule(task, 1000);        
+        
     }//GEN-LAST:event_mpManteMouseClicked
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
@@ -1036,7 +1333,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new CargoL();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1064,7 +1361,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new AreaL();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1079,22 +1376,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         pTrabajador.setBackground(new java.awt.Color(24,168,255));
         pArea.setBackground(new java.awt.Color(24,168,255));
         pCliente.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
         pCargo.setBackground(new java.awt.Color(24,168,255));
         pCategoria.setBackground(new java.awt.Color(24,168,255));
         pEmpresa.setBackground(new java.awt.Color(24,168,255));
         pLocal.setBackground(new java.awt.Color(24,168,255));
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(255,51,51));
+        pPiso.setBackground(new java.awt.Color(24,168,255));        
+        jpListarComprobante lp=new jpListarComprobante();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarComprobante();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1103,33 +1400,41 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pComprobanteMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-            if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
-            pMesas.setVisible(true);
-            pComprobante.setVisible(true);
-            pUsuario.setVisible(true);
-            pTrabajador.setVisible(true);
-            pArea.setVisible(true);
-            pCliente.setVisible(true);
-            pComprobante.setVisible(true);
-            pCargo.setVisible(true);
-            pCategoria.setVisible(true);
-            pEmpresa.setVisible(true);
-            pLocal.setVisible(true);
-            pPlato.setVisible(true);
-            pPlatoLocal.setVisible(true);
-            pPiso.setVisible(true);
-            pComprobante.setVisible(true);
-            
+        if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
+            pMesas.setVisible(false);
+            pComprobante.setVisible(false);
+            pUsuario.setVisible(false);
+            pTrabajador.setVisible(false);
+            pArea.setVisible(false);
+            pCliente.setVisible(false);
+            pComprobante.setVisible(false);
+            pCargo.setVisible(false);
+            pCategoria.setVisible(false);
+            pEmpresa.setVisible(false);
+            pLocal.setVisible(false);
+            pPlato.setVisible(false);
+            pPlatoLocal.setVisible(false);
+            pPiso.setVisible(false);
+            pComprobante.setVisible(false);
+
             mpMante.setVisible(true);
             mpPedido.setVisible(true);
-            mpReporte.setVisible(true);}
+            mpReporte.setVisible(true);
+            mpCaja.setVisible(true);
+            mpCarta.setVisible(true);
+            
+            mpReservacion.setVisible(true);
             mpPedido.setBackground(new java.awt.Color(24,168,255));
             mpReporte.setBackground(new java.awt.Color(24,168,255));
             mpMante.setBackground(new java.awt.Color(24,168,255));
+            mpCaja.setBackground(new java.awt.Color(24,168,255));
+            mpCarta.setBackground(new java.awt.Color(24,168,255));
+            mpReservacion.setBackground(new java.awt.Color(24,168,255));
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
+        }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void pPisoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPisoMouseClicked
@@ -1148,13 +1453,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(255,51,51));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
+        jpListarPiso lp=new jpListarPiso();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarPiso();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1178,13 +1485,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
+        jpListarEmpresa lp=new jpListarEmpresa();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarEmpresa();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1208,13 +1517,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
+        jpListarCliente lp=new jpListarCliente();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarCliente();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1236,13 +1547,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
+        jpListarLocal lp=new jpListarLocal();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-            nPanel = new jpListaLocal();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel = new jpListarLocal();
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1264,19 +1577,116 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(255,51,51));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
+        jpListarPlato lp=new jpListarPlato();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
         try {
+            //options(4);
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarPlato();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_pPlatoMouseClicked
+
+    private void mpCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpCajaMouseClicked
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(255,51,51));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+       
+        mpMante.setVisible(false);
+        mpPedido.setVisible(false);
+        mpReporte.setVisible(false);
+        mpCaja.setVisible(false);
+        mpCarta.setVisible(false);
+        mpReservacion.setVisible(false);
+                
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                //pnelActive = 1;
+                setVisible(false);
+                frmCaja caja=new frmCaja();
+                caja.setVisible(true);
+            }
+        };
+        t.schedule(task, 1000);        
+    }//GEN-LAST:event_mpCajaMouseClicked
+
+    private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
+        pMesas.setBackground(new java.awt.Color(24,168,255));
+        pComprobante.setBackground(new java.awt.Color(24,168,255));
+        pUsuario.setBackground(new java.awt.Color(24,168,255));
+        pTrabajador.setBackground(new java.awt.Color(24,168,255));
+        pArea.setBackground(new java.awt.Color(24,168,255));
+        pCliente.setBackground(new java.awt.Color(24,168,255));
+        pCargo.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        pEmpresa.setBackground(new java.awt.Color(24,168,255));
+        pLocal.setBackground(new java.awt.Color(24,168,255));
+        pPlato.setBackground(new java.awt.Color(24,168,255));
+        pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
+        pPiso.setBackground(new java.awt.Color(24,168,255));
+        jpListarPlatoLocal lp=new jpListarPlatoLocal();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        try {
+            if(nPanel != null){
+                getContentPane().remove(nPanel);
+                getContentPane().repaint();
+            }
+            nPanel = new jpListarPlatoLocal();
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+        
+            getContentPane().add(nPanel);
+            this.validate();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_pPlatoLocalMouseClicked
+
+    private void mpReservacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReservacionMouseClicked
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
+        mpReporte.setBackground(new java.awt.Color(24,168,255));       
+        mpMante.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(255,51,51));
+       
+        mpMante.setVisible(true);
+        mpPedido.setVisible(true);
+        mpReporte.setVisible(true);
+        mpCaja.setVisible(true);
+        mpCarta.setVisible(true);
+        mpReservacion.setVisible(true);
+        try {
+            if(nPanel != null){
+                getContentPane().remove(nPanel);
+                getContentPane().repaint();
+            }
+            nPanel = new jpReservacion();
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+        
+            getContentPane().add(nPanel);
+            this.validate();
+        } catch (Exception e) {
+        }
+        /*Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                options(4);
+            }
+        };
+        t.schedule(task, 1000);   */     
+    }//GEN-LAST:event_mpReservacionMouseClicked
 
     private void pCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCategoriaMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
@@ -1292,13 +1702,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
-       try {
+        jpListarCategoria lp=new jpListarCategoria();
+        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarCategoria();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1306,39 +1718,227 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pCategoriaMouseClicked
 
-    private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
-        pMesas.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
-        pUsuario.setBackground(new java.awt.Color(24,168,255));
-        pTrabajador.setBackground(new java.awt.Color(24,168,255));
-        pArea.setBackground(new java.awt.Color(24,168,255));
-        pCliente.setBackground(new java.awt.Color(24,168,255));
-        pCargo.setBackground(new java.awt.Color(24,168,255));
-        pCategoria.setBackground(new java.awt.Color(24,168,255));
-        pEmpresa.setBackground(new java.awt.Color(24,168,255));
-        pLocal.setBackground(new java.awt.Color(24,168,255));
-        pPlato.setBackground(new java.awt.Color(24,168,255));
-        pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        try {
-            if(nPanel != null){
-                getContentPane().remove(nPanel);
-                getContentPane().repaint();
+    private void mpCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpCartaMouseClicked
+        /*Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                options(4);
             }
-            nPanel = new jpListarPlatoLocal();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
-        
-            getContentPane().add(nPanel);
-            this.validate();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_pPlatoLocalMouseClicked
+        };
+        t.schedule(task, 1000); */       
+    }//GEN-LAST:event_mpCartaMouseClicked
+
+    private void opNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opNuevoMouseClicked
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                
+                if (namePanel.equals("jpListarPlato")) {
+                System.out.println(namePanel);
+                    jpNuevoPlato Plato=new jpNuevoPlato();
+                    frmPrincipal.Comp(Plato);
+                }
+                if (namePanel.equals("jpListarPlatoLocal")) {
+                    jpNuevoPlatoLocal platoLocal=new jpNuevoPlatoLocal();
+                    frmPrincipal.Comp(platoLocal);
+                }else if (namePanel.equals("jpListarPiso")) {
+                    jpNuevoPiso piso= new jpNuevoPiso();
+                    frmPrincipal.Comp(piso);
+                }else if (namePanel.equals("jpListarMesa")) {
+                    jpNuevaMesa mesa=new jpNuevaMesa();
+                    frmPrincipal.Comp(mesa);
+                }else if (namePanel.equals("jpListarLocal")) {
+                    jpNuevoLocal local=new jpNuevoLocal();
+                    frmPrincipal.Comp(local);
+                }else if (namePanel.equals("jpListarEmpresa")) {
+                    jpNuevaEmpresa empresa=new jpNuevaEmpresa();        
+                    frmPrincipal.Comp(empresa);        
+                }else if (namePanel.equals("jpListarComprobante")) {
+                    jpNuevoComprobante comprobante=new jpNuevoComprobante();
+                    frmPrincipal.Comp(comprobante);
+                }else if (namePanel.equals("jpListarCliente")) {
+                    jpNuevoCliente cliente=new jpNuevoCliente();
+                    frmPrincipal.Comp(cliente);
+                }else if (namePanel.equals("jpListarCategoria")) {
+                    jpNuevaCategoria categoria=new jpNuevaCategoria();
+                    frmPrincipal.Comp(categoria);
+                }
+                //options(2);
+            }
+        };
+        t.schedule(task, 3000);        
+    }//GEN-LAST:event_opNuevoMouseClicked
+    
+    private void opEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEditarMouseClicked
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {                
+                if (namePanel.equals("jpListarPlato")) {
+                    jpListarPlato listarPlato=new jpListarPlato();
+                    System.out.println(".run1");
+                    jpEditarPlato editarPlato=new jpEditarPlato();        
+                    System.out.println(".run2");
+                    Plato plato =new Plato();
+                    System.out.println(".run3");
+                    Login_User login_User=new Login_User();
+                    System.out.println(".run4");
+                    plato.setNid_plato(Integer.parseInt(listarPlato.dtm.getValueAt(idx, 0).toString()));
+                    plato.setNo_plato((String)listarPlato.dtm.getValueAt(idx, 1));
+                    plato.setNo_categoria1_plato((String)listarPlato.dtm.getValueAt(idx, 2));
+                    plato.setNo_categoria2_plato((String)listarPlato.dtm.getValueAt(idx, 3));
+                    plato.setNo_categoria3_plato((String)listarPlato.dtm.getValueAt(idx, 4));
+                    plato.setNo_estado((String)listarPlato.dtm.getValueAt(idx, 5));
+                    plato.setNid_usuario_modi(login_User.getNdi_usuario());
+                    System.out.println(idx);
+                    if(idx !=-1){
+                        editarPlato.cargarPlato(plato);
+                        frmPrincipal.Comp(editarPlato);                        
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else if (namePanel.equals("jpListarPlatoLocal")) {
+                    jpNuevoPlatoLocal platoLocal=new jpNuevoPlatoLocal();
+                    frmPrincipal.Comp(platoLocal);
+                }else if (namePanel.equals("jpListarPiso")) {
+                    jpNuevoPiso piso= new jpNuevoPiso();
+                    frmPrincipal.Comp(piso);
+                }else if (namePanel.equals("jpListarMesa")) {
+                    jpNuevaMesa mesa=new jpNuevaMesa();
+                    frmPrincipal.Comp(mesa);
+                }else if (namePanel.equals("jpListarLocal")) {
+                    jpNuevoLocal local=new jpNuevoLocal();
+                    frmPrincipal.Comp(local);
+                }else if (namePanel.equals("jpListarEmpresa")) {
+                    jpNuevaEmpresa empresa=new jpNuevaEmpresa();        
+                    frmPrincipal.Comp(empresa);        
+                }else if (namePanel.equals("jpListarComprobante")) {
+                    jpNuevoComprobante comprobante=new jpNuevoComprobante();
+                    frmPrincipal.Comp(comprobante);
+                }else if (namePanel.equals("jpListarCliente")) {
+                    jpNuevoCliente cliente=new jpNuevoCliente();
+                    frmPrincipal.Comp(cliente);
+                }else if (namePanel.equals("jpListarCategoria")) {
+                    jpNuevaCategoria categoria=new jpNuevaCategoria();
+                    frmPrincipal.Comp(categoria);
+                }
+                //options(2);
+            }
+        };
+        t.schedule(task, 1000);        
+    }//GEN-LAST:event_opEditarMouseClicked
+
+    private void opEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEliminarMouseClicked
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        if (namePanel.equals("jpListarPlato")) {
+                    jpListarPlato plato=new jpListarPlato();                    
+                    //plato.deletePlato(idx);
+                }else if (namePanel.equals("jpListarPlatoLocal")) {
+                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
+                    frmPrincipal.Comp(platoLocal);
+                }else if (namePanel.equals("jpListarPiso")) {
+                    jpListarPiso piso= new jpListarPiso();
+                    frmPrincipal.Comp(piso);
+                }else if (namePanel.equals("jpListarMesa")) {
+                    jpListarMesa mesa=new jpListarMesa();
+                    frmPrincipal.Comp(mesa);
+                }else if (namePanel.equals("jpListarLocal")) {
+                    jpListarLocal local=new jpListarLocal();
+                    frmPrincipal.Comp(local);
+                }else if (namePanel.equals("jpListarEmpresa")) {
+                    jpListarEmpresa empresa=new jpListarEmpresa();        
+                    frmPrincipal.Comp(empresa);        
+                }else if (namePanel.equals("jpListarComprobante")) {
+                    jpListarComprobante comprobante=new jpListarComprobante();
+                    frmPrincipal.Comp(comprobante);
+                }else if (namePanel.equals("jpListarCliente")) {
+                    jpListarCliente cliente=new jpListarCliente();
+                    frmPrincipal.Comp(cliente);
+                }else if (namePanel.equals("jpListarCategoria")) {
+                    jpListarCategoria categoria=new jpListarCategoria();
+                    frmPrincipal.Comp(categoria);
+                }
+    }//GEN-LAST:event_opEliminarMouseClicked
+
+    private void opBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opBuscarMouseClicked
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+    }//GEN-LAST:event_opBuscarMouseClicked
+
+    private void opGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opGuardarMouseClicked
+        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));                
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                //options(4);
+            }
+        };
+        t.schedule(task, 1000);        
+    }//GEN-LAST:event_opGuardarMouseClicked
+    
+    private void opHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opHomeMouseClicked
+        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                if (namePanel.equals("jpListarPlato")) {
+                    jpListarPlato plato=new jpListarPlato();                    
+                    frmPrincipal.Comp(plato);
+                }else if (namePanel.equals("jpListarPlatoLocal")) {
+                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
+                    frmPrincipal.Comp(platoLocal);
+                }else if (namePanel.equals("jpListarPiso")) {
+                    jpListarPiso piso= new jpListarPiso();
+                    frmPrincipal.Comp(piso);
+                }else if (namePanel.equals("jpListarMesa")) {
+                    jpListarMesa mesa=new jpListarMesa();
+                    frmPrincipal.Comp(mesa);
+                }else if (namePanel.equals("jpListarLocal")) {
+                    jpListarLocal local=new jpListarLocal();
+                    frmPrincipal.Comp(local);
+                }else if (namePanel.equals("jpListarEmpresa")) {
+                    jpListarEmpresa empresa=new jpListarEmpresa();        
+                    frmPrincipal.Comp(empresa);        
+                }else if (namePanel.equals("jpListarComprobante")) {
+                    jpListarComprobante comprobante=new jpListarComprobante();
+                    frmPrincipal.Comp(comprobante);
+                }else if (namePanel.equals("jpListarCliente")) {
+                    jpListarCliente cliente=new jpListarCliente();
+                    frmPrincipal.Comp(cliente);
+                }else if (namePanel.equals("jpListarCategoria")) {
+                    jpListarCategoria categoria=new jpListarCategoria();
+                    frmPrincipal.Comp(categoria);
+                }
+                //options(4);
+            }
+        };
+        t.schedule(task, 1000);        
+    }//GEN-LAST:event_opHomeMouseClicked
     public void ValidarSub(int id){
         int vis = 13;
+        double pScreen=heightvar - pTop.getHeight();
         int size = 0;
-           
-            size = (heightvar - pTop.getHeight())/vis;    //Alto de cada panel
-            
+        double temp= Math.ceil(pScreen/13);
+            size = (int)temp;    //Alto de cada panel            
             //s están FALSE, aquí se elige los que serán visibles (debe ser de acuerdo a la variable VIS)
             pMesas.setVisible(true);
             pComprobante.setVisible(true);
@@ -1353,7 +1953,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPlato.setVisible(true);
             pPlatoLocal.setVisible(true);
             pPiso.setVisible(true);
-            //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
+            
+//Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
             pTrabajador.setLayout(null);
             pUsuario.setLayout(null);
             pMesas.setLayout(null);
@@ -1367,7 +1968,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPlato.setLayout(null);
             pPlatoLocal.setLayout(null);
             pPiso.setLayout(null);
-            //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
+            
+//Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
             pUsuario.setBounds(0, 59 ,255,size);
             jLabel9.setBounds(105, size/2 - 15, 95, 26);
             jLabel10.setBounds(17, size/2 - 30, 64, 64);
@@ -1393,8 +1995,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel21.setBounds(17, size/2 -40,64 ,64);
             
             pCategoria.setBounds(0,59 + (size*6),255,size);
-            jLabel32.setBounds(105, size/2 - 20,68 ,26);
-            jLabel33.setBounds(17, size/2 - 40, 64, 64);
+            jLabel39.setBounds(105, size/2 - 20,68 ,26);
+            jLabel40.setBounds(17, size/2 - 40, 64, 64);
             
             pCliente.setBounds(0,59 + (size*7),255,size);
             jLabel26.setBounds(105, size/2 - 20,68 ,26);
@@ -1421,34 +2023,75 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel23.setBounds(17, size/2 - 40, 64, 64);
                                     
     }
+    /*public void options(int option){
+        int sizeOption = (heightvar - pTop.getHeight())/option;
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        if (option==4) {
+            //int sizeOption = (heightvar - pTop.getHeight())/option;
+            opGuardar.setVisible(false);
+            opHome.setVisible(false);
+            
+            opNuevo.setVisible(true);
+            opNuevo.setLayout(null);
+            opNuevo.setBounds(255, 59,80,sizeOption); 
+
+            opEditar.setVisible(true);
+            opEditar.setLayout(null);
+            opEditar.setBounds(255, 59+sizeOption,80,sizeOption); 
+
+            opEliminar.setVisible(true);
+            opEliminar.setLayout(null);
+            opEliminar.setBounds(255, 59+(sizeOption*2),80,sizeOption); 
+
+            opBuscar.setVisible(true);
+            opBuscar.setLayout(null);
+            opBuscar.setBounds(255, 59+(sizeOption*3),80,sizeOption);             
+        }else{                
+            opNuevo.setVisible(false);
+            opEliminar.setVisible(false);
+            opEditar.setVisible(false);
+            opBuscar.setVisible(false);            
+            
+            opGuardar.setVisible(true);
+            opGuardar.setLayout(null);
+            opGuardar.setBounds(255, 59,80,sizeOption); 
+            
+            opHome.setVisible(true);
+            opHome.setLayout(null);
+            opHome.setBounds(255, 59+sizeOption,80,sizeOption);             
+        }
+    }*/
     public void Validar(int id){
         int vis = 3;
         int size = 0;
-        
         if(id == 1){
             
-            vis = 3; //Cantidad de paneles se va a mostrar
+            vis = 6; //Cantidad de paneles se va a mostrar
             size = (heightvar - pTop.getHeight())/vis;    //Alto de cada panel
             
             //Al cargar el frame todos están FALSE, aquí se elige los que serán visibles (debe ser de acuerdo a la variable VIS)
             //pMesas.setVisible(true);
             mpMante.setVisible(true);
-            mpReporte.setVisible(true);
-            //pUsuario.setVisible(true);
-            //pTrabajador.setVisible(true);
+            mpReporte.setVisible(true);            
             mpPedido.setVisible(true);
-            //pCargo.setVisible(true);
-            //pArea.setVisible(true);
+            mpCaja.setVisible(true);
+            mpCarta.setVisible(true);
+            mpReservacion.setVisible(true);
             
             //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
             //pTrabajador.setLayout(null);
             mpPedido.setLayout(null);
             //pUsuario.setLayout(null);
-            mpReporte.setLayout(null);
-            //pMesas.setLayout(null);
+            mpReporte.setLayout(null);            
             mpMante.setLayout(null);
-            //pCargo.setLayout(null);
-            //pArea.setLayout(null);
+            mpCaja.setLayout(null);
+            mpCarta.setLayout(null);
+            mpReservacion.setLayout(null);
             
             //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
             /*
@@ -1467,14 +2110,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpMante.setBounds(0, 59, 255, size);
             jLabel13.setBounds(90, size/2 - 15,160 ,26);
             jLabel14.setBounds(17, size/2 -40,64 ,64);
-            /*
-            pCargo.setBounds(0, 59 + size*4, 255, size);
-            jLabel16.setBounds(105, size/2 - 20,68 ,26);
-            jLabel17.setBounds(17, size/2 - 40,64 ,64);
-            
-            pArea.setBounds(0, 59 + size*5, 255, size);
-            jLabel18.setBounds(105, size/2 - 20,68 ,26);
-            jLabel19.setBounds(17, size/2 - 40,64 ,64);*/
             
             mpPedido.setBounds(0, 59 + size, 255, size);
             jLabel3.setBounds(105, size/2 - 15, 73, 26);
@@ -1484,6 +2119,17 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel7.setBounds(105, size/2 - 15, 85, 26);
             jLabel8.setBounds(17, size/2 - 40, 64, 64);
             
+            mpCaja.setBounds(0,59 + size*3,255,size);
+            jLabel41.setBounds(105, size/2 - 15, 85, 26);
+            jLabel42.setBounds(17, size/2 -40,64 ,64);
+            
+            mpCarta.setBounds(0,59 + size*4,255,size);
+            jLabel32.setBounds(105, size/2 - 15, 85, 26);
+            jLabel33.setBounds(17, size/2 - 30, 64, 64);
+            
+            mpReservacion.setBounds(0,59 + size*5,255,size);
+            jLabel37.setBounds(90, size/2 - 15,160 ,26);
+            jLabel38.setBounds(17, size/2 - 40, 64, 64);
         }else if(id==2){
             vis = 2;
             size = (heightvar - pTop.getHeight())/vis;    
@@ -1612,14 +2258,29 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JPanel jpContenedor;
+    private javax.swing.JPanel mpCaja;
+    private javax.swing.JPanel mpCarta;
     private javax.swing.JPanel mpMante;
     private javax.swing.JPanel mpPedido;
     private javax.swing.JPanel mpReporte;
+    private javax.swing.JPanel mpReservacion;
+    public javax.swing.JLabel opBuscar;
+    public javax.swing.JLabel opEditar;
+    public javax.swing.JLabel opEliminar;
+    public javax.swing.JLabel opGuardar;
+    public javax.swing.JLabel opHome;
+    public javax.swing.JLabel opNuevo;
     private javax.swing.JPanel pArea;
     private javax.swing.JPanel pCargo;
     private javax.swing.JPanel pCategoria;

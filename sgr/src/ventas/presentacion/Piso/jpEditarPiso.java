@@ -1,11 +1,16 @@
 
 package ventas.presentacion.Piso;
 
+import java.io.File;
+import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.codec.binary.StringUtils;
 import ventas.modelo.Login_User;
 import ventas.modelo.Piso;
 import ventas.persistencia.util.BDData;
@@ -19,11 +24,11 @@ public class jpEditarPiso extends javax.swing.JPanel {
     Piso piso=new Piso();
     public jpEditarPiso() {
         initComponents();
-        addItems();
-        cboLocal.setSelectedIndex(-1);
-        initIcon(lblEstado.getText());
+        addItems();                
         //cboPiso.setModel(dcbm);
+        txtCodigo.setEnabled(false);                
     }
+
     private void addItems(){
         dcbm=BDData.getLocal();        
         cboLocal.setModel(dcbm);
@@ -32,30 +37,22 @@ public class jpEditarPiso extends javax.swing.JPanel {
         txtCodigo.setText(p.getNid_piso()+"");
         txtNroPiso.setText(p.getNu_piso()+"");
         cboLocal.setSelectedItem(p.getNo_local());        
-        lblEstado.setText(p.getNo_estado());
+        lblEstado.setText(p.getNo_estado());        
+        initIcon(lblEstado.getText().toLowerCase());
     }         
-    private void initIcon(String iconic){
-        if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
+    
+    public static void initIcon(String iconic){                
+            String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
             lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }
+            lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+            lblEstado.repaint();        
     }
     private void icon(String iconic){
-        if (iconic.equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
+        if (iconic.startsWith("Activo")) {            
+            String path = "D:/sisVentasRes/sgr/src/recursos/inactivo.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
@@ -63,7 +60,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
             lblEstado.setText("Inactivo");
             this.repaint();
         }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
+            String path = "D:/sisVentasRes/sgr/src/recursos/activo.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
@@ -87,11 +84,22 @@ public class jpEditarPiso extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
 
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+
+        txtNroPiso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroPisoKeyTyped(evt);
+            }
+        });
+
         cboLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Local:");
 
-        lblEstado.setText("halo");
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEstadoMouseClicked(evt);
@@ -101,6 +109,12 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jLabel7.setText("Estado:");
 
         jLabel4.setText("Numero de Piso:");
+
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Id Piso:");
 
@@ -198,6 +212,30 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
         icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtNroPisoKeyTyped
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+                
+    }//GEN-LAST:event_formFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

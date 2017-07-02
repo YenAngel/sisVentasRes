@@ -15,7 +15,7 @@ public class BDUtil {
         try {
             Class.forName(driver);
             try {
-                cnn = (Connection) DriverManager.getConnection(url,"root","1234");  
+                cnn = (Connection) DriverManager.getConnection(url,"root","angel");  
                 System.out.println("Conectado");
                 return true;
             } catch (Exception e) {

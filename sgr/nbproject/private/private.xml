@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/Method.java</file>
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BD_RS.java</file>
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Area/AreaL.java</file>
@@ -12,6 +13,17 @@
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BDUtil.java</file>
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Trabajador/Trabajador_Editar.java</file>
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Mesas_Selection.java</file>
+=======
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpNuevoPlato.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpListarPlatoLocal.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpEditarPlatoLocal.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpEditarPiso.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpNuevoPlatoLocal.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpEditarPlato.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Login.java</file>
+            <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpListarPlato.java</file>
+>>>>>>> 9ced99d7d40fa48f31e2f0c17506e7b7042bd01c
         </group>
     </open-files>
 </project-private>

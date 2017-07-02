@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import ventas.modelo.Login_User;
 import ventas.modelo.Mesa;
 import ventas.persistencia.util.BDData;
-import ventas.presentacion.Local.jpListaLocal;
+import ventas.presentacion.Local.jpListarLocal;
 import ventas.presentacion.frmPrincipal;
 import static ventas.presentacion.frmPrincipal.heightvar;
 import static ventas.presentacion.frmPrincipal.nPanel;
@@ -18,11 +18,11 @@ public class jpEditarMesa extends javax.swing.JPanel {
     Login_User login_User=new Login_User();
     Mesa mesa=new Mesa();
     public jpEditarMesa() {
-        initComponents();
-        initIcon(lblEstado.getText());
+        initComponents();        
         cboLocal.setModel(BDData.getLocal());
         cboLocal.setSelectedIndex(-1);        
         cboTipoMesa.setSelectedIndex(-1);
+        txtCodigo.setEnabled(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -48,6 +48,12 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboTipoMesa = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
         add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 260, 50));
 
         jLabel1.setText("Codigo:");
@@ -74,6 +80,12 @@ public class jpEditarMesa extends javax.swing.JPanel {
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
         add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 260, 50));
+
+        txtNroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroMesaKeyTyped(evt);
+            }
+        });
         add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 260, 50));
 
         jLabel7.setText("Estado:");
@@ -111,6 +123,12 @@ public class jpEditarMesa extends javax.swing.JPanel {
             }
         });
         add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 260, 50));
+
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 260, 50));
 
         cboTipoMesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar", "Normal" }));
@@ -125,25 +143,16 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboTipoMesa.setSelectedItem(m.getCo_tipo_mesa());
         cboNroPiso.setSelectedItem(m.getNu_piso()+"");
         lblEstado.setText(m.getNo_estado());
+        initIcon(lblEstado.getText().toLowerCase());
     }
-    private void initIcon(String iconic){
-        if (iconic.equals("Inactivo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
@@ -193,6 +202,36 @@ public class jpEditarMesa extends javax.swing.JPanel {
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
         icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNroMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroMesaKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtNroMesaKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(!Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
