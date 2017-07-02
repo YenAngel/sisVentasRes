@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
-import ventas.persistencia.util.Method;
 import ventas.persistencia.util.Trabajador;
 import static ventas.presentacion.Usuario.Usuarios_new.cboTipo;
 import ventas.presentacion.frmPrincipal;
@@ -245,26 +244,10 @@ public class Trabajador_new extends javax.swing.JPanel {
                 .addContainerGap(419, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private boolean ValidateInputs(){
-        if(!Method.Caracter(txtApePat.getText())) {
-            JOptionPane.showMessageDialog(null, "Carácteres no permitidos");
-            txtApePat.requestFocus();
-            return false;
-        }else if(!Method.Caracter(txtApeMat.getText())) {
-            JOptionPane.showMessageDialog(null, "Carácteres no permitidos");
-            txtApeMat.requestFocus();
-            return false;
-        }else if(!Method.Caracter(txtNombres.getText())) {
-            JOptionPane.showMessageDialog(null, "Carácteres no permitidos");
-            txtNombres.requestFocus();
-            return false;
-        }
-        return true;
-    }
+
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String cod;
         if(jDateChooser1.getDate() != null && cboCargo.getSelectedIndex() != -1 && txtApeMat.getText().trim().length()> 0 && txtApePat.getText().trim().length() > 0 && txtNombres.getText().trim().length() > 0 && txtDNI.getText().trim().length() > 0){
-            if(!ValidateInputs()) return;
             if(txtDNI.getText().trim().length() != 8 || !Digits(txtDNI.getText())){
                 JOptionPane.showMessageDialog(this, "Ingrese un número de DNI correcto (8 dígitos)","Mensaje",JOptionPane.WARNING_MESSAGE);
                 txtDNI.setText("");
