@@ -5,7 +5,13 @@
  */
 package ventas.presentacion;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Panel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ventas.persistencia.util.BDUtil;
+import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Pedido.frmPedido;
 
 /**
@@ -13,14 +19,60 @@ import ventas.presentacion.Pedido.frmPedido;
  * @author AnibalMA
  */
 public class Mesas_Selection extends javax.swing.JFrame {
-
+   public static frmPedido frmPe = new frmPedido();
+   public static frmPedido frmPe2 = new frmPedido();
+   public static frmPedido frmPe3 = new frmPedido();
+   public static frmPedido frmPe4 = new frmPedido();
+   public static frmPedido frmPe5 = new frmPedido();
+   public static frmPedido frmPe6 = new frmPedido();
+   public static frmPedido frmPe7 = new frmPedido();
+   public static frmPedido frmPe8 = new frmPedido();
+   public static int es[] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+   
     /**
      * Creates new form Mesas_Selection
      */
     public Mesas_Selection() {
+        int s = 0;
         initComponents();
+        BDUtil.conectar();
+        System.out.println(jPanel11.getBackground().getRGB());
         setExtendedState(MAXIMIZED_BOTH);
-        
+        cboPiso.setModel(BD_RS.ListarCBOPisos());
+        for(Component c : getContentPane().getComponents()){
+            if (c instanceof JPanel) {
+                System.out.println(((JPanel)c).getName());
+                if(es[s] == 1){
+                    ((JPanel)c).setBackground(new Color(0,126,41));
+                }else{
+                    //[0,126,41]
+                    ((JPanel)c).setBackground(new Color(204,0,0));
+                }
+                s+=1;
+            }
+        }
+            
+            
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+        jPanel5.setVisible(false);
+        jPanel7.setVisible(false);
+        jPanel8.setVisible(false);
+        jPanel9.setVisible(false);
+        jPanel10.setVisible(false);
+        jPanel11.setVisible(false);
+        jPanel12.setVisible(false);
+        jPanel13.setVisible(false);
+                jPanel1.setVisible(true);
+                jPanel2.setVisible(true);
+                jPanel3.setVisible(true);
+                jPanel4.setVisible(true);
+                jPanel5.setVisible(true);
+                jPanel7.setVisible(true);
+                jPanel8.setVisible(true);
+                jPanel9.setVisible(true);
     }
     public static DefaultTableModel FormatearTabla(){
         DefaultTableModel dtm = new DefaultTableModel();
@@ -39,11 +91,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
         jLabel16 = new javax.swing.JLabel();
         cboPiso = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -58,7 +110,54 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel16.setText("Piso:");
 
+        cboPiso.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPisoItemStateChanged(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel1.setToolTipText("");
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 174, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 174, Short.MAX_VALUE)
+        );
+
         jPanel2.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel2.setToolTipText("");
+        jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -76,20 +175,12 @@ public class Mesas_Selection extends javax.swing.JFrame {
             .addGap(0, 174, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(0, 126, 41));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
-        );
-
         jPanel4.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -103,6 +194,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -115,20 +211,12 @@ public class Mesas_Selection extends javax.swing.JFrame {
             .addGap(0, 174, Short.MAX_VALUE)
         );
 
-        jPanel6.setBackground(new java.awt.Color(0, 126, 41));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
-        );
-
         jPanel7.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -142,6 +230,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
         );
 
         jPanel8.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -155,6 +248,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -180,7 +278,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             .addGap(0, 174, Short.MAX_VALUE)
         );
 
-        jPanel11.setBackground(new java.awt.Color(0, 126, 41));
+        jPanel11.setBackground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -236,11 +334,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(74, 74, 74)
                                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -261,7 +359,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(400, 400, 400)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(666, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -277,10 +375,10 @@ public class Mesas_Selection extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(44, 44, 44)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -290,24 +388,137 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(150, 150, 150)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(517, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        if(jPanel2.getBackground().getRGB()==-16744919){
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        if(jPanel1.getBackground().getRGB()==-16744919){
+            es[0] = 2;
             this.setVisible(false);
-            frmPedido frmPe = new frmPedido();
+            frmPe = new frmPedido();
+            frmPe.setVisible(true);
+            
+        }else{
+            this.setVisible(false);
             frmPe.setVisible(true);
         }
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void cboPisoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPisoItemStateChanged
+      
+        if(cboPiso.getSelectedIndex() != -1){
+            
+                jPanel1.setVisible(true);
+                jPanel2.setVisible(true);
+                jPanel3.setVisible(true);
+                jPanel4.setVisible(true);
+                jPanel5.setVisible(true);
+                jPanel7.setVisible(true);
+                jPanel8.setVisible(true);
+                jPanel9.setVisible(true);
+                
+            
+        }
+            
+    }//GEN-LAST:event_cboPisoItemStateChanged
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        if(jPanel2.getBackground().getRGB()==-16744919){
+            es[1] = 2;
+            this.setVisible(false);
+            frmPe2 = new frmPedido();
+            frmPe2.setVisible(true);
+            jPanel2.setBackground(new Color(204,0,0));
+        }else{
+            this.setVisible(false);
+           
+            frmPe2.setVisible(true);
+        }
+            
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        if(jPanel3.getBackground().getRGB()==-16744919){
+            this.setVisible(false);
+            frmPe3 = new frmPedido();
+            frmPe3.setVisible(true);
+        }else{
+            this.setVisible(false);
+           
+            frmPe3.setVisible(true);
+        }
+    }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+       if(jPanel4.getBackground().getRGB()==-16744919){
+           
+           this.setVisible(false);
+            frmPe4 = new frmPedido();
+            frmPe4.setVisible(true);
+        }else{
+           this.setVisible(false);
+            frmPe4.setVisible(true);
+       }
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        if(jPanel5.getBackground().getRGB()==-16744919){
+            this.setVisible(false);
+            frmPe5 = new frmPedido();
+            frmPe5.setVisible(true);
+        }else{
+            this.setVisible(false);
+           
+            frmPe5.setVisible(true);
+        }
+            
+            
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+       if(jPanel7.getBackground().getRGB()==-16744919){
+            this.setVisible(false);
+            frmPe6 = new frmPedido();
+            frmPe6.setVisible(true);
+        }else{
+           this.setVisible(false);
+           
+            frmPe6.setVisible(true);
+       }
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        if(jPanel8.getBackground().getRGB()==-16744919){
+           this.setVisible(false);
+            frmPe7 = new frmPedido();
+            frmPe7.setVisible(true);
+        }else{
+             this.setVisible(false);
+           
+            frmPe7.setVisible(true);
+        }
+    }//GEN-LAST:event_jPanel8MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+       if(jPanel9.getBackground().getRGB()==-16744919){
+            this.setVisible(false);
+            frmPe8 = new frmPedido();
+            frmPe8.setVisible(true);
+            
+        }else{
+           this.setVisible(false);
+           
+            frmPe8.setVisible(true);
+       }
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -347,15 +558,15 @@ public class Mesas_Selection extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboPiso;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
+    private static javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

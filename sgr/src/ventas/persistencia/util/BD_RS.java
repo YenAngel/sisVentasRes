@@ -607,4 +607,22 @@ public class BD_RS {
             return dtm;
         }
     }
+    public static DefaultComboBoxModel ListarCBOPisos(){
+        DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
+        try {
+            String sql = "SELECT nu_piso from mae_piso";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CBOT.addElement(rs.getInt(1));
+            }
+            
+            return CBOT;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+            return null;
+        }
+        
+    }
 }

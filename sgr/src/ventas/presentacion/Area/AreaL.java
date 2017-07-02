@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import ventas.modelo.Area;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.Method;
 
 /**
  *
@@ -225,6 +226,12 @@ public class AreaL extends javax.swing.JPanel {
             int t = 1;
            String msg = "";
             if(txtName_Area.getText().trim().length() != 0 && cboEstado.getSelectedIndex() != -1){
+                //
+                if (!Method.Caracter(txtName_Area.getText())){
+                    JOptionPane.showMessageDialog(null, "Carácteres no permitidos");
+                    txtName_Area.requestFocus();
+                    return;
+                }
                 Area area = new Area();
                 if(area.getNombre() == null || !Ed){
                      if (EC()) return;

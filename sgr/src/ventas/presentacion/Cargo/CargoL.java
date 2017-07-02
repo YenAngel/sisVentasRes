@@ -15,6 +15,7 @@ import ventas.modelo.Area;
 import ventas.modelo.Cargo;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.Method;
 
 /**
  *
@@ -241,6 +242,11 @@ public class CargoL extends javax.swing.JPanel {
         int t = 1;
        String msg = "";
         if(txtName_Cargo.getText().trim().length() != 0 && cboEstado.getSelectedIndex() != -1){
+            if (!Method.Caracter(txtName_Cargo.getText())){
+                    JOptionPane.showMessageDialog(null, "Carácteres no permitidos");
+                    txtName_Cargo.requestFocus();
+                    return;
+                }
             Cargo cargo = new Cargo();
             if(cargo.getNombre() == null || !Ed){
                  if (EC()) return;
