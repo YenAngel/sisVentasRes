@@ -46,21 +46,26 @@ public class frmPedido extends javax.swing.JFrame {
             h = 80;
             while(h+150 <= w ){
                 JLabel jl = new JLabel();
+                JLabel jl2 = new JLabel();
+                jl2.setText("");
                 jl.setText("");
                 jl.setName("jl"+ h);
                 switch (i) {
                     case 1:
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Ceviche.jpg")));
+                        jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Chicha_Morada.jpg")));
                         break;
                     case 2:
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Arroz_con_Pollo.jpg")));
-                       
+                        jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Inca_Kola.jpg")));
                         break;
                     case 3:
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Shambar.jpg")));
+                        jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Coca_Cola.jpg")));
                         break;
                     default:
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Ceviche.jpg")));
+                        jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Chicha_Morada.jpg")));
                         break;
                 }
                 
@@ -69,8 +74,15 @@ public class frmPedido extends javax.swing.JFrame {
                jl(evt);
             }
         });
+                     jl2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+               jl(evt);
+            }
+        });
                 jl.setBounds(h, a, 140, 82);
                 jPanel1.add(jl);
+                jl2.setBounds(h, a, 140, 82);
+                jPanel2.add(jl2);
                 h+=200;
             }
             a+=108;
