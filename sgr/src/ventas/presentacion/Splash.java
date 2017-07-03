@@ -3,11 +3,9 @@ package ventas.presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
-import ventas.persistencia.util.EN_DES;
 
 public class Splash extends javax.swing.JFrame {
     

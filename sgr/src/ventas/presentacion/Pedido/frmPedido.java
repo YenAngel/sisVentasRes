@@ -20,9 +20,7 @@ import ventas.presentacion.Mesas_Selection;
 public class frmPedido extends javax.swing.JFrame {
     public int w;
     public DefaultTableModel dtm;
-    /**
-     * Creates new form frmPedido
-     */
+    
     public DefaultTableModel FormatearTabla(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Descripción","Cantidad"};
@@ -45,11 +43,12 @@ public class frmPedido extends javax.swing.JFrame {
         for (int i = 1; i < 4; i++){
             h = 80;
             while(h+150 <= w ){
+                
                 JLabel jl = new JLabel();
                 JLabel jl2 = new JLabel();
                 jl2.setText("");
                 jl.setText("");
-                jl.setName("jl"+ h);
+                
                 switch (i) {
                     case 1:
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Ceviche.jpg")));
@@ -92,12 +91,11 @@ public class frmPedido extends javax.swing.JFrame {
         int in, f, valcant;
         String platName;
         valcant = 1;
-        //System.out.println(evt.getSource().toString());
-        //System.out.println(evt.getSource().toString().indexOf("disabledIcon="));
+        
         in = evt.getSource().toString().indexOf("/recursos/") + 10;
         f = evt.getSource().toString().indexOf("disabledIcon=") - 5;
         Vector v = new Vector();
-        //System.out.println(evt.getSource().toString().substring(in, f));
+        
         platName = evt.getSource().toString().substring(in, f).replace("_", " ");
         if(tblPedidos.getModel().getRowCount() == 0){
                     v.add(platName);
