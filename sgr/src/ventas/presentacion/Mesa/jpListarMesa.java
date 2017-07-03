@@ -4,6 +4,7 @@ package ventas.presentacion.Mesa;
 import ventas.presentacion.Mesa.jpEditarMesa;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
@@ -22,6 +23,8 @@ public class jpListarMesa extends javax.swing.JPanel{
     public jpListarMesa() {
         initComponents();
         listarMesa();
+        cboNroPiso.setModel(BDData.obtenerPiso());
+        cboNroPiso.setSelectedIndex(-1);
     }
     private DefaultTableModel formatoTabla(){
         dtm= new DefaultTableModel();
@@ -37,19 +40,19 @@ public class jpListarMesa extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMesa = new javax.swing.JTable();
         btnNew = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        txtNroMesa = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cboNroPiso = new javax.swing.JComboBox<>();
 
+        setPreferredSize(new java.awt.Dimension(1200, 768));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\icons\\Files-2-icon.png")); // NOI18N
-        jLabel1.setText("Gestión de Mesa");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         tblMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,16 +67,16 @@ public class jpListarMesa extends javax.swing.JPanel{
         ));
         jScrollPane1.setViewportView(tblMesa);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 127));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 700, 280));
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/adder.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, 60));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
@@ -82,7 +85,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 140, 60));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         btnDelete.setText("Eliminar");
@@ -92,7 +95,36 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 140, 60));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 150, 100));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
+        btnSearch.setText("Buscar");
+        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 150, 100));
+
+        txtNroMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroMesaKeyTyped(evt);
+            }
+        });
+        add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 260, 50));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Nro Mesa:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Nro Piso:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+
+        cboNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -132,14 +164,38 @@ public class jpListarMesa extends javax.swing.JPanel{
         frmPrincipal.Comp(mesa);
     }//GEN-LAST:event_btnNewActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if (txtNroMesa.getText().equals("") || cboNroPiso.getSelectedIndex()==-1) {            
+            tblMesa.setModel(BDData.listarMesa(formatoTabla()));
+        }else{            
+            mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
+            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
+            tblMesa.setModel(BDData.obtenerMesa(formatoTabla(), mesa));
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtNroMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroMesaKeyTyped
+        char c=evt.getKeyChar();
+
+        if(Character.isLetter(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");
+        }
+    }//GEN-LAST:event_txtNroMesaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNew;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnSearch;
+    public static javax.swing.JComboBox<String> cboNroPiso;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMesa;
+    public static javax.swing.JTextField txtNroMesa;
     // End of variables declaration//GEN-END:variables
 
 }

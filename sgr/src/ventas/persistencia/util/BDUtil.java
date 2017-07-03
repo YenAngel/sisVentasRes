@@ -8,14 +8,14 @@ import java.sql.SQLException;
 
 public class BDUtil {    
     private static String driver="com.mysql.jdbc.Driver";
-    private static String url="jdbc:mysql://localhost:3306/srg_ventas?zeroDateTimeBehavior=convertToNull";
+    private static String url="jdbc:mysql://107.180.46.230:3306/srg_ventas?zeroDateTimeBehavior=convertToNull";
     private static Connection cnn;
     
     public static boolean conectar(){
         try {
             Class.forName(driver);
             try {
-                cnn = (Connection) DriverManager.getConnection(url,"root","angel");  
+                cnn = (Connection) DriverManager.getConnection(url,"pruebabd","lasfijas123");  
                 System.out.println("Conectado");
                 return true;
             } catch (Exception e) {

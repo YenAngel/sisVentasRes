@@ -15,7 +15,8 @@ public class jpEditarPlato extends javax.swing.JPanel {
     Plato plato=new Plato();
     public jpEditarPlato() {
         initComponents();
-        addItems();        
+        addItems();     
+        txtCodigo.setEnabled(false);
     }
     private void addItems(){
         cboCategoria1.setModel(BDData.getCategories());
@@ -59,6 +60,14 @@ public class jpEditarPlato extends javax.swing.JPanel {
             this.repaint();
         }
     }
+    private void cleanControls(){
+        txtCodigo.setText("");
+        txtPlato.setText("");
+        cboCategoria1.setSelectedIndex(-1);
+        cboCategoria2.setSelectedIndex(-1);
+        cboCategoria3.setSelectedIndex(-1);
+        lblEstado.setVisible(false);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,6 +86,8 @@ public class jpEditarPlato extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        btnCargar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         jLabel7.setText("Categoria 3:");
 
@@ -98,6 +109,12 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
         jLabel5.setText("Nombre del Plato:");
 
+        txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPlatoKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Categoria 1:");
 
         jLabel6.setText("Categoria 2:");
@@ -113,6 +130,15 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
         jLabel8.setText("Id Plato");
 
+        btnCargar.setText("Cargar...");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Elegir imagen:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +152,15 @@ public class jpEditarPlato extends javax.swing.JPanel {
                         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -177,41 +209,51 @@ public class jpEditarPlato extends javax.swing.JPanel {
                         .addComponent(cboCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4))
                     .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void savePlato(){
+    /*public void savePlato(){
+        
+    }*/
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Login_User login_User=new Login_User();
 
-        if (cboCategoria1.getSelectedIndex()==-1)
-        plato.setNo_categoria1_plato("N/B");
-        else
-        plato.setNo_categoria1_plato(cboCategoria1.getSelectedItem().toString());
-        
-        if (cboCategoria2.getSelectedIndex()==-1)
-        plato.setNo_categoria2_plato("N/B");
-        else
-        plato.setNo_categoria2_plato(cboCategoria2.getSelectedItem().toString());
-        
-        if (cboCategoria3.getSelectedIndex()==-1)
-        plato.setNo_categoria3_plato("N/B");
-        else
-        plato.setNo_categoria3_plato(cboCategoria3.getSelectedItem().toString());
-        
-        plato.setNid_plato(Integer.parseInt(txtCodigo.getText()));
-        plato.setNo_plato(txtPlato.getText());
-        plato.setNo_estado(lblEstado.getText());
-        plato.setNid_usuario_modi(login_User.getNdi_usuario());
-        if (BDData.editarPlato(plato)) {
-            JOptionPane.showMessageDialog(null, "Registro Actualizado");
-        }
-    }
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+        if (!txtPlato.getText().equals("") && cboCategoria1.getSelectedIndex()!=-1 || cboCategoria2.getSelectedIndex()!=-1 || cboCategoria3.getSelectedIndex()!=-1) {
+            if (cboCategoria1.getSelectedIndex()==-1)
+            plato.setNo_categoria1_plato("N/B");
+            else
+            plato.setNo_categoria1_plato(cboCategoria1.getSelectedItem().toString());
+
+            if (cboCategoria2.getSelectedIndex()==-1)
+            plato.setNo_categoria2_plato("N/B");
+            else
+            plato.setNo_categoria2_plato(cboCategoria2.getSelectedItem().toString());
+
+            if (cboCategoria3.getSelectedIndex()==-1)
+            plato.setNo_categoria3_plato("N/B");
+            else
+            plato.setNo_categoria3_plato(cboCategoria3.getSelectedItem().toString());
+
+            plato.setNid_plato(Integer.parseInt(txtCodigo.getText()));
+            plato.setNo_plato(txtPlato.getText());
+            plato.setNo_estado(lblEstado.getText());
+            plato.setNid_usuario_modi(login_User.getNdi_usuario());
+            if (BDData.editarPlato(plato)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarPlato listarPlato=new jpListarPlato();
+                frmPrincipal.Comp(listarPlato);
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -223,13 +265,33 @@ public class jpEditarPlato extends javax.swing.JPanel {
         icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
 
+    private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
+        }
+    }//GEN-LAST:event_txtPlatoKeyTyped
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        if (!txtPlato.getText().equals("")) {
+            Archivo archivo=new Archivo();
+            archivo.setVisible(true);
+            archivo.name=txtPlato.getText();
+        }
+    }//GEN-LAST:event_btnCargarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboCategoria1;
     public static javax.swing.JComboBox<String> cboCategoria2;
     public static javax.swing.JComboBox<String> cboCategoria3;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

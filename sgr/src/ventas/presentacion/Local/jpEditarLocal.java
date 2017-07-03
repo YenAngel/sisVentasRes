@@ -21,6 +21,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
         initComponents();
         addItems();
         cboEmpresa.setSelectedIndex(-1);
+        txtCodigo.setEnabled(false);
     }
     private void addItems(){
         dcbm=BDData.getEmpresa();        
@@ -62,6 +63,13 @@ public class jpEditarLocal extends javax.swing.JPanel {
             this.repaint();
         }
     }
+    private void cleanControls(){
+        txtCodigo.setText("");
+        txtDireccion.setText("");
+        txtNombreLocal.setText("");
+        cboEmpresa.setSelectedIndex(-1);
+        lblEstado.setVisible(false);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,6 +106,12 @@ public class jpEditarLocal extends javax.swing.JPanel {
         });
 
         jLabel1.setText("Id Local:");
+
+        txtNombreLocal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreLocalKeyTyped(evt);
+            }
+        });
 
         lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/security-medium.png"))); // NOI18N
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,20 +200,35 @@ public class jpEditarLocal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        local.setNid_local(Integer.parseInt(txtCodigo.getText()));
-        local.setNo_local(txtNombreLocal.getText());
-        local.setTx_direccion(txtDireccion.getText());
-        local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
-        local.setNo_estado(lblEstado.getText());
-        local.setNid_usuario_modi(usuario.getNdi_usuario());
-        if (BDData.editarLocal(local)) {
-            JOptionPane.showMessageDialog(null, "Registro Actualizado");
+        if (!txtDireccion.getText().equals("") && !txtNombreLocal.getText().equals("") && cboEmpresa.getSelectedIndex()!=-1) {
+            local.setNid_local(Integer.parseInt(txtCodigo.getText()));
+            local.setNo_local(txtNombreLocal.getText());
+            local.setTx_direccion(txtDireccion.getText());
+            local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
+            local.setNo_estado(lblEstado.getText());
+            local.setNid_usuario_modi(usuario.getNdi_usuario());
+            if (BDData.editarLocal(local)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarLocal listarLocal=new jpListarLocal();
+                frmPrincipal.Comp(listarLocal);
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
        icon(lblEstado.getText());
     }//GEN-LAST:event_lblEstadoMouseClicked
+
+    private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
+        }
+    }//GEN-LAST:event_txtNombreLocalKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

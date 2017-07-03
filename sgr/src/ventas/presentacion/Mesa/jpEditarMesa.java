@@ -24,7 +24,14 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboTipoMesa.setSelectedIndex(-1);
         txtCodigo.setEnabled(false);
     }
-    
+    private void cleanControls(){
+        txtCantidad.setText("");
+        txtCodigo.setText("");
+        txtNroMesa.setText("");
+        cboLocal.setSelectedIndex(-1);
+        cboNroPiso.setSelectedIndex(-1);
+        cboTipoMesa.setSelectedIndex(-1);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,7 +46,6 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboNroPiso = new javax.swing.JComboBox<>();
         txtNroMesa = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -90,11 +96,6 @@ public class jpEditarMesa extends javax.swing.JPanel {
 
         jLabel7.setText("Estado:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Pen-icon.png")); // NOI18N
-        jLabel8.setText("Editar de Mesa");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 260, 50));
 
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
@@ -177,20 +178,39 @@ public class jpEditarMesa extends javax.swing.JPanel {
         jpListarMesa listarMesa =new jpListarMesa();
         frmPrincipal.Comp(listarMesa);
     }//GEN-LAST:event_btnHomeActionPerformed
-
+    private boolean validarControls(){
+        boolean ok;
+        if (!txtCantidad.getText().equals("") && !txtCodigo.getText().equals("") && !txtNroMesa.getText().equals("")) {
+            ok=true;
+        }else
+            ok=false;
+        
+        if (cboLocal.getSelectedIndex()!=-1 && cboNroPiso.getSelectedIndex()!=-1 && cboTipoMesa.getSelectedIndex()!=-1) {
+            ok=true;
+        }else
+            ok=false;
+        return ok;
+    }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        mesa.setNid_mesa(Integer.parseInt(txtCodigo.getText()));
-        mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
-        mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
-        mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
-        mesa.setNo_local(cboLocal.getSelectedItem().toString());
-        mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
-        mesa.setNo_estado(lblEstado.getText());
-        mesa.setNid_usuario_modi(login_User.getNdi_usuario());        
+        if (validarControls()) {
+            mesa.setNid_mesa(Integer.parseInt(txtCodigo.getText()));
+            mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
+            mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
+            mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
+            mesa.setNo_local(cboLocal.getSelectedItem().toString());
+            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
+            mesa.setNo_estado(lblEstado.getText());
+            mesa.setNid_usuario_modi(login_User.getNdi_usuario());        
 
-        if (BDData.editarMesa(mesa)) {
-            JOptionPane.showMessageDialog(null, "Registro Actualizado");
-        }
+            if (BDData.editarMesa(mesa)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarMesa listarMesa=new jpListarMesa();
+                frmPrincipal.Comp(listarMesa);
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cboLocalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLocalItemStateChanged
@@ -204,19 +224,13 @@ public class jpEditarMesa extends javax.swing.JPanel {
     }//GEN-LAST:event_lblEstadoMouseClicked
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-        char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
-        }
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void txtNroMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroMesaKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
@@ -226,7 +240,7 @@ public class jpEditarMesa extends javax.swing.JPanel {
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
@@ -246,7 +260,6 @@ public class jpEditarMesa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel lblEstado;
     public static javax.swing.JTextField txtCantidad;
