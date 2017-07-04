@@ -18,7 +18,13 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         cboTipoMesa.setSelectedIndex(-1);
     }
     
-    
+    private void cleanControls(){
+        txtCantidad.setText("");
+        txtNroMesa.setText("");
+        cboLocal.setSelectedIndex(-1);
+        cboNroPiso.setSelectedIndex(-1);
+        cboTipoMesa.setSelectedIndex(-1);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,7 +36,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         cboNroPiso = new javax.swing.JComboBox<>();
         cboTipoMesa = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         txtNroMesa = new javax.swing.JTextField();
@@ -53,10 +58,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
 
         cboTipoMesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar", "Normal" }));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Add-icon.png")); // NOI18N
-        jLabel8.setText("Nueva de Mesa");
-
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +74,11 @@ public class jpNuevaMesa extends javax.swing.JPanel {
             }
         });
 
+        txtNroMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNroMesaActionPerformed(evt);
+            }
+        });
         txtNroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNroMesaKeyTyped(evt);
@@ -136,11 +142,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(cboTipoMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(123, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 417, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +169,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 12, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 352, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -180,18 +176,34 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         jpListarMesa listarMesa=new jpListarMesa();
         frmPrincipal.Comp(listarMesa);
     }//GEN-LAST:event_btnHomeActionPerformed
-
+    private boolean validarControls(){
+        boolean ok;
+        if (!txtCantidad.getText().equals("") && !txtNroMesa.getText().equals("")) {
+            ok=true;
+        }else
+            ok=false;
+        
+        if (cboLocal.getSelectedIndex()!=-1 && cboNroPiso.getSelectedIndex()!=-1 && cboTipoMesa.getSelectedIndex()!=-1) {
+            ok=true;
+        }else
+            ok=false;
+        return ok;
+    }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Login_User login_User=new Login_User();
-        mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
-        mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
-        mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
-        mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
-        mesa.setNo_local(cboLocal.getSelectedItem().toString());
-        mesa.setNid_usuario_crea(login_User.getNdi_usuario());
-        if (BDData.nuevaMesa(mesa)) {
-            JOptionPane.showMessageDialog(null, "Registro Guardado");
-        }
+        if (validarControls()) {
+            mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
+            mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
+            mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
+            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
+            mesa.setNo_local(cboLocal.getSelectedItem().toString());
+            mesa.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevaMesa(mesa)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                cleanControls();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cboLocalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLocalItemStateChanged
@@ -212,7 +224,7 @@ public class jpNuevaMesa extends javax.swing.JPanel {
     private void txtNroMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroMesaKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
@@ -222,12 +234,16 @@ public class jpNuevaMesa extends javax.swing.JPanel {
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
         }
     }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtNroMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNroMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNroMesaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -241,7 +257,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     public javax.swing.JTextField txtCantidad;
     public javax.swing.JTextField txtNroMesa;
     // End of variables declaration//GEN-END:variables

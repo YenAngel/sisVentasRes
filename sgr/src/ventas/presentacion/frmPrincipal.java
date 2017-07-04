@@ -1347,7 +1347,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void pComprobanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pComprobanteMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
+        pComprobante.setBackground(new java.awt.Color(255,51,51));
         pUsuario.setBackground(new java.awt.Color(24,168,255));
         pTrabajador.setBackground(new java.awt.Color(24,168,255));
         pArea.setBackground(new java.awt.Color(24,168,255));

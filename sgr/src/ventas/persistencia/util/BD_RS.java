@@ -136,7 +136,7 @@ public class BD_RS {
     public static DefaultTableModel ListarAreas(){
         try {
             DefaultTableModel dtm = FormatearTablaAreas();
-            String sql = "SELECT A.NID_AREA, A.NO_AREA,A.fe_creacion, E.NO_ESTADO  FROM MAE_AREA A INNER JOIN mae_estado E ON E.nid_estado = A.nid_estado";
+            String sql = "SELECT A.NID_AREA, A.NO_AREA,A.fe_creacion, E.NO_ESTADO  FROM mae_area A INNER JOIN mae_estado E ON E.nid_estado = A.nid_estado";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -156,8 +156,8 @@ public class BD_RS {
     public static DefaultTableModel ListarCargos(){
         try {
             DefaultTableModel dtm = FormatearTablaCargos();
-            String sql = "SELECT C.NID_CARGO, C.NO_CARGO, A.NO_AREA,A.FE_CREACION, E.NO_ESTADO FROM MAE_CARGO C INNER JOIN MAE_AREA A ON A.nid_area = C.nid_area " +
-            "INNER JOIN MAE_ESTADO E ON E.nid_estado = C.nid_estado";
+            String sql = "SELECT C.NID_CARGO, C.NO_CARGO, A.NO_AREA,A.FE_CREACION, E.NO_ESTADO FROM mae_cargo C INNER JOIN mae_area A ON A.nid_area = C.nid_area " +
+            "INNER JOIN mae_estado E ON E.nid_estado = C.nid_estado";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){

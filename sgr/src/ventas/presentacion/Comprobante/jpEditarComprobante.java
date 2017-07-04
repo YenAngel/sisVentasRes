@@ -22,7 +22,13 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         cboComprobante.setSelectedItem(c.getCo_comprobante());
         txtSerie.setText(c.getNu_serie());        
         txtCorrelativo.setText(c.getNu_correlativo());
-    }             
+    }    
+    private void cleanControls(){
+        cboLocal.setSelectedIndex(-1);
+        cboLocal.setSelectedIndex(-1);
+        txtCorrelativo.setText("");
+        txtSerie.setText("");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,6 +45,12 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         cboComprobante = new javax.swing.JComboBox<>();
 
         jLabel9.setText("Serie:");
+
+        txtCorrelativo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorrelativoKeyTyped(evt);
+            }
+        });
 
         jLabel10.setText("Correlativo:");
 
@@ -61,6 +73,12 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         jLabel8.setText("Comprobante:");
 
         jLabel5.setText("Local:");
+
+        txtSerie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSerieKeyTyped(evt);
+            }
+        });
 
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
 
@@ -125,13 +143,18 @@ public class jpEditarComprobante extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Login_User login_User=new Login_User();
 
-        comprobante.setNo_local(cboLocal.getSelectedItem().toString());
-        comprobante.setNu_correlativo(txtCorrelativo.getText());
-        comprobante.setNu_serie(txtSerie.getText());
-        comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
-        comprobante.setNid_usuario_modi(login_User.getNdi_usuario());
-        if (BDData.editarComprobante(comprobante)) {
-            JOptionPane.showMessageDialog(null, "Registro Actualizado");
+        if (!txtCorrelativo.getText().equals("") && !txtSerie.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboComprobante.getSelectedIndex()!=-1) {
+            comprobante.setNo_local(cboLocal.getSelectedItem().toString());
+            comprobante.setNu_correlativo(txtCorrelativo.getText());
+            comprobante.setNu_serie(txtSerie.getText());
+            comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
+            comprobante.setNid_usuario_modi(login_User.getNdi_usuario());
+            if (BDData.editarComprobante(comprobante)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarComprobante listarComprobante=new jpListarComprobante();
+                frmPrincipal.Comp(listarComprobante);
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -139,6 +162,26 @@ public class jpEditarComprobante extends javax.swing.JPanel {
         jpListarComprobante listarComprobante=new jpListarComprobante();
         frmPrincipal.Comp(listarComprobante);
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isLetter(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtSerieKeyTyped
+
+    private void txtCorrelativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorrelativoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isLetter(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtCorrelativoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

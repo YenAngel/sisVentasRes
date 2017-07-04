@@ -17,7 +17,10 @@ public class jpNuevoPiso extends javax.swing.JPanel {
         cboLocal.setModel(dcbm);
         cboLocal.setSelectedIndex(-1);
     }
-
+    private void cleanControls(){
+        txtNroPiso.setText("");
+        cboLocal.setSelectedIndex(-1);    
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,18 +108,22 @@ public class jpNuevoPiso extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Piso piso=new Piso();
         Login_User login_User=new Login_User();
-        piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
-        piso.setNo_local(cboLocal.getSelectedItem().toString());
-        piso.setNid_usuario_crea(login_User.getNdi_usuario());
-        if (BDData.nuevoPiso(piso)) {
-            JOptionPane.showMessageDialog(null, "Registro Guardado");
-        }
+        if (!txtNroPiso.getText().equals("") && cboLocal.getSelectedIndex()!=-1) {
+            piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
+            piso.setNo_local(cboLocal.getSelectedItem().toString());
+            piso.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoPiso(piso)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                cleanControls();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        

@@ -69,6 +69,12 @@ public class jpEditarPiso extends javax.swing.JPanel {
             this.repaint();
         }
     }
+    private void cleanControls(){
+        txtCodigo.setText("");
+        cboLocal.setSelectedIndex(-1);
+        txtNroPiso.setText("");
+        lblEstado.setVisible(false);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -194,14 +200,20 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         piso=new Piso();
         Login_User login=new Login_User();
-        piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
-        piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
-        piso.setNo_local(cboLocal.getSelectedItem().toString());
-        piso.setNo_estado(lblEstado.getText());        
-        piso.setNid_usuario_modi(login.getNdi_usuario());   
-        if (BDData.editarPiso(piso)) {
-            JOptionPane.showMessageDialog(null, "Registro Actualizado");
-        }
+        if (!txtNroPiso.getText().equals("") && cboLocal.getSelectedIndex()!=-1) {
+            piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
+            piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
+            piso.setNo_local(cboLocal.getSelectedItem().toString());
+            piso.setNo_estado(lblEstado.getText());        
+            piso.setNid_usuario_modi(login.getNdi_usuario());   
+            if (BDData.editarPiso(piso)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarPiso listarPiso=new jpListarPiso();
+                frmPrincipal.Comp(listarPiso);
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");      
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -216,7 +228,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(!Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
@@ -226,7 +238,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
         char c=evt.getKeyChar();         
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        

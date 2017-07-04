@@ -1,13 +1,17 @@
 
 package ventas.presentacion;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.util.Timer;
 import java.util.TimerTask;
+import ventas.persistencia.util.BDUtil;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 

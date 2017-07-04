@@ -19,6 +19,12 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
     private void addItems(){
         cboLocal.setModel(BDData.getLocal());
     }
+    private void cleanControls(){
+        cboLocal.setSelectedIndex(-1);
+        cboComprobante.setSelectedIndex(-1);
+        txtCorrelativo.setText("");
+        txtSerie.setText("");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -81,6 +87,7 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
         });
 
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,18 +146,21 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
                 .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+            
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Login_User login_User=new Login_User();
-
-        comprobante.setNo_local(cboLocal.getSelectedItem().toString());
-        comprobante.setNu_correlativo(txtCorrelativo.getText());
-        comprobante.setNu_serie(txtSerie.getText());
-        comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
-        comprobante.setNid_usuario_crea(login_User.getNdi_usuario());
-        if (BDData.nuevoComprobante(comprobante)) {
-            JOptionPane.showMessageDialog(null, "Registro Ingresado");
-        }
+        if (!txtCorrelativo.getText().equals("") && !txtSerie.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboComprobante.getSelectedIndex()!=-1) {
+            comprobante.setNo_local(cboLocal.getSelectedItem().toString());
+            comprobante.setNu_correlativo(txtCorrelativo.getText());
+            comprobante.setNu_serie(txtSerie.getText());
+            comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
+            comprobante.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoComprobante(comprobante)) {
+                JOptionPane.showMessageDialog(null, "Registro Ingresado");
+                cleanControls();            
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -161,7 +171,7 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
     private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
         char c=evt.getKeyChar();  
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
@@ -172,7 +182,7 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
         char c=evt.getKeyChar();   
         int cs=evt.getKeyCode();   
         
-        if(!Character.isDigit(c)) {             
+        if(Character.isLetter(c)) {             
             getToolkit().beep();             
             evt.consume();                         
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        

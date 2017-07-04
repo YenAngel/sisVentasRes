@@ -17,7 +17,12 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         cboPlato.setSelectedIndex(-1);
         cboVip.setSelectedIndex(-1);
     }
-
+    private void cleanControls(){        
+        txtPrecio.setText("");
+        cboLocal.setSelectedIndex(-1);
+        cboPlato.setSelectedIndex(-1);
+        cboVip.setSelectedIndex(-1);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +47,12 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         cboVip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SI", "NO" }));
 
         jLabel7.setText("Vip:");
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Local:");
 
@@ -123,15 +134,18 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         Login_User login_User=new Login_User();
-        
-        platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
-        platoLocal.setNo_plato(cboPlato.getSelectedItem().toString());
-        platoLocal.setMt_precio(Double.parseDouble(txtPrecio.getText()));
-        platoLocal.setFl_vip(cboVip.getSelectedItem().toString());
-        platoLocal.setNid_usuario_crea(login_User.getNdi_usuario());
-        if (BDData.nuevoPlatoLocal(platoLocal)) {
-            JOptionPane.showMessageDialog(null, "Registro Ingresado");
-        }
+        if (!txtPrecio.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboPlato.getSelectedIndex()!=-1  && cboVip.getSelectedIndex()!=-1) {
+            platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
+            platoLocal.setNo_plato(cboPlato.getSelectedItem().toString());
+            platoLocal.setMt_precio(Double.parseDouble(txtPrecio.getText()));
+            platoLocal.setFl_vip(cboVip.getSelectedItem().toString());
+            platoLocal.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoPlatoLocal(platoLocal)) {
+                JOptionPane.showMessageDialog(null, "Registro Ingresado");
+                cleanControls();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
     private void addITems(){
         cboLocal.setModel(BDData.getLocal());
@@ -145,6 +159,16 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
     private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboPlatoActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isLetter(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

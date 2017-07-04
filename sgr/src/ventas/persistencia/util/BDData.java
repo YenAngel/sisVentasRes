@@ -231,15 +231,13 @@ public class BDData {
         }
     }
     public static boolean nuevoLocal(Local local){        
-        String sql="Call sgr_spi_local(?,?,?,?,?)";
-        int getNid_estado=local.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spi_local(?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1,local.getNo_local());
             cs.setString(2,local.getTx_direccion());
             cs.setString(3,local.getNo_empresa());
-            cs.setInt(4, getNid_estado);
-            cs.setInt(5,local.getNid_usuario_crea());
+            cs.setInt(4,local.getNid_usuario_crea());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -344,10 +342,11 @@ public class BDData {
         }        
     }
     public static boolean eliminarPiso(Piso piso){        
-        String sql="Call sgr_spd_piso(?)";
+        String sql="Call sgr_spd_piso(?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,piso.getNid_piso());
+            cs.setInt(2,piso.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -416,10 +415,11 @@ public class BDData {
         }        
     }
     public static boolean eliminarCliente(Cliente cliente){        
-        String sql="Call sgr_spd_cliente(?)";
+        String sql="Call sgr_spd_cliente(?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,cliente.getNid_cliente());
+            cs.setInt(2, cliente.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -748,4 +748,208 @@ public class BDData {
             return false;
         }         
     }
+    public static DefaultComboBoxModel obtenerPiso(){
+        DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
+        try {
+            String sql="select * from sgr_getPiso";
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getInt(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return  null;
+        }
+    }
+    public static DefaultTableModel obtenerMesa(DefaultTableModel dtm, Mesa mesa){
+        try {
+            String sql="call sgr_sps_getMesa(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1, mesa.getNu_mesa());   
+            cs.setInt(2, mesa.getNu_piso());            
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {                
+             Vector v=new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getInt(2));
+                v.add(rs.getInt(3));                
+                v.add(rs.getString(4));
+                v.add(rs.getInt(5));
+                v.add(rs.getString(6));
+                v.add(rs.getString(7));
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerComprobante(DefaultTableModel dtm, Comprobante comprobante){
+        try {
+            String sql="call sgr_sps_getComprobante(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, comprobante.getCo_comprobante());   
+            cs.setString(2, comprobante.getNu_serie());            
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));                
+                v.add(rs.getString(4));                
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerCategoria(DefaultTableModel dtm, Categoria categoria){
+        try {
+            String sql="call sgr_sps_getCategoria(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, categoria.getNo_categoria_plato());   
+            cs.setInt(2, categoria.getNu_nivel());            
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerCliente(DefaultTableModel dtm, Cliente cliente){
+        try {
+            String sql="call sgr_sps_getCliente(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, cliente.getNo_cliente());   
+            cs.setString(2, cliente.getNu_documento());            
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));  
+                v.add(rs.getString(6));  
+                v.add(rs.getString(7));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerEmpresa(DefaultTableModel dtm, Empresa empresa){
+        try {
+            String sql="call sgr_sps_getEmpresa(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, empresa.getNo_comercial());   
+            cs.setString(2, empresa.getNu_ruc());            
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerLocal(DefaultTableModel dtm, Local local){
+        try {
+            String sql="call sgr_sps_getLocal(?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, local.getNo_local());   
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));    
+                v.add(rs.getString(5));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }    
+    public static DefaultTableModel obtenerPlato(DefaultTableModel dtm, Plato plato){
+        try {
+            String sql="call sgr_sps_getPlato(?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, plato.getNo_plato());   
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));                
+                v.add(rs.getString(5));                
+                v.add(rs.getString(6));    
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }    
+    public static DefaultTableModel obtenerPlatoLocal(DefaultTableModel dtm, PlatoLocal platoLocal){
+        try {
+            String sql="call sgr_sps_getPlatoLocal(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, platoLocal.getNo_local());   
+            cs.setString(2, platoLocal.getNo_plato());   
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getDouble(3));                
+                v.add(rs.getString(4));      
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public static DefaultTableModel obtenerPisoFiltro(DefaultTableModel dtm, Piso piso){
+        try {
+            String sql="call sgr_sps_getPisoG(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, piso.getNo_local());   
+            cs.setInt(2, piso.getNu_piso());   
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));  
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            return null;
+        }
+    }       
 }
