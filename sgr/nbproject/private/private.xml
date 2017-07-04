@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Usuario/Mant_Usuarios.java</file>
             <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Pedido/frmPedido.java</file>
-            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
-            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BDUtil.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Cliente/jpNuevoCliente.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/jpCarta.java</file>
+            <file>file:/C:/Users/AnibalMA/Desktop/Java_Proyectos_2017/sisVentasRes/sgr/src/ventas/presentacion/Mesas_Selection.java</file>
         </group>
     </open-files>
 </project-private>
