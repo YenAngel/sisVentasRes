@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import ventas.persistencia.util.BD_RS;
 import ventas.persistencia.util.Trabajador;
-import static ventas.presentacion.Usuario.Usuarios_new.cboTipo;
 import ventas.presentacion.frmPrincipal;
 
 /**

@@ -2,37 +2,13 @@
 package ventas.presentacion;
 import javax.swing.*;
 import java.util.Timer;
-import java.util.TimerTask;
 import ventas.presentacion.Reservacion.jpReservacion;
 import ventas.presentacion.Mesa.jpListarMesa;
-import ventas.presentacion.Usuario.Usuarios_new;
-import ventas.presentacion.Trabajador.Trabajador_new;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Panel;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.List;
 import java.util.TimerTask;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
 import ventas.modelo.Plato;
-import ventas.persistencia.util.BDUtil;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
@@ -1991,19 +1967,19 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel17.setBounds(17, size/2 - 40, 64, 64);
             
             pComprobante.setBounds(0, 59 + (size*5), 255, size);
-            jLabel20.setBounds(105, size/2 - 20,68 ,26);
+            jLabel20.setBounds(105, size/2 - 20,150 ,26);
             jLabel21.setBounds(17, size/2 -40,64 ,64);
             
             pCategoria.setBounds(0,59 + (size*6),255,size);
-            jLabel39.setBounds(105, size/2 - 20,68 ,26);
+            jLabel39.setBounds(105, size/2 - 20,120 ,26);
             jLabel40.setBounds(17, size/2 - 40, 64, 64);
             
             pCliente.setBounds(0,59 + (size*7),255,size);
-            jLabel26.setBounds(105, size/2 - 20,68 ,26);
+            jLabel26.setBounds(105, size/2 - 20,90 ,26);
             jLabel27.setBounds(17, size/2 - 40, 64, 64);
             
             pEmpresa.setBounds(0,59 + (size*8),255,size);
-            jLabel24.setBounds(105, size/2 - 20,68 ,26);
+            jLabel24.setBounds(105, size/2 - 20,100 ,26);
             jLabel25.setBounds(17, size/2 - 40, 64, 64);
             
             pLocal.setBounds(0,59 + (size*9),255,size);
@@ -2015,7 +1991,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel31.setBounds(17, size/2 - 40, 64, 64);
             
             pPlatoLocal.setBounds(0,59 + (size*11),255,size);
-            jLabel34.setBounds(105, size/2 - 20,68 ,26);
+            jLabel34.setBounds(105, size/2 - 20,130 ,26);
             jLabel35.setBounds(17, size/2 - 40, 64, 64);
             
             pPiso.setBounds(0,59 + (size*12),255,size);

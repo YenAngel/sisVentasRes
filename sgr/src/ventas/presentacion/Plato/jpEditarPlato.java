@@ -30,7 +30,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
         cboCategoria2.setSelectedItem(p.getNo_categoria2_plato());        
         cboCategoria3.setSelectedItem(p.getNo_categoria3_plato());        
         lblEstado.setText(p.getNo_estado());
-        initIcon(lblEstado.getText());
+        initIcon(lblEstado.getText().toLowerCase());
     }         
     private static void initIcon(String iconic){
         String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
@@ -43,7 +43,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
+            String path = "D:/sisVentasRes/sgr/src/recursos/error.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
@@ -51,7 +51,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
             lblEstado.setText("Inactivo");
             this.repaint();
         }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
+            String path = "D:/sisVentasRes/sgr/src/recursos/activo.png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
@@ -119,7 +119,6 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
         jLabel6.setText("Categoria 2:");
 
-        lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/security-medium.png"))); // NOI18N
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEstadoMouseClicked(evt);

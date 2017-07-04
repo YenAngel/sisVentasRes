@@ -87,6 +87,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
         txtCodigo = new javax.swing.JTextField();
         cboEmpresa = new javax.swing.JComboBox<>();
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
@@ -105,14 +106,17 @@ public class jpEditarLocal extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Id Local:");
 
+        txtNombreLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombreLocal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreLocalKeyTyped(evt);
             }
         });
 
+        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/security-medium.png"))); // NOI18N
         lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,14 +124,21 @@ public class jpEditarLocal extends javax.swing.JPanel {
             }
         });
 
+        txtDireccion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Dirección:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre de Local:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Empresa:");
 
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         cboEmpresa.setBackground(new java.awt.Color(204, 204, 255));
-        cboEmpresa.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        cboEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,7 +164,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
                                 .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))

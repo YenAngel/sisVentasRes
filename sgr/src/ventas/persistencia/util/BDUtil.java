@@ -2,14 +2,15 @@
 package ventas.persistencia.util;
 
 import com.mysql.jdbc.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class BDUtil {    
     private static String driver="com.mysql.jdbc.Driver";
     private static String url="jdbc:mysql://107.180.46.230:3306/srg_ventas?zeroDateTimeBehavior=convertToNull";
-    private static Connection cnn;
+    private static Connection cnn;  
     
     public static boolean conectar(){
         try {
@@ -17,6 +18,7 @@ public class BDUtil {
             try {
                 cnn = (Connection) DriverManager.getConnection(url,"pruebabd","lasfijas123");  
                 System.out.println("Conectado");
+                System.out.println(setTimeout());
                 return true;
             } catch (Exception e) {
                 System.err.println("Error al conectar a la Base de Datos " + e.getMessage());
@@ -41,7 +43,17 @@ public class BDUtil {
         }
         return false;
     }        
-
+    public static boolean setTimeout(){
+        try {
+            String sql = "SET SESSION wait_timeout = 28800";
+            PreparedStatement ps = getCnn().prepareStatement(sql);
+            ps.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+        
+    }
     public static String getDriver() {
         return driver;
     }

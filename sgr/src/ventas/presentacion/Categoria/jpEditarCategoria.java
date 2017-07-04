@@ -37,7 +37,7 @@ public class jpEditarCategoria extends javax.swing.JPanel {
         Icon icon= new ImageIcon(imageIcon.getImage());
         lblEstado.setIcon(icon);
         lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
-        lblEstado.repaint();        
+        lblEstado.repaint();    
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            

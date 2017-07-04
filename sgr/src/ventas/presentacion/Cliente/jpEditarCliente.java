@@ -34,11 +34,11 @@ public class jpEditarCliente extends javax.swing.JPanel {
         Icon icon= new ImageIcon(imageIcon.getImage());
         lblEstado.setIcon(icon);
         lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
-        lblEstado.repaint();        
+        lblEstado.repaint();
     }
     private void icon(String iconic){
         if (iconic.equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
+            String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic.toLowerCase()+".png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
@@ -46,7 +46,7 @@ public class jpEditarCliente extends javax.swing.JPanel {
             lblEstado.setText("Inactivo");
             this.repaint();
         }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
+            String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic.toLowerCase()+".png";
             //URL url = this.getClass().getResource(path);
             ImageIcon imageIcon = new ImageIcon(path);
             Icon icon= new ImageIcon(imageIcon.getImage());
