@@ -250,9 +250,13 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             
         }
         for(int i = 0; i < tblTrabajador.getRowCount(); i++)
-            tblTrabajador.setRowHeight(i, 45);
+           tblTrabajador.setRowHeight(i, 45);
         tblTrabajador.setDefaultEditor(Object.class, null);
-        tblTrabajador.getTableHeader().setReorderingAllowed(false); 
+        tblTrabajador.getTableHeader().setReorderingAllowed(false);
+        tblTrabajador.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblTrabajador.getColumnModel().getColumn(0).setMinWidth(0);
+        tblTrabajador.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblTrabajador.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0); 
     }
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         Trabajador_new n = new Trabajador_new();
@@ -265,10 +269,10 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         if(indx >= 0){
             Trabajador t = new Trabajador();
             t.setCodigo(tblTrabajador.getValueAt(indx, 0).toString());
-            t.setDni(tblTrabajador.getValueAt(indx, 1).toString());
-            t.setNombre(tblTrabajador.getValueAt(indx, 2).toString());
-            t.setApePaterno(tblTrabajador.getValueAt(indx, 3).toString());
-            t.setApeMaterno(tblTrabajador.getValueAt(indx, 4).toString());
+            t.setDni(tblTrabajador.getValueAt(indx, 4).toString());
+            t.setNombre(tblTrabajador.getValueAt(indx, 1).toString());
+            t.setApePaterno(tblTrabajador.getValueAt(indx, 2).toString());
+            t.setApeMaterno(tblTrabajador.getValueAt(indx, 3).toString());
             t.setFec_ingreso(Date.valueOf(tblTrabajador.getValueAt(indx, 5).toString()));
             t.setCargo(BD_RS.GetIdCargo(tblTrabajador.getValueAt(indx, 6).toString()));
             t.setEstado(BD_RS.GetIdEstado(tblTrabajador.getValueAt(indx, 7).toString()));

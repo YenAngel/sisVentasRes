@@ -29,6 +29,14 @@ public class jpListarCategoria extends javax.swing.JPanel {
     
     private void listarCategoria(){
         tblCategoria.setModel(BDData.listarCategoria(formatearTabla()));
+        for(int i = 0; i < tblCategoria.getRowCount(); i++)
+            tblCategoria.setRowHeight(i, 45);
+        tblCategoria.setDefaultEditor(Object.class, null);
+        tblCategoria.getTableHeader().setReorderingAllowed(false);
+        tblCategoria.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCategoria.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCategoria.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCategoria.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     @SuppressWarnings("unchecked")

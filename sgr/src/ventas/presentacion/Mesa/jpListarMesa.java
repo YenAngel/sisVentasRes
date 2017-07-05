@@ -34,6 +34,14 @@ public class jpListarMesa extends javax.swing.JPanel{
     }
     private void listarMesa(){
         tblMesa.setModel(BDData.listarMesa(formatoTabla()));
+        for(int i = 0; i < tblMesa.getRowCount(); i++)
+            tblMesa.setRowHeight(i, 45);
+        tblMesa.setDefaultEditor(Object.class, null);
+        tblMesa.getTableHeader().setReorderingAllowed(false);
+        tblMesa.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblMesa.getColumnModel().getColumn(0).setMinWidth(0);
+        tblMesa.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblMesa.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     
     @SuppressWarnings("unchecked")

@@ -7,10 +7,17 @@ package ventas.presentacion.Pedido;
 
 import java.awt.event.MouseEvent;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import ventas.persistencia.util.BDUtil;
+import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Mesas_Selection;
 
 /**
@@ -20,7 +27,11 @@ import ventas.presentacion.Mesas_Selection;
 public class frmPedido extends javax.swing.JFrame {
     public int w;
     public DefaultTableModel dtm;
-    
+    public DefaultListModel dlm;
+    public DefaultListModel dlmsub;
+    public int r;
+    public static int cat;
+    public static int subcat;
     public DefaultTableModel FormatearTabla(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Descripción","Cantidad"};
@@ -28,30 +39,62 @@ public class frmPedido extends javax.swing.JFrame {
         return dtm;
     }
     public frmPedido() {
-        
+        BDUtil.conectar();
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         w = jTabbedPane1.getSize().width;
         LoadComp();
+        dlmsub = new DefaultListModel();
+        dlm = BD_RS.ListarCategoriasPed();
         dtm = FormatearTabla();
         tblPedidos.setModel(dtm);
+        LoadTree();
     }
-    
+    private void LoadTree(){
+        
+        DefaultMutableTreeNode tnode  = new DefaultMutableTreeNode("Categorías");
+        DefaultTreeModel dtreem = new DefaultTreeModel(tnode);
+        jTree1.setModel(dtreem);
+        DefaultMutableTreeNode Categorias;
+        DefaultMutableTreeNode SubCategorias;
+        r = 5;
+        int a = 1;
+        for(int i =0; i<dlm.size(); i++){
+         String cad = dlm.elementAt(i).toString();
+         int pos = cad.indexOf('_')+1;
+         int idDad = Integer.parseInt(cad.substring(0,pos-1));
+        DefaultListModel sub = BD_RS.ListarSubCategoriasPed(idDad);
+        Categorias = new DefaultMutableTreeNode(cad.substring(pos, cad.length()));
+        
+            while(a <= sub.size()){
+                dlmsub.addElement(sub.elementAt(a-1).toString());
+                String cadsub = sub.elementAt(a-1).toString();
+                int possub = cadsub.indexOf('_') + 1;
+                SubCategorias = new DefaultMutableTreeNode(cadsub.substring(pos,cadsub.length()));
+                Categorias.add(SubCategorias);
+                a+=1;
+            }
+           tnode.add(Categorias);
+           a = 1;
+        
+        }
+    }
+            
     private void LoadComp(){
         int h = 80;
         int a = 30;
         for (int i = 1; i < 4; i++){
-            h = 80;
+            h = 170;
             while(h+150 <= w ){
                 
                 JLabel jl = new JLabel();
                 JLabel jl2 = new JLabel();
                 jl2.setText("");
                 jl.setText("");
-                
+                /*
                 switch (i) {
                     case 1:
-                        jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Ceviche.jpg")));
+                        jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/" + ".jpg")));
                         jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Chicha_Morada.jpg")));
                         break;
                     case 2:
@@ -66,7 +109,7 @@ public class frmPedido extends javax.swing.JFrame {
                         jl.setIcon(new ImageIcon(Object.class.getResource("/recursos/Ceviche.jpg")));
                         jl2.setIcon(new ImageIcon(Object.class.getResource("/recursos/Chicha_Morada.jpg")));
                         break;
-                }
+                }*/
                 
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,6 +171,8 @@ public class frmPedido extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -164,15 +209,30 @@ public class frmPedido extends javax.swing.JFrame {
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(200, 200));
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jTree1ValueChanged(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTree1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 904, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(744, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -261,7 +321,7 @@ public class frmPedido extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +336,13 @@ public class frmPedido extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 863, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 894, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -293,13 +353,6 @@ public class frmPedido extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,7 +371,14 @@ public class frmPedido extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30))))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -360,6 +420,31 @@ public class frmPedido extends javax.swing.JFrame {
         Ms.setVisible(true);}
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
+        String path = evt.getPath().toString();
+        int pos = path.lastIndexOf(',') + 1;
+        String select = "";
+        select = path.substring(pos, path.length()).replace(']', ' ').replace('[', ' ').trim();
+        boolean found = false;
+        for (int i = 0; i < dlm.size(); i++){
+            if(dlm.getElementAt(i).toString().substring(2,dlm.getElementAt(i).toString().length()).contains(select)){
+                found = true;
+                int posicion = dlm.elementAt(i).toString().indexOf('_');
+                System.out.println(dlm.elementAt(i).toString().substring(0, posicion));
+            }
+        }
+        if(!found){
+        for (int i = 0; i < dlmsub.size(); i++){
+            if(dlmsub.getElementAt(i).toString().contains(select)){
+                found = false;
+                int posicion = dlmsub.elementAt(i).toString().indexOf('_');
+                System.out.println(dlmsub.elementAt(i).toString().substring(0, posicion));
+            }
+        }
+        }
+            
+    }//GEN-LAST:event_jTree1ValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -371,7 +456,7 @@ public class frmPedido extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -410,7 +495,9 @@ public class frmPedido extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
 }

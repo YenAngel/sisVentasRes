@@ -164,6 +164,14 @@ public class jpListarCliente extends javax.swing.JPanel {
     
     private void listarCliente(){
         tblCliente.setModel(BDData.listarCliente(formatearTabla()));
+        for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed

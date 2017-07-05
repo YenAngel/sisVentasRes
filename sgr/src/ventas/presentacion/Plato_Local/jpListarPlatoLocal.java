@@ -27,6 +27,14 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     }
     private void listarPlatoLocal(){
         tblPlatoLocal.setModel(BDData.listarLocalPlato(formatearTabla()));
+        for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+        tblPlatoLocal.setDefaultEditor(Object.class, null);
+        tblPlatoLocal.getTableHeader().setReorderingAllowed(false);
+        tblPlatoLocal.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblPlatoLocal.getColumnModel().getColumn(0).setMinWidth(0);
+        tblPlatoLocal.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblPlatoLocal.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

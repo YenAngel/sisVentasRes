@@ -21,6 +21,14 @@ public class jpListarPiso extends javax.swing.JPanel {
     }
     private void listarPiso(){
         tblPiso.setModel(BDData.listarPiso(formatearTabla()));
+        for(int i = 0; i < tblPiso.getRowCount(); i++)
+            tblPiso.setRowHeight(i, 45);
+        tblPiso.setDefaultEditor(Object.class, null);
+        tblPiso.getTableHeader().setReorderingAllowed(false);
+        tblPiso.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblPiso.getColumnModel().getColumn(0).setMinWidth(0);
+        tblPiso.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblPiso.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     private DefaultTableModel formatearTabla(){
         String[] theader={"Id Piso","Numero de Piso","Local","Estado"};

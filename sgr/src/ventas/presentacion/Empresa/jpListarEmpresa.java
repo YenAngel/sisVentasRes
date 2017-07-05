@@ -170,6 +170,14 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     
     private void listarEmpresa(){
         tblEmpresa.setModel(BDData.listarEmpresa(formatearTabla()));
+        for(int i = 0; i < tblEmpresa.getRowCount(); i++)
+            tblEmpresa.setRowHeight(i, 45);
+        tblEmpresa.setDefaultEditor(Object.class, null);
+        tblEmpresa.getTableHeader().setReorderingAllowed(false);
+        tblEmpresa.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmpresa.getColumnModel().getColumn(0).setMinWidth(0);
+        tblEmpresa.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmpresa.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

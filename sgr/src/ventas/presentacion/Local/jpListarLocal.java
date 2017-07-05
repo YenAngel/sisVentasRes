@@ -28,6 +28,14 @@ public class jpListarLocal extends javax.swing.JPanel {
     
     private void listarLocal(){
         tblLocal.setModel(BDData.listarLocal(formatearTabla()));
+        for(int i = 0; i < tblLocal.getRowCount(); i++)
+            tblLocal.setRowHeight(i, 45);
+        tblLocal.setDefaultEditor(Object.class, null);
+        tblLocal.getTableHeader().setReorderingAllowed(false);
+        tblLocal.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getColumnModel().getColumn(0).setMinWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     @SuppressWarnings("unchecked")

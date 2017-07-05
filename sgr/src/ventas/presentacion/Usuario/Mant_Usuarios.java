@@ -41,8 +41,10 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             tblUsuarios.setRowHeight(i, 45);
         tblUsuarios.setDefaultEditor(Object.class, null);
         tblUsuarios.getTableHeader().setReorderingAllowed(false);
-        tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tblUsuarios.getColumnModel().getColumn(0).setResizable(false);
+        tblUsuarios.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
+        tblUsuarios.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblUsuarios.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     /**
      * This method is called from within the constructor to initialize the form.

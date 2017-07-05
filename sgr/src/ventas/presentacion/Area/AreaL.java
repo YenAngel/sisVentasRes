@@ -203,6 +203,12 @@ public class AreaL extends javax.swing.JPanel {
         }
         for(int i = 0; i < tblAreas.getRowCount(); i++)
             tblAreas.setRowHeight(i, 45);
+        tblAreas.setDefaultEditor(Object.class, null);
+        tblAreas.getTableHeader().setReorderingAllowed(false);
+        tblAreas.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblAreas.getColumnModel().getColumn(0).setMinWidth(0);
+        tblAreas.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblAreas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     private boolean EC(){
         if(BD_RS.ExistArea(txtName_Area.getText())){
