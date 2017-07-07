@@ -17,6 +17,8 @@ public class jpListarCliente extends javax.swing.JPanel {
     public jpListarCliente() {
         initComponents();
         listarCliente();
+        setLayout(null);
+        //frmPrincipal.confTBL(tblCliente);
     }
 
     @SuppressWarnings("unchecked")

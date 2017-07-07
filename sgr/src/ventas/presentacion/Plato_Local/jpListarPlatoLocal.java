@@ -1,7 +1,10 @@
 
 package ventas.presentacion.Plato_Local;
 
+import java.awt.Panel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
 import ventas.modelo.PlatoLocal;
@@ -14,11 +17,38 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     Login_User login_User=new Login_User();    
     DefaultTableModel dtm;
     public jpListarPlatoLocal() {
-        initComponents();
+        initComponents();        
         listarPlatoLocal();
         cboLocal.setModel(BDData.getLocal());
-        cboLocal.setSelectedIndex(-1);
+        cboLocal.setSelectedIndex(-1);        
+        btnEdit.setVisible(false);
+        btnNew.setVisible(false);
+        btnSearch.setVisible(false);
     }
+    /*public void desingButton(JPanel lpl){        
+        int pHeight =lpl.getHeight();
+        int sizeOption = (int)pHeight/3;        
+        
+        btnEdit.setBounds(270, 59+sizeOption, 10, sizeOption);
+        btnNew.setBounds(270, 59+sizeOption*2, 10, sizeOption);
+        btnSearch.setBounds(270, 59+sizeOption*3, 10, sizeOption);
+        /*opNuevo.setVisible(true);
+        opNuevo.setLayout(null);
+        opNuevo.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEditar.setVisible(true);
+        
+        opEditar.setLayout(null);
+        opEditar.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEliminar.setVisible(true);
+        opEliminar.setLayout(null);
+        opEliminar.setBounds(0, sizeOption*3,80,sizeOption); 
+
+        opBuscar.setVisible(true);
+        opBuscar.setLayout(null);
+        opBuscar.setBounds(0, sizeOption*4,80,sizeOption);
+    }*/
     private DefaultTableModel formatearTabla(){
         String[] theader={"Local","Plato","Precio","VIP"};
         dtm = new DefaultTableModel();
@@ -37,13 +67,15 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPlatoLocal = new javax.swing.JTable();
         btnSearch = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtPlato = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cboLocal = new javax.swing.JComboBox<>();
+        opNuevo = new javax.swing.JLabel();
+        opEliminar = new javax.swing.JLabel();
+        opBuscar = new javax.swing.JLabel();
+        opEditar = new javax.swing.JLabel();
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,7 +83,6 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,9 +112,6 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Nombre de Plato:");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre de Plato:");
 
@@ -99,34 +127,47 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
 
         cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        opNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Ceviche.jpg"))); // NOI18N
+        opNuevo.setText("jLabel1");
+
+        opEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Ceviche.jpg"))); // NOI18N
+        opEliminar.setText("jLabel1");
+
+        opBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Ceviche.jpg"))); // NOI18N
+        opBuscar.setText("jLabel1");
+
+        opEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Ceviche.jpg"))); // NOI18N
+        opEditar.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel5)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(10, 10, 10)
                         .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel3)
                         .addGap(17, 17, 17)
-                        .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(230, 230, 230))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(584, 584, 584)
-                    .addComponent(jLabel4)
-                    .addContainerGap(585, Short.MAX_VALUE)))
+                .addGap(114, 114, 114)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opEliminar)
+                    .addComponent(opBuscar)
+                    .addComponent(opEditar)
+                    .addComponent(opNuevo))
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -144,18 +185,23 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(222, 222, 222)
-                    .addComponent(jLabel4)
-                    .addContainerGap(222, Short.MAX_VALUE)))
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(opEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(opEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(opBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,14 +249,17 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnNew;
-    private javax.swing.JButton btnSearch;
+    public javax.swing.JButton btnEdit;
+    public javax.swing.JButton btnNew;
+    public javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel opBuscar;
+    public javax.swing.JLabel opEditar;
+    public javax.swing.JLabel opEliminar;
+    public javax.swing.JLabel opNuevo;
     private javax.swing.JTable tblPlatoLocal;
     public static javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables

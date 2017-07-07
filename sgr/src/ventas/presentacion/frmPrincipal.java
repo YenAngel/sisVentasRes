@@ -12,7 +12,7 @@ import ventas.modelo.Plato;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
-import ventas.presentacion.Categoria.jpNuevaCategoria;
+import ventas.presentacion.Categoria.jpListarCategoria;
 import ventas.presentacion.Cliente.jpListarCliente;
 import ventas.presentacion.Cliente.jpNuevoCliente;
 import ventas.presentacion.Comprobante.jpListarComprobante;
@@ -1134,7 +1134,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new Mant_Trabajador();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1170,7 +1170,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         c.repaint();
         }
         nPanel = j;
-        nPanel.setBounds(335, 59, widthvar-335, heightvar-59);
+        nPanel.setBounds(225, 59, widthvar-225, heightvar-59);
         nPanel.setVisible(true);
         c.add(nPanel);
         c.validate();
@@ -1217,7 +1217,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new Mant_Usuarios();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1247,7 +1247,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarMesa();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1309,7 +1309,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new CargoL();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1337,7 +1337,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new AreaL();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1367,7 +1367,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarComprobante();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1437,7 +1437,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarPiso();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1469,7 +1469,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarEmpresa();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1501,7 +1501,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarCliente();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1531,7 +1531,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarLocal();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1562,7 +1562,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarPlato();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1620,7 +1620,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarPlatoLocal();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1648,7 +1648,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpReservacion();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1686,7 +1686,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarCategoria();
-            nPanel.setBounds(335,59, widthvar-335, heightvar-59);
+            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1742,7 +1742,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     jpNuevoCliente cliente=new jpNuevoCliente();
                     frmPrincipal.Comp(cliente);
                 }else if (namePanel.equals("jpListarCategoria")) {
-                    jpNuevaCategoria categoria=new jpNuevaCategoria();
+                    jpListarCategoria categoria=new jpListarCategoria();
                     frmPrincipal.Comp(categoria);
                 }
                 //options(2);
@@ -1805,7 +1805,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     jpNuevoCliente cliente=new jpNuevoCliente();
                     frmPrincipal.Comp(cliente);
                 }else if (namePanel.equals("jpListarCategoria")) {
-                    jpNuevaCategoria categoria=new jpNuevaCategoria();
+                    jpListarCategoria categoria=new jpListarCategoria();
                     frmPrincipal.Comp(categoria);
                 }
                 //options(2);

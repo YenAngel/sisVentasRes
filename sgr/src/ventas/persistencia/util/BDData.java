@@ -427,18 +427,17 @@ public class BDData {
             return false;
         }        
     }    
-    public static DefaultTableModel listarCategoria(DefaultTableModel dtm){
-        String sql="SELECT * FROM sgr_listarCategoria";
+    public static DefaultTableModel listarCategoria(DefaultTableModel dtm, int idx){
+        String sql="call sgr_sps_categoria(?)";
         try {
-            PreparedStatement ps =BDUtil.getCnn().prepareStatement(sql);            
-            ResultSet rs =ps.executeQuery();
+            CallableStatement cs =BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,idx);
+            ResultSet rs =cs.executeQuery();
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getInt(1));
                 v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));                
-                v.add(rs.getString(5));  
+                v.add(rs.getString(3)); 
                 dtm.addRow(v);
             }
             return dtm;
@@ -462,6 +461,38 @@ public class BDData {
             return null;
         }        
     }
+    public static DefaultComboBoxModel getCategoria1(){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="select * from sgr_getCategoria1";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
+    public static DefaultComboBoxModel getCategoria2(String categoria){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="call sgr_sps_categoria2(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1,categoria);
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
+    /*Por Eliminar*/
     public static DefaultComboBoxModel getCategoria(){
        DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
         String sql="select * from sgr_getCategoria";
