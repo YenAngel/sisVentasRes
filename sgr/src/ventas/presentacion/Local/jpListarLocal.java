@@ -20,7 +20,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     }
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa","Estado"};
+        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -28,6 +28,14 @@ public class jpListarLocal extends javax.swing.JPanel {
     
     private void listarLocal(){
         tblLocal.setModel(BDData.listarLocal(formatearTabla()));
+        for(int i = 0; i < tblLocal.getRowCount(); i++)
+            tblLocal.setRowHeight(i, 45);
+        tblLocal.setDefaultEditor(Object.class, null);
+        tblLocal.getTableHeader().setReorderingAllowed(false);
+        tblLocal.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getColumnModel().getColumn(0).setMinWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +51,11 @@ public class jpListarLocal extends javax.swing.JPanel {
         txtLocal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblLocal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -56,23 +69,24 @@ public class jpListarLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocal);
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 141, 720, 430));
+
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 49, 150, 100));
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 167, 150, 100));
 
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +94,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 285, 150, 100));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -89,6 +104,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 403, 150, 100));
 
         txtLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -96,56 +112,11 @@ public class jpListarLocal extends javax.swing.JPanel {
                 txtLocalKeyTyped(evt);
             }
         });
+        add(txtLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Local:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnNew, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel4)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -160,9 +131,8 @@ public class jpListarLocal extends javax.swing.JPanel {
         local.setNo_local((String)dtm.getValueAt(idx, 1));
         local.setTx_direccion((String)dtm.getValueAt(idx, 2));
         local.setNo_empresa((String)dtm.getValueAt(idx, 3));
-        local.setNo_estado((String)dtm.getValueAt(idx, 4));
         local.setNid_usuario_modi(usuario.getNdi_usuario());        
-        if(idx >= 0){            
+        if(idx != -1){            
             frmPrincipal.Comp(editarLocal);                                   
             editarLocal.cargarLocal(local);
         }else{
@@ -173,6 +143,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblLocal.getSelectedRow();
         local.setNid_local(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
+        local.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarLocal();

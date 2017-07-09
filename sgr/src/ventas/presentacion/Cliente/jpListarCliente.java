@@ -16,8 +16,7 @@ public class jpListarCliente extends javax.swing.JPanel {
     Login_User usuario=new Login_User();
     public jpListarCliente() {
         initComponents();
-        listarCliente();
-        setLayout(null);
+        listarCliente();        
         //frmPrincipal.confTBL(tblCliente);
     }
 
@@ -36,6 +35,10 @@ public class jpListarCliente extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDocumento = new javax.swing.JTextField();
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -49,7 +52,6 @@ public class jpListarCliente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCliente);
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +59,6 @@ public class jpListarCliente extends javax.swing.JPanel {
             }
         });
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +66,6 @@ public class jpListarCliente extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addGap(30, 30, 30)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,12 +153,12 @@ public class jpListarCliente extends javax.swing.JPanel {
                             .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 208, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Cliente","Nombre","Apellido Paterno","Apellido Materno","Tipo Documento","Numero de Documento","Estado"};
+        String[] theader={"Id Cliente","Nombre","Apellido Paterno","Apellido Materno","Tipo Documento","Numero de Documento"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -166,6 +166,14 @@ public class jpListarCliente extends javax.swing.JPanel {
     
     private void listarCliente(){
         tblCliente.setModel(BDData.listarCliente(formatearTabla()));
+        for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -182,7 +190,6 @@ public class jpListarCliente extends javax.swing.JPanel {
         cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 3));
         cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 4));
         cliente.setNu_documento((String)dtm.getValueAt(idx, 5));        
-        cliente.setNo_estado((String)dtm.getValueAt(idx, 6));
         cliente.setNid_usuario_modi(usuario.getNdi_usuario());
         if(idx >= 0){
             frmPrincipal.Comp(editarCliente);
@@ -200,6 +207,14 @@ public class jpListarCliente extends javax.swing.JPanel {
         if (BDData.eliminarCliente(cliente)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarCliente();
+            for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -211,6 +226,14 @@ public class jpListarCliente extends javax.swing.JPanel {
             cliente.setNu_documento(txtDocumento.getText());
             tblCliente.setModel(BDData.obtenerCliente(formatearTabla(), cliente));
         }
+        for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

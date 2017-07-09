@@ -14,6 +14,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Area;
 import ventas.modelo.Cargo;
@@ -21,7 +22,7 @@ import ventas.modelo.Cargo;
 public class BD_RS {
     public static DefaultTableModel FormatearTablaTrabajador(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Código", "DNI", "Nombre", "Apellido Paterno", "Apellido Materno", "Ingreso Laboral", "Cargo", "Estado"};
+        String [] cab = {"Código", "Nombre", "Apellido Paterno", "Apellido Materno","DNI", "Ingreso Laboral", "Cargo", "Estado"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -136,7 +137,7 @@ public class BD_RS {
     public static DefaultTableModel ListarAreas(){
         try {
             DefaultTableModel dtm = FormatearTablaAreas();
-            String sql = "SELECT A.NID_AREA, A.NO_AREA,A.fe_creacion, E.NO_ESTADO  FROM MAE_AREA A INNER JOIN mae_estado E ON E.nid_estado = A.nid_estado";
+            String sql = "SELECT A.NID_AREA, A.NO_AREA,A.fe_creacion, E.NO_ESTADO  FROM mae_area A INNER JOIN mae_estado E ON E.nid_estado = A.nid_estado";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -156,8 +157,8 @@ public class BD_RS {
     public static DefaultTableModel ListarCargos(){
         try {
             DefaultTableModel dtm = FormatearTablaCargos();
-            String sql = "SELECT C.NID_CARGO, C.NO_CARGO, A.NO_AREA,A.FE_CREACION, E.NO_ESTADO FROM MAE_CARGO C INNER JOIN MAE_AREA A ON A.nid_area = C.nid_area " +
-            "INNER JOIN MAE_ESTADO E ON E.nid_estado = C.nid_estado";
+            String sql = "SELECT C.NID_CARGO, C.NO_CARGO, A.NO_AREA,A.FE_CREACION, E.NO_ESTADO FROM mae_cargo C INNER JOIN mae_area A ON A.nid_area = C.nid_area " +
+            "INNER JOIN mae_estado E ON E.nid_estado = C.nid_estado";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -178,7 +179,7 @@ public class BD_RS {
     public static DefaultTableModel ListarTrabajador(){
         try {
             DefaultTableModel dtm = FormatearTablaTrabajador();
-            String sql = "SELECT t.co_trabajador as Código,t.nu_documento as DNI,t.no_natural as Nombre,no_ape_paterno as 'Apellido Paterno',no_ape_materno as 'Apellido Materno',t.fe_ingreso_laboral as 'Ingreso Laboral',c.no_cargo as Cargo,e.no_estado as Estado from mae_trabajador t \n" +
+            String sql = "SELECT t.co_trabajador as Código,t.no_natural as Nombre,no_ape_paterno as 'Apellido Paterno',no_ape_materno as 'Apellido Materno',t.nu_documento as DNI,t.fe_ingreso_laboral as 'Ingreso Laboral',c.no_cargo as Cargo,e.no_estado as Estado from mae_trabajador t \n" +
                     "inner join mae_cargo c on c.nid_cargo = t.nid_cargo inner join mae_estado e on e.nid_estado = t.nid_estado "; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -195,6 +196,37 @@ public class BD_RS {
                 dtm.addRow(v);
             }
             return dtm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    public static DefaultListModel ListarCategoriasPed(){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where nid_padre_categoria is null"; //Where t.nid_estado = 1
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               dlm.addElement(rs.getInt(1) + "_" + rs.getString(2));
+            }
+            return dlm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    public static DefaultListModel ListarSubCategoriasPed(int idDad){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ?"; //Where t.nid_estado = 1
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idDad);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               dlm.addElement(rs.getInt(1) + "_" + rs.getString(2));
+            }
+            return dlm;
         } catch (SQLException ex) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
             return null;

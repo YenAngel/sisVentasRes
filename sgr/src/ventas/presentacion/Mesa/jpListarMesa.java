@@ -28,12 +28,20 @@ public class jpListarMesa extends javax.swing.JPanel{
     }
     private DefaultTableModel formatoTabla(){
         dtm= new DefaultTableModel();
-        String[] theader={"Id Mesa","Mesa","Nro Sillas","Tipo Mesa","Piso","Local","Estado"};
+        String[] theader={"Id Mesa","Mesa","Nro Sillas","Tipo Mesa","Piso","Local"};
         dtm.setColumnIdentifiers(theader);          
         return dtm;
     }
     private void listarMesa(){
         tblMesa.setModel(BDData.listarMesa(formatoTabla()));
+        for(int i = 0; i < tblMesa.getRowCount(); i++)
+            tblMesa.setRowHeight(i, 45);
+        tblMesa.setDefaultEditor(Object.class, null);
+        tblMesa.getTableHeader().setReorderingAllowed(false);
+        tblMesa.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblMesa.getColumnModel().getColumn(0).setMinWidth(0);
+        tblMesa.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblMesa.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     
     @SuppressWarnings("unchecked")
@@ -51,9 +59,12 @@ public class jpListarMesa extends javax.swing.JPanel{
         jLabel3 = new javax.swing.JLabel();
         cboNroPiso = new javax.swing.JComboBox<>();
 
-        setPreferredSize(new java.awt.Dimension(1200, 768));
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -67,7 +78,7 @@ public class jpListarMesa extends javax.swing.JPanel{
         ));
         jScrollPane1.setViewportView(tblMesa);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 700, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 700, 280));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/adder.png"))); // NOI18N
         btnNew.setText("Nuevo");
@@ -76,18 +87,16 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 150, 100));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 50, 150, 100));
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, 150, 100));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 150, 100));
 
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +104,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 150, 100));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 150, 100));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -105,7 +114,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 150, 100));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 150, 100));
 
         txtNroMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -113,18 +122,18 @@ public class jpListarMesa extends javax.swing.JPanel{
                 txtNroMesaKeyTyped(evt);
             }
         });
-        add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 260, 50));
+        add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nro Mesa:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Nro Piso:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
 
         cboNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 260, 50));
+        add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -136,7 +145,6 @@ public class jpListarMesa extends javax.swing.JPanel{
         mesa.setCo_tipo_mesa((String)dtm.getValueAt(idx, 3));        
         mesa.setNu_piso(Integer.parseInt((String)dtm.getValueAt(idx, 4).toString()));
         mesa.setNo_local((String)dtm.getValueAt(idx, 5));
-        mesa.setNo_estado((String)dtm.getValueAt(idx, 6));
         mesa.setNid_usuario_modi(login_User.getNdi_usuario());
         if (idx>=0) {            
             frmPrincipal.Comp(editarMesa);                 

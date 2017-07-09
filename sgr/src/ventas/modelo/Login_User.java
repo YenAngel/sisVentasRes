@@ -4,8 +4,8 @@ package ventas.modelo;
 public class Login_User {
     public      static      int         ndi_usuario;
     public      static      int         nid_perfil;
-    String      no_usuario;
-    String      no_clave;
+    public      static String      no_usuario;
+    public      static String      no_clave;
 
     public int getNdi_usuario() {
         return ndi_usuario;

@@ -25,6 +25,10 @@ public class jpListarComprobante extends javax.swing.JPanel {
     }
     private void listarComprobante(){
         tblComprobante.setModel(BDData.listarComprobante(formatearTabla()));
+        for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+        tblComprobante.setDefaultEditor(Object.class, null);
+        tblComprobante.getTableHeader().setReorderingAllowed(false);        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,7 +44,11 @@ public class jpListarComprobante extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         btnNew.setText("Nuevo");
         btnNew.setPreferredSize(new java.awt.Dimension(150, 100));
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -48,14 +56,15 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 141, -1, -1));
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 259, 150, 100));
 
         tblComprobante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,11 +79,15 @@ public class jpListarComprobante extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblComprobante);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 210, 707, 267));
+
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
+        add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 142, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Comprobante:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 162, -1, -1));
 
         txtSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSerie.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -82,9 +95,11 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 txtSerieKeyTyped(evt);
             }
         });
+        add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 142, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Serie:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 162, -1, -1));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -94,57 +109,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3)
-                        .addGap(17, 17, 17)
-                        .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 377, 150, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -183,10 +148,18 @@ public class jpListarComprobante extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtSerie.getText().equals("") || cboComprobante.getSelectedIndex()==-1) {
             tblComprobante.setModel(BDData.listarComprobante(formatearTabla()));
+            for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+            tblComprobante.setDefaultEditor(Object.class, null);
+            tblComprobante.getTableHeader().setReorderingAllowed(false);        
         }else{
             comprobante.setNu_serie(txtSerie.getText());
             comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
             tblComprobante.setModel(BDData.obtenerComprobante(formatearTabla(), comprobante));
+            for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+            tblComprobante.setDefaultEditor(Object.class, null);
+            tblComprobante.getTableHeader().setReorderingAllowed(false);        
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 

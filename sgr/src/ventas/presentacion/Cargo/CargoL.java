@@ -219,6 +219,12 @@ public class CargoL extends javax.swing.JPanel {
         }
         for(int i = 0; i < tblCargos.getRowCount(); i++)
             tblCargos.setRowHeight(i, 45);
+        tblCargos.setDefaultEditor(Object.class, null);
+        tblCargos.getTableHeader().setReorderingAllowed(false);
+        tblCargos.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCargos.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCargos.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCargos.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     private boolean EC(){
          if(BD_RS.ExistCargo(txtName_Cargo.getText())){

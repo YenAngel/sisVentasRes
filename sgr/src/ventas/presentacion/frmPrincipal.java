@@ -1134,7 +1134,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new Mant_Trabajador();
-            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1170,7 +1170,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         c.repaint();
         }
         nPanel = j;
-        nPanel.setBounds(225, 59, widthvar-225, heightvar-59);
+        nPanel.setBounds(255, 59, widthvar-255, heightvar-59);
         nPanel.setVisible(true);
         c.add(nPanel);
         c.validate();
@@ -1309,7 +1309,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new CargoL();
-            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1338,7 +1338,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
             nPanel = new AreaL();
             nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
+            
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1368,7 +1368,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
             nPanel = new jpListarComprobante();
             nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
+
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1438,7 +1438,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
             nPanel = new jpListarPiso();
             nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1469,8 +1468,8 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().repaint();
             }
             nPanel = new jpListarEmpresa();
-            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1492,16 +1491,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
-        pComprobante.setBackground(new java.awt.Color(24,168,255));
-        jpListarCliente lp=new jpListarCliente();
-        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        pComprobante.setBackground(new java.awt.Color(24,168,255));        
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
             nPanel = new jpListarCliente();
-            nPanel.setBounds(225,59, widthvar-225, heightvar-59);
+            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
         
             getContentPane().add(nPanel);
             this.validate();
@@ -1649,7 +1646,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
             nPanel = new jpReservacion();
             nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
+
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1687,7 +1684,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
             nPanel = new jpListarCategoria();
             nPanel.setBounds(225,59, widthvar-225, heightvar-59);
-        
+            
             getContentPane().add(nPanel);
             this.validate();
         } catch (Exception e) {
@@ -1760,54 +1757,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         TimerTask task =new TimerTask() {
             @Override
             public void run() {                
-                if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato listarPlato=new jpListarPlato();
-                    System.out.println(".run1");
-                    jpEditarPlato editarPlato=new jpEditarPlato();        
-                    System.out.println(".run2");
-                    Plato plato =new Plato();
-                    System.out.println(".run3");
-                    Login_User login_User=new Login_User();
-                    System.out.println(".run4");
-                    plato.setNid_plato(Integer.parseInt(listarPlato.dtm.getValueAt(idx, 0).toString()));
-                    plato.setNo_plato((String)listarPlato.dtm.getValueAt(idx, 1));
-                    plato.setNo_categoria1_plato((String)listarPlato.dtm.getValueAt(idx, 2));
-                    plato.setNo_categoria2_plato((String)listarPlato.dtm.getValueAt(idx, 3));
-                    plato.setNo_categoria3_plato((String)listarPlato.dtm.getValueAt(idx, 4));
-                    plato.setNo_estado((String)listarPlato.dtm.getValueAt(idx, 5));
-                    plato.setNid_usuario_modi(login_User.getNdi_usuario());
-                    System.out.println(idx);
-                    if(idx !=-1){
-                        editarPlato.cargarPlato(plato);
-                        frmPrincipal.Comp(editarPlato);                        
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpNuevoPlatoLocal platoLocal=new jpNuevoPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpNuevoPiso piso= new jpNuevoPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpNuevaMesa mesa=new jpNuevaMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpNuevoLocal local=new jpNuevoLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpNuevaEmpresa empresa=new jpNuevaEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpNuevoComprobante comprobante=new jpNuevoComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpNuevoCliente cliente=new jpNuevoCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
+                
                 //options(2);
             }
         };
@@ -1819,34 +1769,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
         opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
         opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato plato=new jpListarPlato();                    
-                    //plato.deletePlato(idx);
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpListarPiso piso= new jpListarPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpListarMesa mesa=new jpListarMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpListarLocal local=new jpListarLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpListarEmpresa empresa=new jpListarEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpListarComprobante comprobante=new jpListarComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpListarCliente cliente=new jpListarCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
+        
     }//GEN-LAST:event_opEliminarMouseClicked
 
     private void opBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opBuscarMouseClicked
@@ -1876,34 +1799,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
-                if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato plato=new jpListarPlato();                    
-                    frmPrincipal.Comp(plato);
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpListarPiso piso= new jpListarPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpListarMesa mesa=new jpListarMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpListarLocal local=new jpListarLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpListarEmpresa empresa=new jpListarEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpListarComprobante comprobante=new jpListarComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpListarCliente cliente=new jpListarCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
+        
                 //options(4);
             }
         };

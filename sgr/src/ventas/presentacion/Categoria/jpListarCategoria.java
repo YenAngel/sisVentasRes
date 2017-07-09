@@ -19,7 +19,10 @@ public class jpListarCategoria extends javax.swing.JPanel {
     
     DefaultTableModel dtm;
     Categoria categoria =new Categoria();
+    Login_User login_User=new Login_User();
     DefaultComboBoxModel dcbm;
+    private boolean edit;
+    private boolean newer;    
     public jpListarCategoria() {
         initComponents();
         addItems();
@@ -30,13 +33,35 @@ public class jpListarCategoria extends javax.swing.JPanel {
         cboPadreCategoria3.setSelectedIndex(-1);
         cboCategoria3.setSelectedIndex(-1);
         tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), 1));
-        confTBL(tblCategoria);        
+        confTBL(tblCategoria,dtm);        
+        buttonsColor();
+        txtNombre1.setEnabled(false);               
+        txtNombre2.setEnabled(false);
+        cboPadreCategoria2.setEnabled(false);                
+        txtNombre3.setEnabled(false);
+        cboCategoria3.setEnabled(false);
+        cboPadreCategoria3.setEnabled(false);
     }
     
+    private void buttonsColor(){
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        
+    }
     private void cleanControls(){
-        txtNombre1.setText("");
-        cboNivel1.setSelectedIndex(-1);
-        cboPadreCategoria2.setSelectedIndex(-1);
+        if (edit) {
+            txtNombre1.setText("");
+        }else if (tplCategoria.getSelectedIndex()==1) {
+            txtNombre2.setText("");
+            cboPadreCategoria2.setSelectedIndex(-1);
+        }else if (tplCategoria.getSelectedIndex()==2) {
+            txtNombre3.setText("");
+            cboCategoria3.setSelectedIndex(-1);
+            cboPadreCategoria3.setSelectedIndex(-1);
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -198,6 +223,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
 
         add(tplCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
+        tblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -210,6 +236,11 @@ public class jpListarCategoria extends javax.swing.JPanel {
             }
         ));
         tblCategoria.setAlignmentX(341.0F);
+        tblCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCategoriaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCategoria);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 463, 500, 170));
@@ -317,13 +348,20 @@ public class jpListarCategoria extends javax.swing.JPanel {
         cboPadreCategoria3.setModel(BDData.getCategoria1());        
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Categoria","Categoria Superior","Categoria"};
-        dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(theader);        
-        return  dtm;
+        if (tplCategoria.getSelectedIndex()==2) {
+            String[] theader={"Id Categoria","Categoria Superior","Categoria Intermedia","Categoria"};
+            dtm = new DefaultTableModel();
+            dtm.setColumnIdentifiers(theader);        
+            return  dtm;
+        }else{
+            String[] theader={"Id Categoria","Categoria Superior","Categoria"};
+            dtm = new DefaultTableModel();
+            dtm.setColumnIdentifiers(theader);        
+            return  dtm;
+        }        
     }
 
-    public void confTBL(JTable jTable){
+    public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
         centerRdr.setHorizontalAlignment(JLabel.CENTER);
         for(int i=0;i<3;i++){
@@ -344,7 +382,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 jTable.getColumnModel().getColumn(0).setMinWidth(0);            
             }
         }
-        for(int i=0;i<3;i++)
+        for(int i=0;i<model.getRowCount();i++)
             jTable.setRowHeight(i,45);        
         jTable.setDefaultEditor(Object.class,null);
         jTable.getTableHeader().setReorderingAllowed(false);
@@ -361,11 +399,23 @@ public class jpListarCategoria extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombre1KeyTyped
 
     private void txtNombre2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre2KeyTyped
-        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+
+        if(Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");
+        }
     }//GEN-LAST:event_txtNombre2KeyTyped
 
     private void txtNombre3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre3KeyTyped
-        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+
+        if(Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");
+        }
     }//GEN-LAST:event_txtNombre3KeyTyped
 
     private void txtNombre2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre2ActionPerformed
@@ -378,7 +428,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
         if(Character.isDigit(c)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");
         }
     }//GEN-LAST:event_txtCategoriaKeyTyped
 
@@ -389,6 +439,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
     private void cboPadreCategoria3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPadreCategoria3ItemStateChanged
         if (cboPadreCategoria3.getSelectedIndex()!=-1) {
             cboCategoria3.setModel(BDData.getCategoria2(cboPadreCategoria3.getSelectedItem().toString()));
+            cboCategoria3.setSelectedIndex(-1);
         }        
     }//GEN-LAST:event_cboPadreCategoria3ItemStateChanged
 
@@ -396,66 +447,183 @@ public class jpListarCategoria extends javax.swing.JPanel {
         int idx= tplCategoria.getSelectedIndex();
         if (idx!=-1) {                     
             tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), idx+1));
-            confTBL(tblCategoria);
+            confTBL(tblCategoria,dtm);
         }        
     }//GEN-LAST:event_tplCategoriaStateChanged
 
     private void opNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opNuevoMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        buttonsColor();
         opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
-
+                newer=true;
+                edit=false;
+                if (tplCategoria.getSelectedIndex()==0) {
+                    txtNombre1.setEnabled(true);
+                }else if (tplCategoria.getSelectedIndex()==1) {
+                    txtNombre2.setEnabled(true);
+                    cboPadreCategoria2.setEnabled(true);
+                }else if (tplCategoria.getSelectedIndex()==2) {
+                    txtNombre3.setEnabled(true);
+                    cboCategoria3.setEnabled(true);
+                    cboPadreCategoria3.setEnabled(true);
+                }
             }
         };
         t.schedule(task, 3000);
     }//GEN-LAST:event_opNuevoMouseClicked
 
     private void opEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEditarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        buttonsColor();
+        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));        
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
-          
+                if (tplCategoria.getSelectedIndex()==0) {
+                    txtNombre1.setEnabled(true);
+                }else if (tplCategoria.getSelectedIndex()==1) {
+                    cboPadreCategoria2.setEnabled(true);
+                    txtNombre2.setEnabled(true);
+                }else if (tplCategoria.getSelectedIndex()==2) {
+                    cboCategoria3.setEnabled(true);
+                    txtNombre3.setEnabled(true);
+                }
+                newer=false;
+                edit=true;
             }
         };
         t.schedule(task, 1000);
     }//GEN-LAST:event_opEditarMouseClicked
 
+    
     private void opEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEliminarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        buttonsColor();
         opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));        
+        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(tblCategoria.getSelectedRow(), 0).toString()));
+        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+        if (BDData.eliminarCategoria(categoria)) {            
+            tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), tplCategoria.getSelectedIndex()+1));
+            confTBL(tblCategoria,dtm);
+            buttonsColor();
+        }
     }//GEN-LAST:event_opEliminarMouseClicked
 
     private void opBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opBuscarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        buttonsColor();
+        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));        
+        if (tplCategoria.getSelectedIndex()==0) {
+            categoria.setNo_categoria_plato(txtNombre1.getText());
+            categoria.setVi_tipo(1);
+        }else if (tplCategoria.getSelectedIndex()==1) {
+            categoria.setNo_categoria_plato(txtNombre2.getText());
+            categoria.setVi_tipo(2);
+        }else if (tplCategoria.getSelectedIndex()==2) {
+            categoria.setNo_categoria_plato(txtNombre3.getText());
+            categoria.setVi_tipo(3);
+        }
+        BDData.obtenerCategoria(formatearTabla(), categoria);
     }//GEN-LAST:event_opBuscarMouseClicked
 
     private void opGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opGuardarMouseClicked
-//        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        buttonsColor();
         opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
-                //options(4);
-            }
+                int idx =tplCategoria.getSelectedIndex();
+                int index=tblCategoria.getSelectedRow();
+                if (newer) {
+                    if (idx==0) {
+                        categoria.setNo_categoria_plato(txtNombre1.getText());
+                        categoria.setNu_nivel(1);
+                        categoria.setNid_usuario_crea(login_User.getNdi_usuario());
+                        categoria.setVi_tipo(2);
+                        if (BDData.nuevoCategoria(categoria)) {                    
+                            addItems();                        
+                        }
+                    }else if (idx==1) {
+                        categoria.setNo_padre_categoria(cboPadreCategoria2.getSelectedItem().toString());
+                        categoria.setNo_categoria_plato(txtNombre2.getText());
+                        categoria.setNid_usuario_crea(login_User.getNdi_usuario());
+                        categoria.setNu_nivel(2);
+                        categoria.setVi_tipo(1);
+                        if (BDData.nuevoCategoria(categoria)) {                        
+                            addItems();                        
+                        }
+                    }else if (idx==2) {
+                        categoria.setNo_padre_categoria(cboCategoria3.getSelectedItem().toString());
+                        categoria.setNo_categoria_plato(txtNombre3.getText());
+                        categoria.setNid_usuario_crea(login_User.getNdi_usuario());
+                        categoria.setNu_nivel(3);
+                        categoria.setVi_tipo(1);
+                        if (BDData.nuevoCategoria(categoria)) {                        
+                            addItems();
+                        }
+                    }
+                }
+                if (edit) {
+                    if (idx==0) {                    
+                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                        categoria.setNo_categoria_plato(txtNombre1.getText());
+                        categoria.setNu_nivel(1);
+                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                        categoria.setVi_tipo(2);
+                        if (BDData.editarCategoria(categoria)) {                    
+                            addItems();                        
+                        }
+                    }else if (idx==1) {
+                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                        categoria.setNo_padre_categoria(cboPadreCategoria2.getSelectedItem().toString());
+                        categoria.setNo_categoria_plato(txtNombre2.getText());
+                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                        categoria.setNu_nivel(2);
+                        categoria.setVi_tipo(1);
+                        if (BDData.editarCategoria(categoria)) {                        
+                            addItems();                        
+                        }
+                    }else if (idx==2) {                                        
+                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                        categoria.setNo_padre_categoria(cboCategoria3.getSelectedItem().toString());
+                        categoria.setNo_categoria_plato(txtNombre3.getText());
+                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                        categoria.setNu_nivel(3);
+                        categoria.setVi_tipo(1);
+                        if (BDData.editarCategoria(categoria)) {                        
+                            addItems();
+                        }
+                    }
+                }                
+                tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), idx+1));
+                confTBL(tblCategoria,dtm);
+                buttonsColor();
+                cleanControls();
+                edit=false;
+                newer=false;
+            }            
         };
         t.schedule(task, 1000);
     }//GEN-LAST:event_opGuardarMouseClicked
+
+    private void tblCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoriaMouseClicked
+        int idx=tplCategoria.getSelectedIndex();
+        int index=tblCategoria.getSelectedRow();
+        if (idx==0 && index!=-1) {                             
+            txtNombre1.setText(dtm.getValueAt(index, 2).toString());            
+        }else if (idx==1 && index!=-1) {
+            cboPadreCategoria2.setSelectedItem(dtm.getValueAt(index, 1).toString());
+            txtNombre2.setText(dtm.getValueAt(index, 2).toString());           
+            
+        }else if (idx==2 && index!=-1) {
+            cboPadreCategoria3.setEnabled(false);
+            cboPadreCategoria3.setSelectedItem(dtm.getValueAt(index, 1).toString());
+            cboCategoria3.setSelectedItem(dtm.getValueAt(index, 2).toString());
+            txtNombre3.setText(dtm.getValueAt(index, 3).toString());
+        }
+    }//GEN-LAST:event_tblCategoriaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

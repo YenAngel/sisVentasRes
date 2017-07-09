@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Categoria;
 import ventas.modelo.Cliente;
@@ -110,8 +111,7 @@ public class BDData {
         }        
     }
     public static boolean editarMesa(Mesa mesa){
-        String sql="Call sgr_spu_mesa(?,?,?,?,?,?,?,?)";
-        int getNid_estado=mesa.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spu_mesa(?,?,?,?,?,?,?)";        
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);            
             cs.setInt(1,mesa.getNid_mesa());
@@ -120,8 +120,7 @@ public class BDData {
             cs.setString(4,mesa.getCo_tipo_mesa());
             cs.setInt(5,mesa.getNu_piso());
             cs.setString(6, mesa.getNo_local());
-            cs.setInt(7, getNid_estado);
-            cs.setInt(8, mesa.getNid_usuario_modi());
+            cs.setInt(7, mesa.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -153,7 +152,6 @@ public class BDData {
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dtm.addRow(v);
             }
             return dtm;
@@ -178,18 +176,14 @@ public class BDData {
         }        
     }
     public static boolean editarEmpresa(Empresa empresa){        
-        String sql="Call sgr_spu_empresa(?,?,?,?,?,?)";
-        int getNid_estado=empresa.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spu_empresa(?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,empresa.getNid_empresa());
-            System.out.println(empresa.getNid_empresa());
             cs.setString(2,empresa.getNo_razon_social());
             cs.setString(3,empresa.getNo_comercial());
             cs.setString(4,empresa.getNu_ruc());
-            cs.setInt(5, getNid_estado);
-            cs.setInt(6,empresa.getNid_usuario_modi());
-            System.out.println(empresa.getNid_usuario_modi());
+            cs.setInt(5,empresa.getNid_usuario_modi());
             cs.executeUpdate();
             return true;   
         } catch (Exception e) {
@@ -198,11 +192,11 @@ public class BDData {
         }        
     }
     public static boolean eliminarEmpresa(Empresa empresa){        
-        String sql="Call sgr_spd_empresa(?)";
+        String sql="Call sgr_spd_empresa(?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,empresa.getNid_empresa());
-            //cs.setInt(2,empresa.getNid_usuario_modi());
+            cs.setInt(2,empresa.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -246,16 +240,14 @@ public class BDData {
         }        
     }
     public static boolean editarLocal(Local local){        
-        String sql="Call sgr_spu_local(?,?,?,?,?,?)";
-        int getNid_estado=local.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spu_local(?,?,?,?,?)";      
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,local.getNid_local());
             cs.setString(2,local.getNo_local());
             cs.setString(3,local.getTx_direccion());
             cs.setString(4,local.getNo_empresa());
-            cs.setInt(5, getNid_estado);
-            cs.setInt(6,local.getNid_usuario_modi());
+            cs.setInt(5,local.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -264,10 +256,11 @@ public class BDData {
         }        
     }
     public static boolean eliminarLocal(Local local){        
-        String sql="Call sgr_spd_local(?)";
+        String sql="Call sgr_spd_local(?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,local.getNid_local());
+            cs.setInt(2, local.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -325,15 +318,13 @@ public class BDData {
         }        
     }
     public static boolean editarPiso(Piso piso){        
-        String sql="Call sgr_spu_piso(?,?,?,?,?)";
-        int getNid_estado=piso.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spu_piso(?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,piso.getNid_piso());
             cs.setInt(2,piso.getNu_piso());
             cs.setString(3,piso.getNo_local());          
-            cs.setInt(4, getNid_estado);
-            cs.setInt(5,piso.getNid_usuario_modi());
+            cs.setInt(4,piso.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -395,8 +386,7 @@ public class BDData {
         }        
     }
     public static boolean editarCliente(Cliente cliente){        
-        String sql="Call sgr_spu_cliente(?,?,?,?,?,?,?,?)";
-        int getNid_estado=cliente.getNo_estado().equals("Activo")?1:2;
+        String sql="Call sgr_spu_cliente(?,?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,cliente.getNid_cliente());
@@ -405,8 +395,7 @@ public class BDData {
             cs.setString(4,cliente.getNo_ape_materno());
             cs.setString(5,cliente.getCo_tipo_documento());          
             cs.setString(6,cliente.getNu_documento());          
-            cs.setInt(7, getNid_estado);
-            cs.setInt(8,cliente.getNid_usuario_modi());
+            cs.setInt(7,cliente.getNid_usuario_modi());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -434,11 +423,26 @@ public class BDData {
             cs.setInt(1,idx);
             ResultSet rs =cs.executeQuery();
             while (rs.next()) {
-                Vector v = new Vector();
+                if (idx==3) {
+                    Vector v = new Vector();
                 v.add(rs.getInt(1));
                 v.add(rs.getString(2));
                 v.add(rs.getString(3)); 
+                v.add(rs.getString(4));
                 dtm.addRow(v);
+                }else if (idx==2) {                    
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));                 
+                dtm.addRow(v);
+                }else if (idx==1) {                    
+                Vector v = new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));                 
+                dtm.addRow(v);
+                }                
             }
             return dtm;
         } catch (Exception e) {
@@ -492,6 +496,22 @@ public class BDData {
             return null;
         }        
     }
+    public static DefaultComboBoxModel getCategoria3(String categoria){
+       DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
+        String sql="call sgr_sps_categoria3(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1,categoria);
+            ResultSet rs=cs.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }        
+    }
     /*Por Eliminar*/
     public static DefaultComboBoxModel getCategoria(){
        DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
@@ -509,55 +529,42 @@ public class BDData {
         }        
     }    
     public static boolean nuevoCategoria(Categoria categoria){                        
+        String sql;        
+            sql="Call sgr_spi_categoria(?,?,?,?,?)"; 
         try {
-            if (categoria.getNo_padre_categoria()==null) {                
-                String sql="Call sgr_spi_categoriaSecond(?,?,?)"; 
-                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-                cs.setInt(1, (categoria.getNu_nivel()+1));            
-                cs.setString(2, categoria.getNo_categoria_plato());   
-                cs.setInt(3, categoria.getNid_usuario_crea());            
-                cs.executeUpdate();
-                return true;
-            }else{                
-                String sql="Call sgr_spi_categoria(?,?,?,?)";        
-                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-                cs.setString(1,categoria.getNo_padre_categoria());            
-                cs.setInt(2, (categoria.getNu_nivel()+1));            
+                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);                
+                cs.setString(1, categoria.getNo_padre_categoria());                   
+                cs.setInt(2, (categoria.getNu_nivel()));            
                 cs.setString(3, categoria.getNo_categoria_plato());   
-                cs.setInt(4, categoria.getNid_usuario_crea());            
-                cs.executeUpdate();
+                cs.setInt(4, categoria.getNid_usuario_crea());   
+                cs.setInt(5, categoria.getVi_tipo());
+                int rs=cs.executeUpdate();
+                System.out.println(rs);
+                if (rs==0) {               
+                    JOptionPane.showMessageDialog(null, "Registro ya ha sido ingresado");
+                } else
+                    JOptionPane.showMessageDialog(null, "Registro guardado");
                 return true;
-            }                        
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }        
     }
-    public static boolean editarCategoria(Categoria categoria){                
-        int getNid_estado=categoria.getNo_estado().equals("Activo")?1:2;        
-        try {
-            if (categoria.getNo_padre_categoria()==null) {   
-                String sql="Call sgr_spu_categoriaSecond(?,?,?,?,?)";
-                CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-                cs.setInt(1,categoria.getNid_categoria_plato());                
-                cs.setInt(2,(categoria.getNu_nivel()+1));          
-                cs.setString(3,categoria.getNo_categoria_plato());                    
-                cs.setInt(4, getNid_estado);
-                cs.setInt(5,categoria.getNid_usuario_modi());
-                cs.executeUpdate();
-                return true;
-            }else{
+    public static boolean editarCategoria(Categoria categoria){                          
+        try {            
                 String sql="Call sgr_spu_categoria(?,?,?,?,?,?)";
                 CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
                 cs.setInt(1,categoria.getNid_categoria_plato());
                 cs.setString(2,categoria.getNo_padre_categoria());
-                cs.setInt(3,(categoria.getNu_nivel()+1));          
+                cs.setInt(3,(categoria.getNu_nivel()));          
                 cs.setString(4,categoria.getNo_categoria_plato());                    
-                cs.setInt(5, getNid_estado);
-                cs.setInt(6,categoria.getNid_usuario_modi());
-                cs.executeUpdate();
-                return true;
-            }            
+                cs.setInt(5,categoria.getNid_usuario_modi());
+                cs.setInt(6, categoria.getVi_tipo());
+                int rs=cs.executeUpdate();
+                if (rs==1) {
+                   JOptionPane.showMessageDialog(null, "Registro actualizado");
+                }                
+                return true;            
         } catch (Exception e) {
             System.out.println(e);
             return false;
@@ -629,17 +636,15 @@ public class BDData {
         }        
     }
     public static boolean editarPlato(Plato plato){                
-        int getNid_estado=plato.getNo_estado().equals("Activo")?1:2;           
         try {            
-            String sql="Call sgr_spu_plato(?,?,?,?,?,?,?)";
+            String sql="Call sgr_spu_plato(?,?,?,?,?,?)";
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,plato.getNid_plato());
             cs.setString(2,plato.getNo_plato());
             cs.setString(3,plato.getNo_categoria1_plato());                      
             cs.setString(4,plato.getNo_categoria2_plato());                      
-            cs.setString(5,plato.getNo_categoria3_plato());                      
-            cs.setInt(6, getNid_estado);
-            cs.setInt(7,plato.getNid_usuario_modi());
+            cs.setString(5,plato.getNo_categoria3_plato());                                  
+            cs.setInt(6,plato.getNid_usuario_modi());
             cs.executeUpdate();
             return true;            
         } catch (Exception e) {
@@ -842,16 +847,29 @@ public class BDData {
             String sql="call sgr_sps_getCategoria(?,?)";
             CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, categoria.getNo_categoria_plato());   
-            cs.setInt(2, categoria.getNu_nivel());            
+            cs.setInt(2, categoria.getVi_tipo());            
             ResultSet rs=cs.executeQuery();
             while (rs.next()) {
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));                
-                v.add(rs.getString(5));  
-                dtm.addRow(v);
+                if (categoria.getVi_tipo()==3) {
+                    Vector v = new Vector();
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3)); 
+                    v.add(rs.getString(4));
+                    dtm.addRow(v);
+                }else if (categoria.getVi_tipo()==2) {                    
+                    Vector v = new Vector();
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));                 
+                    dtm.addRow(v);
+                }else if (categoria.getVi_tipo()==1) {                    
+                    Vector v = new Vector();
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));                 
+                    dtm.addRow(v);
+                }
             }
             return dtm;
         } catch (Exception e) {

@@ -33,6 +33,12 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         txtRUC = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -51,23 +57,24 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblEmpresa);
 
-        btnNew.setIcon(new javax.swing.ImageIcon("D:\\icons\\Add-icon.png")); // NOI18N
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 237, 771, 316));
+
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 30, 150, 100));
 
-        btnEdit.setIcon(new javax.swing.ImageIcon("D:\\icons\\Pen-icon.png")); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 157, 150, 100));
 
-        btnDelete.setIcon(new javax.swing.ImageIcon("D:\\icons\\Recyclebin-icon.png")); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +82,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 285, 150, 100));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -84,9 +92,11 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 414, 150, 100));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre Comercial:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 154, -1, -1));
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -94,6 +104,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 txtNombreKeyTyped(evt);
             }
         });
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 134, 260, 50));
 
         txtRUC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRUC.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -101,68 +112,14 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 txtRUCKeyTyped(evt);
             }
         });
+        add(txtRUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 134, 260, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("RUC:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtRUC, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRUC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))))
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 154, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Empresa","Razón Social","Nombre Comercial","RUC","Estado"};
+        String[] theader={"Id Empresa","Razón Social","Nombre Comercial","RUC"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -170,6 +127,14 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     
     private void listarEmpresa(){
         tblEmpresa.setModel(BDData.listarEmpresa(formatearTabla()));
+        for(int i = 0; i < tblEmpresa.getRowCount(); i++)
+            tblEmpresa.setRowHeight(i, 45);
+        tblEmpresa.setDefaultEditor(Object.class, null);
+        tblEmpresa.getTableHeader().setReorderingAllowed(false);
+        tblEmpresa.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmpresa.getColumnModel().getColumn(0).setMinWidth(0);
+        tblEmpresa.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmpresa.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
     
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -178,8 +143,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
         empresa.setNo_razon_social(dtm.getValueAt(idx, 1).toString());
         empresa.setNo_comercial(dtm.getValueAt(idx, 2).toString());
-        empresa.setNu_ruc(dtm.getValueAt(idx, 3).toString());
-        empresa.setNo_estado(dtm.getValueAt(idx, 4).toString());
+        empresa.setNu_ruc(dtm.getValueAt(idx, 3).toString());        
         empresa.setNid_usuario_modi(usuario.getNdi_usuario()); 
         if(idx >= 0){            
             frmPrincipal.Comp(editarEmpresa);                                   
@@ -192,7 +156,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblEmpresa.getSelectedRow();
         empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
-        //empresa.setNid_usuario_modi(usuario.getNdi_usuario());
+        empresa.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarEmpresa(empresa)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarEmpresa();

@@ -36,44 +36,13 @@ public class jpEditarPiso extends javax.swing.JPanel {
     public static void cargarPiso(Piso p){
         txtCodigo.setText(p.getNid_piso()+"");
         txtNroPiso.setText(p.getNu_piso()+"");
-        cboLocal.setSelectedItem(p.getNo_local());        
-        lblEstado.setText(p.getNo_estado());        
-        initIcon(lblEstado.getText().toLowerCase());
+        cboLocal.setSelectedItem(p.getNo_local());                
     }         
     
-    public static void initIcon(String iconic){                
-            String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
-            
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
-            lblEstado.repaint();        
-    }
-    private void icon(String iconic){
-        if (iconic.startsWith("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/inactivo.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/activo.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
-    }
     private void cleanControls(){
         txtCodigo.setText("");
         cboLocal.setSelectedIndex(-1);
-        txtNroPiso.setText("");
-        lblEstado.setVisible(false);
+        txtNroPiso.setText("");    
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,47 +51,53 @@ public class jpEditarPiso extends javax.swing.JPanel {
         txtNroPiso = new javax.swing.JTextField();
         cboLocal = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        lblEstado = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
 
+        setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNroPiso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNroPisoKeyTyped(evt);
             }
         });
+        add(txtNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 137, 260, 50));
 
+        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 205, 260, 50));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Local:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 222, -1, -1));
 
-        lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEstadoMouseClicked(evt);
-            }
-        });
-
-        jLabel7.setText("Estado:");
-
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Numero de Piso:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 153, -1, -1));
 
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyTyped(evt);
             }
         });
+        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 69, 260, 50));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Id Piso:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 85, -1, -1));
 
         btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
@@ -131,6 +106,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 69, 140, 60));
 
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
@@ -139,62 +115,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
                 btnHomeActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNroPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNroPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel7))
-                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 169, 140, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -204,7 +125,6 @@ public class jpEditarPiso extends javax.swing.JPanel {
             piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
             piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
             piso.setNo_local(cboLocal.getSelectedItem().toString());
-            piso.setNo_estado(lblEstado.getText());        
             piso.setNid_usuario_modi(login.getNdi_usuario());   
             if (BDData.editarPiso(piso)) {
                 JOptionPane.showMessageDialog(null, "Registro Actualizado");
@@ -220,10 +140,6 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jpListarPiso listarPiso=new jpListarPiso();
         frmPrincipal.Comp(listarPiso);
     }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
-        icon(lblEstado.getText());
-    }//GEN-LAST:event_lblEstadoMouseClicked
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char c=evt.getKeyChar();         
@@ -257,8 +173,6 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    public static javax.swing.JLabel lblEstado;
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtNroPiso;
     // End of variables declaration//GEN-END:variables
