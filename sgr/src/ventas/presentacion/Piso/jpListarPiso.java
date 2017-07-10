@@ -46,7 +46,7 @@ public class jpListarPiso extends javax.swing.JPanel {
     
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Piso","Numero de Piso","Local"};
+        String[] theader={"Id Piso","Numero de Piso","Local","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -74,12 +74,6 @@ public class jpListarPiso extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        setMaximumSize(new java.awt.Dimension(1025, 661));
-        setMinimumSize(new java.awt.Dimension(1025, 661));
-        setPreferredSize(new java.awt.Dimension(1025, 661));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblPiso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,42 +87,27 @@ public class jpListarPiso extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblPiso);
 
-
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 205, 814, 435));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 211, 806, 345));
-
-
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
-
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 11, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
-
-
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 129, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
-
-
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -136,11 +115,7 @@ public class jpListarPiso extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 247, 150, 101));
-
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 247, 150, 101));
-
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -150,11 +125,7 @@ public class jpListarPiso extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 366, 150, 100));
-
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 366, 150, 100));
-
 
         txtPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPiso.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -162,7 +133,6 @@ public class jpListarPiso extends javax.swing.JPanel {
                 txtPisoKeyTyped(evt);
             }
         });
-
         add(txtPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 72, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -229,20 +199,6 @@ public class jpListarPiso extends javax.swing.JPanel {
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 200, -1));
-
-        add(txtPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 117, 260, 50));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Local:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(522, 137, -1, -1));
-
-        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 117, 260, 50));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Nombre de Plato:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 137, -1, -1));
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -255,6 +211,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         piso.setNid_piso(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
         piso.setNu_piso(Integer.parseInt(dtm.getValueAt(idx, 1).toString()));
         piso.setNo_local((String)dtm.getValueAt(idx, 2));        
+        piso.setNo_estado((String)dtm.getValueAt(idx, 3));
         piso.setNid_usuario_modi(login_User.getNdi_usuario());
         if(idx >=0){            
             jpEditarPiso editarPiso=new jpEditarPiso();

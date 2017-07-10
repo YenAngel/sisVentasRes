@@ -22,7 +22,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         listarPlato();
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Plato","Plato","Categoria 1","Categoria 2","Categoria 3"};
+        String[] theader={"Id Plato","Plato","Categoria 1","Categoria 2","Categoria 3","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -67,11 +67,6 @@ public class jpListarPlato extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        setMaximumSize(new java.awt.Dimension(1025, 661));
-        setMinimumSize(new java.awt.Dimension(1025, 661));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblPlato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -90,28 +85,18 @@ public class jpListarPlato extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPlato);
 
-
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 235, 790, 410));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 159, 646, 320));
-
-
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 193, 150, 100));
-
-
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -119,25 +104,16 @@ public class jpListarPlato extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 270, 150, 100));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 311, 150, 100));
-
-
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
-
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 150, 100));
-
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 75, 150, 100));
-
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -147,11 +123,7 @@ public class jpListarPlato extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 390, 150, 100));
-
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 429, 150, 100));
-
 
         txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -159,7 +131,6 @@ public class jpListarPlato extends javax.swing.JPanel {
                 txtPlatoKeyTyped(evt);
             }
         });
-
         add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 75, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -192,13 +163,6 @@ public class jpListarPlato extends javax.swing.JPanel {
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 196, -1, -1));
-
-        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 75, 260, 50));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Nombre de Plato:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 95, -1, -1));
-
     }// </editor-fold>//GEN-END:initComponents
     public void editarPlato(int idx){        
         jpEditarPlato editarPlato=new jpEditarPlato();        
@@ -226,6 +190,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         plato.setNo_categoria1_plato((String)dtm.getValueAt(idx, 2));
         plato.setNo_categoria2_plato((String)dtm.getValueAt(idx, 3));
         plato.setNo_categoria3_plato((String)dtm.getValueAt(idx, 4));
+        plato.setNo_estado((String)dtm.getValueAt(idx, 5));
         plato.setNid_usuario_modi(login_User.getNdi_usuario());
         if(idx >= 0){
             frmPrincipal.Comp(editarPlato);

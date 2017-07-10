@@ -16,7 +16,7 @@ public class frmCaja extends javax.swing.JFrame {
         getLocal();
         dcActual.setDate(d);
         cboCliente.setEnabled(false);
-        cboEstado.setEnabled(false);
+        cboComprobante.setEnabled(false);
         cboLocal.setEnabled(false);
         dcActual.setEnabled(false);
         
@@ -53,7 +53,7 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         lblHome1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        cboEstado = new javax.swing.JComboBox<>();
+        cboEstado1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 768));
@@ -175,12 +175,12 @@ public class frmCaja extends javax.swing.JFrame {
         jButton2.setPreferredSize(new java.awt.Dimension(100, 210));
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 360, -1, 190));
 
-        cboEstado.addActionListener(new java.awt.event.ActionListener() {
+        cboEstado1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEstadoActionPerformed(evt);
+                cboEstado1ActionPerformed(evt);
             }
         });
-        getContentPane().add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 260, 50));
+        getContentPane().add(cboEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 260, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,9 +207,9 @@ public class frmCaja extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboComprobanteActionPerformed
 
-    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
+    private void cboEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstado1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboEstadoActionPerformed
+    }//GEN-LAST:event_cboEstado1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,7 +251,7 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel Codigo1;
     public static javax.swing.JComboBox<String> cboCliente;
     public static javax.swing.JComboBox<String> cboComprobante;
-    public static javax.swing.JComboBox<String> cboEstado;
+    public static javax.swing.JComboBox<String> cboEstado1;
     public static javax.swing.JComboBox<String> cboLocal;
     private com.toedter.calendar.JDateChooser dcActual;
     private javax.swing.JButton jButton2;

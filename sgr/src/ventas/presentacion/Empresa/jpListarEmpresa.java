@@ -45,12 +45,6 @@ public class jpListarEmpresa extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        setMaximumSize(new java.awt.Dimension(1025, 661));
-        setMinimumSize(new java.awt.Dimension(1025, 661));
-        setPreferredSize(new java.awt.Dimension(1025, 661));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,14 +63,9 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblEmpresa);
 
-
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 281, 820, 369));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 237, 771, 316));
-
-
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,10 +74,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 30, 150, 100));
 
-
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-
-
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,10 +83,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 157, 150, 100));
 
-
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-
-
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -120,22 +103,8 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 414, 150, 100));
 
-
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Nombre Comercial:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 154, -1, -1));
-
-        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 134, 260, 50));
-
 
         txtRUC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRUC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -144,11 +113,9 @@ public class jpListarEmpresa extends javax.swing.JPanel {
                 txtRUCKeyTyped(evt);
             }
         });
-        add(txtRUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 134, 260, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("RUC:");
-
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -246,12 +213,9 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         );
 
         add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 241, -1, 40));
-
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 154, -1, -1));
-
     }// </editor-fold>//GEN-END:initComponents
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Empresa","Razón Social","Nombre Comercial","RUC"};
+        String[] theader={"Id Empresa","Razón Social","Nombre Comercial","RUC","Estado"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -286,7 +250,8 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
         empresa.setNo_razon_social(dtm.getValueAt(idx, 1).toString());
         empresa.setNo_comercial(dtm.getValueAt(idx, 2).toString());
-        empresa.setNu_ruc(dtm.getValueAt(idx, 3).toString());        
+        empresa.setNu_ruc(dtm.getValueAt(idx, 3).toString());
+        empresa.setNo_estado(dtm.getValueAt(idx, 4).toString());
         empresa.setNid_usuario_modi(usuario.getNdi_usuario()); 
         if(idx >= 0){            
             frmPrincipal.Comp(editarEmpresa);                                   
@@ -299,7 +264,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblEmpresa.getSelectedRow();
         empresa.setNid_empresa(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
-        empresa.setNid_usuario_modi(usuario.getNdi_usuario());
+        //empresa.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarEmpresa(empresa)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarEmpresa();

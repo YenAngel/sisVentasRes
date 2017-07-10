@@ -38,12 +38,14 @@ public class jpEditarMesa extends javax.swing.JPanel {
 
         txtCantidad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cboNroPiso = new javax.swing.JComboBox<>();
         txtNroMesa = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -51,49 +53,49 @@ public class jpEditarMesa extends javax.swing.JPanel {
         txtCodigo = new javax.swing.JTextField();
         cboTipoMesa = new javax.swing.JComboBox<>();
 
-        setMaximumSize(new java.awt.Dimension(1025, 661));
-        setMinimumSize(new java.awt.Dimension(1025, 661));
-        setPreferredSize(new java.awt.Dimension(1025, 661));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
             }
         });
-        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 260, 50));
+        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 260, 50));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Codigo:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEstado.setText("Estado:");
+        lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEstadoMouseClicked(evt);
+            }
+        });
+        add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 260, 50));
+
         jLabel3.setText("Nro Piso:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nro Mesa:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Tipo de Mesa:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Cantidad de Sillas:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
-        cboNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 260, 50));
+        add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 260, 50));
 
-        txtNroMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNroMesa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNroMesaKeyTyped(evt);
             }
         });
-        add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 260, 50));
+        add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 260, 50));
+
+        jLabel7.setText("Estado:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
 
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
@@ -102,7 +104,7 @@ public class jpEditarMesa extends javax.swing.JPanel {
                 btnHomeActionPerformed(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 200, 140, 60));
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, 140, 60));
 
         btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
@@ -111,31 +113,27 @@ public class jpEditarMesa extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, 140, 60));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 140, 60));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Local:");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
-        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboLocal.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboLocalItemStateChanged(evt);
             }
         });
-        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 260, 50));
+        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 260, 50));
 
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyTyped(evt);
             }
         });
-        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 260, 50));
+        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 260, 50));
 
-        cboTipoMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboTipoMesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar", "Normal" }));
-        add(cboTipoMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 260, 50));
+        add(cboTipoMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
     
     public static void cargarMesa(Mesa m){
@@ -145,8 +143,37 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboLocal.setSelectedItem(m.getNo_local());        
         cboTipoMesa.setSelectedItem(m.getCo_tipo_mesa());
         cboNroPiso.setSelectedItem(m.getNu_piso()+"");
+        lblEstado.setText(m.getNo_estado());
+        initIcon(lblEstado.getText().toLowerCase());
     }
-
+    private static void initIcon(String iconic){
+        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
+            
+        ImageIcon imageIcon = new ImageIcon(path);
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblEstado.setIcon(icon);
+        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
+        lblEstado.repaint();        
+    }
+    private void icon(String iconic){
+        if (iconic.equals("Activo")) {            
+            String path = "D:/sisVentasRes/sgr/src/recursos/security-low.png";
+            //URL url = this.getClass().getResource(path);
+            ImageIcon imageIcon = new ImageIcon(path);
+            Icon icon= new ImageIcon(imageIcon.getImage());
+            lblEstado.setIcon(icon);
+            lblEstado.setText("Inactivo");
+            this.repaint();
+        }else{            
+            String path = "D:/sisVentasRes/sgr/src/recursos/security-high.png";
+            //URL url = this.getClass().getResource(path);
+            ImageIcon imageIcon = new ImageIcon(path);
+            Icon icon= new ImageIcon(imageIcon.getImage());
+            lblEstado.setIcon(icon);
+            lblEstado.setText("Activo");
+            this.repaint();
+        }
+    }
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         jpListarMesa listarMesa =new jpListarMesa();
         frmPrincipal.Comp(listarMesa);
@@ -171,7 +198,8 @@ public class jpEditarMesa extends javax.swing.JPanel {
             mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
             mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
             mesa.setNo_local(cboLocal.getSelectedItem().toString());
-            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));            
+            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
+            mesa.setNo_estado(lblEstado.getText());
             mesa.setNid_usuario_modi(login_User.getNdi_usuario());        
 
             if (BDData.editarMesa(mesa)) {
@@ -190,6 +218,10 @@ public class jpEditarMesa extends javax.swing.JPanel {
             cboNroPiso.setModel(BDData.getPiso_Local(cboLocal.getSelectedItem().toString()));
         }
     }//GEN-LAST:event_cboLocalItemStateChanged
+
+    private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
+        icon(lblEstado.getText());
+    }//GEN-LAST:event_lblEstadoMouseClicked
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         
@@ -227,7 +259,9 @@ public class jpEditarMesa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    public static javax.swing.JLabel lblEstado;
     public static javax.swing.JTextField txtCantidad;
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtNroMesa;
