@@ -83,12 +83,12 @@ public class jpListarMesa extends javax.swing.JPanel{
         setPreferredSize(new java.awt.Dimension(1025, 661));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-<<<<<<< HEAD
+
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-=======
+
         tblMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         tblMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,11 +102,11 @@ public class jpListarMesa extends javax.swing.JPanel{
         ));
         jScrollPane1.setViewportView(tblMesa);
 
-<<<<<<< HEAD
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 800, 390));
-=======
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 700, 280));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
@@ -115,28 +115,28 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnNewActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-=======
+
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 50, 150, 100));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 140, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-=======
+
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, 150, 100));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -144,11 +144,11 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnDeleteActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 150, 100));
-=======
+
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 150, 100));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -158,7 +158,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnSearchActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 360, 150, 100));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
@@ -193,9 +193,9 @@ public class jpListarMesa extends javax.swing.JPanel{
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nro Mesa:");
-=======
+
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 150, 100));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         txtNroMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNroMesa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -204,7 +204,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 txtNroMesaKeyTyped(evt);
             }
         });
-<<<<<<< HEAD
+
 
         cboNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -270,7 +270,7 @@ public class jpListarMesa extends javax.swing.JPanel{
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 41, -1, -1));
-=======
+
         add(txtNroMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -283,7 +283,7 @@ public class jpListarMesa extends javax.swing.JPanel{
 
         cboNroPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(cboNroPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 260, 50));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

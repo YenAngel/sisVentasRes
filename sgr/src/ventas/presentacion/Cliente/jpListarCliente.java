@@ -64,12 +64,12 @@ public class jpListarCliente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCliente);
 
-<<<<<<< HEAD
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 354, 831, 290));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-=======
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
+
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,10 +78,10 @@ public class jpListarCliente extends javax.swing.JPanel {
         });
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
 
-<<<<<<< HEAD
+
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-=======
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
+
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,10 +90,10 @@ public class jpListarCliente extends javax.swing.JPanel {
         });
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
 
-<<<<<<< HEAD
+
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-=======
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
+
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +170,7 @@ public class jpListarCliente extends javax.swing.JPanel {
             }
         });
 
-<<<<<<< HEAD
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -222,8 +222,8 @@ public class jpListarCliente extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,7 +275,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 208, Short.MAX_VALUE))
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, -1));

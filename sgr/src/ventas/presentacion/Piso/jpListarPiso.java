@@ -93,42 +93,42 @@ public class jpListarPiso extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblPiso);
 
-<<<<<<< HEAD
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 205, 814, 435));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-=======
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 211, 806, 345));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 11, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-=======
+
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 129, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-=======
+
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -136,11 +136,11 @@ public class jpListarPiso extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 247, 150, 101));
-=======
+
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 247, 150, 101));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -150,11 +150,11 @@ public class jpListarPiso extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(873, 366, 150, 100));
-=======
+
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 366, 150, 100));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         txtPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPiso.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -162,7 +162,7 @@ public class jpListarPiso extends javax.swing.JPanel {
                 txtPisoKeyTyped(evt);
             }
         });
-<<<<<<< HEAD
+
         add(txtPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 72, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -229,7 +229,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 20, 200, -1));
-=======
+
         add(txtPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 117, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -242,7 +242,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre de Plato:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 137, -1, -1));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed

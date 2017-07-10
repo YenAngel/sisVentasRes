@@ -69,14 +69,14 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblEmpresa);
 
-<<<<<<< HEAD
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 281, 820, 369));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-=======
+
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 237, 771, 316));
 
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,10 +85,10 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 30, 150, 100));
 
-<<<<<<< HEAD
+
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-=======
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
+
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,10 +97,10 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 157, 150, 100));
 
-<<<<<<< HEAD
+
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
-=======
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
+
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -120,10 +120,10 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         });
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 414, 150, 100));
 
-<<<<<<< HEAD
+
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-=======
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre Comercial:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 154, -1, -1));
@@ -135,7 +135,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
             }
         });
         add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 134, 260, 50));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
 
         txtRUC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRUC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -148,7 +148,7 @@ public class jpListarEmpresa extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("RUC:");
-<<<<<<< HEAD
+
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -246,9 +246,9 @@ public class jpListarEmpresa extends javax.swing.JPanel {
         );
 
         add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 241, -1, 40));
-=======
+
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 154, -1, -1));
->>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
+
     }// </editor-fold>//GEN-END:initComponents
     private DefaultTableModel formatearTabla(){
         String[] theader={"Id Empresa","Razón Social","Nombre Comercial","RUC"};
