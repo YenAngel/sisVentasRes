@@ -19,7 +19,8 @@ public class jpListarCliente extends javax.swing.JPanel {
     Login_User usuario=new Login_User();
     public jpListarCliente() {
         initComponents();
-        listarCliente();
+        listarCliente();        
+        //frmPrincipal.confTBL(tblCliente);
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +47,10 @@ public class jpListarCliente extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -59,9 +64,12 @@ public class jpListarCliente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCliente);
 
+<<<<<<< HEAD
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 354, 831, 290));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
+=======
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +78,10 @@ public class jpListarCliente extends javax.swing.JPanel {
         });
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
 
+<<<<<<< HEAD
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+=======
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +90,10 @@ public class jpListarCliente extends javax.swing.JPanel {
         });
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
 
+<<<<<<< HEAD
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
+=======
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +170,7 @@ public class jpListarCliente extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -208,13 +223,66 @@ public class jpListarCliente extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel4)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 208, Short.MAX_VALUE))
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Cliente","Nombre","Apellido Paterno","Apellido Materno","Tipo Documento","Numero de Documento","Estado"};
+        String[] theader={"Id Cliente","Nombre","Apellido Paterno","Apellido Materno","Tipo Documento","Numero de Documento"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -257,7 +325,6 @@ public class jpListarCliente extends javax.swing.JPanel {
         cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 3));
         cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 4));
         cliente.setNu_documento((String)dtm.getValueAt(idx, 5));        
-        cliente.setNo_estado((String)dtm.getValueAt(idx, 6));
         cliente.setNid_usuario_modi(usuario.getNdi_usuario());
         if(idx >= 0){
             frmPrincipal.Comp(editarCliente);
@@ -275,6 +342,14 @@ public class jpListarCliente extends javax.swing.JPanel {
         if (BDData.eliminarCliente(cliente)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarCliente();
+            for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -286,6 +361,14 @@ public class jpListarCliente extends javax.swing.JPanel {
             cliente.setNu_documento(txtDocumento.getText());
             tblCliente.setModel(BDData.obtenerCliente(formatearTabla(), cliente));
         }
+        for(int i = 0; i < tblCliente.getRowCount(); i++)
+            tblCliente.setRowHeight(i, 45);
+        tblCliente.setDefaultEditor(Object.class, null);
+        tblCliente.getTableHeader().setReorderingAllowed(false);
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

@@ -9,6 +9,15 @@ public class Categoria {
     String no_estado;
     int nid_usuario_crea;
     int nid_usuario_modi;
+    int vi_tipo;
+
+    public int getVi_tipo() {
+        return vi_tipo;
+    }
+
+    public void setVi_tipo(int vi_tipo) {
+        this.vi_tipo = vi_tipo;
+    }
 
     public int getNid_categoria_plato() {
         return nid_categoria_plato;

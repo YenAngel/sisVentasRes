@@ -23,7 +23,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     }
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa","Estado"};
+        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -75,6 +75,11 @@ public class jpListarLocal extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblLocal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -88,27 +93,42 @@ public class jpListarLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocal);
 
+<<<<<<< HEAD
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 275, 808, 375));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
+=======
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 141, 720, 430));
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+=======
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 49, 150, 100));
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
+=======
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 167, 150, 100));
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +136,11 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 247, 150, 100));
+=======
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 285, 150, 100));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -126,6 +150,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 365, 150, 100));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
@@ -157,6 +182,9 @@ public class jpListarLocal extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+=======
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(807, 403, 150, 100));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
         txtLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtLocal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -165,9 +193,11 @@ public class jpListarLocal extends javax.swing.JPanel {
                 txtLocalKeyTyped(evt);
             }
         });
+        add(txtLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Local:");
+<<<<<<< HEAD
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -218,6 +248,9 @@ public class jpListarLocal extends javax.swing.JPanel {
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 60, -1, -1));
+=======
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -232,9 +265,8 @@ public class jpListarLocal extends javax.swing.JPanel {
         local.setNo_local((String)dtm.getValueAt(idx, 1));
         local.setTx_direccion((String)dtm.getValueAt(idx, 2));
         local.setNo_empresa((String)dtm.getValueAt(idx, 3));
-        local.setNo_estado((String)dtm.getValueAt(idx, 4));
         local.setNid_usuario_modi(usuario.getNdi_usuario());        
-        if(idx >= 0){            
+        if(idx != -1){            
             frmPrincipal.Comp(editarLocal);                                   
             editarLocal.cargarLocal(local);
         }else{
@@ -245,6 +277,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblLocal.getSelectedRow();
         local.setNid_local(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
+        local.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarLocal();

@@ -28,6 +28,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
     }
     private void listarComprobante(){
         tblComprobante.setModel(BDData.listarComprobante(formatearTabla()));
+<<<<<<< HEAD
         ConfigTable(tblComprobante);
     }
     private void ConfigTable(JTable jt){
@@ -48,6 +49,12 @@ public class jpListarComprobante extends javax.swing.JPanel {
         jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     
+=======
+        for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+        tblComprobante.setDefaultEditor(Object.class, null);
+        tblComprobante.getTableHeader().setReorderingAllowed(false);        
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -68,9 +75,17 @@ public class jpListarComprobante extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
 
+<<<<<<< HEAD
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
+=======
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnNew.setText("Nuevo");
         btnNew.setPreferredSize(new java.awt.Dimension(150, 100));
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -78,18 +93,27 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(857, 24, -1, -1));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+=======
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 141, -1, -1));
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(857, 142, 150, 100));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+=======
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 259, 150, 100));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
         tblComprobante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +128,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblComprobante);
 
+<<<<<<< HEAD
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 343, 829, 307));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
@@ -118,6 +143,17 @@ public class jpListarComprobante extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+=======
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 210, 707, 267));
+
+        cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
+        add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 142, 260, 50));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Comprobante:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 162, -1, -1));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
         txtSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSerie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -126,10 +162,13 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 txtSerieKeyTyped(evt);
             }
         });
+        add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 142, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Serie:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 162, -1, -1));
 
+<<<<<<< HEAD
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Comprobante:");
 
@@ -221,6 +260,17 @@ public class jpListarComprobante extends javax.swing.JPanel {
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 304, -1, -1));
+=======
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
+        btnSearch.setText("Buscar");
+        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 377, 150, 100));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -259,10 +309,18 @@ public class jpListarComprobante extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtSerie.getText().equals("") || cboComprobante.getSelectedIndex()==-1) {
             tblComprobante.setModel(BDData.listarComprobante(formatearTabla()));
+            for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+            tblComprobante.setDefaultEditor(Object.class, null);
+            tblComprobante.getTableHeader().setReorderingAllowed(false);        
         }else{
             comprobante.setNu_serie(txtSerie.getText());
             comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
             tblComprobante.setModel(BDData.obtenerComprobante(formatearTabla(), comprobante));
+            for(int i = 0; i < tblComprobante.getRowCount(); i++)
+            tblComprobante.setRowHeight(i, 45);
+            tblComprobante.setDefaultEditor(Object.class, null);
+            tblComprobante.getTableHeader().setReorderingAllowed(false);        
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 

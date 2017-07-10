@@ -1,10 +1,17 @@
 
 package ventas.presentacion.Plato_Local;
 
+<<<<<<< HEAD
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+=======
+import java.awt.Panel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
 import ventas.modelo.PlatoLocal;
@@ -17,11 +24,35 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     Login_User login_User=new Login_User();    
     DefaultTableModel dtm;
     public jpListarPlatoLocal() {
-        initComponents();
+        initComponents();        
         listarPlatoLocal();
         cboLocal.setModel(BDData.getLocal());
-        cboLocal.setSelectedIndex(-1);
+        cboLocal.setSelectedIndex(-1);                
     }
+    /*public void desingButton(JPanel lpl){        
+        int pHeight =lpl.getHeight();
+        int sizeOption = (int)pHeight/3;        
+        
+        btnEdit.setBounds(270, 59+sizeOption, 10, sizeOption);
+        btnNew.setBounds(270, 59+sizeOption*2, 10, sizeOption);
+        btnSearch.setBounds(270, 59+sizeOption*3, 10, sizeOption);
+        /*opNuevo.setVisible(true);
+        opNuevo.setLayout(null);
+        opNuevo.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEditar.setVisible(true);
+        
+        opEditar.setLayout(null);
+        opEditar.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEliminar.setVisible(true);
+        opEliminar.setLayout(null);
+        opEliminar.setBounds(0, sizeOption*3,80,sizeOption); 
+
+        opBuscar.setVisible(true);
+        opBuscar.setLayout(null);
+        opBuscar.setBounds(0, sizeOption*4,80,sizeOption);
+    }*/
     private DefaultTableModel formatearTabla(){
         String[] theader={"Local","Plato","Precio","VIP"};
         dtm = new DefaultTableModel();
@@ -30,6 +61,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     }
     private void listarPlatoLocal(){
         tblPlatoLocal.setModel(BDData.listarLocalPlato(formatearTabla()));
+<<<<<<< HEAD
         ConfigTable(tblPlatoLocal);
     }
     private void ConfigTable(JTable jt){
@@ -50,6 +82,12 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     
+=======
+        for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+        tblPlatoLocal.setDefaultEditor(Object.class, null);
+        tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -67,28 +105,46 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
 
+<<<<<<< HEAD
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
+=======
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 48, 150, 100));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+=======
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 150, 100));
+
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 166, 150, 100));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+=======
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 300, 150, 100));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
+        tblPlatoLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblPlatoLocal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,9 +158,15 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblPlatoLocal);
 
+<<<<<<< HEAD
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 194, 812, 456));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
+=======
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 726, 447));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
         btnSearch.setText("Buscar");
         btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -112,11 +174,19 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 284, 150, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre de Plato:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 87, -1, -1));
+=======
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 150, 100));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Nombre de Plato:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
 
         txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -124,6 +194,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
                 txtPlatoKeyTyped(evt);
             }
         });
+<<<<<<< HEAD
         add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 67, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -159,6 +230,16 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         );
 
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 155, 130, -1));
+=======
+        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 260, 50));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Local:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
+
+        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 260, 50));
+>>>>>>> 328d9cc1427608874cf9d93deed503410298c10c
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -186,10 +267,18 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtPlato.getText().equals("") || cboLocal.getSelectedIndex()==-1) {
             tblPlatoLocal.setModel(BDData.listarLocalPlato(formatearTabla()));
+            for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+            tblPlatoLocal.setDefaultEditor(Object.class, null);
+            tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
         }else{
             platoLocal.setNo_plato(txtPlato.getText());
             platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
             tblPlatoLocal.setModel(BDData.obtenerPlatoLocal(formatearTabla(), platoLocal));
+            for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+            tblPlatoLocal.setDefaultEditor(Object.class, null);
+            tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -205,9 +294,9 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnNew;
-    private javax.swing.JButton btnSearch;
+    public javax.swing.JButton btnEdit;
+    public javax.swing.JButton btnNew;
+    public javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;

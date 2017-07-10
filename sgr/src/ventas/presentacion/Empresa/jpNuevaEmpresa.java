@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 import ventas.modelo.Empresa;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
-import static ventas.presentacion.Empresa.jpEditarEmpresa.lblEstado;
 import ventas.presentacion.frmPrincipal;
 
 public class jpNuevaEmpresa extends javax.swing.JPanel {
@@ -38,6 +37,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNombreC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombreC.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -45,6 +45,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 txtNombreCKeyTyped(evt);
             }
         });
+        add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 260, 50));
 
         txtruc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtruc.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -52,9 +53,11 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 txtrucKeyTyped(evt);
             }
         });
+        add(txtruc, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 260, 50));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Razón Social:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
         btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
@@ -63,6 +66,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 btnHomeActionPerformed(evt);
             }
         });
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 140, 60));
 
         btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
@@ -71,9 +75,11 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 140, 60));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre Comercial:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
 
         txtRazonSocial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -81,59 +87,11 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
                 txtRazonSocialKeyTyped(evt);
             }
         });
+        add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 260, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("RUC:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtruc, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(499, 499, 499)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(616, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtruc, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(466, Short.MAX_VALUE))
-        );
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
