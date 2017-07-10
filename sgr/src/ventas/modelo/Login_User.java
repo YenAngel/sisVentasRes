@@ -6,6 +6,7 @@ public class Login_User {
     public      static      int         nid_perfil;
     public      static String      no_usuario;
     public      static String      no_clave;
+    public      static String      surcursal;
 
     public int getNdi_usuario() {
         return ndi_usuario;
@@ -37,6 +38,14 @@ public class Login_User {
 
     public void setNo_clave(String no_clave) {
         this.no_clave = no_clave;
+    }
+
+    public String getSurcursal() {
+        return surcursal;
+    }
+
+    public void setSurcursal(String surcursal) {
+        Login_User.surcursal = surcursal;
     }
     
 }
