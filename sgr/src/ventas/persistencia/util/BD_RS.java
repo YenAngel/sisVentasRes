@@ -44,6 +44,12 @@ public class BD_RS {
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
+     public static DefaultTableModel FormatearTablaDetalleP(){
+        DefaultTableModel dtm = new DefaultTableModel();
+        String [] cab = {"Descripción","Cantidad","Precio","SubTotal"};
+        dtm.setColumnIdentifiers(cab);
+        return dtm;
+    }
     public static DefaultComboBoxModel ListarCBOTrabajador(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
@@ -208,7 +214,7 @@ public class BD_RS {
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-               dlm.addElement(rs.getInt(1) + "_" + rs.getString(2));
+               dlm.addElement(rs.getInt(1) + "%" + rs.getString(2));
             }
             return dlm;
         } catch (SQLException ex) {
@@ -218,6 +224,7 @@ public class BD_RS {
     }
     public static DefaultListModel ListarSubCategoriasPed(int idDad, int catNivel){
         try {
+            //System.out.println("Datos a enviar: Categoría Padre: " + idDad + " Nivel: " + catNivel);
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ? and mae_categoria_plato.nu_nivel = ?"; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
@@ -225,8 +232,8 @@ public class BD_RS {
             ps.setInt(2, catNivel);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-               dlm.addElement(rs.getInt(1) + "_" + rs.getString(2));
-               System.out.println(rs.getInt(1) + "_" + rs.getString(2) + "DAD: "+ idDad + "nivel: " + catNivel);
+               dlm.addElement(rs.getInt(1) + "%" + rs.getString(2));
+               //System.out.println(rs.getInt(1) + "_" + rs.getString(2) + "DAD: "+ idDad + "nivel: " + catNivel);
             }
             return dlm;
         } catch (SQLException ex) {
@@ -260,6 +267,23 @@ public class BD_RS {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    public static DefaultListModel ListarMesasSelection(int piso){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            String sql = "select mes.nu_mesa, mes.qt_silla from mae_mesa mes inner join mae_piso pis on pis.nid_piso = mes.nid_piso where mes.nid_estado = 1 and pis.nu_piso = ? order by 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, piso);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                dlm.addElement(rs.getString(1) + "#" + rs.getInt(2));
+            }
+            return dlm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
     }
     public static boolean CTrabajador(Trabajador trabajador, int tipo){
         //sp_trabajador(in codT varchar(5),in dni varchar(20),in nombre varchar(50),in ape_pat varchar(50),in ape_mat varchar(50),in fe_ingreso date,in cargo int,in estado int,in fec_crecion date,in fec_mod date,in tipo int) 
@@ -666,7 +690,7 @@ public class BD_RS {
                 case 3: col = "nid_categoria3_plato"; break;
                 default: col = "nid_categoria1_plato"; break;
             }*/
-            System.out.println("Nivel: " + nivel + " cat: " + cat);
+           //System.out.println("Nivel: " + nivel + " cat: " + cat);
             String sql = "CALL usp_listarprod(?,?)";
             CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1, nivel);
@@ -674,9 +698,9 @@ public class BD_RS {
             ResultSet rs = cs.executeQuery();
             while(rs.next()){
                 
-                System.out.println("Resultado: ");
-                System.out.println(rs.getString(1));
-                dlm.addElement(rs.getString(1));
+               // System.out.println("Resultado: ");
+                //System.out.println(rs.getString(1));
+                dlm.addElement(rs.getString(1) + "%" + rs.getDouble(2));
             }
             return dlm;
         } catch (SQLException ex) {
@@ -690,4 +714,45 @@ public class BD_RS {
         
             
     }
+    public static DefaultListModel JoinPedido(int nPiso /*, nlocal*/){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
+            "on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso where mp.nu_piso = ?"; //and mp.nid_local = ?;";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, nPiso);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                 dlm.addElement(rs.getInt(1) + "#" + rs.getInt(2) + "$" + rs.getString(3));
+            }
+            return dlm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
+    
+    public static DefaultTableModel DetallePedido(int nPedido){
+        try {
+            DefaultTableModel dtm = FormatearTablaDetalleP();
+            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio) from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, nPedido);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getInt(2));
+                v.add(rs.getDouble(3));
+                v.add(rs.getDouble(4));
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }
