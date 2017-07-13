@@ -54,7 +54,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         
         int s = 0;
         initComponents();
-        BDUtil.conectar();
+        
         btnGroupM.setVisible(false);
         //System.out.println(jPanel11.getBackground().getRGB());
         setExtendedState(MAXIMIZED_BOTH);

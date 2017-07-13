@@ -84,7 +84,7 @@ public class Archivo extends javax.swing.JFrame {
                     String tempRoad="D:\\sisVentasRes\\sgr\\src\\recursos";                                
                     Path finalRoad=Paths.get(tempRoad);
                     Path finalOrgin=Paths.get(archivoseleccionado.getAbsolutePath());
-                    Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".png"), StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".jpg"), StandardCopyOption.REPLACE_EXISTING);
                     JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con exito.");
                     setVisible(false);
                 }else if (command.equals(JFileChooser.CANCEL_SELECTION)) {

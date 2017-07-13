@@ -1,10 +1,10 @@
 
 package ventas.presentacion.Plato_Local;
 
+import java.awt.Panel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
 import ventas.modelo.PlatoLocal;
@@ -17,11 +17,35 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     Login_User login_User=new Login_User();    
     DefaultTableModel dtm;
     public jpListarPlatoLocal() {
-        initComponents();
+        initComponents();        
         listarPlatoLocal();
         cboLocal.setModel(BDData.getLocal());
-        cboLocal.setSelectedIndex(-1);
+        cboLocal.setSelectedIndex(-1);                
     }
+    /*public void desingButton(JPanel lpl){        
+        int pHeight =lpl.getHeight();
+        int sizeOption = (int)pHeight/3;        
+        
+        btnEdit.setBounds(270, 59+sizeOption, 10, sizeOption);
+        btnNew.setBounds(270, 59+sizeOption*2, 10, sizeOption);
+        btnSearch.setBounds(270, 59+sizeOption*3, 10, sizeOption);
+        /*opNuevo.setVisible(true);
+        opNuevo.setLayout(null);
+        opNuevo.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEditar.setVisible(true);
+        
+        opEditar.setLayout(null);
+        opEditar.setBounds(0, sizeOption,80,sizeOption); 
+
+        opEliminar.setVisible(true);
+        opEliminar.setLayout(null);
+        opEliminar.setBounds(0, sizeOption*3,80,sizeOption); 
+
+        opBuscar.setVisible(true);
+        opBuscar.setLayout(null);
+        opBuscar.setBounds(0, sizeOption*4,80,sizeOption);
+    }*/
     private DefaultTableModel formatearTabla(){
         String[] theader={"Local","Plato","Precio","VIP"};
         dtm = new DefaultTableModel();
@@ -30,26 +54,10 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     }
     private void listarPlatoLocal(){
         tblPlatoLocal.setModel(BDData.listarLocalPlato(formatearTabla()));
-        ConfigTable(tblPlatoLocal);
-    }
-    private void ConfigTable(JTable jt){
-        
-        jt.setDefaultEditor(Object.class, null);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0; i < jt.getColumnCount(); i++){
-            jt.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-            
-        }
-        for(int i = 0; i < jt.getRowCount(); i++)
-            jt.setRowHeight(i, 45);
-        jt.setDefaultEditor(Object.class, null);
-        jt.getTableHeader().setReorderingAllowed(false);
-        jt.getColumnModel().getColumn(0).setMaxWidth(0);
-        jt.getColumnModel().getColumn(0).setMinWidth(0);
-        jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-    
+        for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+        tblPlatoLocal.setDefaultEditor(Object.class, null);
+        tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -186,10 +194,18 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtPlato.getText().equals("") || cboLocal.getSelectedIndex()==-1) {
             tblPlatoLocal.setModel(BDData.listarLocalPlato(formatearTabla()));
+            for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+            tblPlatoLocal.setDefaultEditor(Object.class, null);
+            tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
         }else{
             platoLocal.setNo_plato(txtPlato.getText());
             platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
             tblPlatoLocal.setModel(BDData.obtenerPlatoLocal(formatearTabla(), platoLocal));
+            for(int i = 0; i < tblPlatoLocal.getRowCount(); i++)
+            tblPlatoLocal.setRowHeight(i, 45);
+            tblPlatoLocal.setDefaultEditor(Object.class, null);
+            tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 

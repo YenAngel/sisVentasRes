@@ -1276,7 +1276,10 @@ public class frmPrincipal extends javax.swing.JFrame {
                 pnelActive = 2;
             }
         };
-        t.schedule(task, 1000);        
+        t.schedule(task, 1000);    
+        Mesas_Selection ms = new Mesas_Selection();
+        this.setVisible(false);
+        ms.setVisible(true);
     }//GEN-LAST:event_mpPedidoMouseClicked
     public static void Comp(JPanel j){
         try {

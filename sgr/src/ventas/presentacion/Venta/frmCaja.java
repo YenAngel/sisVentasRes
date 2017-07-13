@@ -1,8 +1,12 @@
 
 package ventas.presentacion.Venta;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ventas.persistencia.util.BDData;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.frmPrincipal;
@@ -14,12 +18,11 @@ public class frmCaja extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         getLocal();
-        dcActual.setDate(d);
-        cboCliente.setEnabled(false);
-        cboComprobante.setEnabled(false);
+        dcActual.setDate(d);        
+        cboEstado.setEnabled(false);
         cboLocal.setEnabled(false);
         dcActual.setEnabled(false);
-        
+        cboComprobante.setSelectedIndex(-1);
     }
     
     private void getLocal(){
@@ -29,6 +32,7 @@ public class frmCaja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgDocumento = new javax.swing.ButtonGroup();
         lblHome = new javax.swing.JLabel();
         cboLocal = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -38,8 +42,8 @@ public class frmCaja extends javax.swing.JFrame {
         cboComprobante = new javax.swing.JComboBox<>();
         dcActual = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtSerie = new javax.swing.JTextField();
+        txtCorrelativo = new javax.swing.JTextField();
         Codigo = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -53,11 +57,20 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         lblHome1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        cboEstado1 = new javax.swing.JComboBox<>();
+        cboEstado = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1200, 768));
-        setSize(new java.awt.Dimension(1200, 768));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setSize(new java.awt.Dimension(1025, 661));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/home.png"))); // NOI18N
@@ -71,61 +84,74 @@ public class frmCaja extends javax.swing.JFrame {
                 lblHomeMouseClicked(evt);
             }
         });
-        getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(1098, 11, -1, -1));
+        getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(951, 5, -1, -1));
 
         cboLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboLocalActionPerformed(evt);
             }
         });
-        getContentPane().add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 260, 50));
+        getContentPane().add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, 260, 50));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Local:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, -1, -1));
 
+        cboCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "DNI" }));
         cboCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(cboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 260, 50));
+        getContentPane().add(cboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 260, 50));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Cliente:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
+        jLabel7.setText("Nro Documento:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Estado:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, -1, -1));
 
+        cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Boleta", "Ticket" }));
+        cboComprobante.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboComprobanteItemStateChanged(evt);
+            }
+        });
         cboComprobante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboComprobanteActionPerformed(evt);
             }
         });
-        getContentPane().add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 260, 50));
+        getContentPane().add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 260, 50));
 
         dcActual.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(dcActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, 260, 50));
+        getContentPane().add(dcActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 260, 50));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Fecha de Emisión:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 260, 50));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, 260, 50));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
+
+        txtSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 260, 50));
+
+        txtCorrelativo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtCorrelativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 260, 50));
 
         Codigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Codigo.setText("Codigo:");
-        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
+        Codigo.setText("Tipo de Documento:");
+        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Serie:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Correlativo:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,22 +166,24 @@ public class frmCaja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 100, 360, 254));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, 260, 50));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 260, 50));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 260, 50));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 360, 290));
+
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 260, 50));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 260, 50));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 260, 50));
 
         Codigo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo1.setText("SubTotal:");
-        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, -1, -1));
+        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("IGV:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Total:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
         lblHome1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/notes.png"))); // NOI18N
@@ -173,14 +201,44 @@ public class frmCaja extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/get-money.png"))); // NOI18N
         jButton2.setPreferredSize(new java.awt.Dimension(100, 210));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 360, -1, 190));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, 190));
 
-        cboEstado1.addActionListener(new java.awt.event.ActionListener() {
+        cboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEstado1ActionPerformed(evt);
+                cboEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(cboEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 260, 50));
+        getContentPane().add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, 260, 50));
+
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 310));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 300, 310));
+
+        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 260, 50));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 260, 50));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Cliente:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("Documento:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+
+        jButton1.setText("Validar Usuario");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 730, -1, 50));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de la Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 300, 310));
+
+        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de Local", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 300, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,9 +265,66 @@ public class frmCaja extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboComprobanteActionPerformed
 
-    private void cboEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstado1ActionPerformed
+    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboEstado1ActionPerformed
+    }//GEN-LAST:event_cboEstadoActionPerformed
+
+    private void cboComprobanteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboComprobanteItemStateChanged
+       /* ResultSet rs;
+        String temp1,temp2;
+        if (cboComprobante.getSelectedIndex()!=-1) {
+            rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
+            try {
+                if (rs.next()) {
+                    temp1=rs.getString(1);
+                    temp2=rs.getString(2);                    
+                    txtSerie.setText(rs.getString(1));
+                    //txtCorrelativo.setText(rs.getString(2));
+                    if (!txtSerie.equals("")) {
+                        ResultSet rs1= BDData.getCorrelativo(temp1, temp2);
+                        if (rs1.next()) {
+                            int correlativo=Integer.parseInt(rs1.getString(1));
+                            int tempSerie=Integer.parseInt(temp1);
+                            int tempCorrelativo=Integer.parseInt(temp2);
+                            if (tempCorrelativo<=correlativo) {
+                                int value=correlativo+1;
+                                int len=temp2.length();
+                                int lenC=value+"".length();
+                                StringBuffer buffer= new StringBuffer();
+                                String[] cad=new String[len];
+                                String[] cad1=new String[len];
+                                for (int i = len-1; i >0 ; i--) {
+                                    cad[i]=0+"";
+                                    for (int j = 0; j < lenC; j++) {
+                                        cad1[j]=value+"".substring(j, 1);
+                                        cad[i]=cad1[j];
+                                    }
+                                }
+                                txtCorrelativo.setText(buffer.toString());
+                            }                            
+                        }else{
+                            int len=temp2.length();
+                            StringBuffer buffer= new StringBuffer();
+                            String[] cad=new String[len];
+                            for (int i = 0; i < len; i++) {
+                                if (len-1==i) {
+                                    cad[len-1]=1+"";
+                                    buffer.append(cad[i]);
+                                }else{
+                                    cad[i]=0+"";
+                                    buffer.append(cad[i]);
+                                }
+                            }                                                        
+                            txtCorrelativo.setText(buffer.toString());
+                        }
+                    }                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }    
+        ¿*/
+    }//GEN-LAST:event_cboComprobanteItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -247,30 +362,40 @@ public class frmCaja extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Codigo;
+    public static javax.swing.JLabel Codigo;
     private javax.swing.JLabel Codigo1;
+    private javax.swing.ButtonGroup bgDocumento;
     public static javax.swing.JComboBox<String> cboCliente;
     public static javax.swing.JComboBox<String> cboComprobante;
-    public static javax.swing.JComboBox<String> cboEstado1;
+    public static javax.swing.JComboBox<String> cboEstado;
     public static javax.swing.JComboBox<String> cboLocal;
     private com.toedter.calendar.JDateChooser dcActual;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    public static javax.swing.JLabel jLabel11;
+    public static javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    public javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblHome1;
+    public static javax.swing.JTextField txtCorrelativo;
+    public static javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables
 }

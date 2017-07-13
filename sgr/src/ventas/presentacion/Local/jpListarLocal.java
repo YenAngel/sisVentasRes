@@ -1,10 +1,7 @@
 
 package ventas.presentacion.Local;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Local;
 import ventas.modelo.Login_User;
@@ -23,7 +20,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     }
     
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa","Estado"};
+        String[] theader={"Id Local","Nombre del Local","Dirección","Empresa"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -31,26 +28,14 @@ public class jpListarLocal extends javax.swing.JPanel {
     
     private void listarLocal(){
         tblLocal.setModel(BDData.listarLocal(formatearTabla()));
-        ConfigTable(tblLocal);
-    }
-    private void ConfigTable(JTable jt){
-        
-        jt.setDefaultEditor(Object.class, null);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0; i < jt.getColumnCount(); i++){
-            jt.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-            
-        }
-        for(int i = 0; i < jt.getRowCount(); i++)
-            jt.setRowHeight(i, 45);
-        jt.setDefaultEditor(Object.class, null);
-        jt.getTableHeader().setReorderingAllowed(false);
-        jt.getColumnModel().getColumn(0).setMaxWidth(0);
-        jt.getColumnModel().getColumn(0).setMinWidth(0);
-        jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-    
+        for(int i = 0; i < tblLocal.getRowCount(); i++)
+            tblLocal.setRowHeight(i, 45);
+        tblLocal.setDefaultEditor(Object.class, null);
+        tblLocal.getTableHeader().setReorderingAllowed(false);
+        tblLocal.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getColumnModel().getColumn(0).setMinWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLocal.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -232,9 +217,8 @@ public class jpListarLocal extends javax.swing.JPanel {
         local.setNo_local((String)dtm.getValueAt(idx, 1));
         local.setTx_direccion((String)dtm.getValueAt(idx, 2));
         local.setNo_empresa((String)dtm.getValueAt(idx, 3));
-        local.setNo_estado((String)dtm.getValueAt(idx, 4));
         local.setNid_usuario_modi(usuario.getNdi_usuario());        
-        if(idx >= 0){            
+        if(idx != -1){            
             frmPrincipal.Comp(editarLocal);                                   
             editarLocal.cargarLocal(local);
         }else{
@@ -245,6 +229,7 @@ public class jpListarLocal extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblLocal.getSelectedRow();
         local.setNid_local(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));        
+        local.setNid_usuario_modi(usuario.getNdi_usuario());
         if (BDData.eliminarLocal(local)) {
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             listarLocal();

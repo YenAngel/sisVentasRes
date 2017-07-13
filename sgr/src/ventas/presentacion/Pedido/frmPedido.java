@@ -15,7 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -59,6 +61,7 @@ public class frmPedido extends javax.swing.JFrame {
         //dtm = FormatearTabla();
         dtm = BD_RS.DetallePedido(DPedido.nPedido);
         tblPedidos.setModel(dtm);
+        ConfigTBL(tblPedidos);
         LoadCategorias();
         //LoadTree();
     }
@@ -144,7 +147,7 @@ public class frmPedido extends javax.swing.JFrame {
         jPanel2.updateUI();
         jPanel2.repaint();
         if(dlm.size() == 0){
-            dlmFilter = BD_RS.ListarProds(nivel-1, nCatSign[nivel-2]);
+            dlmFilter = BD_RS.ListarProds(nivel-1, nCatSign[nivel-2], BD_RS.idlocal);
             if(dlmFilter.size() != 0)
             LoadComp();
         }else{
@@ -353,9 +356,10 @@ public class frmPedido extends javax.swing.JFrame {
                
                 jl.setText("");
                 //System.out.println("LOAD: " + dlmFilter.getElementAt(ls).toString());
-                jl.setName(dlmFilter.getElementAt(cont-1).toString());
-               String rec = dlmFilter.getElementAt(cont-1).toString().replace(' ','_');
-                //System.out.println("REC: " + rec);
+                String cad = dlmFilter.getElementAt(cont-1).toString();
+                jl.setName(cad);
+               String rec = cad.substring(0,cad.indexOf('%')).replace(' ','_');
+                System.out.println("REC: " + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
                
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -382,29 +386,37 @@ public class frmPedido extends javax.swing.JFrame {
         int in, f, valcant;
         String platName;
         valcant = 1;
-        
+        String costo;
         in = evt.getSource().toString().indexOf("/recursos/") + 10;
         f = evt.getSource().toString().indexOf("disabledIcon=") - 5;
         Vector v = new Vector();
         
         platName = evt.getComponent().getName().substring(0,evt.getComponent().getName().indexOf('%'));
+        costo = evt.getComponent().getName().substring(evt.getComponent().getName().indexOf('%')+1,evt.getComponent().getName().length());
         // Here, this site is for get price of dish
         if(tblPedidos.getModel().getRowCount() == 0){
                     v.add(platName);
                     v.add(valcant);
+                    v.add(costo);
+                    v.add(Double.parseDouble(costo)*(double)valcant);
                     dtm.addRow(v);
         }else{
             for(int i=0; i < tblPedidos.getModel().getRowCount(); i++){
                 if(tblPedidos.getValueAt(i, 0).equals(platName)){
                    valcant = Integer.parseInt(tblPedidos.getValueAt(i, 1).toString()) + 1;
+                   costo = tblPedidos.getValueAt(i, 2).toString();
                    tblPedidos.getModel().setValueAt(valcant, i, 1);
+                   tblPedidos.getModel().setValueAt(Double.parseDouble(costo)*(double)valcant, i, 3);
                    return;
                 }
             }
                     v.add(platName);
                     v.add(valcant);
+                    v.add(costo);
+                    v.add(Double.parseDouble(costo)*(double)valcant);
                     dtm.addRow(v);
         }
+        ConfigTBL(tblPedidos);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -435,6 +447,7 @@ public class frmPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        getContentPane().setLayout(null);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel16.setText("Lista de Pedidos:");
@@ -443,6 +456,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jLabel16MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(10, 44, 258, 38);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar.png"))); // NOI18N
@@ -452,12 +467,14 @@ public class frmPedido extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(100, 435, 124, 47);
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(828, 377));
+        jPanel1.setPreferredSize(new java.awt.Dimension(825, 377));
 
         jPanel2.setPreferredSize(new java.awt.Dimension(721, 367));
         jPanel2.setLayout(null);
@@ -498,11 +515,23 @@ public class frmPedido extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("        Platos  & Bebidas    ", jScrollPane1);
 
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(416, 26, 837, 434);
+
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stove1.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(10, 435, 65, 47);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/wine-bottle.png"))); // NOI18N
+        getContentPane().add(jButton3);
+        jButton3.setBounds(249, 435, 65, 47);
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -525,6 +554,9 @@ public class frmPedido extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblPedidos);
 
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 88, 304, 329);
+
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/payment.png"))); // NOI18N
         jButton4.setText("    PAGO");
@@ -533,10 +565,14 @@ public class frmPedido extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(1032, 517, 221, 71);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/recibo.png"))); // NOI18N
         jButton5.setText("  CUENTA");
+        getContentPane().add(jButton5);
+        jButton5.setBounds(1032, 619, 221, 71);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -544,6 +580,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(320, 112, 44, 44);
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clock.png"))); // NOI18N
@@ -553,6 +591,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(10, 517, 221, 71);
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cancel_food.png"))); // NOI18N
@@ -562,72 +602,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(25, 25, 25)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(52, 52, 52)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 801, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jButton8);
+        jButton8.setBounds(10, 619, 221, 71);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -641,17 +617,23 @@ public class frmPedido extends javax.swing.JFrame {
            DefaultTableModel modelo = (DefaultTableModel)tblPedidos.getModel(); 
             modelo.removeRow(tblPedidos.getSelectedRow()); 
        }
+       ConfigTBL(tblPedidos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
        if(tblPedidos.getSelectedRow() >=0){
            int indx = tblPedidos.getSelectedRow();
            int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
+           String costo = tblPedidos.getValueAt(indx, 2).toString();
            if (val != 1){
+               
                val -= 1;
+               
            }
-           tblPedidos.setValueAt(val, indx, 1);
+           tblPedidos.getModel().setValueAt(val, indx, 1);
+           tblPedidos.getModel().setValueAt(Double.parseDouble(costo)*(double)val, indx, 3);
        }
+        ConfigTBL(tblPedidos);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -685,6 +667,13 @@ public class frmPedido extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        for(int i = 0; i < tblPedidos.getColumnCount(); i++)
+            System.out.println(tblPedidos.getTableHeader().getColumnModel().getColumn(i).getWidth());
+            
+            
+    }//GEN-LAST:event_jButton2ActionPerformed
     private int FoundCount(String cad, char car){
         int count = 0;
         for (int i = 0; i < cad.length(); i++){
@@ -692,6 +681,30 @@ public class frmPedido extends javax.swing.JFrame {
                 count+=1;
         }
         return count;
+    }
+    private void ConfigTBL(JTable jt){
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        for(int i = 0; i < jt.getColumnCount(); i++){
+            jt.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            
+        }
+        for(int i = 0; i < jt.getRowCount(); i++)
+            jt.setRowHeight(i, 45);
+        jt.setDefaultEditor(Object.class, null);
+        jt.getTableHeader().setReorderingAllowed(false);
+        jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(149);
+        jt.getTableHeader().getColumnModel().getColumn(1).setMinWidth(57);
+        jt.getTableHeader().getColumnModel().getColumn(2).setMinWidth(44);
+        jt.getTableHeader().getColumnModel().getColumn(3).setMinWidth(51);
+        jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(149);
+        jt.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(57);
+        jt.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(44);
+        jt.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(51);
+        /*jt.getColumnModel().getColumn(0).setMaxWidth(0);
+        jt.getColumnModel().getColumn(0).setMinWidth(0);
+        jt.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        jt.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);*/
     }
     /**
      * @param args the command line arguments

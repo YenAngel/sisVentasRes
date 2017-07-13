@@ -163,16 +163,16 @@ public class Usuarios_Editar extends javax.swing.JPanel {
         jLabel22.setBackground(new java.awt.Color(153, 153, 153));
         jLabel22.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("Datos del Usuario:");
+        jLabel22.setText("Registro");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(jLabel22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,10 +181,10 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 81, -1, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 81, 150, -1));
 
         jLabel20.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel20.setText("Modificar Usuario");
+        jLabel20.setText("MODIFICAR USUARIO");
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 11, -1, 38));
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));

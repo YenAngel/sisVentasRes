@@ -1,9 +1,13 @@
 
 package ventas.presentacion.Plato;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import ventas.modelo.Categoria;
 import ventas.modelo.Login_User;
 import ventas.modelo.Plato;
 import ventas.persistencia.util.BDData;
@@ -12,6 +16,7 @@ import ventas.presentacion.frmPrincipal;
 
 public class jpEditarPlato extends javax.swing.JPanel {
     
+    Categoria categoria =new Categoria();
     Plato plato=new Plato();
     public jpEditarPlato() {
         initComponents();
@@ -19,62 +24,27 @@ public class jpEditarPlato extends javax.swing.JPanel {
         txtCodigo.setEnabled(false);
     }
     private void addItems(){
-        cboCategoria1.setModel(BDData.getCategories());
-        cboCategoria2.setModel(BDData.getCategories());
-        cboCategoria3.setModel(BDData.getCategories());
+        cboCategoria1.setModel(BDData.getCategoria1());        
     }
     public static void cargarPlato(Plato p){
         txtCodigo.setText(p.getNid_plato()+"");
         txtPlato.setText(p.getNo_plato());
         cboCategoria1.setSelectedItem(p.getNo_categoria1_plato());        
         cboCategoria2.setSelectedItem(p.getNo_categoria2_plato());        
-        cboCategoria3.setSelectedItem(p.getNo_categoria3_plato());        
-        lblEstado.setText(p.getNo_estado());
-        initIcon(lblEstado.getText().toLowerCase());
-    }         
-    private static void initIcon(String iconic){
-        String path = "D:/sisVentasRes/sgr/src/recursos/"+iconic+".png";
-            
-        ImageIcon imageIcon = new ImageIcon(path);
-        Icon icon= new ImageIcon(imageIcon.getImage());
-        lblEstado.setIcon(icon);
-        lblEstado.setText(iconic.substring(0,1).toUpperCase()+iconic.substring(0+1,iconic.length()));
-        lblEstado.repaint();        
-    }
-    private void icon(String iconic){
-        if (iconic.equals("Activo")) {            
-            String path = "D:/sisVentasRes/sgr/src/recursos/error.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Inactivo");
-            this.repaint();
-        }else{            
-            String path = "D:/sisVentasRes/sgr/src/recursos/activo.png";
-            //URL url = this.getClass().getResource(path);
-            ImageIcon imageIcon = new ImageIcon(path);
-            Icon icon= new ImageIcon(imageIcon.getImage());
-            lblEstado.setIcon(icon);
-            lblEstado.setText("Activo");
-            this.repaint();
-        }
-    }
+        cboCategoria3.setSelectedItem(p.getNo_categoria3_plato());                
+    }             
     private void cleanControls(){
         txtCodigo.setText("");
         txtPlato.setText("");
         cboCategoria1.setSelectedIndex(-1);
         cboCategoria2.setSelectedIndex(-1);
         cboCategoria3.setSelectedIndex(-1);
-        lblEstado.setVisible(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtPlato = new javax.swing.JTextField();
         cboCategoria1 = new javax.swing.JComboBox<>();
@@ -82,187 +52,121 @@ public class jpEditarPlato extends javax.swing.JPanel {
         cboCategoria2 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         cboCategoria3 = new javax.swing.JComboBox<>();
-        lblEstado = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        opGuardar = new javax.swing.JLabel();
+        opHome = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1025, 661));
+        setMinimumSize(new java.awt.Dimension(1025, 661));
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Categoria 3:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 357, -1, -1));
 
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre del Plato:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 152, -1, -1));
 
+        txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPlatoKeyTyped(evt);
             }
         });
+        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 136, 260, 50));
 
-        jLabel4.setText("Categoria 1:");
-
-        jLabel6.setText("Categoria 2:");
-
-        lblEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEstadoMouseClicked(evt);
+        cboCategoria1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboCategoria1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboCategoria1ItemStateChanged(evt);
             }
         });
+        add(cboCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 204, 260, 50));
 
-        jLabel9.setText("Estado:");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Categoria 1:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 221, -1, -1));
 
+        cboCategoria2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboCategoria2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboCategoria2ItemStateChanged(evt);
+            }
+        });
+        cboCategoria2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCategoria2ActionPerformed(evt);
+            }
+        });
+        add(cboCategoria2, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 272, 260, 50));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Categoria 2:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 289, -1, -1));
+
+        cboCategoria3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(cboCategoria3, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 340, 260, 50));
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 68, 260, 50));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Id Plato");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 84, -1, -1));
 
+        btnCargar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCargar.setText("Cargar...");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
             }
         });
+        add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 408, 260, 48));
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Elegir imagen:");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 424, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cboCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboCategoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboCategoria3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCategoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCategoria3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(cboCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
-        );
-    }// </editor-fold>//GEN-END:initComponents
-    /*public void savePlato(){
-        
-    }*/
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Login_User login_User=new Login_User();
-
-        if (!txtPlato.getText().equals("") && cboCategoria1.getSelectedIndex()!=-1 || cboCategoria2.getSelectedIndex()!=-1 || cboCategoria3.getSelectedIndex()!=-1) {
-            if (cboCategoria1.getSelectedIndex()==-1)
-            plato.setNo_categoria1_plato("N/B");
-            else
-            plato.setNo_categoria1_plato(cboCategoria1.getSelectedItem().toString());
-
-            if (cboCategoria2.getSelectedIndex()==-1)
-            plato.setNo_categoria2_plato("N/B");
-            else
-            plato.setNo_categoria2_plato(cboCategoria2.getSelectedItem().toString());
-
-            if (cboCategoria3.getSelectedIndex()==-1)
-            plato.setNo_categoria3_plato("N/B");
-            else
-            plato.setNo_categoria3_plato(cboCategoria3.getSelectedItem().toString());
-
-            plato.setNid_plato(Integer.parseInt(txtCodigo.getText()));
-            plato.setNo_plato(txtPlato.getText());
-            plato.setNo_estado(lblEstado.getText());
-            plato.setNid_usuario_modi(login_User.getNdi_usuario());
-            if (BDData.editarPlato(plato)) {
-                JOptionPane.showMessageDialog(null, "Registro Actualizado");
-                cleanControls();
-                jpListarPlato listarPlato=new jpListarPlato();
-                frmPrincipal.Comp(listarPlato);
+        opGuardar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        opGuardar.setText("Guardar");
+        opGuardar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opGuardar.setMaximumSize(new java.awt.Dimension(80, 331));
+        opGuardar.setMinimumSize(new java.awt.Dimension(80, 331));
+        opGuardar.setPreferredSize(new java.awt.Dimension(80, 331));
+        opGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opGuardarMouseClicked(evt);
             }
-        }else
-            JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
+        });
+        add(opGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, -1));
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarPlato listarPlato=new jpListarPlato();        
-        frmPrincipal.Comp(listarPlato);        
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void lblEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEstadoMouseClicked
-        icon(lblEstado.getText());
-    }//GEN-LAST:event_lblEstadoMouseClicked
+        opHome.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        opHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/home.png"))); // NOI18N
+        opHome.setText("Home");
+        opHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
+        opHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        opHome.setMaximumSize(new java.awt.Dimension(80, 331));
+        opHome.setMinimumSize(new java.awt.Dimension(80, 331));
+        opHome.setName(""); // NOI18N
+        opHome.setPreferredSize(new java.awt.Dimension(80, 331));
+        opHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        opHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opHomeMouseClicked(evt);
+            }
+        });
+        add(opHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, -1, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
         char c=evt.getKeyChar();         
@@ -282,11 +186,80 @@ public class jpEditarPlato extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCargarActionPerformed
 
+    private void opGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opGuardarMouseClicked
+        //        buttonsColor();
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                Login_User login_User=new Login_User();
+
+                if (!txtPlato.getText().equals("") && cboCategoria1.getSelectedIndex()!=-1 || cboCategoria2.getSelectedIndex()!=-1 || cboCategoria3.getSelectedIndex()!=-1) {
+                    if (cboCategoria1.getSelectedIndex()==-1)
+                    plato.setNo_categoria1_plato("N/B");
+                    else
+                    plato.setNo_categoria1_plato(cboCategoria1.getSelectedItem().toString());
+
+                    if (cboCategoria2.getSelectedIndex()==-1)
+                    plato.setNo_categoria2_plato("N/B");
+                    else
+                    plato.setNo_categoria2_plato(cboCategoria2.getSelectedItem().toString());
+
+                    if (cboCategoria3.getSelectedIndex()==-1)
+                    plato.setNo_categoria3_plato("N/B");
+                    else
+                    plato.setNo_categoria3_plato(cboCategoria3.getSelectedItem().toString());
+
+                    plato.setNid_plato(Integer.parseInt(txtCodigo.getText()));
+                    plato.setNo_plato(txtPlato.getText());
+                    plato.setNid_usuario_modi(login_User.getNdi_usuario());
+                    if (BDData.editarPlato(plato)) {
+                        JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                        cleanControls();
+                        jpListarPlato listarPlato=new jpListarPlato();
+                        frmPrincipal.Comp(listarPlato);
+                    }
+                }else
+                    JOptionPane.showMessageDialog(null, "Completar los campos");
+            }
+        };
+        t.schedule(task, 1000);
+    }//GEN-LAST:event_opGuardarMouseClicked
+
+    private void opHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opHomeMouseClicked
+        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
+        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
+        Timer t= new Timer();
+        TimerTask task =new TimerTask() {
+            @Override
+            public void run() {
+                jpListarPlato listarPlato=new jpListarPlato();
+                frmPrincipal.Comp(listarPlato);
+            }
+        };
+        t.schedule(task, 1000);
+    }//GEN-LAST:event_opHomeMouseClicked
+
+    private void cboCategoria2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria2ItemStateChanged
+        if (cboCategoria2.getSelectedIndex()!=-1) {
+            cboCategoria3.setModel(BDData.getCategoria3(cboCategoria2.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_cboCategoria2ItemStateChanged
+
+    private void cboCategoria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria1ItemStateChanged
+        if (cboCategoria1.getSelectedIndex()!=-1) {
+            cboCategoria2.setModel(BDData.getCategoria2(cboCategoria1.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_cboCategoria1ItemStateChanged
+
+    private void cboCategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoria2ActionPerformed
+        
+    }//GEN-LAST:event_cboCategoria2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboCategoria1;
     public static javax.swing.JComboBox<String> cboCategoria2;
     public static javax.swing.JComboBox<String> cboCategoria3;
@@ -296,8 +269,8 @@ public class jpEditarPlato extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    public static javax.swing.JLabel lblEstado;
+    public javax.swing.JLabel opGuardar;
+    public javax.swing.JLabel opHome;
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables
