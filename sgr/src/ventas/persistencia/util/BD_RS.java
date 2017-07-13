@@ -204,7 +204,7 @@ public class BD_RS {
     public static DefaultListModel ListarCategoriasPed(){
         try {
             DefaultListModel dlm = new DefaultListModel();
-            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where nid_padre_categoria is null"; //Where t.nid_estado = 1
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where nu_nivel = 1"; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -216,15 +216,17 @@ public class BD_RS {
             return null;
         }
     }
-    public static DefaultListModel ListarSubCategoriasPed(int idDad){
+    public static DefaultListModel ListarSubCategoriasPed(int idDad, int catNivel){
         try {
             DefaultListModel dlm = new DefaultListModel();
-            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ?"; //Where t.nid_estado = 1
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ? and mae_categoria_plato.nu_nivel = ?"; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idDad);
+            ps.setInt(2, catNivel);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                dlm.addElement(rs.getInt(1) + "_" + rs.getString(2));
+               System.out.println(rs.getInt(1) + "_" + rs.getString(2) + "DAD: "+ idDad + "nivel: " + catNivel);
             }
             return dlm;
         } catch (SQLException ex) {
@@ -653,5 +655,39 @@ public class BD_RS {
             return null;
         }
         
+    }
+    public static DefaultListModel ListarProds(int nivel, int cat){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            /*String col = "nid_categoria1_plato";
+            switch(nivel){
+                case 1: col = "nid_categoria1_plato"; break;
+                case 2: col = "nid_categoria2_plato"; break;
+                case 3: col = "nid_categoria3_plato"; break;
+                default: col = "nid_categoria1_plato"; break;
+            }*/
+            System.out.println("Nivel: " + nivel + " cat: " + cat);
+            String sql = "CALL usp_listarprod(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1, nivel);
+            cs.setInt(2,cat);
+            ResultSet rs = cs.executeQuery();
+            while(rs.next()){
+                
+                System.out.println("Resultado: ");
+                System.out.println(rs.getString(1));
+                dlm.addElement(rs.getString(1));
+            }
+            return dlm;
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (Exception e){
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+        
+            
     }
 }
