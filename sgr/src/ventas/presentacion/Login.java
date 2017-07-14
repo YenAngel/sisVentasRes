@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
@@ -23,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();        
         cboSucursal.setModel(BD_RS.ListarCBOLocal());
+        ((JLabel)cboSucursal.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         init();
         setLocationRelativeTo(null);
         

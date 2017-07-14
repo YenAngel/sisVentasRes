@@ -290,9 +290,10 @@ public class BD_RS {
     public static DefaultListModel ListarMesasSelection(int piso){
         try {
             DefaultListModel dlm = new DefaultListModel();
-            String sql = "select mes.nu_mesa, mes.qt_silla from mae_mesa mes inner join mae_piso pis on pis.nid_piso = mes.nid_piso where mes.nid_estado = 1 and pis.nu_piso = ? order by 1";
+            String sql = "select mes.nu_mesa, mes.qt_silla from mae_mesa mes inner join mae_piso pis on pis.nid_piso = mes.nid_piso where mes.nid_estado = 1 and pis.nu_piso = ? and pis.nid_local = ? order by 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, piso);
+            ps.setInt(2, idlocal);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 dlm.addElement(rs.getString(1) + "#" + rs.getInt(2));
@@ -698,9 +699,11 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOPisos(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "SELECT nu_piso from mae_piso";
+            String sql = "SELECT nu_piso from mae_piso where nid_estado = 1 and nid_local = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idlocal);
             ResultSet rs = ps.executeQuery();
+            
             while(rs.next()){
                 CBOT.addElement(rs.getInt(1));
             }
@@ -752,9 +755,10 @@ public class BD_RS {
         try {
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
-            "on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso where mp.nu_piso = ?"; //and mp.nid_local = ?;";
+            "on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso where mp.nu_piso = ? and mp.nid_local = ?"; //and mp.nid_local = ?;";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPiso);
+            ps.setInt(2, idlocal);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                  dlm.addElement(rs.getInt(1) + "#" + rs.getInt(2) + "$" + rs.getString(3));
@@ -788,5 +792,24 @@ public class BD_RS {
             return null;
         }
     }
-    
+    public static DefaultComboBoxModel ListarCBOMozo(){
+        DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
+        try {
+            String sql = "select mtr.nu_documento from mae_trabajador mtr where mtr.nid_cargo = 3 and mtr.nid_estado = 1;";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                CBOT.addElement(rs.getInt(1));
+            }
+            
+            return CBOT;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+            return null;
+        }
+        
+    }
 }

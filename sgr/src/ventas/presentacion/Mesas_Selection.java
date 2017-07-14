@@ -185,6 +185,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     imgPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/listped.png")));
                     imgPed.setBounds(70, 116, 24, 24);
                     jlIMG.setName("#" + nmesa + "$" + numberPedido);
+                    
                     jc.setName("#" + nmesa + "$" + numberPedido);
                     jc.setVisible(false);
                     jp.add(jMozo);
@@ -193,6 +194,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     jp.add(jNPed);
                 }else{
                     jp.setBackground(new Color(18, 133, 43));
+                    jc.setBackground(new Color(18, 133, 43));
                     jlIMG.setName("#" + nmesa + "$");
                     jc.setName("#" + nmesa + "$");
                     jc.setVisible(true);
@@ -280,6 +282,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     jc.setVisible(false);
                 }else{
                     jp.setBackground(new Color(18, 133, 43));
+                    jc.setBackground(new Color(18, 133, 43));
                     jlIMG.setName("#" + nmesa+"$");
                     jc.setName("#" +nmesa + "$");
                     jc.setVisible(true);
