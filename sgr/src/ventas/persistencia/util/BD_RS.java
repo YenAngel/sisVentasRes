@@ -229,7 +229,7 @@ public class BD_RS {
     public static DefaultListModel ListarCategoriasPed(){
         try {
             DefaultListModel dlm = new DefaultListModel();
-            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where nu_nivel = 1"; //Where t.nid_estado = 1
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where nu_nivel = 1 and nid_estado = 1"; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -245,7 +245,7 @@ public class BD_RS {
         try {
             //System.out.println("Datos a enviar: Categoría Padre: " + idDad + " Nivel: " + catNivel);
             DefaultListModel dlm = new DefaultListModel();
-            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ? and mae_categoria_plato.nu_nivel = ?"; //Where t.nid_estado = 1
+            String sql = "select nid_categoria_plato,no_categoria_plato from mae_categoria_plato where mae_categoria_plato.nid_padre_categoria = ? and mae_categoria_plato.nu_nivel = ? and mae_categoria_plato.nid_estado = 1"; //Where t.nid_estado = 1
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idDad);
             ps.setInt(2, catNivel);
