@@ -35,13 +35,13 @@ public class BD_RS {
     }
     public static DefaultTableModel FormatearTablaCargos(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Id","Detalle del Cargo","Área","Fecha de Creación","Estado"};
+        String [] cab = {"Id","Detalle del Cargo","Área","Fecha de Creación"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
     public static DefaultTableModel FormatearTablaAreas(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Id","Área","Fecha de Creación","Estado"};
+        String [] cab = {"Id","Área","Fecha de Creación"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -162,7 +162,7 @@ public class BD_RS {
     public static DefaultTableModel ListarAreas(){
         try {
             DefaultTableModel dtm = FormatearTablaAreas();
-            String sql = "SELECT A.NID_AREA, A.NO_AREA,A.fe_creacion, E.NO_ESTADO  FROM mae_area A INNER JOIN mae_estado E ON E.nid_estado = A.nid_estado";
+            String sql = "SELECT a.nid_area, a.no_area,a.fe_creacion FROM mae_area a INNER JOIN mae_estado e ON e.nid_estado = a.nid_estado where a.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -170,7 +170,7 @@ public class BD_RS {
                 v.add(rs.getInt(1));
                 v.add(rs.getString(2));
                 v.add(rs.getDate(3));
-                v.add(rs.getString(4));
+                
                 dtm.addRow(v);
             }
             return dtm;
@@ -182,8 +182,8 @@ public class BD_RS {
     public static DefaultTableModel ListarCargos(){
         try {
             DefaultTableModel dtm = FormatearTablaCargos();
-            String sql = "SELECT C.NID_CARGO, C.NO_CARGO, A.NO_AREA,A.FE_CREACION, E.NO_ESTADO FROM mae_cargo C INNER JOIN mae_area A ON A.nid_area = C.nid_area " +
-            "INNER JOIN mae_estado E ON E.nid_estado = C.nid_estado";
+            String sql = "SELECT c.nid_cargo, c.no_cargo, a.no_area,a.fe_creacion FROM mae_cargo c INNER JOIN mae_area a ON a.nid_area = c.nid_area " +
+            " INNER JOIN mae_estado e ON e.nid_estado = c.nid_estado where c.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -192,7 +192,7 @@ public class BD_RS {
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getDate(4));
-                v.add(rs.getString(5));
+                
                 dtm.addRow(v);
             }
             return dtm;
@@ -540,7 +540,7 @@ public class BD_RS {
     }
      public static boolean ExistUser(String user){
         try {
-            String sql = "SELECT 1 FROM mae_usuario where no_usuario = ?";
+            String sql = "SELECT 1 FROM mae_usuario where no_usuario = ? and nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setString(1, user);
             ResultSet rs = ps.executeQuery();
@@ -555,7 +555,7 @@ public class BD_RS {
     }
      public static boolean ExistArea(String area){
         try {
-            String sql = "SELECT 1 FROM mae_area where no_area = ?";
+            String sql = "SELECT 1 FROM mae_area where no_area = ? and nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setString(1, area);
             ResultSet rs = ps.executeQuery();
@@ -569,7 +569,7 @@ public class BD_RS {
         }
     }public static boolean ExistCargo(String cargo){
         try {
-            String sql = "SELECT 1 FROM mae_cargo where no_cargo = ?";
+            String sql = "SELECT 1 FROM mae_cargo where no_cargo = ? and nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setString(1, cargo);
             ResultSet rs = ps.executeQuery();
@@ -661,7 +661,7 @@ public class BD_RS {
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getDate(4));
-                v.add(rs.getString(5));
+                
                 dtm.addRow(v);
             }
             return dtm;
@@ -685,7 +685,7 @@ public class BD_RS {
                 v.add(rs.getInt(1));
                 v.add(rs.getString(2));
                 v.add(rs.getDate(3));
-                v.add(rs.getString(4));
+                
                 dtm.addRow(v);
             }
             return dtm;

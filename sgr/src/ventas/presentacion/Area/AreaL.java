@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import ventas.modelo.Area;
 import ventas.persistencia.util.BD_RS;
+import ventas.presentacion.frmPrincipal;
 
 /**
  *
@@ -32,10 +33,10 @@ public class AreaL extends javax.swing.JPanel {
         //cboEstado.setVisible(false);
         //lblEstado.setVisible(false);
         
-        jPanel1.setVisible(false);
-        jPanel4.setVisible(false);
-        jPanel2.setVisible(true);
-        jPanel3.setVisible(true);
+        //jPanel1.setVisible(false);
+        //jPanel4.setVisible(false);
+        //jPanel2.setVisible(true);
+        //jPanel3.setVisible(true);
         LoadTable();
     }
 
@@ -52,21 +53,22 @@ public class AreaL extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        txtName_Area = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAreas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
         txtFilter = new javax.swing.JTextField();
+        cboOption = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        lblTReg = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -79,11 +81,11 @@ public class AreaL extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, 180, 80));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 180, 70));
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("Mantenimiento Área");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 38));
+        jLabel16.setText("MANTENIMIENTO ÁREA");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, 38));
 
         btnEditar.setBackground(new java.awt.Color(153, 153, 255));
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -94,7 +96,7 @@ public class AreaL extends javax.swing.JPanel {
                 btnEditarActionPerformed(evt);
             }
         });
-        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 180, 80));
+        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 180, 70));
 
         btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -105,42 +107,7 @@ public class AreaL extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 180, 80));
-
-        jPanel1.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        txtName_Area.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        txtName_Area.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtName_Area.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel17.setText("NOMBRE:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel17)
-                .addGap(50, 50, 50)
-                .addComponent(txtName_Area, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtName_Area, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 670, 160));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 180, 70));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -158,7 +125,7 @@ public class AreaL extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblAreas);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 970, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 327, 964, 290));
 
         jPanel2.setBackground(new java.awt.Color(248, 248, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -182,35 +149,54 @@ public class AreaL extends javax.swing.JPanel {
             }
         });
 
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel18.setText("NOMBRE:");
+        cboOption.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre" }));
+        cboOption.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboOptionItemStateChanged(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel17.setText("Opción:");
+
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel18.setText("Palabra Clave:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 610, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 80, 771, 105));
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -237,34 +223,7 @@ public class AreaL extends javax.swing.JPanel {
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 81, -1, -1));
-
-        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
-        jPanel4.setForeground(new java.awt.Color(204, 204, 204));
-
-        jLabel22.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("Datos del Área:");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 81, -1, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 41, -1, -1));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -273,16 +232,16 @@ public class AreaL extends javax.swing.JPanel {
         jLabel20.setBackground(new java.awt.Color(153, 153, 153));
         jLabel20.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel20.setText("Registros:");
+        jLabel20.setText("Listado");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jLabel20)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +250,57 @@ public class AreaL extends javax.swing.JPanel {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 301, -1, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 288, 114, 39));
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel4.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel21.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel21.setText("Total de registros:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 617, 180, 30));
+
+        jPanel6.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
+
+        lblTReg.setBackground(new java.awt.Color(153, 153, 153));
+        lblTReg.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblTReg.setForeground(new java.awt.Color(51, 51, 51));
+        lblTReg.setText("#Num");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblTReg)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTReg, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        );
+
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 617, 101, 30));
     }// </editor-fold>//GEN-END:initComponents
     private void LoadTable(){
         tblAreas.setModel(BD_RS.ListarAreas());
@@ -299,6 +308,7 @@ public class AreaL extends javax.swing.JPanel {
     
     }
     private void ConfigTbl(){
+        lblTReg.setText(tblAreas.getRowCount()+"");
         tblAreas.setDefaultEditor(Object.class, null);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment( JLabel.CENTER );
@@ -315,17 +325,9 @@ public class AreaL extends javax.swing.JPanel {
         tblAreas.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         tblAreas.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
-    private boolean EC(){
-        if(BD_RS.ExistArea(txtName_Area.getText())){
-               JOptionPane.showMessageDialog(this, "Ya existe el Área " + txtName_Area.getText() ,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
-               txtName_Area.setText("");
-               txtName_Area.requestFocus();
-               return true; 
-            }
-         return false;
-    }
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       if(btnSave.getText().trim().equals("Nuevo")){
+       /*if(btnSave.getText().trim().equals("Nuevo")){
            
            jPanel1.setVisible(true);
            jPanel4.setVisible(true);
@@ -389,12 +391,14 @@ public class AreaL extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(null, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
             }
-       }
+       }*/
+       Area_new an = new Area_new();
+       frmPrincipal.Comp(an);
     }//GEN-LAST:event_btnSaveActionPerformed
     private void Mod(){
         int i = tblAreas.getSelectedRow();
         if(i >= 0){
-            if(btnSave.getText().trim().equals("Nuevo")){
+           /* if(btnSave.getText().trim().equals("Nuevo")){
                 jPanel1.setVisible(true);
                 jPanel4.setVisible(true);
                 jPanel2.setVisible(false);
@@ -404,37 +408,39 @@ public class AreaL extends javax.swing.JPanel {
                 btnEliminar.setIcon(new ImageIcon(getClass().getResource("/recursos/Undo.png")));
                 btnSave.setText("Guardar");
                 btnSave.setIcon(new ImageIcon(getClass().getResource("/recursos/save.png")));  }
-                Ed = true;
+                Ed = true;*/
                 Area area = new Area();
                 area.setNombre(tblAreas.getValueAt(i, 1).toString());
                 //cboEstado.setVisible(true);
                 //lblEstado.setVisible(true);
-                idTbl = Integer.parseInt(tblAreas.getValueAt(i, 0).toString());
-                txtName_Area.setText(tblAreas.getValueAt(i, 1).toString());
+                area.setId(Integer.parseInt(tblAreas.getValueAt(i, 0).toString()));
+                //txtName_Area.setText(tblAreas.getValueAt(i, 1).toString());
                 //cboEstado.setSelectedIndex(BD_RS.GetIdEstado(tblAreas.getValueAt(i, 3).toString())-1);
+                AreaEdit ae = new AreaEdit();
+                frmPrincipal.Comp(ae);
        }else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void Del(){
-        if(btnEliminar.getText().trim().equals("Eliminar")){
+        //if(btnEliminar.getText().trim().equals("Eliminar")){
                 int i = tblAreas.getSelectedRow();
                if(i >= 0){
-                   if(tblAreas.getValueAt(i, 3).toString().contains("Inactivo")){
+                   /*if(tblAreas.getValueAt(i, 3).toString().contains("Inactivo")){
                         JOptionPane.showMessageDialog(null, "El Área ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    }else{
-                        int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar el Área " + tblAreas.getValueAt(i, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                    }else{*/
+                        int r = JOptionPane.showOptionDialog(null,"¿Está seguro de eliminar el Área " + tblAreas.getValueAt(i, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                         if(r == 0){
-                                       Ed = false;
+                                       //Ed = false;
                                        //cboEstado.setVisible(false);
                                        //lblEstado.setVisible(false);
-                                       txtName_Area.setText("");
+                                       //txtName_Area.setText("");
 
                                        Area area = new Area();
                                        area.setId(Integer.parseInt(tblAreas.getValueAt(i, 0).toString()));
                                        area.setEstado(2);
                               if(BD_RS.CArea(area, 3)) {
-                                  JOptionPane.showMessageDialog(null, "Registro Deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                                  JOptionPane.showMessageDialog(null, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                                   LoadTable();
                               }else{
                                   JOptionPane.showMessageDialog(null, "Ocurrio un error al deshabilitar el Área","Mensaje",JOptionPane.WARNING_MESSAGE);
@@ -442,23 +448,9 @@ public class AreaL extends javax.swing.JPanel {
                         }
                    }
 
-              }else{
+              else{
                    JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
               }
-        }else{
-                        Ed = false;
-                        txtName_Area.setText("");
-                        txtName_Area.requestFocus();
-                        btnEditar.setVisible(true);
-                        btnEliminar.setText("  Eliminar  ");
-                        btnEliminar.setIcon(new ImageIcon(getClass().getResource("/recursos/delete.png")));
-                        btnSave.setText("   Nuevo     ");
-                        btnSave.setIcon(new ImageIcon(getClass().getResource("/recursos/new.png")));
-                        jPanel1.setVisible(false);
-                        jPanel4.setVisible(false);
-                        jPanel2.setVisible(true);
-                        jPanel3.setVisible(true);
-        } 
     }
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         
@@ -486,26 +478,32 @@ public class AreaL extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void cboOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboOptionItemStateChanged
+       
+
+    }//GEN-LAST:event_cboOptionItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cboOption;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTReg;
     private javax.swing.JTable tblAreas;
     private javax.swing.JTextField txtFilter;
-    private javax.swing.JTextField txtName_Area;
     // End of variables declaration//GEN-END:variables
 }
