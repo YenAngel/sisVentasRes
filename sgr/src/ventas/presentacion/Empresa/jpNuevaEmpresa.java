@@ -59,7 +59,6 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         jLabel1.setText("Razón Social:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +67,6 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         });
         add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 140, 60));
 
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -23,6 +23,11 @@ public class Mant_Trabajador extends javax.swing.JPanel {
      * Creates new form Mant_Alumno
      */
     public Mant_Trabajador() {
+        //initComponents();
+        removeAll();
+        updateUI();
+        repaint();
+        
         initComponents();
         LoadTBL();
         cboOption.removeAllItems();
@@ -56,13 +61,17 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTrabajador = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblTReg = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel15.setText("Mantenimiento Trabajador");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 11, -1, 38));
+        jLabel15.setText("MANTENIMIENTO TRABAJADOR");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 0, 360, 38));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
         btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -73,7 +82,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 55, 180, 80));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 180, 70));
 
         btnModificar.setBackground(new java.awt.Color(153, 153, 255));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -84,7 +93,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 btnModificarActionPerformed(evt);
             }
         });
-        add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 144, 180, 80));
+        add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 180, 70));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -95,7 +104,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 233, 180, 80));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 180, 70));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -103,6 +112,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel17.setText("Opción:");
 
+        cboOption.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cboOption.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboOptionItemStateChanged(evt);
@@ -139,14 +149,14 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,10 +172,10 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 117, -1, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 80, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -174,7 +184,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         jLabel16.setBackground(new java.awt.Color(153, 153, 153));
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel16.setText("Búsqueda:");
+        jLabel16.setText("Búsqueda");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,7 +202,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 78, -1, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 41, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -201,16 +211,16 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         jLabel19.setBackground(new java.awt.Color(153, 153, 153));
         jLabel19.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel19.setText("Registros:");
+        jLabel19.setText("Listado");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(27, 27, 27)
+                .addComponent(jLabel19)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +229,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 290, -1, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 288, -1, -1));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -245,16 +255,67 @@ public class Mant_Trabajador extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblTrabajador);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 329, 987, 321));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 327, 964, 290));
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel4.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel20.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel20.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel20.setText("Total de registros:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 617, 180, 30));
+
+        jPanel5.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
+
+        lblTReg.setBackground(new java.awt.Color(153, 153, 153));
+        lblTReg.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblTReg.setForeground(new java.awt.Color(51, 51, 51));
+        lblTReg.setText("#Num");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblTReg)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTReg, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        );
+
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 617, 101, 30));
     }// </editor-fold>//GEN-END:initComponents
     private void LoadTBL(){
         tblTrabajador.setModel(BD_RS.ListarTrabajador());
         ConfigTbl();
     }
     private void ConfigTbl(){
+        lblTReg.setText(tblTrabajador.getRowCount()+"");
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < tblTrabajador.getColumnCount(); i++){
             tblTrabajador.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             
         }
@@ -284,7 +345,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             t.setApeMaterno(tblTrabajador.getValueAt(indx, 3).toString());
             t.setFec_ingreso(Date.valueOf(tblTrabajador.getValueAt(indx, 5).toString()));
             t.setCargo(BD_RS.GetIdCargo(tblTrabajador.getValueAt(indx, 6).toString()));
-            t.setEstado(BD_RS.GetIdEstado(tblTrabajador.getValueAt(indx, 7).toString()));
+            t.setEstado(1);
             Trabajador_Editar te = new Trabajador_Editar();
             frmPrincipal.Comp(te);        
         }else{
@@ -295,9 +356,9 @@ public class Mant_Trabajador extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
        int indx = tblTrabajador.getSelectedRow();
         if(indx >= 0){
-             if(tblTrabajador.getValueAt(indx, 7).toString().contains("Inactivo")){
+             /*if(tblTrabajador.getValueAt(indx, 7).toString().contains("Inactivo")){
                  JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-             }else{
+             }else{*/
                  int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblTrabajador.getValueAt(indx, 0).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                  if(r == 0){
                     Trabajador trabajador = new Trabajador();
@@ -307,8 +368,8 @@ public class Mant_Trabajador extends javax.swing.JPanel {
                        JOptionPane.showMessageDialog(this, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                        LoadTBL();
                      }else JOptionPane.showMessageDialog(this, "Ha ocurrido un error al eliminar el registro","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                 }
-             }
+                 //}
+                }
         }else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a eliminar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -354,10 +415,14 @@ public class Mant_Trabajador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTReg;
     private javax.swing.JTable tblTrabajador;
     private javax.swing.JTextField txtFilter;
     // End of variables declaration//GEN-END:variables

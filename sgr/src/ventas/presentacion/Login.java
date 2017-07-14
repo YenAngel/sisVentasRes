@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import ventas.persistencia.util.BD_RS;
 
 public class Login extends javax.swing.JFrame {
     
@@ -21,8 +22,10 @@ public class Login extends javax.swing.JFrame {
     private int count=0;
     public Login() {
         initComponents();        
+        cboSucursal.setModel(BD_RS.ListarCBOLocal());
         init();
         setLocationRelativeTo(null);
+        
     }
 
     private void init(){
@@ -138,8 +141,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/suc1.png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 43, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo3.png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo2.png"))); // NOI18N
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 290, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Sistema para Restaurante v1.0");
@@ -241,6 +244,7 @@ public class Login extends javax.swing.JFrame {
                     usuario.setNdi_usuario(rs.getInt(1));                
                     usuario.setNid_perfil(rs.getInt(2));
                     usuario.setSurcursal(cboSucursal.getSelectedItem().toString());
+                   BD_RS.idlocal = BD_RS.GetIdLocal(cboSucursal.getSelectedItem().toString());
                 }                                  
             if (usuario.getNid_perfil()==1) {
                 getStatus("success");

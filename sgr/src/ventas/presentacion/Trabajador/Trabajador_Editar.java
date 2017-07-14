@@ -81,6 +81,11 @@ public class Trabajador_Editar extends javax.swing.JPanel {
                 txtApeMatActionPerformed(evt);
             }
         });
+        txtApeMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApeMatKeyTyped(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
         jLabel20.setText("Nombres:");
@@ -95,6 +100,11 @@ public class Trabajador_Editar extends javax.swing.JPanel {
                 txtNombresActionPerformed(evt);
             }
         });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
         jLabel17.setText("Apellido Materno:");
@@ -107,6 +117,11 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         txtApePat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtApePat.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         txtApePat.setSelectionColor(new java.awt.Color(204, 204, 0));
+        txtApePat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApePatKeyTyped(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
         jLabel15.setText("Apellido Paterno:");
@@ -122,6 +137,11 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         txtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDNIActionPerformed(evt);
+            }
+        });
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
             }
         });
 
@@ -200,7 +220,7 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("Modificar Trabajador");
+        jLabel16.setText("MODIFICAR TRABAJADOR");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 11, -1, 38));
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
@@ -210,16 +230,16 @@ public class Trabajador_Editar extends javax.swing.JPanel {
         jLabel21.setBackground(new java.awt.Color(153, 153, 153));
         jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel21.setText("Datos del Trabajador:");
+        jLabel21.setText("Registro");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +248,7 @@ public class Trabajador_Editar extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 81, -1, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 81, 150, 39));
 
         btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -330,6 +350,58 @@ public class Trabajador_Editar extends javax.swing.JPanel {
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
+
+    private void txtApePatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApePatKeyTyped
+       char c=evt.getKeyChar();         
+        if(!Character.isLetter(c)) { 
+            if (!Character.isSpaceChar(c)){
+                if((int)evt.getKeyChar() != 8){
+                    getToolkit().beep();             
+                    evt.consume();                         
+                    JOptionPane.showMessageDialog(null, "Sólo debe ingresar letras");
+                }
+            }    
+        }
+    }//GEN-LAST:event_txtApePatKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        char c=evt.getKeyChar();         
+        if(!Character.isLetter(c)) { 
+            if (!Character.isSpaceChar(c)){
+                if((int)evt.getKeyChar() != 8){
+                    getToolkit().beep();             
+                    evt.consume();                         
+                    JOptionPane.showMessageDialog(null, "Sólo debe ingresar letras");
+                }
+            }    
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApeMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMatKeyTyped
+        char c=evt.getKeyChar();         
+        if(!Character.isLetter(c)) { 
+            if (!Character.isSpaceChar(c)){
+                if((int)evt.getKeyChar() != 8){
+                    getToolkit().beep();             
+                    evt.consume();                         
+                    JOptionPane.showMessageDialog(null, "Sólo debe ingresar letras");
+                }
+            }    
+        }
+    }//GEN-LAST:event_txtApeMatKeyTyped
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+       char c=evt.getKeyChar();         
+        if(!Character.isDigit(c)) { 
+            if (!Character.isSpaceChar(c)){
+                if((int)evt.getKeyChar() != 8){
+                    getToolkit().beep();             
+                    evt.consume();                         
+                    JOptionPane.showMessageDialog(null, "Sólo debe ingresar números");
+                }
+            }    
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

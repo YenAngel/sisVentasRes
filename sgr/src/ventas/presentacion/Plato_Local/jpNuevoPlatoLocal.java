@@ -81,7 +81,6 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         jLabel8.setText("Precio:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 239, -1, -1));
 
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +89,6 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 87, 140, 60));
 
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +131,8 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         
         if(Character.isLetter(c)) {             
             getToolkit().beep();             
-            evt.consume();                         
+            evt.consume();          
+            
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
         }
     }//GEN-LAST:event_txtPrecioKeyTyped

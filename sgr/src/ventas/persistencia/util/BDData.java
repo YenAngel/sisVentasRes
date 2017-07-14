@@ -103,7 +103,7 @@ public class BDData {
             cs.setInt(4,mesa.getNu_piso());
             cs.setString(5, mesa.getNo_local());
             cs.setInt(6, mesa.getNid_usuario_crea());
-            cs.executeUpdate();
+            cs.executeQuery();
             return true;
         } catch (Exception e) {
             System.out.println(e);

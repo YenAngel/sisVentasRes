@@ -68,7 +68,6 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 93, 260, 50));
 
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
         btnHome.setText("Retornar");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +76,6 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         });
         add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 223, 140, 60));
 
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
         btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

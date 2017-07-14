@@ -53,12 +53,13 @@ public class Usuarios_new extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1345, 841));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(1025, 661));
+        setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel15.setText("Nuevo Usuario");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 11, -1, 38));
+        jLabel15.setText("NUEVO USUARIO");
+        add(jLabel15);
+        jLabel15.setBounds(437, 11, 200, 38);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -84,7 +85,8 @@ public class Usuarios_new extends javax.swing.JPanel {
         });
         jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 180, 80));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 931, 104));
+        add(jPanel2);
+        jPanel2.setBounds(50, 380, 931, 104);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -159,25 +161,27 @@ public class Usuarios_new extends javax.swing.JPanel {
                         .addGap(49, 49, 49))))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        add(jPanel1);
+        jPanel1.setBounds(40, 120, 959, 211);
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
         jPanel3.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel3.setPreferredSize(new java.awt.Dimension(150, 39));
 
         jLabel22.setBackground(new java.awt.Color(153, 153, 153));
         jLabel22.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("Datos del Usuario:");
+        jLabel22.setText("Registro");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addComponent(jLabel22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +190,8 @@ public class Usuarios_new extends javax.swing.JPanel {
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 81, -1, -1));
+        add(jPanel3);
+        jPanel3.setBounds(40, 81, 150, 39);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -213,6 +218,8 @@ public class Usuarios_new extends javax.swing.JPanel {
                 if(BD_RS.CUsuario(usuario, 1)) {
                     JOptionPane.showMessageDialog(this, "Registro Guardado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                     ResetControls();
+                    Mant_Usuarios mu = new Mant_Usuarios();
+                    frmPrincipal.Comp(mu);
                 }
                 else JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el registro","Mensaje",JOptionPane.WARNING_MESSAGE);
             } catch (Exception ex) {

@@ -8,6 +8,7 @@ package ventas.presentacion.Usuario;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import ventas.persistencia.util.BD_RS;
 import ventas.persistencia.util.Usuario;
 import ventas.presentacion.frmPrincipal;
@@ -17,7 +18,7 @@ import ventas.presentacion.frmPrincipal;
  * @author AnibalMA
  */
 public class Mant_Usuarios extends javax.swing.JPanel {
-        public String placeH = "Ingrese Nombre de Usuario";
+        public String placeH = "";
     /**
      * Creates new form Mant_Alumno
      */
@@ -29,11 +30,13 @@ public class Mant_Usuarios extends javax.swing.JPanel {
     private void LoadTBL(){
         tblUsuarios.setModel(BD_RS.ListarUsuarios());
         ConfigTBL();
+        
     }
     private void ConfigTBL(){
+        lblTReg.setText(tblUsuarios.getRowCount()+"");
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < tblUsuarios.getColumnCount(); i++){
             tblUsuarios.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
             
         }
@@ -62,13 +65,19 @@ public class Mant_Usuarios extends javax.swing.JPanel {
         btnMod = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        btnSearch = new javax.swing.JButton();
         txtFilter = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        cboOption = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblTReg = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1345, 841));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,10 +98,10 @@ public class Mant_Usuarios extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblUsuarios);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 327, 964, 323));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 327, 964, 290));
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel15.setText("Mantenimiento Usuario");
+        jLabel15.setText("MANTENIMIENTO USUARIO");
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 0, -1, 38));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
@@ -104,7 +113,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 45, 180, 80));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 180, 70));
 
         btnMod.setBackground(new java.awt.Color(153, 153, 255));
         btnMod.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,7 +124,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 btnModActionPerformed(evt);
             }
         });
-        add(btnMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 136, 180, 80));
+        add(btnMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 180, 70));
 
         btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -126,17 +135,11 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 227, 180, 80));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, 180, 70));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
+        jPanel1.setPreferredSize(new java.awt.Dimension(771, 132));
 
         txtFilter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtFilter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -149,35 +152,57 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
-        jLabel17.setText("Usuario:");
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel18.setText("Palabra Clave:");
+
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel21.setText("Opción:");
+
+        cboOption.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario" }));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21)
+                    .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel18))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17))
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 114, -1, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 80, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -186,7 +211,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
         jLabel16.setBackground(new java.awt.Color(153, 153, 153));
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel16.setText("Búsqueda:");
+        jLabel16.setText("Búsqueda");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -195,7 +220,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,16 +229,16 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 75, -1, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 41, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel3.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel19.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel19.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel19.setText("Registros:");
+        jLabel19.setText("Total de registros:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -221,17 +246,67 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 288, -1, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 617, 180, 30));
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel4.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel20.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel20.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel20.setText("Listado");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel20)
+                .addGap(28, 28, 28))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 288, 130, 39));
+
+        jPanel5.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
+
+        lblTReg.setBackground(new java.awt.Color(153, 153, 153));
+        lblTReg.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblTReg.setForeground(new java.awt.Color(51, 51, 51));
+        lblTReg.setText("#Num");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblTReg)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTReg, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        );
+
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 617, 101, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -260,7 +335,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             u.setPssEnc(tblUsuarios.getValueAt(indx, 2).toString());
             u.setCodT(BD_RS.GetIdTrab(tblUsuarios.getValueAt(indx, 3).toString()));
             u.setRol(BD_RS.GetIdRol(tblUsuarios.getValueAt(indx, 4).toString()));
-            u.setEstado(BD_RS.GetIdEstado(tblUsuarios.getValueAt(indx, 5).toString()));
+            u.setEstado(1);
             
             Usuarios_Editar ue = new Usuarios_Editar();
             frmPrincipal.Comp(ue);        
@@ -272,9 +347,9 @@ public class Mant_Usuarios extends javax.swing.JPanel {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
        int indx = tblUsuarios.getSelectedRow();
         if(indx >= 0){
-             if(tblUsuarios.getValueAt(indx, 5).toString().contains("Inactivo")){
+             /*if(tblUsuarios.getValueAt(indx, 5).toString().contains("Inactivo")){
                  JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-             }else{
+             }else{*/
                  int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblUsuarios.getValueAt(indx, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                  if(r == 0){
                     Usuario user = new Usuario();
@@ -282,9 +357,11 @@ public class Mant_Usuarios extends javax.swing.JPanel {
                     user.setId(Integer.parseInt(tblUsuarios.getValueAt(indx, 0).toString()));
                     if(BD_RS.CUsuario(user, 3)) {
                        JOptionPane.showMessageDialog(this, "Registro Eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                       DefaultTableModel d = (DefaultTableModel)tblUsuarios.getModel();
+                       d.removeRow(indx);
                        LoadTBL();
                      }else JOptionPane.showMessageDialog(this, "Ha ocurrido un error al eliminar el registro","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                 }
+                 //}
              }
         }else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a eliminar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
@@ -318,14 +395,20 @@ public class Mant_Usuarios extends javax.swing.JPanel {
     public static javax.swing.JButton btnMod;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cboOption;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTReg;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtFilter;
     // End of variables declaration//GEN-END:variables

@@ -270,7 +270,7 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_cboEstadoActionPerformed
 
     private void cboComprobanteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboComprobanteItemStateChanged
-        ResultSet rs;
+       /* ResultSet rs;
         String temp1,temp2;
         if (cboComprobante.getSelectedIndex()!=-1) {
             rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
@@ -281,7 +281,7 @@ public class frmCaja extends javax.swing.JFrame {
                     txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
                     if (!txtSerie.equals("")) {
-                        ResultSet rs1=BDData.getCorrelativo(temp1, temp2);
+                        ResultSet rs1= BDData.getCorrelativo(temp1, temp2);
                         if (rs1.next()) {
                             int correlativo=Integer.parseInt(rs1.getString(1));
                             int tempSerie=Integer.parseInt(temp1);
@@ -322,7 +322,8 @@ public class frmCaja extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        
+        }    
+        ¿*/
     }//GEN-LAST:event_cboComprobanteItemStateChanged
 
     /**
