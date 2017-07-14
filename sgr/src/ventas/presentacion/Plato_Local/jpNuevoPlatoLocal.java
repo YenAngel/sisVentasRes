@@ -35,8 +35,8 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -81,47 +81,32 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         jLabel8.setText("Precio:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 239, -1, -1));
 
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnSave1ActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 87, 140, 60));
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 150, -1));
 
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 165, 140, 60));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Login_User login_User=new Login_User();
-        if (!txtPrecio.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboPlato.getSelectedIndex()!=-1  && cboVip.getSelectedIndex()!=-1) {
-            platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
-            platoLocal.setNo_plato(cboPlato.getSelectedItem().toString());
-            platoLocal.setMt_precio(Double.parseDouble(txtPrecio.getText()));
-            platoLocal.setFl_vip(cboVip.getSelectedItem().toString());
-            platoLocal.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevoPlatoLocal(platoLocal)) {
-                JOptionPane.showMessageDialog(null, "Registro Ingresado");
-                cleanControls();
-            }
-        }else
-            JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
     private void addITems(){
         cboLocal.setModel(BDData.getLocal());
         cboPlato.setModel(BDData.getPlato());
     }
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarPlatoLocal listarPlatoLocal=new jpListarPlatoLocal();
-        frmPrincipal.Comp(listarPlatoLocal);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
     private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboPlatoActionPerformed
@@ -137,10 +122,31 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPrecioKeyTyped
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        Login_User login_User=new Login_User();
+        if (!txtPrecio.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboPlato.getSelectedIndex()!=-1  && cboVip.getSelectedIndex()!=-1) {
+            platoLocal.setNo_local(cboLocal.getSelectedItem().toString());
+            platoLocal.setNo_plato(cboPlato.getSelectedItem().toString());
+            platoLocal.setMt_precio(Double.parseDouble(txtPrecio.getText()));
+            platoLocal.setFl_vip(cboVip.getSelectedItem().toString());
+            platoLocal.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoPlatoLocal(platoLocal)) {
+                JOptionPane.showMessageDialog(null, "Registro Ingresado");
+                cleanControls();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarPlatoLocal listarPlatoLocal=new jpListarPlatoLocal();
+        frmPrincipal.Comp(listarPlatoLocal);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboLocal;
     public static javax.swing.JComboBox<String> cboPlato;
     private javax.swing.JComboBox<String> cboVip;

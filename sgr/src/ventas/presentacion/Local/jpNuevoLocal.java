@@ -37,9 +37,9 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtNombreLocal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         cboEmpresa = new javax.swing.JComboBox<>();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -69,45 +69,31 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         jLabel1.setText("Dirección:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 158, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        jButton1.setText("Retornar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 138, 140, 60));
-
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 60, 140, 60));
-
         cboEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(cboEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 216, 260, 50));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (!txtDireccion.getText().equals("") && !txtNombreLocal.getText().equals("") && cboEmpresa.getSelectedIndex()!=-1) {
-            local.setNo_local(txtNombreLocal.getText());
-            local.setTx_direccion(txtDireccion.getText());
-            local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
-            local.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevoLocal(local)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                cleanControls();
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
             }
-        }        
-    }//GEN-LAST:event_btnSaveActionPerformed
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 150, -1));
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jpListarLocal listaLocal=new jpListarLocal();
-        frmPrincipal.Comp(listaLocal);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 150, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
         char c=evt.getKeyChar();         
@@ -118,15 +104,33 @@ public class jpNuevoLocal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
         }
     }//GEN-LAST:event_txtNombreLocalKeyTyped
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        if (!txtDireccion.getText().equals("") && !txtNombreLocal.getText().equals("") && cboEmpresa.getSelectedIndex()!=-1) {
+            local.setNo_local(txtNombreLocal.getText());
+            local.setTx_direccion(txtDireccion.getText());
+            local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
+            local.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoLocal(local)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                cleanControls();
+            }
+        }        
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarLocal listaLocal=new jpListarLocal();
+        frmPrincipal.Comp(listaLocal);
+    }//GEN-LAST:event_btnReturnActionPerformed
     
     private void addItems(){
         dcbm=BDData.getEmpresa();        
         cboEmpresa.setModel(dcbm);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     private javax.swing.JComboBox<String> cboEmpresa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

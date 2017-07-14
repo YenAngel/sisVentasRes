@@ -40,13 +40,13 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
         cboPlato = new javax.swing.JComboBox<>();
         cboLocal = new javax.swing.JComboBox<>();
         cboVip = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -63,24 +63,6 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Precio:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 238, -1, -1));
-
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 86, 140, 60));
-
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 164, 140, 60));
 
         cboPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboPlato.addActionListener(new java.awt.event.ActionListener() {
@@ -108,9 +90,45 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
             }
         });
         add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 222, 260, 50));
+
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 150, -1));
+
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
+
+    }//GEN-LAST:event_cboPlatoActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isLetter(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         Login_User login_User=new Login_User();
 
         if (!txtPrecio.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboPlato.getSelectedIndex()!=-1  && cboVip.getSelectedIndex()!=-1) {
@@ -127,31 +145,17 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
             }
         }else
             JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         jpListarPlatoLocal listarPlatoLocal=new jpListarPlatoLocal();
         frmPrincipal.Comp(listarPlatoLocal);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
-
-    }//GEN-LAST:event_cboPlatoActionPerformed
-
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isLetter(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
-        }
-    }//GEN-LAST:event_txtPrecioKeyTyped
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboLocal;
     public static javax.swing.JComboBox<String> cboPlato;
     public static javax.swing.JComboBox<String> cboVip;

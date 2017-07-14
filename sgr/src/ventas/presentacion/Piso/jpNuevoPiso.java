@@ -29,8 +29,8 @@ public class jpNuevoPiso extends javax.swing.JPanel {
         txtNroPiso = new javax.swing.JTextField();
         cboLocal = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        btnHome = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -56,33 +56,40 @@ public class jpNuevoPiso extends javax.swing.JPanel {
         jLabel3.setText("Local:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 171, -1, -1));
 
-        btnHome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnSave1ActionPerformed(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, -1, 60));
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 150, -1));
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 86, 147, 60));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarPiso listarPiso=new jpListarPiso();
-        frmPrincipal.Comp(listarPiso);
-    }//GEN-LAST:event_btnHomeActionPerformed
+    private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isLetter(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
+        }
+    }//GEN-LAST:event_txtNroPisoKeyTyped
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         Piso piso=new Piso();
         Login_User login_User=new Login_User();
         if (!txtNroPiso.getText().equals("") && cboLocal.getSelectedIndex()!=-1) {
@@ -95,22 +102,17 @@ public class jpNuevoPiso extends javax.swing.JPanel {
             }
         }else
             JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
-    private void txtNroPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroPisoKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isLetter(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
-        }
-    }//GEN-LAST:event_txtNroPisoKeyTyped
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarPiso listarPiso=new jpListarPiso();
+        frmPrincipal.Comp(listarPiso);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

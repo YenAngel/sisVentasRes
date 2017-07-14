@@ -54,8 +54,8 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1025, 661));
@@ -99,47 +99,28 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jLabel5.setText("Id Piso:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 85, -1, -1));
 
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnSave1ActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 69, 140, 60));
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 150, -1));
 
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnReturnActionPerformed(evt);
             }
         });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 169, 140, 60));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        piso=new Piso();
-        Login_User login=new Login_User();
-        if (!txtNroPiso.getText().equals("") && cboLocal.getSelectedIndex()!=-1) {
-            piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
-            piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
-            piso.setNo_local(cboLocal.getSelectedItem().toString());
-            piso.setNid_usuario_modi(login.getNdi_usuario());   
-            if (BDData.editarPiso(piso)) {
-                JOptionPane.showMessageDialog(null, "Registro Actualizado");
-                cleanControls();
-                jpListarPiso listarPiso=new jpListarPiso();
-                frmPrincipal.Comp(listarPiso);
-            }
-        }else
-            JOptionPane.showMessageDialog(null, "Completar los campos");      
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarPiso listarPiso=new jpListarPiso();
-        frmPrincipal.Comp(listarPiso);
-    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         char c=evt.getKeyChar();         
@@ -165,10 +146,33 @@ public class jpEditarPiso extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_formFocusGained
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        piso=new Piso();
+        Login_User login=new Login_User();
+        if (!txtNroPiso.getText().equals("") && cboLocal.getSelectedIndex()!=-1) {
+            piso.setNid_piso(Integer.parseInt(txtCodigo.getText()));
+            piso.setNu_piso(Integer.parseInt(txtNroPiso.getText()));
+            piso.setNo_local(cboLocal.getSelectedItem().toString());
+            piso.setNid_usuario_modi(login.getNdi_usuario());   
+            if (BDData.editarPiso(piso)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarPiso listarPiso=new jpListarPiso();
+                frmPrincipal.Comp(listarPiso);
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");      
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarPiso listarPiso=new jpListarPiso();
+        frmPrincipal.Comp(listarPiso);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

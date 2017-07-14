@@ -1,7 +1,10 @@
 
 package ventas.presentacion.Local;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Local;
 import ventas.modelo.Login_User;
@@ -17,8 +20,20 @@ public class jpListarLocal extends javax.swing.JPanel {
     public jpListarLocal() {
         initComponents();
         listarLocal();
+        confTBL(tblLocal, dtm);
     }
-    
+    public void confTBL(JTable jTable, DefaultTableModel model){
+	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
+        centerRdr.setHorizontalAlignment(JLabel.CENTER);
+        for(int i=0;i<3;i++){
+            jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
+        }             
+        for(int i=0;i<model.getRowCount();i++)
+            jTable.setRowHeight(i,45);        
+        jTable.setDefaultEditor(Object.class,null);
+        jTable.getTableHeader().setReorderingAllowed(false);
+        lblTotal1.setText(model.getRowCount()+"");         
+    }
     private DefaultTableModel formatearTabla(){
         String[] theader={"Id Local","Nombre del Local","Dirección","Empresa"};
         dtm = new DefaultTableModel();
@@ -55,6 +70,10 @@ public class jpListarLocal extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        lblTotal1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -73,7 +92,7 @@ public class jpListarLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocal);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 275, 808, 375));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 275, 808, 340));
 
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
@@ -184,7 +203,7 @@ public class jpListarLocal extends javax.swing.JPanel {
         jLabel22.setBackground(new java.awt.Color(153, 153, 153));
         jLabel22.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel22.setText("Datos de la Empresa:");
+        jLabel22.setText("Busqueda");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -203,6 +222,60 @@ public class jpListarLocal extends javax.swing.JPanel {
         );
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 60, -1, -1));
+
+        jPanel6.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel6.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel23.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel23.setText("Total de registros:");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 610, -1, -1));
+
+        jPanel8.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel8.setForeground(new java.awt.Color(204, 204, 204));
+
+        lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
+        lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 610, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -243,6 +316,7 @@ public class jpListarLocal extends javax.swing.JPanel {
             local.setNo_local(txtLocal.getText());
             tblLocal.setModel(BDData.obtenerLocal(formatearTabla(), local));
         }
+        confTBL(tblLocal, dtm);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalKeyTyped
@@ -263,11 +337,15 @@ public class jpListarLocal extends javax.swing.JPanel {
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotal1;
     private javax.swing.JTable tblLocal;
     public static javax.swing.JTextField txtLocal;
     // End of variables declaration//GEN-END:variables

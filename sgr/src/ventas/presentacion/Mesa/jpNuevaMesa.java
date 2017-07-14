@@ -36,11 +36,11 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         cboNroPiso = new javax.swing.JComboBox<>();
         cboTipoMesa = new javax.swing.JComboBox<>();
-        btnHome = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         txtNroMesa = new javax.swing.JTextField();
         cboLocal = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1025, 661));
@@ -79,24 +79,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         cboTipoMesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar", "Normal" }));
         add(cboTipoMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 60, 260, 50));
 
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(859, 165, 140, 60));
-
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(859, 60, 140, 60));
-
         txtNroMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNroMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,12 +113,29 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Local:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 77, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarMesa listarMesa=new jpListarMesa();
-        frmPrincipal.Comp(listarMesa);
-    }//GEN-LAST:event_btnHomeActionPerformed
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 150, -1));
+
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 150, -1));
+    }// </editor-fold>//GEN-END:initComponents
     private boolean validarControls(){
         boolean ok;
         if (!txtCantidad.getText().equals("") && !txtNroMesa.getText().equals("")) {
@@ -150,23 +149,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
             ok=false;
         return ok;
     }
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Login_User login_User=new Login_User();
-        if (validarControls()) {
-            mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
-            mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
-            mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
-            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
-            mesa.setNo_local(cboLocal.getSelectedItem().toString());
-            mesa.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevaMesa(mesa)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                cleanControls();
-            }
-        }else
-            JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
-
     private void cboLocalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboLocalItemStateChanged
         if (cboLocal.getSelectedIndex()!=-1) {            
             cboNroPiso.setModel(BDData.getPiso_Local(cboLocal.getSelectedItem().toString()));
@@ -206,10 +188,32 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNroMesaActionPerformed
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        Login_User login_User=new Login_User();
+        if (validarControls()) {
+            mesa.setNu_mesa(Integer.parseInt(txtNroMesa.getText()));
+            mesa.setQt_silla(Integer.parseInt(txtCantidad.getText()));
+            mesa.setCo_tipo_mesa(cboTipoMesa.getSelectedItem().toString());
+            mesa.setNu_piso(Integer.parseInt(cboNroPiso.getSelectedItem().toString()));
+            mesa.setNo_local(cboLocal.getSelectedItem().toString());
+            mesa.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevaMesa(mesa)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                cleanControls();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarMesa listarMesa=new jpListarMesa();
+        frmPrincipal.Comp(listarMesa);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public javax.swing.JComboBox<String> cboLocal;
     public javax.swing.JComboBox<String> cboNroPiso;
     public javax.swing.JComboBox<String> cboTipoMesa;

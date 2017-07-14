@@ -43,8 +43,6 @@ public class jpEditarLocal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnHome = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNombreLocal = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
@@ -53,29 +51,13 @@ public class jpEditarLocal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         cboEmpresa = new javax.swing.JComboBox<>();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
         setPreferredSize(new java.awt.Dimension(1025, 661));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 178, 140, 60));
-
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 91, 140, 60));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Id Local:");
@@ -110,14 +92,41 @@ public class jpEditarLocal extends javax.swing.JPanel {
         cboEmpresa.setBackground(new java.awt.Color(204, 204, 255));
         cboEmpresa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(cboEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 305, 260, 50));
+
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 150, -1));
+
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarLocal listarLocal=new jpListarLocal();
-        frmPrincipal.Comp(listarLocal);
-    }//GEN-LAST:event_btnHomeActionPerformed
+    private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
+        char c=evt.getKeyChar();         
+        
+        if(Character.isDigit(c)) {             
+            getToolkit().beep();             
+            evt.consume();                         
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
+        }
+    }//GEN-LAST:event_txtNombreLocalKeyTyped
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         if (!txtDireccion.getText().equals("") && !txtNombreLocal.getText().equals("") && cboEmpresa.getSelectedIndex()!=-1) {
             local.setNid_local(Integer.parseInt(txtCodigo.getText()));
             local.setNo_local(txtNombreLocal.getText());
@@ -131,22 +140,17 @@ public class jpEditarLocal extends javax.swing.JPanel {
                 frmPrincipal.Comp(listarLocal);
             }
         }
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
-    private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isDigit(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
-        }
-    }//GEN-LAST:event_txtNombreLocalKeyTyped
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarLocal listarLocal=new jpListarLocal();
+        frmPrincipal.Comp(listarLocal);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboEmpresa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

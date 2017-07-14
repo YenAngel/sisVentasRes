@@ -38,11 +38,11 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        btnHome = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
         txtRazonSocial = new javax.swing.JTextField();
         txtNombreComercial = new javax.swing.JTextField();
         txtRUC = new javax.swing.JTextField();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -68,22 +68,6 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 93, 260, 50));
 
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 223, 140, 60));
-
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 93, 140, 60));
-
         txtRazonSocial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -107,28 +91,29 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
             }
         });
         add(txtRUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 326, 260, 50));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (!txtNombreComercial.getText().equals("") && !txtRazonSocial.getText().equals("") && !txtRUC.getText().equals("")) {
-            empresa.setNid_empresa(Integer.parseInt(txtCodigo.getText()));
-            empresa.setNo_razon_social(txtRazonSocial.getText());
-            empresa.setNo_comercial(txtNombreComercial.getText());
-            empresa.setNu_ruc(txtRUC.getText());
-            empresa.setNid_usuario_modi(usuario.getNdi_usuario());
-            if (BDData.editarEmpresa(empresa)) {
-                JOptionPane.showMessageDialog(null, "Registro Actualizado");
-                cleanControls();
-                jpListarEmpresa listarEmpresa=new  jpListarEmpresa();
-                frmPrincipal.Comp(listarEmpresa);
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
             }
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 150, -1));
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarEmpresa listarEmpresa=new jpListarEmpresa();        
-        frmPrincipal.Comp(listarEmpresa);
-    }//GEN-LAST:event_btnHomeActionPerformed
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 150, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void txtRazonSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyTyped
         char c=evt.getKeyChar();         
@@ -160,10 +145,31 @@ public class jpEditarEmpresa extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtRUCKeyTyped
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        if (!txtNombreComercial.getText().equals("") && !txtRazonSocial.getText().equals("") && !txtRUC.getText().equals("")) {
+            empresa.setNid_empresa(Integer.parseInt(txtCodigo.getText()));
+            empresa.setNo_razon_social(txtRazonSocial.getText());
+            empresa.setNo_comercial(txtNombreComercial.getText());
+            empresa.setNu_ruc(txtRUC.getText());
+            empresa.setNid_usuario_modi(usuario.getNdi_usuario());
+            if (BDData.editarEmpresa(empresa)) {
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                cleanControls();
+                jpListarEmpresa listarEmpresa=new  jpListarEmpresa();
+                frmPrincipal.Comp(listarEmpresa);
+            }
+        }
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarEmpresa listarEmpresa=new jpListarEmpresa();        
+        frmPrincipal.Comp(listarEmpresa);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

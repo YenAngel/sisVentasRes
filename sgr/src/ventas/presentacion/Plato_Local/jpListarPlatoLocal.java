@@ -5,6 +5,8 @@ import java.awt.Panel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
 import ventas.modelo.PlatoLocal;
@@ -20,32 +22,21 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         initComponents();        
         listarPlatoLocal();
         cboLocal.setModel(BDData.getLocal());
-        cboLocal.setSelectedIndex(-1);                
+        cboLocal.setSelectedIndex(-1);          
+        confTBL(tblPlatoLocal, dtm);
     }
-    /*public void desingButton(JPanel lpl){        
-        int pHeight =lpl.getHeight();
-        int sizeOption = (int)pHeight/3;        
-        
-        btnEdit.setBounds(270, 59+sizeOption, 10, sizeOption);
-        btnNew.setBounds(270, 59+sizeOption*2, 10, sizeOption);
-        btnSearch.setBounds(270, 59+sizeOption*3, 10, sizeOption);
-        /*opNuevo.setVisible(true);
-        opNuevo.setLayout(null);
-        opNuevo.setBounds(0, sizeOption,80,sizeOption); 
-
-        opEditar.setVisible(true);
-        
-        opEditar.setLayout(null);
-        opEditar.setBounds(0, sizeOption,80,sizeOption); 
-
-        opEliminar.setVisible(true);
-        opEliminar.setLayout(null);
-        opEliminar.setBounds(0, sizeOption*3,80,sizeOption); 
-
-        opBuscar.setVisible(true);
-        opBuscar.setLayout(null);
-        opBuscar.setBounds(0, sizeOption*4,80,sizeOption);
-    }*/
+    public void confTBL(JTable jTable, DefaultTableModel model){
+	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
+        centerRdr.setHorizontalAlignment(JLabel.CENTER);
+        for(int i=0;i<3;i++){
+            jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
+        }             
+        for(int i=0;i<model.getRowCount();i++)
+            jTable.setRowHeight(i,45);        
+        jTable.setDefaultEditor(Object.class,null);
+        jTable.getTableHeader().setReorderingAllowed(false);
+        lblTotal1.setText(model.getRowCount()+"");         
+    }
     private DefaultTableModel formatearTabla(){
         String[] theader={"Local","Plato","Precio","VIP"};
         dtm = new DefaultTableModel();
@@ -68,12 +59,19 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPlatoLocal = new javax.swing.JTable();
         btnSearch = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txtPlato = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        cboLocal = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        cboLocal = new javax.swing.JComboBox<>();
+        txtPlato = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        lblTotal1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -110,7 +108,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblPlatoLocal);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 194, 812, 456));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 812, 420));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
         btnSearch.setText("Buscar");
@@ -122,25 +120,6 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         });
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 284, 150, 100));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Nombre de Plato:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 87, -1, -1));
-
-        txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPlatoKeyTyped(evt);
-            }
-        });
-        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 67, 260, 50));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Local:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 87, -1, -1));
-
-        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 67, 260, 50));
-
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
         jPanel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -148,7 +127,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jLabel21.setBackground(new java.awt.Color(153, 153, 153));
         jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel21.setText("Registros:");
+        jLabel21.setText("Listado");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -166,7 +145,138 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 155, 130, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 130, -1));
+
+        jPanel1.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Local:");
+
+        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPlatoKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Nombre de Plato:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel5)
+                .addGap(10, 10, 10)
+                .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(17, 17, 17)
+                .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))))
+                .addGap(28, 28, 28))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 790, 110));
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel4.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel22.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel22.setText("Busqueda");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, -1));
+
+        jPanel6.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel6.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel23.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel23.setText("Total de registros:");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 640, -1, -1));
+
+        jPanel8.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel8.setForeground(new java.awt.Color(204, 204, 204));
+
+        lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
+        lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 640, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -207,6 +317,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
             tblPlatoLocal.setDefaultEditor(Object.class, null);
             tblPlatoLocal.getTableHeader().setReorderingAllowed(false);        
         }
+        confTBL(tblPlatoLocal, dtm);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
@@ -226,10 +337,17 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     private javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotal1;
     private javax.swing.JTable tblPlatoLocal;
     public static javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables

@@ -36,9 +36,9 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txtCorrelativo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
         cboComprobante = new javax.swing.JComboBox<>();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -79,52 +79,33 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
         jLabel10.setText("Correlativo:");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 293, -1, -1));
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 73, 147, 60));
-
-        btnHome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnHome.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        btnHome.setText("Retornar");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
-        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 160, -1, 60));
-
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
         add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 141, 260, 50));
+
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 150, -1));
+
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
             
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Login_User login_User=new Login_User();
-        if (!txtCorrelativo.getText().equals("") && !txtSerie.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboComprobante.getSelectedIndex()!=-1) {
-            comprobante.setNo_local(cboLocal.getSelectedItem().toString());
-            comprobante.setNu_correlativo(txtCorrelativo.getText());
-            comprobante.setNu_serie(txtSerie.getText());
-            comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
-            comprobante.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevoComprobante(comprobante)) {
-                JOptionPane.showMessageDialog(null, "Registro Ingresado");
-                cleanControls();            
-            }
-        }else
-            JOptionPane.showMessageDialog(null, "Completar los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        jpListarComprobante listarComprobante=new jpListarComprobante();
-        frmPrincipal.Comp(listarComprobante);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
     private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
         char c=evt.getKeyChar();  
         
@@ -146,10 +127,31 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtCorrelativoKeyTyped
 
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        Login_User login_User=new Login_User();
+        if (!txtCorrelativo.getText().equals("") && !txtSerie.getText().equals("") && cboLocal.getSelectedIndex()!=-1 && cboComprobante.getSelectedIndex()!=-1) {
+            comprobante.setNo_local(cboLocal.getSelectedItem().toString());
+            comprobante.setNu_correlativo(txtCorrelativo.getText());
+            comprobante.setNu_serie(txtSerie.getText());
+            comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
+            comprobante.setNid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.nuevoComprobante(comprobante)) {
+                JOptionPane.showMessageDialog(null, "Registro Ingresado");
+                cleanControls();            
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Completar los campos");
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarComprobante listarComprobante=new jpListarComprobante();
+        frmPrincipal.Comp(listarComprobante);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHome;
-    public javax.swing.JButton btnSave;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel10;
