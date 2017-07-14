@@ -360,7 +360,7 @@ public class frmPedido extends javax.swing.JFrame {
                 String cad = dlmFilter.getElementAt(cont-1).toString();
                 jl.setName(cad);
                String rec = cad.substring(0,cad.indexOf('%')).replace(' ','_');
-                System.out.println("REC: " + rec);
+                System.out.println("REC:" + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
                
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
