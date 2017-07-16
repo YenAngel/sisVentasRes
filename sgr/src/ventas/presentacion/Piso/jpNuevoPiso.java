@@ -97,7 +97,6 @@ public class jpNuevoPiso extends javax.swing.JPanel {
             piso.setNo_local(cboLocal.getSelectedItem().toString());
             piso.setNid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.nuevoPiso(piso)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
                 cleanControls();
             }
         }else

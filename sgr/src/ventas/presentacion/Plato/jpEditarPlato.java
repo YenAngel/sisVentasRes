@@ -1,6 +1,8 @@
 
 package ventas.presentacion.Plato;
 
+import java.awt.Image;
+import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.BorderFactory;
@@ -25,6 +27,14 @@ public class jpEditarPlato extends javax.swing.JPanel {
     }
     private void addItems(){
         cboCategoria1.setModel(BDData.getCategoria1());        
+    }
+    public  void imgPlato(String plato){       
+        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
+        //URL url = this.getClass().getResource(path);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
+        Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+        lblPlatoImg.setIcon(icon);                
+        this.repaint();        
     }
     public static void cargarPlato(Plato p){
         txtCodigo.setText(p.getNid_plato()+"");
@@ -58,6 +68,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        lblPlatoImg = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -153,6 +164,9 @@ public class jpEditarPlato extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 150, -1));
+
+        lblPlatoImg.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        add(lblPlatoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 474, 260, 150));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
@@ -170,6 +184,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
             Archivo archivo=new Archivo();
             archivo.setVisible(true);
             archivo.name=txtPlato.getText();
+            archivo.nroFrm=2;
         }
     }//GEN-LAST:event_btnCargarActionPerformed
 
@@ -247,6 +262,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblPlatoImg;
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables

@@ -135,8 +135,7 @@ public class jpNuevoComprobante extends javax.swing.JPanel {
             comprobante.setNu_serie(txtSerie.getText());
             comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
             comprobante.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevoComprobante(comprobante)) {
-                JOptionPane.showMessageDialog(null, "Registro Ingresado");
+            if (BDData.nuevoComprobante(comprobante)) {                
                 cleanControls();            
             }
         }else

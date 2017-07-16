@@ -25,13 +25,17 @@ public class jpListarPlato extends javax.swing.JPanel {
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
         centerRdr.setHorizontalAlignment(JLabel.CENTER);
-        for(int i=0;i<3;i++){
+        for(int i=0;i<model.getColumnCount();i++){
             jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
-        }             
+        }
         for(int i=0;i<model.getRowCount();i++)
             jTable.setRowHeight(i,45);        
         jTable.setDefaultEditor(Object.class,null);
         jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable.getColumnModel().getColumn(0).setMinWidth(0);        
+        jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         lblTotal1.setText(model.getRowCount()+"");         
     }
     private DefaultTableModel formatearTabla(){
@@ -41,15 +45,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         return  dtm;
     }
     private void listarPlato(){
-        tblPlato.setModel(BDData.listarPlato(formatearTabla()));
-        for(int i = 0; i < tblPlato.getRowCount(); i++)
-            tblPlato.setRowHeight(i, 45);
-        tblPlato.setDefaultEditor(Object.class, null);
-        tblPlato.getTableHeader().setReorderingAllowed(false);
-        tblPlato.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblPlato.getColumnModel().getColumn(0).setMinWidth(0);
-        tblPlato.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        tblPlato.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        tblPlato.setModel(BDData.listarPlato(formatearTabla()));        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,7 +56,6 @@ public class jpListarPlato extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -68,6 +63,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         txtPlato = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -93,8 +89,9 @@ public class jpListarPlato extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblPlato);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 235, 790, 360));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 800, 290));
 
+        btnEdit.setBackground(new java.awt.Color(153, 153, 255));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +99,9 @@ public class jpListarPlato extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, 150, 100));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 180, 70));
 
+        btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
@@ -112,8 +110,9 @@ public class jpListarPlato extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 270, 150, 100));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 180, 70));
 
+        btnNew.setBackground(new java.awt.Color(153, 153, 255));
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -121,17 +120,7 @@ public class jpListarPlato extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 150, 100));
-
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
-        btnSearch.setText("Buscar");
-        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 390, 150, 100));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 180, 70));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -158,7 +147,7 @@ public class jpListarPlato extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 196, -1, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -200,30 +189,41 @@ public class jpListarPlato extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre de Plato:");
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
+        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel4)
                 .addGap(10, 10, 10)
                 .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel4))
                     .addComponent(txtPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 790, 110));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 600, 110));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -250,7 +250,7 @@ public class jpListarPlato extends javax.swing.JPanel {
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, -1, -1));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 590, -1, -1));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -259,6 +259,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
         lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -267,7 +268,7 @@ public class jpListarPlato extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -277,7 +278,7 @@ public class jpListarPlato extends javax.swing.JPanel {
                 .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 590, 120, -1));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 590, 110, -1));
     }// </editor-fold>//GEN-END:initComponents
     public void editarPlato(int idx){        
         jpEditarPlato editarPlato=new jpEditarPlato();        
@@ -298,31 +299,39 @@ public class jpListarPlato extends javax.swing.JPanel {
     }
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblPlato.getSelectedRow();
-        
-        jpEditarPlato editarPlato=new jpEditarPlato();        
-        plato.setNid_plato(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
-        plato.setNo_plato((String)dtm.getValueAt(idx, 1));
-        plato.setNo_categoria1_plato((String)dtm.getValueAt(idx, 2));
-        plato.setNo_categoria2_plato((String)dtm.getValueAt(idx, 3));
-        plato.setNo_categoria3_plato((String)dtm.getValueAt(idx, 4));
-        plato.setNid_usuario_modi(login_User.getNdi_usuario());
-        if(idx >= 0){
+        if (idx!=-1) {            
+            jpEditarPlato editarPlato=new jpEditarPlato();        
+            plato.setNid_plato(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+            plato.setNo_plato((String)dtm.getValueAt(idx, 1));
+            plato.setNo_categoria1_plato((String)dtm.getValueAt(idx, 2));
+            plato.setNo_categoria2_plato((String)dtm.getValueAt(idx, 3));
+            plato.setNo_categoria3_plato((String)dtm.getValueAt(idx, 4));
+            plato.setNid_usuario_modi(login_User.getNdi_usuario());
+            
             frmPrincipal.Comp(editarPlato);
             editarPlato.cargarPlato(plato);
+            editarPlato.imgPlato(plato.getNo_plato().toLowerCase().replace(" ", "_")+".jpg");
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+        }        
     }//GEN-LAST:event_btnEditActionPerformed
     
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblPlato.getSelectedRow();
-        plato.setNid_plato(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
-        plato.setNid_usuario_modi(login_User.getNdi_usuario());
-        if (BDData.eliminarPlato(plato)) {
-            JOptionPane.showMessageDialog(null, "Registro Eliminado");
-            listarPlato();
+        if (idx!=-1) {            
+            int value = JOptionPane.showConfirmDialog(null, "Desea eliminar registro","Warning",JOptionPane.YES_NO_OPTION);            
+            if(value == 0){
+                plato.setNid_plato(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+                plato.setNid_usuario_modi(login_User.getNdi_usuario());
+                if (BDData.eliminarPlato(plato)) {
+                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+                }
+                listarPlato();
+                confTBL(tblPlato, dtm);
+            }                  
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
         }
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblPlatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlatoMouseClicked

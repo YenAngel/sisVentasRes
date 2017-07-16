@@ -78,20 +78,20 @@ public class frmPrincipal extends javax.swing.JFrame {
             opHome.setVisible(false);
         //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
         jpContenedor.setVisible(false);
-        jLabel15.setLocation(390, 15);
+        jLabel15.setLocation(15, 15);
         //jpContenedor.setBounds(255, 59, widthvar-255, heightvar-59);
        //Validar(usuario.getNid_perfil());
        Login_User lg = new Login_User();
        jLabel5.setLocation(widthvar-600,5);
        jPanel2.setLocation(widthvar-82, 2);
        jPanel1.setLocation(widthvar-167,2);
-       jLabel46.setLocation(widthvar-420, 5);
-       lblUser1.setBounds(widthvar-400,15,180,20);
+       jLabel46.setLocation(widthvar-478, 5);
+       lblSuc.setBounds(widthvar-420,15,180,20);
        lblUser.setBounds(widthvar-540, 16, 100, 20);
        lblUser.setText(lg.getNo_usuario());
-       lblUser1.setText(lg.getSurcursal());
+       lblSuc.setText(lg.getSurcursal());
        lblUser.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-       lblUser1.setFont(new java.awt.Font("Arial Black", 1, 16));
+       lblSuc.setFont(new java.awt.Font("Arial Black", 1, 16));
     }
 
     @SuppressWarnings("unchecked")
@@ -109,7 +109,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        lblUser1 = new javax.swing.JLabel();
+        lblSuc = new javax.swing.JLabel();
         pTrabajador = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -194,16 +194,23 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         pTop.setBackground(new java.awt.Color(68, 134, 187));
         pTop.setPreferredSize(new java.awt.Dimension(1280, 59));
+        pTop.setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Sistema de Gestión");
+        pTop.add(jLabel15);
+        jLabel15.setBounds(298, 23, 210, 26);
 
         lblUser.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setText("#User");
+        pTop.add(lblUser);
+        lblUser.setBounds(981, 22, 63, 26);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/userlog.png"))); // NOI18N
+        pTop.add(jLabel5);
+        jLabel5.setBounds(915, 9, 48, 48);
 
         jPanel1.setBackground(new java.awt.Color(68, 134, 187));
 
@@ -236,6 +243,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel43))
         );
+
+        pTop.add(jPanel1);
+        jPanel1.setBounds(159, 9, 75, 57);
 
         jPanel2.setBackground(new java.awt.Color(68, 134, 187));
 
@@ -272,61 +282,19 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel45))
         );
 
+        pTop.add(jPanel2);
+        jPanel2.setBounds(71, 9, 82, 57);
+
         jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/suc1.png"))); // NOI18N
         jLabel46.setAutoscrolls(true);
+        pTop.add(jLabel46);
+        jLabel46.setBounds(1081, 9, 48, 48);
 
-        lblUser1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        lblUser1.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser1.setText("#Suc");
-
-        javax.swing.GroupLayout pTopLayout = new javax.swing.GroupLayout(pTop);
-        pTop.setLayout(pTopLayout);
-        pTopLayout.setHorizontalGroup(
-            pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTopLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(lblUser)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel46)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUser1)
-                .addGap(88, 88, 88))
-        );
-        pTopLayout.setVerticalGroup(
-            pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTopLayout.createSequentialGroup()
-                .addGroup(pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pTopLayout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(jLabel15)
-                            .addGap(8, 8, 8))
-                        .addGroup(pTopLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel46))))
-                    .addGroup(pTopLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 14, Short.MAX_VALUE))
-            .addGroup(pTopLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(pTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUser)
-                    .addComponent(lblUser1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblSuc.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        lblSuc.setForeground(new java.awt.Color(255, 255, 255));
+        lblSuc.setText("#Suc");
+        pTop.add(lblSuc);
+        lblSuc.setBounds(1139, 22, 53, 26);
 
         getContentPane().add(pTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 80));
 
@@ -1576,8 +1544,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
-        jpListarCliente lp=new jpListarCliente();
-        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -1683,6 +1650,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
+        pCategoria.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
         pUsuario.setBackground(new java.awt.Color(24,168,255));
         pTrabajador.setBackground(new java.awt.Color(24,168,255));
@@ -1694,9 +1662,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pLocal.setBackground(new java.awt.Color(24,168,255));
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        jpListarPlatoLocal lp=new jpListarPlatoLocal();
-        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        pPiso.setBackground(new java.awt.Color(24,168,255));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -2390,8 +2356,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JPanel jpContenedor;
+    private javax.swing.JLabel lblSuc;
     private javax.swing.JLabel lblUser;
-    private javax.swing.JLabel lblUser1;
     private javax.swing.JPanel mpCaja;
     private javax.swing.JPanel mpCarta;
     private javax.swing.JPanel mpMante;

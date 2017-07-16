@@ -9,6 +9,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import ventas.modelo.Categoria;
@@ -56,6 +58,7 @@ public class jpNuevoPlato extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        lblPlatoImg = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -142,6 +145,9 @@ public class jpNuevoPlato extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 150, -1));
+
+        lblPlatoImg.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        add(lblPlatoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 260, 150));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlatoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyPressed
@@ -157,12 +163,20 @@ public class jpNuevoPlato extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
         }
     }//GEN-LAST:event_txtPlatoKeyTyped
-
+    public  void imgPlato(String plato){       
+        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
+        //URL url = this.getClass().getResource(path);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
+        Icon icon= new ImageIcon(imageIcon.getImage());
+        lblPlatoImg.setIcon(icon);        
+        this.repaint();
+    }
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         if (!txtPlato.getText().equals("")) {
             Archivo archivo=new Archivo();
             archivo.setVisible(true);
             archivo.name=txtPlato.getText();
+            archivo.nroFrm=1;
         }        
     }//GEN-LAST:event_btnCargarActionPerformed
 
@@ -197,7 +211,6 @@ public class jpNuevoPlato extends javax.swing.JPanel {
                     plato.setNo_plato(txtPlato.getText());        
                     plato.setNid_usuario_crea(login_User.getNdi_usuario());
                     if (BDData.nuevoPlato(plato)) {
-                        JOptionPane.showMessageDialog(null, "Registro Ingresado");
                         cleanControls();
                     }
                 }else
@@ -223,6 +236,7 @@ public class jpNuevoPlato extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblPlatoImg;
     public javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables
 }

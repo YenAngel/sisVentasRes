@@ -14,10 +14,19 @@ import java.util.Date;
 public class Cargo {
     public static int id;
     public static String nombre;
+    public static String narea;
     public static int area;
     public static Date fe_creacion;
     public static Date fe_mod;
     public static int estado;
+
+    public String getNarea() {
+        return narea;
+    }
+
+    public void setNarea(String narea) {
+        Cargo.narea = narea;
+    }
 
     public int getId() {
         return id;

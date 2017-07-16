@@ -134,8 +134,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
             empresa.setNo_comercial(txtNombreC.getText());
             empresa.setNu_ruc(txtruc.getText());
             empresa.setNid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.nuevaEmpresa(empresa)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
+            if (BDData.nuevaEmpresa(empresa)) {                
                 cleanControls();
             }
         }

@@ -19,6 +19,8 @@ public class jpListarComprobante extends javax.swing.JPanel {
         initComponents();
         listarComprobante();
         cboComprobante.setSelectedIndex(-1);
+        cboLocal.setModel(BDData.getLocal());
+        cboLocal.setSelectedIndex(-1);
         confTBL(tblComprobante, dtm);
     }
     private DefaultTableModel formatearTabla(){
@@ -30,7 +32,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
         centerRdr.setHorizontalAlignment(JLabel.CENTER);
-        for(int i=0;i<3;i++){
+        for(int i=0;i<model.getColumnCount();i++){
             jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
         }             
         for(int i=0;i<model.getRowCount();i++)
@@ -54,12 +56,16 @@ public class jpListarComprobante extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblComprobante = new javax.swing.JTable();
-        btnSearch = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtSerie = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cboComprobante = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
+        txtCorrelativo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cboLocal = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -71,6 +77,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnNew.setBackground(new java.awt.Color(153, 153, 255));
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.setPreferredSize(new java.awt.Dimension(150, 100));
@@ -79,8 +86,9 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(857, 24, -1, -1));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 180, 70));
 
+        btnEdit.setBackground(new java.awt.Color(153, 153, 255));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +96,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(857, 142, 150, 100));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 180, 70));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -107,18 +115,9 @@ public class jpListarComprobante extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 829, 310));
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
-        btnSearch.setText("Buscar");
-        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(857, 260, 150, 100));
-
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSerie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -127,47 +126,50 @@ public class jpListarComprobante extends javax.swing.JPanel {
                 txtSerieKeyTyped(evt);
             }
         });
+        jPanel1.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 35, 79, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Serie:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 12, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Comprobante:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 12, -1, -1));
 
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleta", "Factura", "Ticket" }));
+        jPanel1.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 35, 101, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(10, 10, 10)
-                .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel3)
-                .addGap(17, 17, 17)
-                .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))))
-                .addGap(24, 24, 24))
-        );
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
+        btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 35, 60, 50));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        txtCorrelativo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCorrelativo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCorrelativo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorrelativoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCorrelativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 35, 90, 50));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Correlativo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 12, -1, -1));
+
+        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 35, 144, 50));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Local:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 15, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 640, 120));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -257,6 +259,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
         lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -285,20 +288,21 @@ public class jpListarComprobante extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblComprobante.getSelectedRow();
-        Comprobante comprobante=new Comprobante();
-        Login_User login_User=new Login_User();
-        jpEditarComprobante editarComprobante=new jpEditarComprobante();
-        comprobante.setNo_local(dtm.getValueAt(idx, 0).toString());
-        comprobante.setCo_comprobante(dtm.getValueAt(idx, 1).toString());
-        comprobante.setNu_serie(dtm.getValueAt(idx, 2).toString());
-        comprobante.setNu_correlativo(dtm.getValueAt(idx, 3).toString());
-        comprobante.setNid_usuario_modi(login_User.getNdi_usuario());
-        if(idx >= 0){
+        if (idx!=-1) {            
+            Comprobante comprobante=new Comprobante();
+            Login_User login_User=new Login_User();
+            jpEditarComprobante editarComprobante=new jpEditarComprobante();
+            comprobante.setNo_local(dtm.getValueAt(idx, 0).toString());
+            comprobante.setCo_comprobante(dtm.getValueAt(idx, 1).toString());
+            comprobante.setNu_serie(dtm.getValueAt(idx, 2).toString());
+            comprobante.setNu_correlativo(dtm.getValueAt(idx, 3).toString());
+            comprobante.setNid_usuario_modi(login_User.getNdi_usuario());
+
             frmPrincipal.Comp(editarComprobante);
-            editarComprobante.cargarComprobante(comprobante);
+            editarComprobante.cargarComprobante(comprobante);        
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+        }        
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
@@ -312,7 +316,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSerieKeyTyped
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (txtSerie.getText().equals("") || cboComprobante.getSelectedIndex()==-1) {
+        if (txtCorrelativo.getText().equals("") || txtSerie.getText().equals("") || cboComprobante.getSelectedIndex()==-1) {
             tblComprobante.setModel(BDData.listarComprobante(formatearTabla()));
             for(int i = 0; i < tblComprobante.getRowCount(); i++)
             tblComprobante.setRowHeight(i, 45);
@@ -321,14 +325,16 @@ public class jpListarComprobante extends javax.swing.JPanel {
         }else{
             comprobante.setNu_serie(txtSerie.getText());
             comprobante.setCo_comprobante(cboComprobante.getSelectedItem().toString());
-            tblComprobante.setModel(BDData.obtenerComprobante(formatearTabla(), comprobante));
-            for(int i = 0; i < tblComprobante.getRowCount(); i++)
-            tblComprobante.setRowHeight(i, 45);
-            tblComprobante.setDefaultEditor(Object.class, null);
-            tblComprobante.getTableHeader().setReorderingAllowed(false);        
+            comprobante.setNu_correlativo(txtCorrelativo.getText());
+            comprobante.setNo_local(cboLocal.getSelectedItem().toString());
+            tblComprobante.setModel(BDData.obtenerComprobante(formatearTabla(), comprobante));            
         }
         confTBL(tblComprobante, dtm);
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtCorrelativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorrelativoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorrelativoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,11 +342,14 @@ public class jpListarComprobante extends javax.swing.JPanel {
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboComprobante;
+    public static javax.swing.JComboBox<String> cboLocal;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -349,6 +358,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTotal1;
     private javax.swing.JTable tblComprobante;
+    public static javax.swing.JTextField txtCorrelativo;
     public static javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables
 }

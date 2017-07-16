@@ -15,7 +15,7 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
         addITems();
         cboLocal.setSelectedIndex(-1);
         cboPlato.setSelectedIndex(-1);
-        cboVip.setSelectedIndex(-1);
+        cboVip.setSelectedIndex(1);
     }
     private void cleanControls(){        
         txtPrecio.setText("");
@@ -131,7 +131,6 @@ public class jpNuevoPlatoLocal extends javax.swing.JPanel {
             platoLocal.setFl_vip(cboVip.getSelectedItem().toString());
             platoLocal.setNid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.nuevoPlatoLocal(platoLocal)) {
-                JOptionPane.showMessageDialog(null, "Registro Ingresado");
                 cleanControls();
             }
         }else

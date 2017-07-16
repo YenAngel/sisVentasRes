@@ -32,14 +32,14 @@ public class jpListarCategoria extends javax.swing.JPanel {
         cboPadreCategoria2.setSelectedIndex(-1);
         cboPadreCategoria3.setSelectedIndex(-1);
         cboCategoria3.setSelectedIndex(-1);
-        tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), 1));
-        confTBL(tblCategoria,dtm);        
+        tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), 1));        
         txtNombre1.setEnabled(false);               
         txtNombre2.setEnabled(false);
         cboPadreCategoria2.setEnabled(false);                
         txtNombre3.setEnabled(false);
         cboCategoria3.setEnabled(false);
         cboPadreCategoria3.setEnabled(false);
+        confTBL(tblCategoria,dtm);
     }
     
     private void cleanControls(){
@@ -224,7 +224,8 @@ public class jpListarCategoria extends javax.swing.JPanel {
 
         add(tplCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 470, 310));
 
-        tblCategoria.setBorder(new javax.swing.border.MatteBorder(null));
+        jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
+
         tblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,7 +303,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 100, -1));
 
         jPanel6.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel6.setForeground(new java.awt.Color(204, 204, 204));
 
         txtCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -332,19 +333,19 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(btnSearch)
-                .addGap(23, 23, 23))
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 500, 80));
@@ -370,7 +371,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -383,6 +384,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
         lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -479,24 +481,26 @@ public class jpListarCategoria extends javax.swing.JPanel {
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
         centerRdr.setHorizontalAlignment(JLabel.CENTER);
-        for(int i=0;i<3;i++){
+        for(int i=0;i<model.getColumnCount();i++){
             jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
         }        
-        for (int i = 0; i < 3; i++) {
-            int idx=tplCategoria.getSelectedIndex();
-            if (idx==0) {
-                jTable.getColumnModel().getColumn(0).setWidth(0);
-                jTable.getColumnModel().getColumn(0).setMaxWidth(0);
-                jTable.getColumnModel().getColumn(0).setMinWidth(0);
-                jTable.getColumnModel().getColumn(1).setWidth(0);
-                jTable.getColumnModel().getColumn(1).setMaxWidth(0);
-                jTable.getColumnModel().getColumn(1).setMinWidth(0);
-            }else{
-                jTable.getColumnModel().getColumn(0).setWidth(0);            
-                jTable.getColumnModel().getColumn(0).setMaxWidth(0);            
-                jTable.getColumnModel().getColumn(0).setMinWidth(0);            
-            }
-        }
+        
+        int idx=tplCategoria.getSelectedIndex();
+        if (idx==0) {
+            jTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+            jTable.getColumnModel().getColumn(1).setMaxWidth(0);
+            jTable.getColumnModel().getColumn(1).setMinWidth(0);
+            jTable.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
+            jTable.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
+        }else{         
+            jTable.getColumnModel().getColumn(0).setMaxWidth(0);            
+            jTable.getColumnModel().getColumn(0).setMinWidth(0);            
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        }        
         for(int i=0;i<model.getRowCount();i++)
             jTable.setRowHeight(i,45);        
         jTable.setDefaultEditor(Object.class,null);
@@ -586,7 +590,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
     }//GEN-LAST:event_tblCategoriaMouseClicked
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        edit=false;
+        edit=false;        
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
@@ -635,12 +639,20 @@ public class jpListarCategoria extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(tblCategoria.getSelectedRow(), 0).toString()));
-        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
-        if (BDData.eliminarCategoria(categoria)) {            
-            tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), tplCategoria.getSelectedIndex()+1));
-            confTBL(tblCategoria,dtm);
-        }
+        int idx=tblCategoria.getSelectedRow();
+        if (idx!=-1) {            
+            int value = JOptionPane.showConfirmDialog(null, "Desea eliminar registro","Warning",JOptionPane.YES_NO_OPTION);            
+            if(value == 0){
+                categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(tblCategoria.getSelectedRow(), 0).toString()));
+                categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                if (BDData.eliminarCategoria(categoria)) {            
+                    tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), tplCategoria.getSelectedIndex()+1));
+                    confTBL(tblCategoria,dtm);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+        }        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -680,35 +692,47 @@ public class jpListarCategoria extends javax.swing.JPanel {
                     }
                 }
                 if (edit) {
-                    if (idx==0) {                    
-                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
-                        categoria.setNo_categoria_plato(txtNombre1.getText());
-                        categoria.setNu_nivel(1);
-                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
-                        categoria.setVi_tipo(2);
-                        if (BDData.editarCategoria(categoria)) {                    
-                            addItems();                        
-                        }
+                    if (idx==0) { 
+                        if (index!=-1) {            
+                            categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                            categoria.setNo_categoria_plato(txtNombre1.getText());
+                            categoria.setNu_nivel(1);
+                            categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                            categoria.setVi_tipo(2);
+                            if (BDData.editarCategoria(categoria)) {                    
+                                addItems();                        
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+                        }                        
                     }else if (idx==1) {
-                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
-                        categoria.setNo_padre_categoria(cboPadreCategoria2.getSelectedItem().toString());
-                        categoria.setNo_categoria_plato(txtNombre2.getText());
-                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
-                        categoria.setNu_nivel(2);
-                        categoria.setVi_tipo(1);
-                        if (BDData.editarCategoria(categoria)) {                        
-                            addItems();                        
-                        }
+                        if (index!=-1) {            
+                            categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                            categoria.setNo_padre_categoria(cboPadreCategoria2.getSelectedItem().toString());
+                            categoria.setNo_categoria_plato(txtNombre2.getText());
+                            categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                            categoria.setNu_nivel(2);
+                            categoria.setVi_tipo(1);
+                            if (BDData.editarCategoria(categoria)) {                        
+                                addItems();                        
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+                        }                        
                     }else if (idx==2) {                                        
-                        categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
-                        categoria.setNo_padre_categoria(cboCategoria3.getSelectedItem().toString());
-                        categoria.setNo_categoria_plato(txtNombre3.getText());
-                        categoria.setNid_usuario_modi(login_User.getNdi_usuario());
-                        categoria.setNu_nivel(3);
-                        categoria.setVi_tipo(1);
-                        if (BDData.editarCategoria(categoria)) {                        
-                            addItems();
-                        }
+                        if (index!=-1) {            
+                            categoria.setNid_categoria_plato(Integer.parseInt(dtm.getValueAt(index, 0).toString()));
+                            categoria.setNo_padre_categoria(cboCategoria3.getSelectedItem().toString());
+                            categoria.setNo_categoria_plato(txtNombre3.getText());
+                            categoria.setNid_usuario_modi(login_User.getNdi_usuario());
+                            categoria.setNu_nivel(3);
+                            categoria.setVi_tipo(1);
+                            if (BDData.editarCategoria(categoria)) {                        
+                                addItems();
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+                        }                        
                     }
                 }                
                 tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), idx+1));
@@ -726,17 +750,28 @@ public class jpListarCategoria extends javax.swing.JPanel {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (tplCategoria.getSelectedIndex()==0) {
-            categoria.setNo_categoria_plato(txtNombre1.getText());
-            categoria.setVi_tipo(1);
-        }else if (tplCategoria.getSelectedIndex()==1) {
-            categoria.setNo_categoria_plato(txtNombre2.getText());
-            categoria.setVi_tipo(2);
-        }else if (tplCategoria.getSelectedIndex()==2) {
-            categoria.setNo_categoria_plato(txtNombre3.getText());
-            categoria.setVi_tipo(3);
+        if (txtCategoria.getText().equals("")) {
+            int idx= tplCategoria.getSelectedIndex();
+            if (idx!=-1) {                     
+                tblCategoria.setModel(BDData.listarCategoria(formatearTabla(), idx+1));
+            }
+        }else{
+            if (tplCategoria.getSelectedIndex()==0) {
+                categoria.setNo_categoria_plato(txtCategoria.getText());
+                categoria.setVi_tipo(1);
+                txtCategoria.setText("");
+            }else if (tplCategoria.getSelectedIndex()==1) {
+                categoria.setNo_categoria_plato(txtCategoria.getText());
+                categoria.setVi_tipo(2);
+                txtCategoria.setText("");
+            }else if (tplCategoria.getSelectedIndex()==2) {
+                categoria.setNo_categoria_plato(txtCategoria.getText());
+                categoria.setVi_tipo(3);
+                txtCategoria.setText("");
+            }
+            tblCategoria.setModel(BDData.obtenerCategoria(formatearTabla(), categoria));
         }
-        BDData.obtenerCategoria(formatearTabla(), categoria);
+        confTBL(tblCategoria,dtm);
     }//GEN-LAST:event_btnSearchActionPerformed
 
 

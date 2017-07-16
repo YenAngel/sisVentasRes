@@ -17,6 +17,7 @@ import ventas.presentacion.frmPrincipal;
 public class Archivo extends javax.swing.JFrame {
 
     public String name;
+    public int nroFrm;
     public Archivo() {
         initComponents();
     }
@@ -40,6 +41,7 @@ public class Archivo extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +88,13 @@ public class Archivo extends javax.swing.JFrame {
                     Path finalOrgin=Paths.get(archivoseleccionado.getAbsolutePath());
                     Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".jpg"), StandardCopyOption.REPLACE_EXISTING);
                     JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con exito.");
+                    if (nroFrm==2) {
+                        jpEditarPlato editarPlato=new jpEditarPlato();
+                        editarPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
+                    }else{
+                        jpNuevoPlato nuevoPlato=new jpNuevoPlato();
+                        nuevoPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
+                    }                        
                     setVisible(false);
                 }else if (command.equals(JFileChooser.CANCEL_SELECTION)) {
                     setVisible(false);

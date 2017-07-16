@@ -66,6 +66,7 @@ public class jpListarCliente extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 831, 290));
 
+        btnNew.setBackground(new java.awt.Color(153, 153, 255));
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +74,9 @@ public class jpListarCliente extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 11, 150, 100));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 180, 70));
 
+        btnEdit.setBackground(new java.awt.Color(153, 153, 255));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +84,9 @@ public class jpListarCliente extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 129, 150, 100));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 180, 70));
 
+        btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
@@ -92,7 +95,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(865, 247, 150, 100));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 180, 70));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -160,32 +163,36 @@ public class jpListarCliente extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(30, 30, 30)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 107, 830, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 640, 110));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -212,7 +219,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -248,6 +255,7 @@ public class jpListarCliente extends javax.swing.JPanel {
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
         lblTotal1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         lblTotal1.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotal1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotal1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -277,26 +285,22 @@ public class jpListarCliente extends javax.swing.JPanel {
     }
     
     private void listarCliente(){
-        tblCliente.setModel(BDData.listarCliente(formatearTabla()));
-        for(int i = 0; i < tblCliente.getRowCount(); i++)
-            tblCliente.setRowHeight(i, 45);
-        tblCliente.setDefaultEditor(Object.class, null);
-        tblCliente.getTableHeader().setReorderingAllowed(false);
-        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
-        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.setModel(BDData.listarCliente(formatearTabla()));        
     }
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
         centerRdr.setHorizontalAlignment(JLabel.CENTER);
-        for(int i=0;i<3;i++){
+        for(int i=0;i<model.getColumnCount();i++){
             jTable.getColumnModel().getColumn(i).setCellRenderer(centerRdr);	
         }             
         for(int i=0;i<model.getRowCount();i++)
             jTable.setRowHeight(i,45);        
         jTable.setDefaultEditor(Object.class,null);
         jTable.getTableHeader().setReorderingAllowed(false);
+        jTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable.getColumnModel().getColumn(0).setMinWidth(0);        
+        jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         lblTotal1.setText(model.getRowCount()+"");         
     }
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -306,39 +310,40 @@ public class jpListarCliente extends javax.swing.JPanel {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblCliente.getSelectedRow();
-        jpEditarCliente editarCliente=new jpEditarCliente();
-        cliente.setNid_cliente(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
-        cliente.setNo_cliente((String)dtm.getValueAt(idx, 1));
-        cliente.setNo_ape_paterno((String)dtm.getValueAt(idx, 2));
-        cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 3));
-        cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 4));
-        cliente.setNu_documento((String)dtm.getValueAt(idx, 5));        
-        cliente.setNid_usuario_modi(usuario.getNdi_usuario());
-        if(idx >= 0){
+        if (idx!=-1) {            
+            jpEditarCliente editarCliente=new jpEditarCliente();
+            cliente.setNid_cliente(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+            cliente.setNo_cliente((String)dtm.getValueAt(idx, 1));
+            cliente.setNo_ape_paterno((String)dtm.getValueAt(idx, 2));
+            cliente.setNo_ape_materno((String)dtm.getValueAt(idx, 3));
+            cliente.setCo_tipo_documento((String)dtm.getValueAt(idx, 4));
+            cliente.setNu_documento((String)dtm.getValueAt(idx, 5));        
+            cliente.setNid_usuario_modi(usuario.getNdi_usuario());
+            
             frmPrincipal.Comp(editarCliente);
-            editarCliente.cargarCliente(cliente);
+            editarCliente.cargarCliente(cliente);            
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+        }        
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         Login_User login_User=new Login_User();
         int idx=tblCliente.getSelectedRow();
-        cliente.setNid_cliente(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
-        cliente.setNid_usuario_modi(login_User.ndi_usuario);
-        if (BDData.eliminarCliente(cliente)) {
-            JOptionPane.showMessageDialog(null, "Registro Eliminado");
-            listarCliente();
-            for(int i = 0; i < tblCliente.getRowCount(); i++)
-            tblCliente.setRowHeight(i, 45);
-        tblCliente.setDefaultEditor(Object.class, null);
-        tblCliente.getTableHeader().setReorderingAllowed(false);
-        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
-        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-        }
+        if (idx!=-1) {            
+            int value = JOptionPane.showConfirmDialog(null, "Desea eliminar registro","Warning",JOptionPane.YES_NO_OPTION);            
+            if(value == 0){
+                cliente.setNid_cliente(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
+                cliente.setNid_usuario_modi(login_User.ndi_usuario);
+                if (BDData.eliminarCliente(cliente)) {
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    listarCliente();            
+                }
+                confTBL(tblCliente, dtm);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+        }        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

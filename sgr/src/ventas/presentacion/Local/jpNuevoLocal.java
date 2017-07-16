@@ -112,7 +112,6 @@ public class jpNuevoLocal extends javax.swing.JPanel {
             local.setNo_empresa(cboEmpresa.getSelectedItem().toString());
             local.setNid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.nuevoLocal(local)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
                 cleanControls();
             }
         }        

@@ -52,6 +52,7 @@ public class frmPedido extends javax.swing.JFrame {
         //jPanel2.setLayout(null);
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        cboMozo.setModel(BD_RS.ListarCBOMozo());
         w = jTabbedPane1.getSize().width;
         //LoadComp();
         nCatSign = new int[3];
@@ -359,7 +360,7 @@ public class frmPedido extends javax.swing.JFrame {
                 String cad = dlmFilter.getElementAt(cont-1).toString();
                 jl.setName(cad);
                String rec = cad.substring(0,cad.indexOf('%')).replace(' ','_');
-                System.out.println("REC: " + rec);
+                System.out.println("REC:" + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
                
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -439,25 +440,26 @@ public class frmPedido extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        cboMozo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("Lista de Pedidos:");
+        jLabel16.setText("Mozo:");
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(10, 44, 258, 38);
+        jLabel16.setBounds(420, 480, 80, 38);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar.png"))); // NOI18N
@@ -557,22 +559,11 @@ public class frmPedido extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 88, 304, 329);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/payment.png"))); // NOI18N
-        jButton4.setText("    PAGO");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(1032, 517, 221, 71);
-
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/recibo.png"))); // NOI18N
         jButton5.setText("  CUENTA");
         getContentPane().add(jButton5);
-        jButton5.setBounds(1032, 619, 221, 71);
+        jButton5.setBounds(1030, 490, 221, 71);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -604,6 +595,30 @@ public class frmPedido extends javax.swing.JFrame {
         });
         getContentPane().add(jButton8);
         jButton8.setBounds(10, 619, 221, 71);
+
+        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel17.setText("Lista de Pedidos:");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(10, 44, 258, 38);
+
+        cboMozo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboMozo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboMozoItemStateChanged(evt);
+            }
+        });
+        cboMozo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMozoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboMozo);
+        cboMozo.setBounds(500, 480, 170, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -650,10 +665,6 @@ public class frmPedido extends javax.swing.JFrame {
         Ms.setVisible(true);}
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         //for(int i = 0; i < nCatSign.length; i++)
           // System.out.println(nCatSign[i]);
@@ -674,6 +685,28 @@ public class frmPedido extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void cboMozoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboMozoItemStateChanged
+        /*
+        if(cboPiso.getSelectedIndex() != -1){
+            //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlmpedido = BD_RS.JoinPedido();
+            LoadMesas();
+        }
+        */
+    }//GEN-LAST:event_cboMozoItemStateChanged
+
+    private void cboMozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMozoActionPerformed
+        if(cboMozo.getSelectedIndex() != -1){
+            //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+          
+        }
+    }//GEN-LAST:event_cboMozoActionPerformed
     private int FoundCount(String cad, char car){
         int count = 0;
         for (int i = 0; i < cad.length(); i++){
@@ -742,16 +775,17 @@ public class frmPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboMozo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

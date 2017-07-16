@@ -191,8 +191,7 @@ public class jpNuevoCliente extends javax.swing.JPanel {
             cliente.setCo_tipo_documento(cboTipoDocumento.getSelectedItem().toString());
             cliente.setNu_documento(txtDocumento.getText());
             cliente.setNid_usuario_crea(login_User.getNdi_usuario());        
-            if (BDData.nuevoCliente(cliente)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
+            if (BDData.nuevoCliente(cliente)) {                
                 cleanControls();
             }
         }else

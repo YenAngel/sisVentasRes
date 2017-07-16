@@ -198,7 +198,6 @@ public class jpNuevaMesa extends javax.swing.JPanel {
             mesa.setNo_local(cboLocal.getSelectedItem().toString());
             mesa.setNid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.nuevaMesa(mesa)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
                 cleanControls();
             }
         }else
