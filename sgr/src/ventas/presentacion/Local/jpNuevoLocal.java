@@ -40,6 +40,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
         cboEmpresa = new javax.swing.JComboBox<>();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -93,6 +94,10 @@ public class jpNuevoLocal extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("NUEVO LOCAL");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
@@ -131,6 +136,7 @@ public class jpNuevoLocal extends javax.swing.JPanel {
     private javax.swing.JButton btnSave1;
     private javax.swing.JComboBox<String> cboEmpresa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JTextField txtDireccion;

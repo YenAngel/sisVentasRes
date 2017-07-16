@@ -53,6 +53,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
         cboEmpresa = new javax.swing.JComboBox<>();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -114,6 +115,10 @@ public class jpEditarLocal extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR LOCAL");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreLocalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreLocalKeyTyped
@@ -153,6 +158,7 @@ public class jpEditarLocal extends javax.swing.JPanel {
     private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboEmpresa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

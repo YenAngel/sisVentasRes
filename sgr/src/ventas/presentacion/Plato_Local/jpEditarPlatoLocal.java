@@ -47,6 +47,7 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         txtPrecio = new javax.swing.JTextField();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -112,6 +113,10 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR PLATO POR LOCAL");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
@@ -159,6 +164,7 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
     public static javax.swing.JComboBox<String> cboLocal;
     public static javax.swing.JComboBox<String> cboPlato;
     public static javax.swing.JComboBox<String> cboVip;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

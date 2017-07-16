@@ -56,6 +56,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1025, 661));
@@ -120,6 +121,10 @@ public class jpEditarPiso extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR PISO");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -174,6 +179,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboLocal;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

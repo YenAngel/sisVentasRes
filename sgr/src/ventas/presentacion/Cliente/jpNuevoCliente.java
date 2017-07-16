@@ -37,6 +37,7 @@ public class jpNuevoCliente extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnReturn = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -120,6 +121,10 @@ public class jpNuevoCliente extends javax.swing.JPanel {
             }
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("NUEVO CLIENTE");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     private boolean validarCotrols(){
         boolean ok;
@@ -204,6 +209,7 @@ public class jpNuevoCliente extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cboTipoDocumento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

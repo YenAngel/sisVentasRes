@@ -41,6 +41,7 @@ public class jpNuevaMesa extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1025, 661));
@@ -135,6 +136,10 @@ public class jpNuevaMesa extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("NUEVA MESA");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     private boolean validarControls(){
         boolean ok;
@@ -216,6 +221,7 @@ public class jpNuevaMesa extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cboLocal;
     public javax.swing.JComboBox<String> cboNroPiso;
     public javax.swing.JComboBox<String> cboTipoMesa;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -50,6 +50,7 @@ public class jpEditarMesa extends javax.swing.JPanel {
         cboTipoMesa = new javax.swing.JComboBox<>();
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -140,6 +141,10 @@ public class jpEditarMesa extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR CATEGORÍA");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     
     public static void cargarMesa(Mesa m){
@@ -226,6 +231,7 @@ public class jpEditarMesa extends javax.swing.JPanel {
     public static javax.swing.JComboBox<String> cboNroPiso;
     public static javax.swing.JComboBox<String> cboTipoMesa;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

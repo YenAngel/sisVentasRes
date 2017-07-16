@@ -34,6 +34,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -96,6 +97,10 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
             }
         });
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("NUEVO PLATO");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtrucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrucKeyTyped
@@ -150,6 +155,7 @@ public class jpNuevaEmpresa extends javax.swing.JPanel {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JTextField txtNombreC;

@@ -69,6 +69,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
         btnSave1 = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
         lblPlatoImg = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -167,6 +168,10 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
         lblPlatoImg.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         add(lblPlatoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 474, 260, 150));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR PLATO");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
@@ -257,6 +262,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
     public static javax.swing.JComboBox<String> cboCategoria2;
     public static javax.swing.JComboBox<String> cboCategoria3;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

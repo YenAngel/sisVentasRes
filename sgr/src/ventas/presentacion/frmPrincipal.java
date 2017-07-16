@@ -1626,19 +1626,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(255,51,51));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));
-       
-        mpMante.setVisible(false);
-        mpPedido.setVisible(false);
-        mpReporte.setVisible(false);
-        mpCaja.setVisible(false);
-        mpCarta.setVisible(false);
-        mpReservacion.setVisible(false);
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));               
                 
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
+                mpMante.setVisible(false);
+                mpPedido.setVisible(false);
+                mpReporte.setVisible(false);
+                mpCaja.setVisible(false);
+                mpCarta.setVisible(false);
+                mpReservacion.setVisible(false);
                 //pnelActive = 1;
                 setVisible(false);
                 frmCaja caja=new frmCaja();

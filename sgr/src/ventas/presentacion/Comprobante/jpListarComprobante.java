@@ -74,6 +74,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
         jLabel23 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lblTotal1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -279,6 +280,10 @@ public class jpListarComprobante extends javax.swing.JPanel {
         );
 
         add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 120, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("MANTENIMIENTO COMPROBANTE");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -343,6 +348,7 @@ public class jpListarComprobante extends javax.swing.JPanel {
     private javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboLocal;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;

@@ -52,6 +52,7 @@ public class jpEditarCliente extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         btnReturn = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -141,6 +142,10 @@ public class jpEditarCliente extends javax.swing.JPanel {
             }
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR CATEGORÍA");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean validarCotrols(){
@@ -230,6 +235,7 @@ public class jpEditarCliente extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboTipoDocumento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
