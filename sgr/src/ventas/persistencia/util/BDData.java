@@ -27,11 +27,13 @@ import ventas.presentacion.Mesa.jpListarMesa;
 
 public class BDData {    
     public static ResultSet user(Login_User usuario) throws Exception{
-        String sql="Call sgr_sps_usuario(?,?)";                
+        String sql="Call sgr_sps_usuario(?,?,?)";                
         try{            
+            System.out.println(usuario.getNo_usuario() + " +" + usuario.getSurcursal());
             CallableStatement cs= BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, usuario.getNo_usuario());
-            cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));  
+            cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));
+            cs.setString(3, usuario.getSurcursal());
             ResultSet rs=cs.executeQuery();                        
             return rs;
 

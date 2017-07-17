@@ -253,7 +253,7 @@ public class Login extends javax.swing.JFrame {
                 while(rs.next()) {
                     usuario.setNdi_usuario(rs.getInt(1));                
                     usuario.setNid_perfil(rs.getInt(2));
-                    usuario.setSurcursal(cboSucursal.getSelectedItem().toString());
+                    
                    BD_RS.idlocal = BD_RS.GetIdLocal(cboSucursal.getSelectedItem().toString());
                 }                                  
             if (usuario.getNid_perfil()==1) {
@@ -319,6 +319,7 @@ public class Login extends javax.swing.JFrame {
         try {
             usuario.setNo_usuario(txtUsuario.getText());
             usuario.setNo_clave(txtPassword.getText());
+            usuario.setSurcursal(cboSucursal.getSelectedItem().toString());
             validUser(usuario);            
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
