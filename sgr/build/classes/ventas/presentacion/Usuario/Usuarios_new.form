@@ -39,7 +39,7 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="380" width="931" height="104"/>
+          <AbsoluteConstraints x="41" y="450" width="940" height="104"/>
         </Constraint>
       </Constraints>
 
@@ -109,7 +109,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="120" width="-1" height="-1"/>
+          <AbsoluteConstraints x="40" y="120" width="940" height="280"/>
         </Constraint>
       </Constraints>
 
@@ -119,6 +119,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -126,8 +127,9 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="cboTipo" alignment="0" pref="245" max="32767" attributes="0"/>
                       <Component id="cboTrabajador" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cboLocal" alignment="0" pref="245" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -137,7 +139,7 @@
                       <Component id="txtUser" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                       <Component id="txtPass" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -158,21 +160,19 @@
                           <Component id="txtUser" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cboTipo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jLabel17" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="jLabel19" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtPass" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cboTipo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jLabel17" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="jLabel19" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="txtPass" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel20" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="cboLocal" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -247,6 +247,20 @@
               </Border>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel20">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="15" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Local"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboLocal">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

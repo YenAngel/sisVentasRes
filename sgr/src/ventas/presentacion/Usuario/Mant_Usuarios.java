@@ -335,6 +335,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
             u.setPssEnc(tblUsuarios.getValueAt(indx, 2).toString());
             u.setCodT(BD_RS.GetIdTrab(tblUsuarios.getValueAt(indx, 3).toString()));
             u.setRol(BD_RS.GetIdRol(tblUsuarios.getValueAt(indx, 4).toString()));
+            u.setLocal(tblUsuarios.getValueAt(indx, 5).toString());
             u.setEstado(1);
             
             Usuarios_Editar ue = new Usuarios_Editar();
@@ -350,7 +351,7 @@ public class Mant_Usuarios extends javax.swing.JPanel {
              /*if(tblUsuarios.getValueAt(indx, 5).toString().contains("Inactivo")){
                  JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
              }else{*/
-                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblUsuarios.getValueAt(indx, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de eliminarr al usuario " + tblUsuarios.getValueAt(indx, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                  if(r == 0){
                     Usuario user = new Usuario();
                     user.setEstado(2);

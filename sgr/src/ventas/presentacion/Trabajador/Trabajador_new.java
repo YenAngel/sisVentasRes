@@ -365,11 +365,14 @@ public class Trabajador_new extends javax.swing.JPanel {
 
     private void txtApeMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMatKeyTyped
         char c=evt.getKeyChar();         
-        
-        if(!Character.isLetter(c) || c != ' ') {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Sólo debe ingresar letras");        
+        if(!Character.isLetter(c)) { 
+            if (!Character.isSpaceChar(c)){
+                if((int)evt.getKeyChar() != 8){
+                    getToolkit().beep();             
+                    evt.consume();                         
+                    JOptionPane.showMessageDialog(null, "Sólo debe ingresar letras");
+                }
+            }    
         }
     }//GEN-LAST:event_txtApeMatKeyTyped
 

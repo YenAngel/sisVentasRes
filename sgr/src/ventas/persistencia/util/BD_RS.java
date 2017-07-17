@@ -29,7 +29,7 @@ public class BD_RS {
     }
     public static DefaultTableModel FormatearTablaUsuario(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Id","Usuario","Contraseña","Código de Trabajador","Rol"};
+        String [] cab = {"Id","Usuario","Contraseña","Código de Trabajador","Rol","Local"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -263,9 +263,10 @@ public class BD_RS {
     public static DefaultTableModel ListarUsuarios(){
         try {
             DefaultTableModel dtm = FormatearTablaUsuario();
-            String sql = "select u.nid_usuario, u.no_usuario,u.no_clave, t.co_trabajador,p.no_perfil from mae_usuario u inner join " +
-                         " mae_estado e on e.nid_estado = u.nid_estado inner join mae_trabajador t on t.nid_trabajador = u.nid_trabajador " +
-                         " inner join mae_perfil p on p.nid_perfil = u.nid_perfil where u.nid_estado = 1";
+            String sql = "select u.nid_usuario, u.no_usuario,u.no_clave, t.co_trabajador,p.no_perfil,l.no_local from mae_usuario u inner join " +
+"                          mae_estado e on e.nid_estado = u.nid_estado inner join mae_trabajador t on t.nid_trabajador = u.nid_trabajador " +
+"                          inner join mae_perfil p on p.nid_perfil = u.nid_perfil inner join mae_usuario_local ml on ml.nid_usuario = u.nid_usuario " +
+"                          inner join mae_local l on l.nid_local = ml.nid_local where u.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -275,6 +276,7 @@ public class BD_RS {
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
+                v.add(rs.getString(6));
                 //v.add(rs.getString(6));
                 dtm.addRow(v);
             }
@@ -332,7 +334,7 @@ public class BD_RS {
     }
     public static boolean CUsuario(Usuario usuario, int tipo){
         
-        String sp = "Call sp_usuario(?,?,?,?,?,?,?)";
+        String sp = "Call sp_usuario(?,?,?,?,?,?,?,?)";
         try {
             CallableStatement cs = BDUtil.getCnn().prepareCall(sp);
             cs.setInt(1, usuario.getId());
@@ -341,7 +343,8 @@ public class BD_RS {
             cs.setInt(4,usuario.getEstado());
             cs.setInt(5,usuario.getCodT());
             cs.setInt(6, usuario.getRol());
-            cs.setInt(7,tipo);
+            cs.setInt(7,usuario.getIdLocal());
+            cs.setInt(8,tipo);
             cs.executeQuery();
             return true;
         } catch (SQLException e) {
@@ -811,5 +814,41 @@ public class BD_RS {
             return null;
         }
         
+    }
+    public static boolean RegUnionCargo(int idCargo){
+        try {
+            String sql = "select * from mae_trabajador where nid_cargo = ? and nid_estado = 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idCargo);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    public static boolean RegUnionArea(int idArea){
+        try {
+            String sql = "select * from mae_cargo where nid_area = ? and nid_estado = 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idArea);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    public static boolean RegUnionTrabajador(int idT){
+        try {
+            String sql = "select * from mae_usuario where nid_trabajador = ? and nid_estado = 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idT);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 }
