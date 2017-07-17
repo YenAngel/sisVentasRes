@@ -231,19 +231,21 @@ public class Login extends javax.swing.JFrame {
       
     }//GEN-LAST:event_txtPasswordActionPerformed
     private void getStatus(String status){
-        String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
+        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
         //URL url = this.getClass().getResource(path);
-        ImageIcon imageIcon = new ImageIcon(path);
-        Icon icon= new ImageIcon(imageIcon.getImage());
-        lblEstado.setIcon(icon);
-        if (status.startsWith("success")) {
-            lblEstado.setText("Bienvenido al sistema...");
-        }else if (status.startsWith("warning")) {
-            lblEstado.setText("Advertencia: Intento fallido ingrese la contraseña y usuario correctamente.");
-        }else if (status.startsWith("error"))
-            lblEstado.setText("Usted ha superado el limite de intentos.");
-         
-        this.repaint();
+        if (!status.equals("")) {
+            ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+status+".png"));
+            Icon icon= new ImageIcon(imageIcon.getImage());
+            lblEstado.setIcon(icon);
+            if (status.startsWith("success")) {
+                lblEstado.setText("Bienvenido al sistema...");
+            }else if (status.startsWith("warning")) {
+                lblEstado.setText("Advertencia: Intento fallido ingrese la contraseña y usuario correctamente.");
+            }else if (status.startsWith("error"))
+                lblEstado.setText("Usted ha superado el limite de intentos.");
+
+            this.repaint();
+        }        
     }
     private void validUser(Login_User login_User){                
         try {

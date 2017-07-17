@@ -1544,8 +1544,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
         pPiso.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
-        jpListarCliente lp=new jpListarCliente();
-        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+
        try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);
@@ -1627,19 +1626,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(255,51,51));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));
-       
-        mpMante.setVisible(false);
-        mpPedido.setVisible(false);
-        mpReporte.setVisible(false);
-        mpCaja.setVisible(false);
-        mpCarta.setVisible(false);
-        mpReservacion.setVisible(false);
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));               
                 
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
+                mpMante.setVisible(false);
+                mpPedido.setVisible(false);
+                mpReporte.setVisible(false);
+                mpCaja.setVisible(false);
+                mpCarta.setVisible(false);
+                mpReservacion.setVisible(false);
                 //pnelActive = 1;
                 setVisible(false);
                 frmCaja caja=new frmCaja();
@@ -1651,6 +1649,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void pPlatoLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pPlatoLocalMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
+        pCategoria.setBackground(new java.awt.Color(24,168,255));
         pComprobante.setBackground(new java.awt.Color(24,168,255));
         pUsuario.setBackground(new java.awt.Color(24,168,255));
         pTrabajador.setBackground(new java.awt.Color(24,168,255));
@@ -1662,9 +1661,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pLocal.setBackground(new java.awt.Color(24,168,255));
         pPlato.setBackground(new java.awt.Color(24,168,255));
         pPlatoLocal.setBackground(new java.awt.Color(255,51,51));
-        pPiso.setBackground(new java.awt.Color(24,168,255));
-        jpListarPlatoLocal lp=new jpListarPlatoLocal();
-        namePanel=lp.toString().substring(lp.toString().indexOf("jp"), lp.toString().indexOf("["));        
+        pPiso.setBackground(new java.awt.Color(24,168,255));        
         try {
             if(nPanel != null){
                 getContentPane().remove(nPanel);

@@ -45,13 +45,14 @@ public class jpEditarCliente extends javax.swing.JPanel {
         txtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtPaterno = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         txtMaterno = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        btnReturn = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -94,30 +95,12 @@ public class jpEditarCliente extends javax.swing.JPanel {
         });
         add(txtPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 221, 260, 50));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Home-icon.png")); // NOI18N
-        jButton1.setText("Retornar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(666, 174, 180, 80));
-
         txtMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMaternoKeyTyped(evt);
             }
         });
         add(txtMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 298, 260, 50));
-
-        btnSave.setIcon(new javax.swing.ImageIcon("D:\\sisVentasRes\\sgr\\src\\recursos\\Check-icon.png")); // NOI18N
-        btnSave.setText("Guardar");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(666, 76, 180, 80));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Apellido Materno:");
@@ -137,12 +120,33 @@ public class jpEditarCliente extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Id del Cliente:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 91, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jpListarCliente listarCliente=new jpListarCliente();
-        frmPrincipal.Comp(listarCliente);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 150, -1));
+
+        btnSave.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave.setText("Guardar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 150, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR CATEGORÍA");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 38));
+    }// </editor-fold>//GEN-END:initComponents
 
     private boolean validarCotrols(){
         boolean ok;
@@ -156,26 +160,6 @@ public class jpEditarCliente extends javax.swing.JPanel {
             ok=false;
         return ok;
     }
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Login_User login_User= new Login_User();
-        if (validarCotrols()) {
-            cliente.setNid_cliente(Integer.parseInt(txtCodigo.getText()));
-            cliente.setNo_cliente(txtNombre.getText());
-            cliente.setNo_ape_paterno(txtPaterno.getText());
-            cliente.setNo_ape_materno(txtMaterno.getText());
-            cliente.setCo_tipo_documento(cboTipoDocumento.getSelectedItem().toString());
-            cliente.setNu_documento(txtDocumento.getText());
-            cliente.setNid_usuario_modi(login_User.getNdi_usuario());
-            if (BDData.editarCliente(cliente)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                cleanControls();
-                jpListarCliente listarCliente =new jpListarCliente();
-                frmPrincipal.Comp(listarCliente);
-            }
-        }else
-            JOptionPane.showMessageDialog(null,"Completar todos los campos");
-    }//GEN-LAST:event_btnSaveActionPerformed
-
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoKeyTyped
@@ -220,12 +204,38 @@ public class jpEditarCliente extends javax.swing.JPanel {
         }         
     }//GEN-LAST:event_txtDocumentoKeyTyped
 
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarCliente listarCliente=new jpListarCliente();
+        frmPrincipal.Comp(listarCliente);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        Login_User login_User= new Login_User();
+        if (validarCotrols()) {
+            cliente.setNid_cliente(Integer.parseInt(txtCodigo.getText()));
+            cliente.setNo_cliente(txtNombre.getText());
+            cliente.setNo_ape_paterno(txtPaterno.getText());
+            cliente.setNo_ape_materno(txtMaterno.getText());
+            cliente.setCo_tipo_documento(cboTipoDocumento.getSelectedItem().toString());
+            cliente.setNu_documento(txtDocumento.getText());
+            cliente.setNid_usuario_modi(login_User.getNdi_usuario());
+            if (BDData.editarCliente(cliente)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                cleanControls();
+                jpListarCliente listarCliente =new jpListarCliente();
+                frmPrincipal.Comp(listarCliente);
+            }
+        }else
+            JOptionPane.showMessageDialog(null,"Completar todos los campos");
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     public static javax.swing.JComboBox<String> cboTipoDocumento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

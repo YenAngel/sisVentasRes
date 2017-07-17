@@ -1,6 +1,8 @@
 
 package ventas.presentacion.Plato;
 
+import java.awt.Image;
+import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.BorderFactory;
@@ -25,6 +27,14 @@ public class jpEditarPlato extends javax.swing.JPanel {
     }
     private void addItems(){
         cboCategoria1.setModel(BDData.getCategoria1());        
+    }
+    public  void imgPlato(String plato){       
+        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
+        //URL url = this.getClass().getResource(path);
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
+        Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+        lblPlatoImg.setIcon(icon);                
+        this.repaint();        
     }
     public static void cargarPlato(Plato p){
         txtCodigo.setText(p.getNid_plato()+"");
@@ -56,8 +66,10 @@ public class jpEditarPlato extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        opGuardar = new javax.swing.JLabel();
-        opHome = new javax.swing.JLabel();
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
+        lblPlatoImg = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
@@ -66,11 +78,11 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Categoria 3:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 357, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nombre del Plato:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 152, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
 
         txtPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPlato.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -78,7 +90,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
                 txtPlatoKeyTyped(evt);
             }
         });
-        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 136, 260, 50));
+        add(txtPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 260, 50));
 
         cboCategoria1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboCategoria1.addItemListener(new java.awt.event.ItemListener() {
@@ -86,11 +98,11 @@ public class jpEditarPlato extends javax.swing.JPanel {
                 cboCategoria1ItemStateChanged(evt);
             }
         });
-        add(cboCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 204, 260, 50));
+        add(cboCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Categoria 1:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 221, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
 
         cboCategoria2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboCategoria2.addItemListener(new java.awt.event.ItemListener() {
@@ -103,21 +115,21 @@ public class jpEditarPlato extends javax.swing.JPanel {
                 cboCategoria2ActionPerformed(evt);
             }
         });
-        add(cboCategoria2, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 272, 260, 50));
+        add(cboCategoria2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 260, 50));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Categoria 2:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 289, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
 
         cboCategoria3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboCategoria3, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 340, 260, 50));
+        add(cboCategoria3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 260, 50));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 68, 260, 50));
+        add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 260, 50));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Id Plato");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 84, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
 
         btnCargar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCargar.setText("Cargar...");
@@ -126,46 +138,40 @@ public class jpEditarPlato extends javax.swing.JPanel {
                 btnCargarActionPerformed(evt);
             }
         });
-        add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 408, 260, 48));
+        add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 260, 48));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Elegir imagen:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 424, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
 
-        opGuardar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
-        opGuardar.setText("Guardar");
-        opGuardar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opGuardar.setMaximumSize(new java.awt.Dimension(80, 331));
-        opGuardar.setMinimumSize(new java.awt.Dimension(80, 331));
-        opGuardar.setPreferredSize(new java.awt.Dimension(80, 331));
-        opGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opGuardarMouseClicked(evt);
+        btnSave1.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
+        btnSave1.setText("Guardar");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
             }
         });
-        add(opGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, -1));
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 150, -1));
 
-        opHome.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/home.png"))); // NOI18N
-        opHome.setText("Home");
-        opHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opHome.setMaximumSize(new java.awt.Dimension(80, 331));
-        opHome.setMinimumSize(new java.awt.Dimension(80, 331));
-        opHome.setName(""); // NOI18N
-        opHome.setPreferredSize(new java.awt.Dimension(80, 331));
-        opHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opHomeMouseClicked(evt);
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
             }
         });
-        add(opHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, -1, -1));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 150, -1));
+
+        lblPlatoImg.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        add(lblPlatoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 474, 260, 150));
+
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setText("EDITAR PLATO");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlatoKeyTyped
@@ -183,13 +189,28 @@ public class jpEditarPlato extends javax.swing.JPanel {
             Archivo archivo=new Archivo();
             archivo.setVisible(true);
             archivo.name=txtPlato.getText();
+            archivo.nroFrm=2;
         }
     }//GEN-LAST:event_btnCargarActionPerformed
 
-    private void opGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opGuardarMouseClicked
-        //        buttonsColor();
-        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        Timer t= new Timer();
+    private void cboCategoria2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria2ItemStateChanged
+        if (cboCategoria2.getSelectedIndex()!=-1) {
+            cboCategoria3.setModel(BDData.getCategoria3(cboCategoria2.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_cboCategoria2ItemStateChanged
+
+    private void cboCategoria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria1ItemStateChanged
+        if (cboCategoria1.getSelectedIndex()!=-1) {
+            cboCategoria2.setModel(BDData.getCategoria2(cboCategoria1.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_cboCategoria1ItemStateChanged
+
+    private void cboCategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoria2ActionPerformed
+        
+    }//GEN-LAST:event_cboCategoria2ActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+                Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
@@ -225,52 +246,29 @@ public class jpEditarPlato extends javax.swing.JPanel {
             }
         };
         t.schedule(task, 1000);
-    }//GEN-LAST:event_opGuardarMouseClicked
+    }//GEN-LAST:event_btnSave1ActionPerformed
 
-    private void opHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opHomeMouseClicked
-        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        Timer t= new Timer();
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {
-                jpListarPlato listarPlato=new jpListarPlato();
-                frmPrincipal.Comp(listarPlato);
-            }
-        };
-        t.schedule(task, 1000);
-    }//GEN-LAST:event_opHomeMouseClicked
-
-    private void cboCategoria2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria2ItemStateChanged
-        if (cboCategoria2.getSelectedIndex()!=-1) {
-            cboCategoria3.setModel(BDData.getCategoria3(cboCategoria2.getSelectedItem().toString()));
-        }
-    }//GEN-LAST:event_cboCategoria2ItemStateChanged
-
-    private void cboCategoria1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCategoria1ItemStateChanged
-        if (cboCategoria1.getSelectedIndex()!=-1) {
-            cboCategoria2.setModel(BDData.getCategoria2(cboCategoria1.getSelectedItem().toString()));
-        }
-    }//GEN-LAST:event_cboCategoria1ItemStateChanged
-
-    private void cboCategoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoria2ActionPerformed
-        
-    }//GEN-LAST:event_cboCategoria2ActionPerformed
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        jpListarPlato listarPlato=new jpListarPlato();
+        frmPrincipal.Comp(listarPlato);
+    }//GEN-LAST:event_btnReturnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
+    private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSave1;
     public static javax.swing.JComboBox<String> cboCategoria1;
     public static javax.swing.JComboBox<String> cboCategoria2;
     public static javax.swing.JComboBox<String> cboCategoria3;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel opGuardar;
-    public javax.swing.JLabel opHome;
+    private javax.swing.JLabel lblPlatoImg;
     public static javax.swing.JTextField txtCodigo;
     public static javax.swing.JTextField txtPlato;
     // End of variables declaration//GEN-END:variables

@@ -103,7 +103,11 @@ public class BDData {
             cs.setInt(4,mesa.getNu_piso());
             cs.setString(5, mesa.getNo_local());
             cs.setInt(6, mesa.getNid_usuario_crea());
-            cs.executeQuery();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -168,7 +172,11 @@ public class BDData {
             cs.setString(2,empresa.getNo_comercial());
             cs.setString(3,empresa.getNu_ruc());
             cs.setInt(4,empresa.getNid_usuario_crea());
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -232,7 +240,11 @@ public class BDData {
             cs.setString(2,local.getTx_direccion());
             cs.setString(3,local.getNo_empresa());
             cs.setInt(4,local.getNid_usuario_crea());
-            cs.executeUpdate();
+            int rs= cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -310,7 +322,11 @@ public class BDData {
             cs.setInt(1,piso.getNu_piso());
             cs.setString(2,piso.getNo_local());
             cs.setInt(3, piso.getNid_usuario_crea());
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -378,7 +394,11 @@ public class BDData {
             cs.setString(4,cliente.getCo_tipo_documento());
             cs.setString(5,cliente.getNu_documento());            
             cs.setInt(6, cliente.getNid_usuario_crea());
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -425,23 +445,23 @@ public class BDData {
             while (rs.next()) {
                 if (idx==3) {
                     Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3)); 
-                v.add(rs.getString(4));
-                dtm.addRow(v);
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3)); 
+                    v.add(rs.getString(4));
+                    dtm.addRow(v);
                 }else if (idx==2) {                    
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));                 
-                dtm.addRow(v);
+                    Vector v = new Vector();
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));                 
+                    dtm.addRow(v);
                 }else if (idx==1) {                    
-                Vector v = new Vector();
-                v.add(rs.getInt(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));                 
-                dtm.addRow(v);
+                    Vector v = new Vector();
+                    v.add(rs.getInt(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));                 
+                    dtm.addRow(v);
                 }                
             }
             return dtm;
@@ -538,12 +558,11 @@ public class BDData {
                 cs.setString(3, categoria.getNo_categoria_plato());   
                 cs.setInt(4, categoria.getNid_usuario_crea());   
                 cs.setInt(5, categoria.getVi_tipo());
-                int rs=cs.executeUpdate();
-                System.out.println(rs);
+                int rs=cs.executeUpdate();                
                 if (rs==0) {               
-                    JOptionPane.showMessageDialog(null, "Registro ya ha sido ingresado");
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
                 } else
-                    JOptionPane.showMessageDialog(null, "Registro guardado");
+                JOptionPane.showMessageDialog(null, "Registro guardado");
                 return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -628,7 +647,11 @@ public class BDData {
             cs.setString(3, plato.getNo_categoria2_plato());   
             cs.setString(4, plato.getNo_categoria3_plato());   
             cs.setInt(5, plato.getNid_usuario_crea());            
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -709,7 +732,11 @@ public class BDData {
             cs.setDouble(3, platoLocal.getMt_precio());   
             cs.setInt(4, getVip);   
             cs.setInt(5, platoLocal.getNid_usuario_crea());            
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -761,7 +788,11 @@ public class BDData {
             cs.setString(3, comprobante.getNu_serie());   
             cs.setString(4, comprobante.getNu_correlativo());               
             cs.setInt(5, comprobante.getNid_usuario_crea());            
-            cs.executeUpdate();
+            int rs=cs.executeUpdate();
+            if (rs==0) {               
+                JOptionPane.showMessageDialog(null, "Registro ya existe");
+            } else
+                JOptionPane.showMessageDialog(null, "Registro guardado");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -801,10 +832,11 @@ public class BDData {
     }
     public static DefaultTableModel obtenerMesa(DefaultTableModel dtm, Mesa mesa){
         try {
-            String sql="call sgr_sps_getMesa(?,?)";
+            String sql="call sgr_sps_getMesa(?,?,?)";
             CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
-            cs.setInt(1, mesa.getNu_mesa());   
-            cs.setInt(2, mesa.getNu_piso());            
+            cs.setString(1, mesa.getNo_local());   
+            cs.setInt(2, mesa.getNu_mesa());   
+            cs.setInt(3, mesa.getNu_piso());            
             ResultSet rs=cs.executeQuery();
             while (rs.next()) {                
              Vector v=new Vector();
@@ -824,17 +856,19 @@ public class BDData {
     }
     public static DefaultTableModel obtenerComprobante(DefaultTableModel dtm, Comprobante comprobante){
         try {
-            String sql="call sgr_sps_getComprobante(?,?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            String sql="call sgr_sps_getComprobante(?,?,?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);            
             cs.setString(1, comprobante.getCo_comprobante());   
-            cs.setString(2, comprobante.getNu_serie());            
+            cs.setString(2, comprobante.getNu_serie()); 
+            cs.setString(3, comprobante.getNu_correlativo());
+            cs.setString(4, comprobante.getNo_local());
             ResultSet rs=cs.executeQuery();
-            while (rs.next()) {
+            while (rs.next()) {                
                 Vector v = new Vector();
                 v.add(rs.getString(1));
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));                
-                v.add(rs.getString(4));                
+                v.add(rs.getString(4));                 
                 dtm.addRow(v);
             }
             return dtm;
@@ -845,31 +879,32 @@ public class BDData {
     public static DefaultTableModel obtenerCategoria(DefaultTableModel dtm, Categoria categoria){
         try {
             String sql="call sgr_sps_getCategoria(?,?)";
-            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql); 
             cs.setString(1, categoria.getNo_categoria_plato());   
             cs.setInt(2, categoria.getVi_tipo());            
+            int idx=categoria.getVi_tipo();
             ResultSet rs=cs.executeQuery();
             while (rs.next()) {
-                if (categoria.getVi_tipo()==3) {
+                if (idx==3) {
                     Vector v = new Vector();
                     v.add(rs.getInt(1));
                     v.add(rs.getString(2));
                     v.add(rs.getString(3)); 
                     v.add(rs.getString(4));
                     dtm.addRow(v);
-                }else if (categoria.getVi_tipo()==2) {                    
+                }else if (idx==2) {                    
                     Vector v = new Vector();
                     v.add(rs.getInt(1));
                     v.add(rs.getString(2));
                     v.add(rs.getString(3));                 
                     dtm.addRow(v);
-                }else if (categoria.getVi_tipo()==1) {                    
+                }else if (idx==1) {                    
                     Vector v = new Vector();
                     v.add(rs.getInt(1));
                     v.add(rs.getString(2));
                     v.add(rs.getString(3));                 
                     dtm.addRow(v);
-                }
+                }                
             }
             return dtm;
         } catch (Exception e) {
