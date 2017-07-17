@@ -718,7 +718,19 @@ public class frmPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_cboMozoActionPerformed
 
     private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
-        // TODO add your handling code here:
+       if(tblPedidos.getSelectedRow() >=0){
+           int indx = tblPedidos.getSelectedRow();
+           int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
+           String costo = tblPedidos.getValueAt(indx, 2).toString();
+           
+            if (val-1 != 0)   
+               val -= 1;
+               
+           
+           tblPedidos.getModel().setValueAt(val, indx, 1);
+           tblPedidos.getModel().setValueAt(Double.parseDouble(costo)*(double)val, indx, 3);
+       }
+        ConfigTBL(tblPedidos);
     }//GEN-LAST:event_btnMinActionPerformed
     private int FoundCount(String cad, char car){
         int count = 0;
