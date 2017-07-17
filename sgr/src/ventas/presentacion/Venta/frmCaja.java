@@ -3,21 +3,25 @@ package ventas.presentacion.Venta;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.frmPrincipal;
 
 public class frmCaja extends javax.swing.JFrame {
-
+    
+    Thread thr1;
+    Login_User login_User=new Login_User();
     Date d=new Date();
     DefaultTableModel dtm;
     int height=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-    int width=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    int width=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;               
     public frmCaja() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -25,6 +29,10 @@ public class frmCaja extends javax.swing.JFrame {
         cboComprobante.setSelectedIndex(-1);
         componentes();
         setLayout(null);
+        lblUser.setText(login_User.surcursal);   
+        getNow();
+        thr1= new Thread((Runnable) this);
+        thr1.start();
     }
    
     private void componentes(){       
@@ -37,6 +45,22 @@ public class frmCaja extends javax.swing.JFrame {
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
+    }
+    private void getNow(){
+        DateFormat now= new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf= new SimpleDateFormat("HH:mm:ss");
+        lblDate.setText(now.format(d));
+        lblHour.setText(sdf.format(d));
+        Thread thr=Thread.currentThread();
+        while (thr==thr1) {                
+            lblDate.setText(now.format(d));
+            lblHour.setText(sdf.format(d));
+            try {
+                Thread.sleep(1000);                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,13 +93,21 @@ public class frmCaja extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         pnlCajaTitle = new javax.swing.JPanel();
-        lblHome1 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
+        lblHome2 = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
+        lblHour = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1025, 661));
         setSize(new java.awt.Dimension(1025, 661));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         cboCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "DNI" }));
@@ -169,16 +201,15 @@ public class frmCaja extends javax.swing.JFrame {
 
         pnlCajaTitle.setBackground(new java.awt.Color(102, 153, 255));
 
-        lblHome1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/notes.png"))); // NOI18N
-        lblHome1.setText(" Gestión de Ventas");
-        lblHome1.setAlignmentX(30.0F);
-        lblHome1.setAlignmentY(20.0F);
-        lblHome1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblHome1.setIconTextGap(0);
-        lblHome1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblUser.setText(" Gestión de Ventas");
+        lblUser.setAlignmentX(30.0F);
+        lblUser.setAlignmentY(20.0F);
+        lblUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblUser.setIconTextGap(0);
+        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblHome1MouseClicked(evt);
+                lblUserMouseClicked(evt);
             }
         });
 
@@ -194,22 +225,71 @@ public class frmCaja extends javax.swing.JFrame {
             }
         });
 
+        lblHome2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblHome2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/notes.png"))); // NOI18N
+        lblHome2.setText(" Gestión de Ventas");
+        lblHome2.setAlignmentX(30.0F);
+        lblHome2.setAlignmentY(20.0F);
+        lblHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblHome2.setIconTextGap(0);
+        lblHome2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHome2MouseClicked(evt);
+            }
+        });
+
+        lblDate.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblDate.setAlignmentX(30.0F);
+        lblDate.setAlignmentY(20.0F);
+        lblDate.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblDate.setIconTextGap(0);
+        lblDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDateMouseClicked(evt);
+            }
+        });
+
+        lblHour.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblHour.setAlignmentX(30.0F);
+        lblHour.setAlignmentY(20.0F);
+        lblHour.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblHour.setIconTextGap(0);
+        lblHour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHourMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlCajaTitleLayout = new javax.swing.GroupLayout(pnlCajaTitle);
         pnlCajaTitle.setLayout(pnlCajaTitleLayout);
         pnlCajaTitleLayout.setHorizontalGroup(
             pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCajaTitleLayout.createSequentialGroup()
-                .addContainerGap(603, Short.MAX_VALUE)
-                .addComponent(lblHome1)
-                .addGap(187, 187, 187)
+                .addContainerGap()
+                .addComponent(lblUser)
+                .addGap(47, 47, 47)
+                .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHour, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblHome2)
+                .addGap(45, 45, 45)
                 .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlCajaTitleLayout.setVerticalGroup(
             pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCajaTitleLayout.createSequentialGroup()
                 .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHome1)
-                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlCajaTitleLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblHour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(34, 34, 34))
+                        .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblHome2))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -362,9 +442,9 @@ public class frmCaja extends javax.swing.JFrame {
         mesas_Selection.setVisible(true);
     }//GEN-LAST:event_lblHomeMouseClicked
 
-    private void lblHome1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHome1MouseClicked
+    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblHome1MouseClicked
+    }//GEN-LAST:event_lblUserMouseClicked
 
     private void cboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClienteActionPerformed
         // TODO add your handling code here:
@@ -373,9 +453,9 @@ public class frmCaja extends javax.swing.JFrame {
     private void cboComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboComprobanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboComprobanteActionPerformed
-
+ 
     private void cboComprobanteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboComprobanteItemStateChanged
-        /*ResultSet rs;
+        ResultSet rs;
         String temp1,temp2;
         if (cboComprobante.getSelectedIndex()!=-1) {
             rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
@@ -427,13 +507,32 @@ public class frmCaja extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/   
+        }   
     }//GEN-LAST:event_cboComprobanteItemStateChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         frmCalculadora calculadora=new frmCalculadora();
         calculadora.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void lblHome2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHome2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblHome2MouseClicked
+
+    private void lblDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDateMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        //DateFormat hour= new SimpleDateFormat("HH:mm:ss");
+        //DateFormat now= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        //lblDate.setText(now.format(d));
+             
+    }//GEN-LAST:event_formWindowActivated
+
+    private void lblHourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHourMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblHourMouseClicked
 
     /**
      * @param args the command line arguments
@@ -495,8 +594,11 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblHome1;
+    private javax.swing.JLabel lblHome2;
+    private javax.swing.JLabel lblHour;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JPanel pnlCajaTitle;
     private javax.swing.JTable tblCaja;
     public static javax.swing.JTextField txtCorrelativo;

@@ -27,19 +27,44 @@ import ventas.presentacion.Mesa.jpListarMesa;
 
 public class BDData {    
     public static ResultSet user(Login_User usuario) throws Exception{
-        String sql="Call sgr_sps_usuario(?,?)";                
+        String sql="Call sgr_sps_usuario(?,?,?)";                
         try{            
             CallableStatement cs= BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, usuario.getNo_usuario());
-            cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));  
+            cs.setString(2, EN_DES.Encrypt_S(usuario.getNo_clave()));   
+            cs.setString(3, usuario.getSurcursal());
             ResultSet rs=cs.executeQuery();                        
             return rs;
-
         }catch (SQLException ex) {
             System.out.println(ex.toString());   
             return null;
         }        
-    }       
+    }
+    public static ResultSet getDatosDocumento(String comprobante){
+        String sql="call sgr_sps_getDataComprobante(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, comprobante);
+            ResultSet rs=cs.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static ResultSet getCorrelativo(String serie, String correlativo){
+        String sql="call sgr_sps_getCorrelativo(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, serie);
+            cs.setString(2, correlativo);
+            ResultSet rs=cs.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
     public static DefaultTableModel listarMesa( DefaultTableModel dtm){
         String sql="SELECT * FROM sgr_listarMesa";
         try {

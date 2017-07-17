@@ -7,7 +7,15 @@ public class Login_User {
     public      static String      no_usuario;
     public      static String      no_clave;
     public      static String      surcursal;
+    public      static String      local;
 
+    public static String getLocal() {
+        return local;
+    }
+
+    public static void setLocal(String local) {
+        Login_User.local = local;
+    }
     public int getNdi_usuario() {
         return ndi_usuario;
     }
