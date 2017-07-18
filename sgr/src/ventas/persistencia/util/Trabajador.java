@@ -16,7 +16,7 @@ public class Trabajador {
     private static int estado;
     private static int usuario_c;
     private static int usuario_m;
-
+    private static String SCargo;
     public String getCodigo() {
         return codigo;
     }
@@ -111,6 +111,14 @@ public class Trabajador {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public String getSCargo() {
+        return SCargo;
+    }
+
+    public void setSCargo(String SCargo) {
+        this.SCargo = SCargo;
     }
     
 }

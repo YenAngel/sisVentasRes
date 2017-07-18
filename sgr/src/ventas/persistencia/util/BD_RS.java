@@ -126,7 +126,7 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOAreas(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "SELECT no_area from mae_area";
+            String sql = "SELECT no_area from mae_area where nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -162,7 +162,7 @@ public class BD_RS {
     public static DefaultTableModel ListarAreas(){
         try {
             DefaultTableModel dtm = FormatearTablaAreas();
-            String sql = "SELECT a.nid_area, a.no_area,a.fe_creacion FROM mae_area a INNER JOIN mae_estado e ON e.nid_estado = a.nid_estado where a.nid_estado = 1";
+            String sql = "SELECT a.nid_area, a.no_area,a.fe_creacion FROM mae_area a INNER JOIN mae_estado e ON e.nid_estado = a.nid_estado where a.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -183,7 +183,7 @@ public class BD_RS {
         try {
             DefaultTableModel dtm = FormatearTablaCargos();
             String sql = "SELECT c.nid_cargo, c.no_cargo, a.no_area,a.fe_creacion FROM mae_cargo c INNER JOIN mae_area a ON a.nid_area = c.nid_area " +
-            " INNER JOIN mae_estado e ON e.nid_estado = c.nid_estado where c.nid_estado = 1";
+            " INNER JOIN mae_estado e ON e.nid_estado = c.nid_estado where c.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -205,7 +205,7 @@ public class BD_RS {
         try {
             DefaultTableModel dtm = FormatearTablaTrabajador();
             String sql = "SELECT t.co_trabajador as Código,t.no_natural as Nombre,no_ape_paterno as 'Apellido Paterno',no_ape_materno as 'Apellido Materno',t.nu_documento as DNI,t.fe_ingreso_laboral as 'Ingreso Laboral',c.no_cargo as Cargo from mae_trabajador t " +
-                    "inner join mae_cargo c on c.nid_cargo = t.nid_cargo inner join mae_estado e on e.nid_estado = t.nid_estado where t.nid_estado = 1";
+                    "inner join mae_cargo c on c.nid_cargo = t.nid_cargo inner join mae_estado e on e.nid_estado = t.nid_estado where t.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -266,7 +266,7 @@ public class BD_RS {
             String sql = "select u.nid_usuario, u.no_usuario,u.no_clave, t.co_trabajador,p.no_perfil,l.no_local from mae_usuario u inner join " +
 "                          mae_estado e on e.nid_estado = u.nid_estado inner join mae_trabajador t on t.nid_trabajador = u.nid_trabajador " +
 "                          inner join mae_perfil p on p.nid_perfil = u.nid_perfil inner join mae_usuario_local ml on ml.nid_usuario = u.nid_usuario " +
-"                          inner join mae_local l on l.nid_local = ml.nid_local where u.nid_estado = 1";
+"                          inner join mae_local l on l.nid_local = ml.nid_local where u.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -798,9 +798,9 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOMozo(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "select mtr.nu_documento from mae_trabajador mtr where mtr.nid_cargo = 3 and mtr.nid_estado = 1;";
+            String sql = "select mtr.nu_documento from mae_trabajador mtr inner join mae_usuario u on u.nid_trabajador = mtr.nid_trabajador inner join mae_usuario_local mul on mul.nid_usuario = u.nid_usuario where mtr.nid_cargo = 3 and mul.nid_local = ? and mtr.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
-            
+            ps.setInt(1, idlocal);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){

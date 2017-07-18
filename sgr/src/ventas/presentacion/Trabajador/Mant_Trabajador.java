@@ -347,7 +347,7 @@ public class Mant_Trabajador extends javax.swing.JPanel {
             t.setApePaterno(tblTrabajador.getValueAt(indx, 2).toString());
             t.setApeMaterno(tblTrabajador.getValueAt(indx, 3).toString());
             t.setFec_ingreso(Date.valueOf(tblTrabajador.getValueAt(indx, 5).toString()));
-            t.setCargo(BD_RS.GetIdCargo(tblTrabajador.getValueAt(indx, 6).toString()));
+            t.setSCargo(tblTrabajador.getValueAt(indx, 6).toString());
             t.setEstado(1);
             Trabajador_Editar te = new Trabajador_Editar();
             frmPrincipal.Comp(te);        
