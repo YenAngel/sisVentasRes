@@ -10,8 +10,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Random;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
@@ -54,7 +60,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         
         int s = 0;
         initComponents();
-        
+        HoraL();
         btnGroupM.setVisible(false);
         //System.out.println(jPanel11.getBackground().getRGB());
         setExtendedState(MAXIMIZED_BOTH);
@@ -358,6 +364,9 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnGroupM = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        FH = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -403,6 +412,18 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/leyenda2.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 370, 53));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/DateTime.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 50, 50));
+
+        FH.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        FH.setForeground(new java.awt.Color(18, 133, 43));
+        FH.setText("#FH");
+        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, 38));
+
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel18.setText("Fecha y Hora: ");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, 38));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -455,6 +476,21 @@ public class Mesas_Selection extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    private void HoraL(){
+        SimpleDateFormat hFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
+        javax.swing.Timer timer = new javax.swing.Timer (1000, new ActionListener () 
+        { 
+            public void actionPerformed(ActionEvent e) 
+            {   
+                String hora = hFormat.format(Time.valueOf(LocalTime.now())).toString();
+                String fecha = dFormat.format(Date.valueOf(LocalDate.now())).toString();
+                FH.setText(fecha + "  -  " + hora);
+             }
+        }); 
+        timer.start();
+        
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -489,10 +525,13 @@ public class Mesas_Selection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FH;
     private javax.swing.JButton btnGroupM;
     private javax.swing.JComboBox<String> cboPiso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

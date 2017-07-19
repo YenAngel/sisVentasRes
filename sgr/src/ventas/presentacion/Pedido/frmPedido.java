@@ -5,6 +5,7 @@
  */
 package ventas.presentacion.Pedido;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -294,6 +295,8 @@ public class frmPedido extends javax.swing.JFrame {
             while(c <= 4){
                 //try{
                 JLabel jl = new JLabel();
+                JLabel jlname = new JLabel();
+                JLabel jlprice = new JLabel();
                 //JLabel jl2 = new JLabel();
                 //jl2.setText("");
                 jl.setText("");
@@ -303,6 +306,10 @@ public class frmPedido extends javax.swing.JFrame {
                String rec = cad.substring(0,cad.indexOf('%')).replace(' ','_');
                 //System.out.println("REC: " + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
+                jlname.setText("<html>" + rec.replace('_', ' ').trim() + "</html>");
+                jlprice.setText(cad.substring(cad.indexOf('%')+1, cad.length()));
+                jlname.setBounds(h+5,a+87,120,30);
+                jlprice.setBounds(h+5,a+120,120,10);
                 /*
                 switch (i) {
                     case 1:
@@ -337,6 +344,8 @@ public class frmPedido extends javax.swing.JFrame {
                 //jPanel1.add(jl);
                 //jl2.setBounds(h, a, 140, 82);
                 jPanel2.add(jl);
+                jPanel2.add(jlname);
+                jPanel2.add(jlprice);
                 c++;
                 h+=200;
                  //}
@@ -354,7 +363,8 @@ public class frmPedido extends javax.swing.JFrame {
             int vecesrun = 1;
             while(vecesrun <= res){
                JLabel jl = new JLabel();
-               
+               JLabel jlname = new JLabel();
+                JLabel jlprice = new JLabel();
                 jl.setText("");
                 //System.out.println("LOAD: " + dlmFilter.getElementAt(ls).toString());
                 String cad = dlmFilter.getElementAt(cont-1).toString();
@@ -362,7 +372,15 @@ public class frmPedido extends javax.swing.JFrame {
                String rec = cad.substring(0,cad.indexOf('%')).replace(' ','_');
                 System.out.println("REC:" + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
-               
+                jlname.setText("<html><center>" + rec.replace('_', ' ').trim() + "</center></html>");
+                jlprice.setText("S/. " +cad.substring(cad.indexOf('%')+1, cad.length()));
+                jlprice.setForeground(new Color(18, 133, 43));
+                System.out.println(rec.replace('_', ' ').trim().length());
+                int posx = 21 - rec.replace('_', ' ').trim().length();
+                if(posx!= 0)
+                    posx+=2;
+                jlname.setBounds(h+posx * 3,a+87,140,30);
+                jlprice.setBounds(h+52,a+120,120,10);
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jl(evt);
@@ -371,7 +389,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jl.setBounds(h, a, 140, 82);
                
                 jPanel2.add(jl);
-                
+                jPanel2.add(jlname);
+                jPanel2.add(jlprice);
                 h+=200;
                 vecesrun ++;
                 cont++;
@@ -521,19 +540,19 @@ public class frmPedido extends javax.swing.JFrame {
         jTabbedPane1.setBounds(416, 26, 837, 434);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stove1.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/TCocina_v.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(10, 410, 140, 50);
+        jButton2.setBounds(10, 410, 110, 60);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/wine-bottle.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/TBar.png"))); // NOI18N
         getContentPane().add(jButton3);
-        jButton3.setBounds(180, 410, 136, 50);
+        jButton3.setBounds(205, 410, 110, 60);
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -170,7 +170,7 @@
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/stove1.png"/>
+          <Image iconType="3" name="/recursos/TCocina_v.png"/>
         </Property>
       </Properties>
       <Events>
@@ -178,7 +178,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="410" width="140" height="50"/>
+          <AbsoluteConstraints x="10" y="410" width="110" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -188,12 +188,12 @@
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/recursos/wine-bottle.png"/>
+          <Image iconType="3" name="/recursos/TBar.png"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="180" y="410" width="136" height="50"/>
+          <AbsoluteConstraints x="205" y="410" width="110" height="60"/>
         </Constraint>
       </Constraints>
     </Component>

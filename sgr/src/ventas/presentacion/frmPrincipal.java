@@ -4,6 +4,15 @@ import java.util.Timer;
 import ventas.presentacion.Reservacion.jpReservacion;
 import ventas.presentacion.Mesa.jpListarMesa;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
@@ -37,15 +46,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static Container c ;
     public String namePanel;
     public int idx;
+    public String lblFH = "";
     Login_User usuario =new Login_User();
     Login frmL;
     public int pnelActive = 0;
     public frmPrincipal() {
         initComponents();
+        HoraL();
         c = getContentPane();
         getContentPane().setLayout(null);
         frmL = new Login();
         setExtendedState(MAXIMIZED_BOTH);
+        
         widthvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         heightvar = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         pTop.setLayout(null);
@@ -90,8 +102,13 @@ public class frmPrincipal extends javax.swing.JFrame {
        lblUser.setBounds(widthvar-540, 16, 100, 20);
        lblUser.setText(lg.getNo_usuario());
        lblSuc.setText(lg.getSurcursal());
+       
        lblUser.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
        lblSuc.setFont(new java.awt.Font("Arial Black", 1, 16));
+       IconFH.setLocation(335, 4);
+       FHLbl.setBounds(390, 20, 300, 20);
+       
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -110,6 +127,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         lblSuc = new javax.swing.JLabel();
+        FHLbl = new javax.swing.JLabel();
+        IconFH = new javax.swing.JLabel();
         pTrabajador = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -295,6 +314,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         lblSuc.setText("#Suc");
         pTop.add(lblSuc);
         lblSuc.setBounds(1139, 22, 53, 26);
+
+        FHLbl.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        FHLbl.setForeground(new java.awt.Color(255, 255, 255));
+        FHLbl.setText("#FH");
+        pTop.add(FHLbl);
+        FHLbl.setBounds(750, 30, 86, 23);
+
+        IconFH.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        IconFH.setForeground(new java.awt.Color(255, 255, 255));
+        IconFH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/DateTime.png"))); // NOI18N
+        pTop.add(IconFH);
+        IconFH.setBounds(640, 10, 60, 60);
 
         getContentPane().add(pTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 80));
 
@@ -2273,6 +2304,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
     
+    private void HoraL(){
+        SimpleDateFormat hFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
+        javax.swing.Timer timer = new javax.swing.Timer (1000, new ActionListener () 
+        { 
+            public void actionPerformed(ActionEvent e) 
+            {   
+                String hora = hFormat.format(Time.valueOf(LocalTime.now())).toString();
+                String fecha = dFormat.format(Date.valueOf(LocalDate.now())).toString();
+                FHLbl.setText(fecha + " - " + hora);
+             }
+        }); 
+        timer.start();
+        
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2306,6 +2353,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FHLbl;
+    private javax.swing.JLabel IconFH;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
