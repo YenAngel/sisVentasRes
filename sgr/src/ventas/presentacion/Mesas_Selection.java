@@ -24,6 +24,7 @@ import javax.swing.DefaultListModel;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -171,6 +172,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             cont++;
             x+=300;
                 if(JoinMesa(nmesa)){
+                    //JOptionPane.showMessageDialog(rootPane,"JoinMesa: " + nmesa);
                     jlIMGChair.setBounds(20, 116, 24, 24);
                     jlTextNChair.setBounds(45, 116, 30, 24);
                     jp.setBackground(new Color(210, 42, 14));
@@ -230,6 +232,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             JLabel jlIMG = new JLabel();
             String cad = dlm.getElementAt(cont-1).toString();
             int nmesa  = Integer.parseInt(cad.substring(0,cad.indexOf('#')));
+            
             jp.setLayout(null);
             jp.setBounds(x, y, 250 , 175);
             jl.setText(nmesa+"");
@@ -260,6 +263,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             cont++;
             x+=300;
              if(JoinMesa(nmesa)){
+                 //JOptionPane.showMessageDialog(rootPane,"JoinMesa: " + nmesa);
                     jlIMGChair.setBounds(20, 116, 24, 24);
                     jlTextNChair.setBounds(45, 116, 30, 24);
                     jp.setBackground(new Color(210, 42, 14));
@@ -301,8 +305,10 @@ public class Mesas_Selection extends javax.swing.JFrame {
         }
     }
     public void jlIMG(MouseEvent evt){
+        DPedido.dlmDP.removeAllElements();
         String cadena = evt.toString().substring(evt.toString().indexOf('#')+1, evt.toString().length());
         String nMesa = cadena.substring(0,cadena.indexOf('$'));
+        //JOptionPane.showMessageDialog(null, nMesa);
         String nPedido = cadena.substring(cadena.indexOf('$')+1,cadena.length());
         if(nPedido.length() != 0){
             DPedido.nPedido = Integer.parseInt(nPedido);
@@ -367,6 +373,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         FH = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -425,6 +433,18 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jLabel18.setText("Fecha y Hora: ");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, 38));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logout.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1222, 30, 30, -1));
+
+        jLabel43.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel43.setText("Salir");
+        getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 70, 40, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void BtnGroupVis(){
@@ -435,14 +455,15 @@ public class Mesas_Selection extends javax.swing.JFrame {
         }
     }
     private void cboPisoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPisoItemStateChanged
-      /*
+      
         if(cboPiso.getSelectedIndex() != -1){
+            BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
-            dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+           /* dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlmpedido = BD_RS.JoinPedido();
-            LoadMesas();
+            LoadMesas();*/
         }
-        */    
+           
     }//GEN-LAST:event_cboPisoItemStateChanged
     
     private void cboPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPisoActionPerformed
@@ -459,12 +480,22 @@ public class Mesas_Selection extends javax.swing.JFrame {
     }//GEN-LAST:event_cboPisoActionPerformed
 
     private void btnGroupMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroupMActionPerformed
-           DPedido.nPedido = 0;
-           //llamar al formulario
-           frmPedido frmPed = new frmPedido();
-           this.setVisible(false);
-           frmPed.setVisible(true);
+           if(DPedido.dlmDP.size() != 0){
+                DPedido.nPedido = 0;
+             //llamar al formulario
+                /*for(int i = 0; i < DPedido.dlmDP.size(); i++){
+                    
+                }*/
+                frmPedido frmPed = new frmPedido();
+                this.setVisible(false);
+                frmPed.setVisible(true);
+           }
     }//GEN-LAST:event_btnGroupMActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        int i = JOptionPane.showOptionDialog(null,"¿Desea salir del Sistema?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if(i==0) System.exit(0);
+    }//GEN-LAST:event_jLabel6MouseClicked
     /*
      jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -532,6 +563,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

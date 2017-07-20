@@ -18,9 +18,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Area;
 import ventas.modelo.Cargo;
+import ventas.modelo.DPedido;
 
 public class BD_RS {
     public static int idlocal;
+    public static int numPiso;
     public static DefaultTableModel FormatearTablaTrabajador(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Código", "Nombre", "Apellido Paterno", "Apellido Materno","DNI", "Ingreso Laboral", "Cargo"};
@@ -758,7 +760,7 @@ public class BD_RS {
         try {
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
-            "on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso where mp.nu_piso = ? and mp.nid_local = ?"; //and mp.nid_local = ?;";
+                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and not (tp.nid_estado = 5 or tp.nid_estado = 6)"; //and mp.nid_local = ?;";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPiso);
             ps.setInt(2, idlocal);
@@ -804,7 +806,7 @@ public class BD_RS {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                CBOT.addElement(rs.getInt(1));
+                CBOT.addElement(rs.getString(1));
             }
             
             return CBOT;
@@ -849,6 +851,60 @@ public class BD_RS {
         } catch (SQLException ex) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+    public static int ConfirmarPedido(DefaultListModel DLM, String DNI, int userCrea){
+        
+        try {
+            String sql = "CALL usp_spi_pedido(?,?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,idlocal);
+            cs.setString(2,DNI);
+            cs.setInt(3, userCrea);
+            ResultSet rs = cs.executeQuery();
+            rs.next();
+            int NewNPedido = rs.getInt(1);
+            //System.out.println(NewNPedido);
+            for(int i = 0; i < DPedido.dlmDP.size(); i++){
+                int nmesa = Integer.parseInt(DPedido.dlmDP.getElementAt(i).toString());
+                //System.out.println("NMESA: " + nmesa);
+                String sqlI = "CALL usp_spi_pedido_mesa(?,?,?,?)";
+                CallableStatement csI = BDUtil.getCnn().prepareCall(sqlI);
+                csI.setInt(1,NewNPedido);
+                csI.setInt(2,nmesa);
+                csI.setInt(3, numPiso);
+                csI.setInt(4, idlocal);
+                csI.executeQuery();
+            }
+            return NewNPedido;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+    public static String GetDNIMozo(int idPedido){
+        try {
+            String sql = "SELECT t.nu_documento from mae_trabajador t   inner join tbl_pedido tp on tp.nid_mozo = t.nid_trabajador where tp.nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    public static void CerrarPedido(int idPedido){
+        try {
+            String sql = "UPDATE tbl_pedido set nid_estado = 5 where nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            
         }
     }
 }
