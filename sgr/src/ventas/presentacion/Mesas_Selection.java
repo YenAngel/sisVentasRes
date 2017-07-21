@@ -71,6 +71,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         if(cboPiso.getSelectedIndex() != -1){
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
+            BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlmpedido = BD_RS.JoinPedido(Integer.parseInt(cboPiso.getSelectedItem().toString()));
@@ -473,6 +474,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             BtnGroupVis();
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
+            BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
             dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlmpedido = BD_RS.JoinPedido(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             LoadMesas();

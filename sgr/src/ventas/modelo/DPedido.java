@@ -16,4 +16,5 @@ public class DPedido {
     public static DefaultListModel dlmDP = new DefaultListModel();
     public static int nPisoPedido = 0;
     public static int nPedido = 0;
+    public static DefaultListModel DetalleAPedido = new DefaultListModel();
 }

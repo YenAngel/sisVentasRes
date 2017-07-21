@@ -49,7 +49,7 @@ public class BD_RS {
     }
      public static DefaultTableModel FormatearTablaDetalleP(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Descripción","Cantidad","Precio","SubTotal"};
+        String [] cab = {"Descripción","Cantidad","Precio","SubTotal","Obs","Estado"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -760,7 +760,7 @@ public class BD_RS {
         try {
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
-                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and not (tp.nid_estado = 5 or tp.nid_estado = 6)"; //and mp.nid_local = ?;";
+                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and tp.nid_estado = 3"; //and mp.nid_local = ?;";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPiso);
             ps.setInt(2, idlocal);
@@ -778,8 +778,9 @@ public class BD_RS {
     
     public static DefaultTableModel DetallePedido(int nPedido){
         try {
+            DPedido.DetalleAPedido.removeAllElements();
             DefaultTableModel dtm = FormatearTablaDetalleP();
-            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio) from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
+            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio),tpd.tx_observacion, tpd.co_estado from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPedido);
             ResultSet rs = ps.executeQuery();
@@ -787,8 +788,11 @@ public class BD_RS {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
                 v.add(rs.getInt(2));
-                v.add(rs.getDouble(3));
-                v.add(rs.getDouble(4));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                DPedido.DetalleAPedido.addElement(rs.getString(1) + "$" + rs.getString(2));
                 dtm.addRow(v);
             }
             return dtm;
@@ -870,6 +874,7 @@ public class BD_RS {
                 //System.out.println("NMESA: " + nmesa);
                 String sqlI = "CALL usp_spi_pedido_mesa(?,?,?,?)";
                 CallableStatement csI = BDUtil.getCnn().prepareCall(sqlI);
+                System.out.println(NewNPedido + "," + nmesa + "," + numPiso+ "," +idlocal);
                 csI.setInt(1,NewNPedido);
                 csI.setInt(2,nmesa);
                 csI.setInt(3, numPiso);
@@ -894,10 +899,33 @@ public class BD_RS {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
+        
+    }
+    public static void IngresarDetallP(DefaultListModel DT, int idPedido){
+        try {
+            for(int i = 0; i < DT.size(); i++ ){
+                String cad = DT.getElementAt(i).toString();
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                double precio = Double.parseDouble(cad.substring(cad.indexOf('#')+1,cad.length()));
+                String sql = "CALL usp_spi_detalle_pedido(?,?,?,?,?)";
+                CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+                cs.setInt(1, idPedido);
+                cs.setString(2, nPlato);
+                cs.setDouble(3, precio);
+                cs.setInt(4, cant);
+                cs.setString(5, descr);
+                cs.executeUpdate();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            
+        }
     }
     public static void CerrarPedido(int idPedido){
         try {
-            String sql = "UPDATE tbl_pedido set nid_estado = 5 where nid_pedido = ?";
+            String sql = "UPDATE tbl_pedido set nid_estado = 4 where nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idPedido);
             ps.executeUpdate();
@@ -907,4 +935,5 @@ public class BD_RS {
             
         }
     }
+    
 }
