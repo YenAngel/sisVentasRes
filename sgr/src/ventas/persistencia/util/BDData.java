@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ventas.modelo.Caja;
 import ventas.modelo.Categoria;
 import ventas.modelo.Cliente;
 import ventas.modelo.Comprobante;
@@ -39,6 +40,20 @@ public class BDData {
             System.out.println(ex.toString());   
             return null;
         }        
+    }
+    public static DefaultTableModel getListaCaja(DefaultTableModel dtm, Caja caja){
+        String sql="call sgr_sps_getListaPedido(?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, caja.getNo_local());
+            cs.setInt(2, caja.getNu_piso());
+            cs.setInt(3, caja.getNu_mesa());
+            ResultSet rs=cs.executeQuery();
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
     public static ResultSet getDatosDocumento(String comprobante){
         String sql="call sgr_sps_getDataComprobante(?)";
@@ -1038,6 +1053,19 @@ public class BDData {
             }
             return dtm;
         } catch (Exception e) {
+            return null;
+        }
+    }
+    public static ResultSet obtenerClienteFact(String tipo, String documento){
+        try {
+            String sql="call sgr_sps_getClienteFact(?,?,?,?,?)";
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(0, tipo);
+            cs.setString(1, documento);
+            ResultSet rs=cs.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
             return null;
         }
     }

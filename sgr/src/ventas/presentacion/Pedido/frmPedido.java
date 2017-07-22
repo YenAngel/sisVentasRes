@@ -441,11 +441,12 @@ public class frmPedido extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         cboMozo = new javax.swing.JComboBox<>();
+        btnMin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -462,15 +463,14 @@ public class frmPedido extends javax.swing.JFrame {
         jLabel16.setBounds(420, 480, 80, 38);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar.png"))); // NOI18N
-        jButton1.setText("Eliminar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/del.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(100, 435, 124, 47);
+        jButton1.setBounds(320, 180, 44, 44);
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -528,12 +528,12 @@ public class frmPedido extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(10, 435, 65, 47);
+        jButton2.setBounds(10, 410, 140, 50);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/wine-bottle.png"))); // NOI18N
         getContentPane().add(jButton3);
-        jButton3.setBounds(249, 435, 65, 47);
+        jButton3.setBounds(180, 410, 136, 50);
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -557,7 +557,7 @@ public class frmPedido extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblPedidos);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(10, 88, 304, 329);
+        jScrollPane2.setBounds(10, 60, 304, 329);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/recibo.png"))); // NOI18N
@@ -565,14 +565,14 @@ public class frmPedido extends javax.swing.JFrame {
         getContentPane().add(jButton5);
         jButton5.setBounds(1030, 490, 221, 71);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6);
-        jButton6.setBounds(320, 112, 44, 44);
+        getContentPane().add(btnAdd);
+        btnAdd.setBounds(320, 130, 44, 44);
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clock.png"))); // NOI18N
@@ -604,7 +604,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(10, 44, 258, 38);
+        jLabel17.setBounds(10, 20, 258, 38);
 
         cboMozo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cboMozo.addItemListener(new java.awt.event.ItemListener() {
@@ -619,6 +619,15 @@ public class frmPedido extends javax.swing.JFrame {
         });
         getContentPane().add(cboMozo);
         cboMozo.setBounds(500, 480, 170, 40);
+
+        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
+        btnMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMin);
+        btnMin.setBounds(320, 80, 44, 44);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -635,21 +644,21 @@ public class frmPedido extends javax.swing.JFrame {
        ConfigTBL(tblPedidos);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
        if(tblPedidos.getSelectedRow() >=0){
            int indx = tblPedidos.getSelectedRow();
            int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
            String costo = tblPedidos.getValueAt(indx, 2).toString();
-           if (val != 1){
+           
                
-               val -= 1;
+               val += 1;
                
-           }
+           
            tblPedidos.getModel().setValueAt(val, indx, 1);
            tblPedidos.getModel().setValueAt(Double.parseDouble(costo)*(double)val, indx, 3);
        }
         ConfigTBL(tblPedidos);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.setVisible(false);
@@ -707,6 +716,22 @@ public class frmPedido extends javax.swing.JFrame {
           
         }
     }//GEN-LAST:event_cboMozoActionPerformed
+
+    private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
+       if(tblPedidos.getSelectedRow() >=0){
+           int indx = tblPedidos.getSelectedRow();
+           int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
+           String costo = tblPedidos.getValueAt(indx, 2).toString();
+           
+            if (val-1 != 0)   
+               val -= 1;
+               
+           
+           tblPedidos.getModel().setValueAt(val, indx, 1);
+           tblPedidos.getModel().setValueAt(Double.parseDouble(costo)*(double)val, indx, 3);
+       }
+        ConfigTBL(tblPedidos);
+    }//GEN-LAST:event_btnMinActionPerformed
     private int FoundCount(String cad, char car){
         int count = 0;
         for (int i = 0; i < cad.length(); i++){
@@ -775,13 +800,14 @@ public class frmPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnMin;
     private javax.swing.JComboBox<String> cboMozo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel16;

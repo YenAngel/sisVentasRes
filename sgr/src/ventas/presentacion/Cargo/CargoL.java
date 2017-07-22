@@ -422,7 +422,10 @@ public class CargoL extends javax.swing.JPanel {
                  int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar el Cargo " + tblCargos.getValueAt(i, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                  if(r == 0){
                                 //Ed = false;
-                                
+                        if(BD_RS.RegUnionCargo(Integer.parseInt(tblCargos.getValueAt(i, 0).toString()))){
+                            JOptionPane.showMessageDialog(this, "Primero debe eliminar el/los trabajador(es) con el cargo " + tblCargos.getValueAt(i, 1).toString(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
                                 Cargo cargo = new Cargo();
                                 cargo.setId(Integer.parseInt(tblCargos.getValueAt(i, 0).toString()));
                                 cargo.setEstado(2);

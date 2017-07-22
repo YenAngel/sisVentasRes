@@ -435,7 +435,10 @@ public class AreaL extends javax.swing.JPanel {
                                        //cboEstado.setVisible(false);
                                        //lblEstado.setVisible(false);
                                        //txtName_Area.setText("");
-
+                             if(BD_RS.RegUnionArea(Integer.parseInt(tblAreas.getValueAt(i,0).toString()))){
+                                 JOptionPane.showMessageDialog(this, "Primero debe eliminar el/los cargo(s) que se creó al Área " + tblAreas.getValueAt(i, 1).toString(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                                 return;
+                             }
                                        Area area = new Area();
                                        area.setId(Integer.parseInt(tblAreas.getValueAt(i, 0).toString()));
                                        area.setEstado(2);

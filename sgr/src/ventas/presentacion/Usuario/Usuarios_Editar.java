@@ -27,11 +27,14 @@ public class Usuarios_Editar extends javax.swing.JPanel {
         initComponents();
         cboTipo.setModel(BD_RS.ListarCBORoles());
         cboTrabajador.setModel(BD_RS.ListarCBOTrabajador());
+        cboLocal.setModel(BD_RS.ListarCBOLocal());
+        
         //cboEstado.setModel(BD_RS.ListarCBOEstado());
         Usuario rUser = new Usuario();
         txtPass.setText(rUser.getPssEnc());
         txtUser.setText(rUser.getUser());
         cboTipo.setSelectedIndex(rUser.getRol()-1);
+        cboLocal.setSelectedItem(rUser.getLocal());
         //cboEstado.setSelectedIndex(rUser.getEstado()-1);
         for (int i=0; i <= cboTrabajador.getItemCount() -1; i++){
             if(cboTrabajador.getItemAt(i).startsWith(BD_RS.GetCodTrab(rUser.getCodT())))
@@ -59,6 +62,8 @@ public class Usuarios_Editar extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         btn_change_pass = new javax.swing.JButton();
+        cboLocal = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -99,6 +104,9 @@ public class Usuarios_Editar extends javax.swing.JPanel {
             }
         });
 
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel21.setText("Local");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,12 +115,14 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18))
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboTipo, 0, 245, Short.MAX_VALUE)
-                    .addComponent(cboTrabajador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cboLocal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 245, Short.MAX_VALUE)
+                    .addComponent(cboTrabajador, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -138,23 +148,27 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
+                        .addGap(109, 109, 109))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_change_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(13, 13, 13))))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 940, 280));
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -228,7 +242,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 470, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 470, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -265,6 +279,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
                 usuario.setEstado(1);
                 usuario.setRol(cboTipo.getSelectedIndex()+1);
                 usuario.setCodT(BD_RS.GetIdTrab(cboTrabajador.getSelectedItem().toString().substring(0, 5)));
+                usuario.setIdLocal(BD_RS.GetIdLocal(cboLocal.getSelectedItem().toString()));
                 if(BD_RS.CUsuario(usuario, 2)) {
                     JOptionPane.showMessageDialog(this, "Registro Modificado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                     Mant_Usuarios n = new Mant_Usuarios();
@@ -296,6 +311,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btn_change_pass;
+    public static javax.swing.JComboBox<String> cboLocal;
     public static javax.swing.JComboBox<String> cboTipo;
     private static javax.swing.JComboBox<String> cboTrabajador;
     private javax.swing.JLabel jLabel16;
@@ -303,6 +319,7 @@ public class Usuarios_Editar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

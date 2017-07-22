@@ -362,8 +362,13 @@ public class Mant_Trabajador extends javax.swing.JPanel {
              /*if(tblTrabajador.getValueAt(indx, 7).toString().contains("Inactivo")){
                  JOptionPane.showMessageDialog(null, "El trabajador ya se encuentra deshabilitado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
              }else{*/
-                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de deshabilitar al trabajador " + tblTrabajador.getValueAt(indx, 0).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+                 int r = JOptionPane.showOptionDialog(null,"¿Está seguro de eliminar al trabajador " + tblTrabajador.getValueAt(indx, 1).toString() + " ?","Mensaje",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
                  if(r == 0){
+                     if(BD_RS.RegUnionTrabajador(BD_RS.GetIdTrab(tblTrabajador.getValueAt(indx, 0).toString()))){
+                         JOptionPane.showMessageDialog(this, "Primero debe eliminar el usuario que se creó al trabajador " + tblTrabajador.getValueAt(indx, 1).toString(),"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                         return;
+                     }
+                     
                     Trabajador trabajador = new Trabajador();
                     trabajador.setEstado(2);
                     trabajador.setCodigo(tblTrabajador.getValueAt(indx, 0).toString());

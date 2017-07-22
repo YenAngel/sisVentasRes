@@ -25,6 +25,7 @@ import ventas.modelo.DPedido;
 import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Pedido.frmPedido;
+import ventas.presentacion.Venta.frmCaja;
 
 
 /**
@@ -62,6 +63,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
         
         ((JLabel)cboPiso.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         if(cboPiso.getSelectedIndex() != -1){
+            frmCaja c=new frmCaja();
+            c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
@@ -158,7 +161,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jp.add(jlTextNChair);
             jlIMG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-               jlIMG(evt);
+               jlIMG(evt);              
             }
         });
             a++;
@@ -308,6 +311,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
         frmPedido frmPed = new frmPedido();
            this.setVisible(false);
            frmPed.setVisible(true);
+        frmCaja c=new frmCaja();
+        c.getMesa(evt);
     }
     public void jc(ItemEvent evt){
         String nmesa = evt.toString().substring(evt.toString().lastIndexOf('#')+1, evt.toString().length()).replace("$", "");
@@ -414,7 +419,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         }
     }
     private void cboPisoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPisoItemStateChanged
-      /*
+        /*
         if(cboPiso.getSelectedIndex() != -1){
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
@@ -426,6 +431,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
     
     private void cboPisoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPisoActionPerformed
         if(cboPiso.getSelectedIndex() != -1){
+            frmCaja c=new frmCaja();
+            c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             numberMesasGroup = 0;
             BtnGroupVis();
@@ -433,8 +440,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlmpedido = BD_RS.JoinPedido(Integer.parseInt(cboPiso.getSelectedItem().toString()));
-            LoadMesas();
-        }
+            LoadMesas();            
+        }        
     }//GEN-LAST:event_cboPisoActionPerformed
 
     private void btnGroupMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroupMActionPerformed

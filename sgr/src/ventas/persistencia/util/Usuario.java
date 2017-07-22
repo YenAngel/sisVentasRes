@@ -12,7 +12,8 @@ public class Usuario {
     private static int estado;
     private static int codT;
     private static String pssEnc;
-
+    private static int idLocal;
+    private static String Local;
     public int getId() {
         return id;
     }
@@ -59,6 +60,22 @@ public class Usuario {
 
     public void setPssEnc(String pssEnc) {
         Usuario.pssEnc = pssEnc;
+    }
+
+    public int getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(int idLocal) {
+        this.idLocal = idLocal;
+    }
+
+    public String getLocal() {
+        return Local;
+    }
+
+    public void setLocal(String Local) {
+        this.Local = Local;
     }
     
 }
