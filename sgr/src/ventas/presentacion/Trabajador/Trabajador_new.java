@@ -60,10 +60,10 @@ public class Trabajador_new extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("NUEVO TRABAJADOR");
         add(jLabel16);
-        jLabel16.setBounds(437, 11, 240, 38);
+        jLabel16.setBounds(300, 20, 240, 38);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -84,7 +84,7 @@ public class Trabajador_new extends javax.swing.JPanel {
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel20.setText("Nombres:");
 
         txtNombres.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -106,10 +106,10 @@ public class Trabajador_new extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel17.setText("Apellido Materno:");
 
-        jLabel19.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel19.setText("Cargo:");
 
         txtApePat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -123,10 +123,10 @@ public class Trabajador_new extends javax.swing.JPanel {
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel15.setText("Apellido Paterno:");
 
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel18.setText("Ingreso Laboral:");
 
         txtDNI.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -145,7 +145,7 @@ public class Trabajador_new extends javax.swing.JPanel {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 15)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
         jLabel22.setText("DNI:");
 
         jdcIngreso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -156,20 +156,23 @@ public class Trabajador_new extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtApePat)
-                            .addComponent(jdcIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(txtApePat, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jdcIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
-                        .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -179,11 +182,11 @@ public class Trabajador_new extends javax.swing.JPanel {
                             .addComponent(jLabel22))))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(cboCargo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(txtDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,13 +215,15 @@ public class Trabajador_new extends javax.swing.JPanel {
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jdcIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8)))))
                 .addGap(0, 48, Short.MAX_VALUE))
         );
 
         add(jPanel1);
-        jPanel1.setBounds(40, 120, 955, 326);
+        jPanel1.setBounds(14, 120, 741, 326);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -262,7 +267,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(220, 500, 633, 102);
+        jPanel2.setBounds(80, 500, 633, 102);
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -290,7 +295,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
 
         add(jPanel3);
-        jPanel3.setBounds(40, 81, 150, 39);
+        jPanel3.setBounds(14, 81, 150, 39);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
