@@ -34,11 +34,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         for(int i=0;i<model.getRowCount();i++)
             jTable.setRowHeight(i,45);        
         jTable.setDefaultEditor(Object.class,null);
-        jTable.getTableHeader().setReorderingAllowed(false);
-        jTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        jTable.getColumnModel().getColumn(0).setMinWidth(0);        
-        jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        jTable.getTableHeader().setReorderingAllowed(false);        
         lblTotal1.setText(model.getRowCount()+"");         
     }
     private DefaultTableModel formatearTabla(){

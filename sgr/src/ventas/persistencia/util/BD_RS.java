@@ -18,9 +18,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Area;
 import ventas.modelo.Cargo;
+import ventas.modelo.DPedido;
 
 public class BD_RS {
     public static int idlocal;
+    public static int numPiso;
     public static DefaultTableModel FormatearTablaTrabajador(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Código", "Nombre", "Apellido Paterno", "Apellido Materno","DNI", "Ingreso Laboral", "Cargo"};
@@ -47,7 +49,7 @@ public class BD_RS {
     }
      public static DefaultTableModel FormatearTablaDetalleP(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Descripción","Cantidad","Precio","SubTotal"};
+        String [] cab = {"Descripción","Cantidad","Precio","SubTotal","Obs","Estado"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -126,7 +128,7 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOAreas(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "SELECT no_area from mae_area";
+            String sql = "SELECT no_area from mae_area where nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -162,7 +164,7 @@ public class BD_RS {
     public static DefaultTableModel ListarAreas(){
         try {
             DefaultTableModel dtm = FormatearTablaAreas();
-            String sql = "SELECT a.nid_area, a.no_area,a.fe_creacion FROM mae_area a INNER JOIN mae_estado e ON e.nid_estado = a.nid_estado where a.nid_estado = 1";
+            String sql = "SELECT a.nid_area, a.no_area,a.fe_creacion FROM mae_area a INNER JOIN mae_estado e ON e.nid_estado = a.nid_estado where a.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -183,7 +185,7 @@ public class BD_RS {
         try {
             DefaultTableModel dtm = FormatearTablaCargos();
             String sql = "SELECT c.nid_cargo, c.no_cargo, a.no_area,a.fe_creacion FROM mae_cargo c INNER JOIN mae_area a ON a.nid_area = c.nid_area " +
-            " INNER JOIN mae_estado e ON e.nid_estado = c.nid_estado where c.nid_estado = 1";
+            " INNER JOIN mae_estado e ON e.nid_estado = c.nid_estado where c.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -205,7 +207,7 @@ public class BD_RS {
         try {
             DefaultTableModel dtm = FormatearTablaTrabajador();
             String sql = "SELECT t.co_trabajador as Código,t.no_natural as Nombre,no_ape_paterno as 'Apellido Paterno',no_ape_materno as 'Apellido Materno',t.nu_documento as DNI,t.fe_ingreso_laboral as 'Ingreso Laboral',c.no_cargo as Cargo from mae_trabajador t " +
-                    "inner join mae_cargo c on c.nid_cargo = t.nid_cargo inner join mae_estado e on e.nid_estado = t.nid_estado where t.nid_estado = 1";
+                    "inner join mae_cargo c on c.nid_cargo = t.nid_cargo inner join mae_estado e on e.nid_estado = t.nid_estado where t.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -266,7 +268,7 @@ public class BD_RS {
             String sql = "select u.nid_usuario, u.no_usuario,u.no_clave, t.co_trabajador,p.no_perfil,l.no_local from mae_usuario u inner join " +
 "                          mae_estado e on e.nid_estado = u.nid_estado inner join mae_trabajador t on t.nid_trabajador = u.nid_trabajador " +
 "                          inner join mae_perfil p on p.nid_perfil = u.nid_perfil inner join mae_usuario_local ml on ml.nid_usuario = u.nid_usuario " +
-"                          inner join mae_local l on l.nid_local = ml.nid_local where u.nid_estado = 1";
+"                          inner join mae_local l on l.nid_local = ml.nid_local where u.nid_estado = 1 order by 1 desc";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -758,7 +760,7 @@ public class BD_RS {
         try {
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
-            "on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso where mp.nu_piso = ? and mp.nid_local = ?"; //and mp.nid_local = ?;";
+                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and tp.nid_estado = 3"; //and mp.nid_local = ?;";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPiso);
             ps.setInt(2, idlocal);
@@ -776,8 +778,9 @@ public class BD_RS {
     
     public static DefaultTableModel DetallePedido(int nPedido){
         try {
+            DPedido.DetalleAPedido.removeAllElements();
             DefaultTableModel dtm = FormatearTablaDetalleP();
-            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio) from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
+            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio),tpd.tx_observacion, tpd.co_estado from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPedido);
             ResultSet rs = ps.executeQuery();
@@ -785,8 +788,11 @@ public class BD_RS {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
                 v.add(rs.getInt(2));
-                v.add(rs.getDouble(3));
-                v.add(rs.getDouble(4));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                DPedido.DetalleAPedido.addElement(rs.getString(1) + "$" + rs.getString(2));
                 dtm.addRow(v);
             }
             return dtm;
@@ -798,13 +804,13 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOMozo(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "select mtr.nu_documento from mae_trabajador mtr where mtr.nid_cargo = 3 and mtr.nid_estado = 1;";
+            String sql = "select mtr.nu_documento from mae_trabajador mtr inner join mae_usuario u on u.nid_trabajador = mtr.nid_trabajador inner join mae_usuario_local mul on mul.nid_usuario = u.nid_usuario where mtr.nid_cargo = 3 and mul.nid_local = ? and mtr.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
-            
+            ps.setInt(1, idlocal);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                CBOT.addElement(rs.getInt(1));
+                CBOT.addElement(rs.getString(1));
             }
             
             return CBOT;
@@ -851,4 +857,83 @@ public class BD_RS {
             return false;
         }
     }
+    public static int ConfirmarPedido(DefaultListModel DLM, String DNI, int userCrea){
+        
+        try {
+            String sql = "CALL usp_spi_pedido(?,?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1,idlocal);
+            cs.setString(2,DNI);
+            cs.setInt(3, userCrea);
+            ResultSet rs = cs.executeQuery();
+            rs.next();
+            int NewNPedido = rs.getInt(1);
+            //System.out.println(NewNPedido);
+            for(int i = 0; i < DPedido.dlmDP.size(); i++){
+                int nmesa = Integer.parseInt(DPedido.dlmDP.getElementAt(i).toString());
+                //System.out.println("NMESA: " + nmesa);
+                String sqlI = "CALL usp_spi_pedido_mesa(?,?,?,?)";
+                CallableStatement csI = BDUtil.getCnn().prepareCall(sqlI);
+                System.out.println(NewNPedido + "," + nmesa + "," + numPiso+ "," +idlocal);
+                csI.setInt(1,NewNPedido);
+                csI.setInt(2,nmesa);
+                csI.setInt(3, numPiso);
+                csI.setInt(4, idlocal);
+                csI.executeQuery();
+            }
+            return NewNPedido;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+    public static String GetDNIMozo(int idPedido){
+        try {
+            String sql = "SELECT t.nu_documento from mae_trabajador t   inner join tbl_pedido tp on tp.nid_mozo = t.nid_trabajador where tp.nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+        
+    }
+    public static void IngresarDetallP(DefaultListModel DT, int idPedido){
+        try {
+            for(int i = 0; i < DT.size(); i++ ){
+                String cad = DT.getElementAt(i).toString();
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                double precio = Double.parseDouble(cad.substring(cad.indexOf('#')+1,cad.length()));
+                String sql = "CALL usp_spi_detalle_pedido(?,?,?,?,?)";
+                CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+                cs.setInt(1, idPedido);
+                cs.setString(2, nPlato);
+                cs.setDouble(3, precio);
+                cs.setInt(4, cant);
+                cs.setString(5, descr);
+                cs.executeUpdate();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            
+        }
+    }
+    public static void CerrarPedido(int idPedido){
+        try {
+            String sql = "UPDATE tbl_pedido set nid_estado = 4 where nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            
+        }
+    }
+    
 }

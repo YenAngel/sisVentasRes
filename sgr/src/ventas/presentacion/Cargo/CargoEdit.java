@@ -221,7 +221,7 @@ public class CargoEdit extends javax.swing.JPanel {
         if(txtName_Cargo.getText().trim().length() != 0 && cboArea.getSelectedIndex() != -1){
             Cargo cargo = new Cargo();
 
-            if(!cargo.getNombre().equals(txtName_Cargo.getText())){
+            if(!cargo.getNombre().equals(txtName_Cargo.getText()))
                 if (EC()) return;
 
                 //t = 1;
@@ -239,7 +239,7 @@ public class CargoEdit extends javax.swing.JPanel {
             }else{
                 JOptionPane.showMessageDialog(null, "Complete todos los campos para continuar","Mensaje",JOptionPane.WARNING_MESSAGE);
             }
-        }
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

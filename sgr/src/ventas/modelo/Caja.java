@@ -11,13 +11,39 @@ public class Caja {
     public double mt_subtotal;
     public double mt_igv;
     public double mt_total;
-    public int nid_cliente;
+    public String doc_cliente;
     public int nid_pedido;
     public int nu_piso;
     public int nu_mesa;
     public String no_local;
     public String no_estado;
+    public int nid_usuario_crea;
+    public int nid_usuario_modi;
 
+    public int getNid_usuario_crea() {
+        return nid_usuario_crea;
+    }
+
+    public void setNid_usuario_crea(int nid_usuario_crea) {
+        this.nid_usuario_crea = nid_usuario_crea;
+    }
+
+    public int getNid_usuario_modi() {
+        return nid_usuario_modi;
+    }
+
+    public void setNid_usuario_modi(int nid_usuario_modi) {
+        this.nid_usuario_modi = nid_usuario_modi;
+    }
+    
+    public String getDoc_cliente() {
+        return doc_cliente;
+    }
+
+    public void setDoc_cliente(String doc_cliente) {
+        this.doc_cliente = doc_cliente;
+    }
+    
     public String getCo_comprobante() {
         return co_comprobante;
     }
@@ -72,14 +98,6 @@ public class Caja {
 
     public void setMt_total(double mt_total) {
         this.mt_total = mt_total;
-    }
-
-    public int getNid_cliente() {
-        return nid_cliente;
-    }
-
-    public void setNid_cliente(int nid_cliente) {
-        this.nid_cliente = nid_cliente;
     }
 
     public int getNid_pedido() {

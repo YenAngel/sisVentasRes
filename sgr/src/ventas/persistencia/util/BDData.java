@@ -3,6 +3,7 @@ package ventas.persistencia.util;
 
 import java.awt.Component;
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,10 +46,18 @@ public class BDData {
         String sql="call sgr_sps_getListaPedido(?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-            cs.setString(1, caja.getNo_local());
+            cs.setString(1, caja.getNo_local());            
             cs.setInt(2, caja.getNu_piso());
-            cs.setInt(3, caja.getNu_mesa());
+            cs.setInt(3, caja.getNu_mesa());            
             ResultSet rs=cs.executeQuery();
+            while (rs.next()) {
+                Vector v=new Vector();
+                v.add(rs.getInt(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                dtm.addRow(v);
+            }
             return dtm;
         } catch (Exception e) {
             System.out.println(e);
@@ -1056,13 +1065,16 @@ public class BDData {
             return null;
         }
     }
-    public static ResultSet obtenerClienteFact(String tipo, String documento){
+    public static ResultSet obtenerClienteFact(Cliente cliente){
         try {
             String sql="call sgr_sps_getClienteFact(?,?,?,?,?)";
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-            cs.setString(0, tipo);
-            cs.setString(1, documento);
-            ResultSet rs=cs.executeQuery();
+            cs.setString(1, cliente.getCo_tipo_documento());
+            cs.setString(2, cliente.getNu_documento());            
+            cs.setString(3, cliente.getNo_ape_materno());
+            cs.setString(4, cliente.getNo_ape_paterno());
+            cs.setString(5, cliente.getNo_cliente());
+            ResultSet rs=cs.executeQuery();            
             return rs;
         } catch (Exception e) {
             System.out.println(e);
@@ -1089,4 +1101,26 @@ public class BDData {
             return null;
         }
     }       
+    public static boolean registrarVenta(Caja caja){
+        String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, caja.getCo_comprobante());
+            cs.setString(2, caja.getNu_serie());
+            cs.setString(3, caja.getNu_correlativo());
+            cs.setDate(4, (Date) caja.getFe_emision());
+            cs.setDouble(5, caja.getMt_subtotal());
+            cs.setDouble(6, caja.getMt_igv());
+            cs.setDouble(7, caja.getMt_total());
+            cs.setString(8, caja.getDoc_cliente());
+            cs.setInt(9, caja.getNid_pedido());
+            cs.setString(10, caja.getNo_local());
+            cs.setInt(11, caja.getNid_usuario_crea());            
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }

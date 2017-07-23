@@ -310,7 +310,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         trabajador.setApePaterno(txtApePat.getText());
         trabajador.setApeMaterno(txtApeMat.getText());
         trabajador.setDni(txtDNI.getText());
-        trabajador.setCargo(cboCargo.getSelectedIndex()+1);
+        trabajador.setCargo(BD_RS.GetIdCargo(cboCargo.getSelectedItem().toString()));
         trabajador.setEstado(1);
         trabajador.setFec_ingreso(Date.valueOf(FormatoFecha.format(jdcIngreso.getDate())));
         trabajador.setFec_creacion(Date.valueOf(LocalDate.now()));
