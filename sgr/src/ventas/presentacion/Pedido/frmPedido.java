@@ -397,8 +397,7 @@ public class frmPedido extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jl(evt);
             }
-        });
-                jl.setBounds(h, a, 140, 82);
+        });                jl.setBounds(h, a, 140, 82);
                
                 jPanel2.add(jl);
                 jPanel2.add(jlname);

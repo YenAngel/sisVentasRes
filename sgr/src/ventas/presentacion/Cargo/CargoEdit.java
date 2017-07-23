@@ -88,10 +88,11 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel4);
-        jPanel4.setBounds(177, 117, 150, 39);
+        jPanel4.setBounds(49, 117, 150, 39);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(671, 160));
 
         txtName_Cargo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtName_Cargo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -118,13 +119,13 @@ public class CargoEdit extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboArea, 0, 234, Short.MAX_VALUE)
+                .addComponent(cboArea, 0, 235, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(567, Short.MAX_VALUE)))
+                    .addContainerGap(568, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +145,7 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(177, 156, 670, 160);
+        jPanel1.setBounds(49, 156, 671, 160);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -188,12 +189,12 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(177, 376, 670, 102);
+        jPanel2.setBounds(70, 390, 670, 102);
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MODIFICAR CARGO");
         add(jLabel16);
-        jLabel16.setBounds(404, 11, 207, 38);
+        jLabel16.setBounds(310, 20, 181, 38);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtName_CargoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtName_CargoKeyTyped
