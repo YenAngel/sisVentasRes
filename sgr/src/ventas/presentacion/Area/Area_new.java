@@ -75,7 +75,7 @@ public class Area_new extends javax.swing.JPanel {
         );
 
         add(jPanel4);
-        jPanel4.setBounds(49, 117, 150, 39);
+        jPanel4.setBounds(177, 117, 150, 39);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -114,7 +114,7 @@ public class Area_new extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(49, 156, 689, 160);
+        jPanel1.setBounds(177, 156, 689, 160);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -158,12 +158,12 @@ public class Area_new extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(50, 390, 689, 102);
+        jPanel2.setBounds(170, 390, 689, 102);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("NUEVA ÁREA");
         add(jLabel16);
-        jLabel16.setBounds(330, 20, 170, 38);
+        jLabel16.setBounds(470, 10, 170, 38);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed

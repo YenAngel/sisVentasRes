@@ -223,9 +223,9 @@ public class jpListarCategoria extends javax.swing.JPanel {
 
         tplCategoria.addTab("Categoría 3", jPanel3);
 
-        add(tplCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 470, 310));
+        add(tplCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 500, 310));
 
-        jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         tblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,7 +247,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCategoria);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 500, 110));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 500, 120));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -269,12 +269,12 @@ public class jpListarCategoria extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 630, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 630, 181, 30));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -296,16 +296,17 @@ public class jpListarCategoria extends javax.swing.JPanel {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 100, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 100, 30));
 
         jPanel6.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel6.setForeground(new java.awt.Color(204, 204, 204));
+        jPanel6.setEnabled(false);
 
         txtCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -349,7 +350,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 500, 80));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 500, 80));
 
         jPanel7.setBackground(new java.awt.Color(153, 204, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -364,19 +365,19 @@ public class jpListarCategoria extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel24)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel24)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
-        add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, 40));
+        add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 30));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -394,17 +395,17 @@ public class jpListarCategoria extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 630, 120, -1));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 630, 101, 30));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
         btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -415,7 +416,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 170, 68));
 
         btnEditar.setBackground(new java.awt.Color(153, 153, 255));
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -426,7 +427,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 btnEditarActionPerformed(evt);
             }
         });
-        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 160, -1));
+        add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 170, 68));
 
         btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -437,7 +438,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 160, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 170, 68));
 
         btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -448,7 +449,7 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 160, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, 170, 68));
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -459,11 +460,11 @@ public class jpListarCategoria extends javax.swing.JPanel {
                 btnReturnActionPerformed(evt);
             }
         });
-        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 160, -1));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, 170, 68));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO CATEGORÍA");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, 38));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     private void addItems(){
         cboPadreCategoria2.setModel(BDData.getCategoria1());

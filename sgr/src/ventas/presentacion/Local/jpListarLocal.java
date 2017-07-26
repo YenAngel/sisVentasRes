@@ -97,9 +97,10 @@ public class jpListarLocal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocal);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 810, 340));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 320, 861, 300));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -107,19 +108,21 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 180, 70));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 80, 170, 68));
 
         btnEdit.setBackground(new java.awt.Color(153, 153, 255));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-        btnEdit.setText("Editar");
+        btnEdit.setText("Modificar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 180, 70));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 160, 170, 68));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
@@ -128,7 +131,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 180, 70));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 240, 170, 68));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -137,7 +140,7 @@ public class jpListarLocal extends javax.swing.JPanel {
         jLabel21.setBackground(new java.awt.Color(153, 153, 153));
         jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel21.setText("Registros:");
+        jLabel21.setText("Listado");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -155,7 +158,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 281, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -204,7 +207,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 .addGap(19, 19, 19))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 610, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 80, 610, -1));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -231,7 +234,7 @@ public class jpListarLocal extends javax.swing.JPanel {
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 41, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -253,15 +256,15 @@ public class jpListarLocal extends javax.swing.JPanel {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, 180, -1));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 620, 180, 30));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel8.setForeground(new java.awt.Color(204, 204, 204));
 
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
@@ -276,19 +279,19 @@ public class jpListarLocal extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 640, 110, -1));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 620, 101, 30));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO LOCAL");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
@@ -311,7 +314,7 @@ public class jpListarLocal extends javax.swing.JPanel {
             frmPrincipal.Comp(editarLocal);                                   
             editarLocal.cargarLocal(local);
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
         }                
     }//GEN-LAST:event_btnEditActionPerformed
 

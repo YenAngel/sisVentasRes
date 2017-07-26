@@ -63,7 +63,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("NUEVO TRABAJADOR");
         add(jLabel16);
-        jLabel16.setBounds(300, 20, 240, 38);
+        jLabel16.setBounds(430, 20, 240, 38);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -181,12 +181,11 @@ public class Trabajador_new extends javax.swing.JPanel {
                             .addComponent(jLabel19)
                             .addComponent(jLabel22))))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(cboCargo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(txtDNI)
+                    .addComponent(cboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +222,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(14, 120, 741, 326);
+        jPanel1.setBounds(132, 120, 761, 326);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -267,7 +266,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(80, 500, 633, 102);
+        jPanel2.setBounds(210, 500, 633, 102);
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -295,7 +294,7 @@ public class Trabajador_new extends javax.swing.JPanel {
         );
 
         add(jPanel3);
-        jPanel3.setBounds(14, 81, 150, 39);
+        jPanel3.setBounds(132, 81, 150, 39);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

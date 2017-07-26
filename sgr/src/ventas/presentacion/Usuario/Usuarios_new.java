@@ -62,7 +62,7 @@ public class Usuarios_new extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel15.setText("NUEVO USUARIO");
         add(jLabel15);
-        jLabel15.setBounds(310, 10, 200, 38);
+        jLabel15.setBounds(450, 10, 200, 38);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,7 +89,7 @@ public class Usuarios_new extends javax.swing.JPanel {
         jPanel2.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 180, 80));
 
         add(jPanel2);
-        jPanel2.setBounds(20, 460, 730, 104);
+        jPanel2.setBounds(160, 450, 730, 104);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -139,10 +139,10 @@ public class Usuarios_new extends javax.swing.JPanel {
                         .addComponent(jLabel18)
                         .addGap(41, 41, 41)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(cboTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -182,7 +182,7 @@ public class Usuarios_new extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(14, 120, 741, 280);
+        jPanel1.setBounds(132, 120, 761, 280);
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -211,7 +211,7 @@ public class Usuarios_new extends javax.swing.JPanel {
         );
 
         add(jPanel3);
-        jPanel3.setBounds(14, 81, 150, 39);
+        jPanel3.setBounds(132, 81, 150, 39);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

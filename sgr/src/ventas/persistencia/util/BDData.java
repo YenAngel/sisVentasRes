@@ -820,8 +820,9 @@ public class BDData {
     public static DefaultComboBoxModel obtenerPiso(){
         DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
         try {
-            String sql="select * from sgr_getPiso";
+            String sql="select nu_piso from mae_piso where nid_estado = 1 and nid_local = ?";
             PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, BD_RS.idlocal);
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {                
                 dcbm.addElement(rs.getInt(1));

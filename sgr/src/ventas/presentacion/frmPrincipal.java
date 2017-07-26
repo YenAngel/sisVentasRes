@@ -1018,9 +1018,9 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("Reservación");
+        jLabel37.setText("Backup");
 
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/customer-service.png"))); // NOI18N
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bck.png"))); // NOI18N
 
         javax.swing.GroupLayout mpReservacionLayout = new javax.swing.GroupLayout(mpReservacion);
         mpReservacion.setLayout(mpReservacionLayout);
@@ -1031,7 +1031,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel38)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel37)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         mpReservacionLayout.setVerticalGroup(
             mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1708,7 +1708,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pPlatoLocalMouseClicked
 
     private void mpReservacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReservacionMouseClicked
-        mpPedido.setBackground(new java.awt.Color(24,168,255));
+       /* mpPedido.setBackground(new java.awt.Color(24,168,255));
         mpReporte.setBackground(new java.awt.Color(24,168,255));       
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
@@ -2023,7 +2023,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpPedido.setVisible(true);
             mpReporte.setVisible(true);
             mpCaja.setVisible(true);
-            mpCarta.setVisible(true);
+            //mpCarta.setVisible(true);
             
             mpReservacion.setVisible(true);
             mpPedido.setBackground(new java.awt.Color(24,168,255));
@@ -2181,7 +2181,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         int size = 0;
         if(id == 1){
             
-            vis = 6; //Cantidad de paneles se va a mostrar
+            vis = 5; //Cantidad de paneles se va a mostrar
             size = (heightvar - pTop.getHeight())/vis;    //Alto de cada panel
             
             //Al cargar el frame todos están FALSE, aquí se elige los que serán visibles (debe ser de acuerdo a la variable VIS)
@@ -2190,17 +2190,19 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpReporte.setVisible(true);            
             mpPedido.setVisible(true);
             mpCaja.setVisible(true);
-            mpCarta.setVisible(true);
+            //mpCarta.setVisible(true);
             mpReservacion.setVisible(true);
             
             //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
             //pTrabajador.setLayout(null);
+            mpMante.setLayout(null);
             mpPedido.setLayout(null);
+            mpCaja.setLayout(null);
             //pUsuario.setLayout(null);
             mpReporte.setLayout(null);            
-            mpMante.setLayout(null);
-            mpCaja.setLayout(null);
-            mpCarta.setLayout(null);
+            
+            
+            //mpCarta.setLayout(null);
             mpReservacion.setLayout(null);
             
             //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
@@ -2225,20 +2227,17 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel3.setBounds(105, size/2 - 15, 73, 26);
             jLabel4.setBounds(17, size/2 - 30, 64, 64);
             
-            mpReporte.setBounds(0,59 + size*2,255,size);
+            mpCaja.setBounds(0,59 + size*2,255,size);
+            jLabel32.setBounds(105, size/2 - 15, 85, 26);
+            jLabel33.setBounds(17, size/2 -40,64 ,64);
+            
+            mpReporte.setBounds(0,59 + size*3,255,size);
             jLabel7.setBounds(105, size/2 - 15, 85, 26);
             jLabel8.setBounds(17, size/2 - 40, 64, 64);
             
-            mpCaja.setBounds(0,59 + size*3,255,size);
-            jLabel41.setBounds(105, size/2 - 15, 85, 26);
-            jLabel42.setBounds(17, size/2 -40,64 ,64);
             
-            mpCarta.setBounds(0,59 + size*4,255,size);
-            jLabel32.setBounds(105, size/2 - 15, 85, 26);
-            jLabel33.setBounds(17, size/2 - 30, 64, 64);
-            
-            mpReservacion.setBounds(0,59 + size*5,255,size);
-            jLabel37.setBounds(90, size/2 - 15,160 ,26);
+            mpReservacion.setBounds(0,59 + size*4,255,size);
+            jLabel37.setBounds(105, size/2 - 15,160 ,26);
             jLabel38.setBounds(17, size/2 - 40, 64, 64);
         }else if(id==2){
             vis = 2;
