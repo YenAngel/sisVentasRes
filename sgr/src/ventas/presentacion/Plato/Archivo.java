@@ -83,11 +83,11 @@ public class Archivo extends javax.swing.JFrame {
                 }                
                 if(command.equals(JFileChooser.APPROVE_SELECTION)){ 
                     File archivoseleccionado=selector.getSelectedFile();
-                    String tempRoad="D:\\sisVentasRes\\sgr\\src\\recursos";                                
+                    String tempRoad="C:\\sisVentasRes\\sgr\\src\\recursos";                                
                     Path finalRoad=Paths.get(tempRoad);
                     Path finalOrgin=Paths.get(archivoseleccionado.getAbsolutePath());
                     Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".jpg"), StandardCopyOption.REPLACE_EXISTING);
-                    JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con exito.");
+                    JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con éxito.");
                     if (nroFrm==2) {
                         jpEditarPlato editarPlato=new jpEditarPlato();
                         editarPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
