@@ -8,8 +8,7 @@ import java.util.Arrays;
 import javax.swing.Action;
 
 public class frmCalculadora extends javax.swing.JFrame {
-    
-    public String[] total;
+        
     public int calculo; 
     StringBuffer buffer=new StringBuffer();
     public frmCalculadora() {
@@ -17,16 +16,18 @@ public class frmCalculadora extends javax.swing.JFrame {
     }
     private void obtenerNumber(ActionEvent event){
         String nString=event.toString().substring(event.toString().indexOf("text=")+5, event.toString().indexOf("text=")+6);
-        int index;
-        if (total==null) {
+        /*int index;
+        String[] total;
+        if (total.length==0) {
             index =0;
         }else
             index=total.length;
+        total=new String[index];
         System.out.println(nString);
         System.out.println(index);
         total[index]=nString;
         buffer.append(total);
-        txtTotal.setText(buffer.toString());
+        txtTotal.setText(buffer.toString());*/
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

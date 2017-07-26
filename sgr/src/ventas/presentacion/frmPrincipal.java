@@ -82,12 +82,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpCarta.setVisible(false);
             mpCaja.setVisible(false);
             mpReservacion.setVisible(false);
-            opBuscar.setVisible(false);
-            opEditar.setVisible(false);
-            opEliminar.setVisible(false);
-            opNuevo.setVisible(false); 
-            opGuardar.setVisible(false);
-            opHome.setVisible(false);
         //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
         jpContenedor.setVisible(false);
         jLabel15.setLocation(15, 15);
@@ -107,8 +101,6 @@ public class frmPrincipal extends javax.swing.JFrame {
        lblSuc.setFont(new java.awt.Font("Arial Black", 1, 16));
        IconFH.setLocation(335, 4);
        FHLbl.setBounds(390, 20, 300, 20);
-       
-       
     }
 
     @SuppressWarnings("unchecked")
@@ -188,12 +180,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpCarta = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        opNuevo = new javax.swing.JLabel();
-        opEditar = new javax.swing.JLabel();
-        opEliminar = new javax.swing.JLabel();
-        opBuscar = new javax.swing.JLabel();
-        opGuardar = new javax.swing.JLabel();
-        opHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 252, 230));
@@ -492,7 +478,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pMesasLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel12)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         getContentPane().add(pMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
@@ -566,7 +552,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuarioLayout.setVerticalGroup(
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pUsuarioLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -664,7 +650,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pAreaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addGap(46, 46, 46))
         );
@@ -715,7 +701,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                         .addGroup(pCargoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jLabel36))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         getContentPane().add(pCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
@@ -756,7 +742,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pPisoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel23)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, -1));
@@ -797,7 +783,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pEmpresaLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel25)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
@@ -838,7 +824,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pClienteLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel27)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, -1, -1));
@@ -879,7 +865,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pLocalLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel29)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
@@ -920,7 +906,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pPlatoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel31)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
@@ -1002,7 +988,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pPlatoLocalLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel35)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pPlatoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, -1, -1));
@@ -1043,7 +1029,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(mpReservacionLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel38)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         getContentPane().add(mpReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
@@ -1084,7 +1070,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(pCategoriaLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel40)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         getContentPane().add(pCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
@@ -1125,106 +1111,10 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(mpCartaLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel42)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         getContentPane().add(mpCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, -1, -1));
-
-        opNuevo.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/adder.png"))); // NOI18N
-        opNuevo.setText("Nuevo");
-        opNuevo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opNuevo.setMaximumSize(new java.awt.Dimension(80, 89));
-        opNuevo.setPreferredSize(new java.awt.Dimension(80, 177));
-        opNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opNuevoMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 80, 120));
-
-        opEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit.png"))); // NOI18N
-        opEditar.setText("Editar");
-        opEditar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opEditar.setMaximumSize(new java.awt.Dimension(80, 89));
-        opEditar.setPreferredSize(new java.awt.Dimension(80, 177));
-        opEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opEditarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 80, 120));
-
-        opEliminar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete_1.png"))); // NOI18N
-        opEliminar.setText("Quitar");
-        opEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opEliminar.setMaximumSize(new java.awt.Dimension(80, 89));
-        opEliminar.setPreferredSize(new java.awt.Dimension(80, 177));
-        opEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opEliminarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, 80, 120));
-
-        opBuscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search.png"))); // NOI18N
-        opBuscar.setText("Buscar");
-        opBuscar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opBuscar.setMaximumSize(new java.awt.Dimension(80, 89));
-        opBuscar.setPreferredSize(new java.awt.Dimension(80, 177));
-        opBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opBuscarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 80, 120));
-
-        opGuardar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save-1.png"))); // NOI18N
-        opGuardar.setText("Guardar");
-        opGuardar.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opGuardar.setMaximumSize(new java.awt.Dimension(80, 89));
-        opGuardar.setPreferredSize(new java.awt.Dimension(80, 177));
-        opGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opGuardarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 660, 80, 120));
-
-        opHome.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        opHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        opHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/home.png"))); // NOI18N
-        opHome.setText("Home");
-        opHome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 10, new java.awt.Color(24, 168, 255)));
-        opHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        opHome.setMaximumSize(new java.awt.Dimension(80, 89));
-        opHome.setPreferredSize(new java.awt.Dimension(80, 177));
-        opHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        opHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opHomeMouseClicked(evt);
-            }
-        });
-        getContentPane().add(opHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 660, 80, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1671,7 +1561,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 mpReservacion.setVisible(false);
                 //pnelActive = 1;
                 setVisible(false);
-                frmCaja caja=new frmCaja();
+                Mesas_Selection1 caja=new Mesas_Selection1();
                 caja.setVisible(true);
             }
         };
@@ -1783,212 +1673,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         };
         t.schedule(task, 1000); */       
     }//GEN-LAST:event_mpCartaMouseClicked
-
-    private void opNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opNuevoMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        Timer t= new Timer();
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {
-                
-                if (namePanel.equals("jpListarPlato")) {
-                System.out.println(namePanel);
-                    jpNuevoPlato Plato=new jpNuevoPlato();
-                    frmPrincipal.Comp(Plato);
-                }
-                if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpNuevoPlatoLocal platoLocal=new jpNuevoPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpNuevoPiso piso= new jpNuevoPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpNuevaMesa mesa=new jpNuevaMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpNuevoLocal local=new jpNuevoLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpNuevaEmpresa empresa=new jpNuevaEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpNuevoComprobante comprobante=new jpNuevoComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpNuevoCliente cliente=new jpNuevoCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
-                //options(2);
-            }
-        };
-        t.schedule(task, 3000);        
-    }//GEN-LAST:event_opNuevoMouseClicked
-    
-    private void opEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEditarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        Timer t= new Timer();
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {                
-                if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato listarPlato=new jpListarPlato();
-                    System.out.println(".run1");
-                    jpEditarPlato editarPlato=new jpEditarPlato();        
-                    System.out.println(".run2");
-                    Plato plato =new Plato();
-                    System.out.println(".run3");
-                    Login_User login_User=new Login_User();
-                    System.out.println(".run4");
-                    plato.setNid_plato(Integer.parseInt(listarPlato.dtm.getValueAt(idx, 0).toString()));
-                    plato.setNo_plato((String)listarPlato.dtm.getValueAt(idx, 1));
-                    plato.setNo_categoria1_plato((String)listarPlato.dtm.getValueAt(idx, 2));
-                    plato.setNo_categoria2_plato((String)listarPlato.dtm.getValueAt(idx, 3));
-                    plato.setNo_categoria3_plato((String)listarPlato.dtm.getValueAt(idx, 4));
-                    plato.setNo_estado((String)listarPlato.dtm.getValueAt(idx, 5));
-                    plato.setNid_usuario_modi(login_User.getNdi_usuario());
-                    System.out.println(idx);
-                    if(idx !=-1){
-                        editarPlato.cargarPlato(plato);
-                        frmPrincipal.Comp(editarPlato);                        
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpNuevoPlatoLocal platoLocal=new jpNuevoPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpNuevoPiso piso= new jpNuevoPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpNuevaMesa mesa=new jpNuevaMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpNuevoLocal local=new jpNuevoLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpNuevaEmpresa empresa=new jpNuevaEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpNuevoComprobante comprobante=new jpNuevoComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpNuevoCliente cliente=new jpNuevoCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
-                //options(2);
-            }
-        };
-        t.schedule(task, 1000);        
-    }//GEN-LAST:event_opEditarMouseClicked
-
-    private void opEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opEliminarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato plato=new jpListarPlato();                    
-                    //plato.deletePlato(idx);
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpListarPiso piso= new jpListarPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpListarMesa mesa=new jpListarMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpListarLocal local=new jpListarLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpListarEmpresa empresa=new jpListarEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpListarComprobante comprobante=new jpListarComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpListarCliente cliente=new jpListarCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
-    }//GEN-LAST:event_opEliminarMouseClicked
-
-    private void opBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opBuscarMouseClicked
-        opBuscar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opEditar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opEliminar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opNuevo.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-    }//GEN-LAST:event_opBuscarMouseClicked
-
-    private void opGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opGuardarMouseClicked
-        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));                
-        Timer t= new Timer();
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {
-                //options(4);
-            }
-        };
-        t.schedule(task, 1000);        
-    }//GEN-LAST:event_opGuardarMouseClicked
-    
-    private void opHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opHomeMouseClicked
-        opHome.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(255,51,51))));
-        opGuardar.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, (new java.awt.Color(24,168,255))));
-        Timer t= new Timer();
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {
-                if (namePanel.equals("jpListarPlato")) {
-                    jpListarPlato plato=new jpListarPlato();                    
-                    frmPrincipal.Comp(plato);
-                }else if (namePanel.equals("jpListarPlatoLocal")) {
-                    jpListarPlatoLocal platoLocal=new jpListarPlatoLocal();
-                    frmPrincipal.Comp(platoLocal);
-                }else if (namePanel.equals("jpListarPiso")) {
-                    jpListarPiso piso= new jpListarPiso();
-                    frmPrincipal.Comp(piso);
-                }else if (namePanel.equals("jpListarMesa")) {
-                    jpListarMesa mesa=new jpListarMesa();
-                    frmPrincipal.Comp(mesa);
-                }else if (namePanel.equals("jpListarLocal")) {
-                    jpListarLocal local=new jpListarLocal();
-                    frmPrincipal.Comp(local);
-                }else if (namePanel.equals("jpListarEmpresa")) {
-                    jpListarEmpresa empresa=new jpListarEmpresa();        
-                    frmPrincipal.Comp(empresa);        
-                }else if (namePanel.equals("jpListarComprobante")) {
-                    jpListarComprobante comprobante=new jpListarComprobante();
-                    frmPrincipal.Comp(comprobante);
-                }else if (namePanel.equals("jpListarCliente")) {
-                    jpListarCliente cliente=new jpListarCliente();
-                    frmPrincipal.Comp(cliente);
-                }else if (namePanel.equals("jpListarCategoria")) {
-                    jpListarCategoria categoria=new jpListarCategoria();
-                    frmPrincipal.Comp(categoria);
-                }
-                //options(4);
-            }
-        };
-        t.schedule(task, 1000);        
-    }//GEN-LAST:event_opHomeMouseClicked
-
+        
     private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
             if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
             pMesas.setVisible(false);
@@ -2411,12 +2096,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel mpPedido;
     private javax.swing.JPanel mpReporte;
     private javax.swing.JPanel mpReservacion;
-    public javax.swing.JLabel opBuscar;
-    public javax.swing.JLabel opEditar;
-    public javax.swing.JLabel opEliminar;
-    public javax.swing.JLabel opGuardar;
-    public javax.swing.JLabel opHome;
-    public javax.swing.JLabel opNuevo;
     private javax.swing.JPanel pArea;
     private javax.swing.JPanel pCargo;
     private javax.swing.JPanel pCategoria;
