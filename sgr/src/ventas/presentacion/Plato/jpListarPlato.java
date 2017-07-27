@@ -39,7 +39,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         lblTotal1.setText(model.getRowCount()+"");         
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Plato","Plato","Categoria 1","Categoria 2","Categoria 3"};
+        String[] theader={"Id Plato","Plato","Categoria 1","Categoria 2","Categoria 3","Tipo de Envío"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -291,7 +291,7 @@ public class jpListarPlato extends javax.swing.JPanel {
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     public void editarPlato(int idx){        
-        jpEditarPlato editarPlato=new jpEditarPlato();        
+        /*jpEditarPlato editarPlato=new jpEditarPlato();        
         plato.setNid_plato(Integer.parseInt(dtm.getValueAt(idx, 0).toString()));
         plato.setNo_plato((String)dtm.getValueAt(idx, 1));
         plato.setNo_categoria1_plato((String)dtm.getValueAt(idx, 2));
@@ -305,7 +305,7 @@ public class jpListarPlato extends javax.swing.JPanel {
             
         }else{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a modificar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-        }
+        }*/
     }
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int idx=tblPlato.getSelectedRow();
@@ -317,7 +317,7 @@ public class jpListarPlato extends javax.swing.JPanel {
             plato.setNo_categoria2_plato((String)dtm.getValueAt(idx, 3));
             plato.setNo_categoria3_plato((String)dtm.getValueAt(idx, 4));
             plato.setNid_usuario_modi(login_User.getNdi_usuario());
-            
+            plato.setCo_tipo(GetTipoEnvioS(dtm.getValueAt(idx, 5).toString(), false));
             frmPrincipal.Comp(editarPlato);
             editarPlato.cargarPlato(plato);
             editarPlato.imgPlato(plato.getNo_plato().toLowerCase().replace(" ", "_")+".jpg");
@@ -325,7 +325,22 @@ public class jpListarPlato extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
         }        
     }//GEN-LAST:event_btnEditActionPerformed
-    
+    private String GetTipoEnvioS(String srt, boolean ConvertCadena){
+        if(ConvertCadena && srt.length() == 1){
+            if(srt.equals("C")){
+               return "Cocina";
+            }else{
+               return "Bar";
+            }
+        }else{
+            if(srt.equals("Cocina")){
+                return "C";
+            }else{
+                return "B";
+            }
+        }
+            
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int idx=tblPlato.getSelectedRow();
         if (idx!=-1) {            

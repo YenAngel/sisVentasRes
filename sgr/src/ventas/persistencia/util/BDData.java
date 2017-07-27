@@ -663,7 +663,8 @@ public class BDData {
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));                
                 v.add(rs.getString(5));                
-                v.add(rs.getString(6));  
+                //v.add(rs.getString(6));
+                v.add(GetTipoEnvioS(rs.getString(7),true));
                 dtm.addRow(v);
             }
             return dtm;
@@ -671,6 +672,22 @@ public class BDData {
             System.out.println(e);
             return null;
         }
+    }
+    private static String GetTipoEnvioS(String srt, boolean ConvertCadena){
+        if(ConvertCadena && srt.length() == 1){
+            if(srt.equals("C")){
+               return "Cocina";
+            }else{
+               return "Bar";
+            }
+        }else{
+            if(srt.equals("Cocina")){
+                return "C";
+            }else{
+                return "B";
+            }
+        }
+            
     }
     public static DefaultComboBoxModel getCategories(){
        DefaultComboBoxModel dcbm = new  DefaultComboBoxModel();
@@ -689,13 +706,14 @@ public class BDData {
     }
     public static boolean nuevoPlato(Plato plato){                        
         try {                        
-            String sql="Call sgr_spi_plato(?,?,?,?,?)"; 
+            String sql="Call sgr_spi_plato(?,?,?,?,?,?)"; 
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, plato.getNo_plato());            
             cs.setString(2, plato.getNo_categoria1_plato());   
             cs.setString(3, plato.getNo_categoria2_plato());   
             cs.setString(4, plato.getNo_categoria3_plato());   
-            cs.setInt(5, plato.getNid_usuario_crea());            
+            cs.setInt(5, plato.getNid_usuario_crea());
+            cs.setString(6, plato.getCo_tipo());
             int rs=cs.executeUpdate();
             if (rs==0) {               
                 JOptionPane.showMessageDialog(null, "Registro ya existe");
@@ -709,7 +727,7 @@ public class BDData {
     }
     public static boolean editarPlato(Plato plato){                
         try {            
-            String sql="Call sgr_spu_plato(?,?,?,?,?,?)";
+            String sql="Call sgr_spu_plato(?,?,?,?,?,?,?)";
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setInt(1,plato.getNid_plato());
             cs.setString(2,plato.getNo_plato());
@@ -717,6 +735,7 @@ public class BDData {
             cs.setString(4,plato.getNo_categoria2_plato());                      
             cs.setString(5,plato.getNo_categoria3_plato());                                  
             cs.setInt(6,plato.getNid_usuario_modi());
+            cs.setString(7, plato.getCo_tipo());
             cs.executeUpdate();
             return true;            
         } catch (Exception e) {

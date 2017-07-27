@@ -8,6 +8,7 @@ public class Plato {
     String no_categoria1_plato;
     String no_plato;
     String no_estado;
+    String co_tipo;
     int nid_usuario_crea;
     int nid_usuario_modi;
 
@@ -73,6 +74,14 @@ public class Plato {
 
     public void setNid_usuario_modi(int nid_usuario_modi) {
         this.nid_usuario_modi = nid_usuario_modi;
+    }
+
+    public String getCo_tipo() {
+        return co_tipo;
+    }
+
+    public void setCo_tipo(String co_tipo) {
+        this.co_tipo = co_tipo;
     }
     
 }
