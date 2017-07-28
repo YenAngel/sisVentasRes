@@ -18,6 +18,7 @@ public class Archivo extends javax.swing.JFrame {
 
     public String name;
     public int nroFrm;
+    public static String rutaIMG;
     public Archivo() {
         initComponents();
     }
@@ -83,15 +84,17 @@ public class Archivo extends javax.swing.JFrame {
                 }                
                 if(command.equals(JFileChooser.APPROVE_SELECTION)){ 
                     File archivoseleccionado=selector.getSelectedFile();
-                    String tempRoad="D:\\sisVentasRes\\sgr\\src\\recursos";                                
+                    String tempRoad="C:\\sisVentasRes\\sgr\\src\\recursos";                                
                     Path finalRoad=Paths.get(tempRoad);
                     Path finalOrgin=Paths.get(archivoseleccionado.getAbsolutePath());
                     Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".jpg"), StandardCopyOption.REPLACE_EXISTING);
-                    JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con exito.");
+                    JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con éxito.");
                     if (nroFrm==2) {
+                        rutaIMG = name.toLowerCase().replace(" ", "_")+".jpg";
                         jpEditarPlato editarPlato=new jpEditarPlato();
                         editarPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
                     }else{
+                        rutaIMG = name.toLowerCase().replace(" ", "_")+".jpg";
                         jpNuevoPlato nuevoPlato=new jpNuevoPlato();
                         nuevoPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
                     }                        

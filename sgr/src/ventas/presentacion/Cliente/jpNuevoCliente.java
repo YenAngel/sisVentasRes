@@ -25,91 +25,168 @@ public class jpNuevoCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtNombre = new javax.swing.JTextField();
+        txtPaterno = new javax.swing.JTextField();
+        txtMaterno = new javax.swing.JTextField();
         cboTipoDocumento = new javax.swing.JComboBox<>();
         txtDocumento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtPaterno = new javax.swing.JTextField();
-        txtMaterno = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnReturn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
+        btnReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Tipo de Documento:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 334, -1, -1));
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        jLabel16.setText("NUEVO CLIENTE");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, 38));
 
-        cboTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "RUC" }));
-        add(cboTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 319, 260, 50));
+        jPanel1.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
-        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDocumentoKeyTyped(evt);
-            }
-        });
-        add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 397, 260, 50));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Número de Documento:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 412, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Nombre del Cliente:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 120, -1, -1));
-
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
-        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 105, 260, 50));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Apellido Paterno:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 198, -1, -1));
-
+        txtPaterno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPaternoKeyTyped(evt);
             }
         });
-        add(txtPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 183, 260, 50));
 
+        txtMaterno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMaternoKeyTyped(evt);
             }
         });
-        add(txtMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 251, 260, 50));
+
+        cboTipoDocumento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cboTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "RUC" }));
+
+        txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoKeyTyped(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("<html>Número de Documento:</html>");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("<html>Tipo de Documento:</html>");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Apellido Materno:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 266, -1, -1));
 
-        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
-        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
-        btnReturn.setText("Cancelar");
-        btnReturn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnActionPerformed(evt);
-            }
-        });
-        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 150, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Apellido Paterno:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("<html>Nombre del Cliente:</html>");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2))
+                    .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cboTipoDocumento)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 120, 891, 280));
+
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel21.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel21.setText("Registro");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addGap(30, 30, 30))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 81, 150, 39));
 
         btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -120,11 +197,39 @@ public class jpNuevoCliente extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 150, -1));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("NUEVO CLIENTE");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 38));
+        btnReturn.setBackground(new java.awt.Color(153, 153, 255));
+        btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Undo.png"))); // NOI18N
+        btnReturn.setText("Cancelar");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(269, 269, 269)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(218, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(btnReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
+        );
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 890, 150));
     }// </editor-fold>//GEN-END:initComponents
     private boolean validarCotrols(){
         boolean ok;
@@ -138,50 +243,6 @@ public class jpNuevoCliente extends javax.swing.JPanel {
             ok=false;
         return ok;
     }
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isDigit(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
-        }
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaternoKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isDigit(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
-        }
-    }//GEN-LAST:event_txtPaternoKeyTyped
-
-    private void txtMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaternoKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isDigit(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar letras");        
-        }
-    }//GEN-LAST:event_txtMaternoKeyTyped
-
-    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
-        char c=evt.getKeyChar();         
-        
-        if(Character.isLetter(c)) {             
-            getToolkit().beep();             
-            evt.consume();                         
-            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");        
-        }
-    }//GEN-LAST:event_txtDocumentoKeyTyped
-
-    private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentoActionPerformed
-
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         jpListarCliente listarCliente=new jpListarCliente();
         frmPrincipal.Comp(listarCliente);
@@ -203,20 +264,64 @@ public class jpNuevoCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Completar todos los campos");
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c=evt.getKeyChar();
+
+        if(Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaternoKeyTyped
+        char c=evt.getKeyChar();
+
+        if(Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        }
+    }//GEN-LAST:event_txtPaternoKeyTyped
+
+    private void txtMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaternoKeyTyped
+        char c=evt.getKeyChar();
+
+        if(Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar Letras");
+        }
+    }//GEN-LAST:event_txtMaternoKeyTyped
+
+    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
+        char c=evt.getKeyChar();
+
+        if(Character.isLetter(c)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");
+        }
+    }//GEN-LAST:event_txtDocumentoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cboTipoDocumento;
+    public static javax.swing.JComboBox<String> cboTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    public javax.swing.JTextField txtDocumento;
-    public javax.swing.JTextField txtMaterno;
-    public javax.swing.JTextField txtNombre;
-    public javax.swing.JTextField txtPaterno;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    public static javax.swing.JTextField txtDocumento;
+    public static javax.swing.JTextField txtMaterno;
+    public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtPaterno;
     // End of variables declaration//GEN-END:variables
 }

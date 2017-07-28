@@ -104,7 +104,7 @@ public class Cargo_new extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(49, 156, 671, 160);
+        jPanel1.setBounds(177, 156, 671, 160);
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -133,12 +133,12 @@ public class Cargo_new extends javax.swing.JPanel {
         );
 
         add(jPanel4);
-        jPanel4.setBounds(49, 117, 150, 39);
+        jPanel4.setBounds(177, 117, 150, 39);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("NUEVO CARGO");
         add(jLabel16);
-        jLabel16.setBounds(310, 10, 170, 38);
+        jLabel16.setBounds(460, 10, 170, 38);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -182,7 +182,7 @@ public class Cargo_new extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(50, 390, 670, 102);
+        jPanel2.setBounds(180, 390, 670, 102);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed

@@ -185,6 +185,7 @@ public class frmCaja extends javax.swing.JFrame {
         lblSubTotal = new javax.swing.JLabel();
         lblIGV = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -280,9 +281,9 @@ public class frmCaja extends javax.swing.JFrame {
         getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 290));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Caja", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 310));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 60));
 
         lblGroupCliente.setBackground(new java.awt.Color(255, 255, 255));
         lblGroupCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -479,6 +480,10 @@ public class frmCaja extends javax.swing.JFrame {
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 170, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Monto Actual:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -805,6 +810,7 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

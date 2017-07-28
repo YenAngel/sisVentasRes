@@ -88,7 +88,7 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel4);
-        jPanel4.setBounds(49, 117, 150, 39);
+        jPanel4.setBounds(177, 117, 150, 39);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -130,12 +130,15 @@ public class CargoEdit extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtName_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtName_Cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboArea, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -145,7 +148,7 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(49, 156, 671, 160);
+        jPanel1.setBounds(177, 156, 671, 160);
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,12 +192,12 @@ public class CargoEdit extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(70, 390, 670, 102);
+        jPanel2.setBounds(180, 390, 670, 102);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MODIFICAR CARGO");
         add(jLabel16);
-        jLabel16.setBounds(310, 20, 181, 38);
+        jLabel16.setBounds(450, 10, 181, 38);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtName_CargoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtName_CargoKeyTyped

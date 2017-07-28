@@ -102,9 +102,10 @@ public class jpListarMesa extends javax.swing.JPanel{
         ));
         jScrollPane1.setViewportView(tblMesa);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 800, 350));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 320, 861, 300));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -112,19 +113,21 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 180, 70));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 80, 170, 68));
 
         btnEdit.setBackground(new java.awt.Color(153, 153, 255));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-        btnEdit.setText("Editar");
+        btnEdit.setText("Modificar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 180, 70));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 160, 170, 68));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
@@ -133,7 +136,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 180, 70));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 240, 170, 68));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -160,7 +163,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 281, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -208,40 +211,41 @@ public class jpListarMesa extends javax.swing.JPanel{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(txtNroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboNroPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboNroPiso, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txtNroMesa))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cboNroPiso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                        .addComponent(txtNroMesa, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 600, 110));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 80, 600, 110));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -268,7 +272,7 @@ public class jpListarMesa extends javax.swing.JPanel{
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 41, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -283,19 +287,19 @@ public class jpListarMesa extends javax.swing.JPanel{
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel23)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 640, -1, -1));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 620, 181, 30));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -313,21 +317,21 @@ public class jpListarMesa extends javax.swing.JPanel{
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 120, -1));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 620, 101, 30));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO MESA");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, 38));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -345,7 +349,7 @@ public class jpListarMesa extends javax.swing.JPanel{
             frmPrincipal.Comp(editarMesa);                 
             editarMesa.cargarMesa(mesa);
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
         }        
     }//GEN-LAST:event_btnEditActionPerformed
 

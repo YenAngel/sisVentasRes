@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
@@ -28,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         ((JLabel)cboSucursal.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         init();
         setLocationRelativeTo(null);
-        
+        //setExtendedState(MAXIMIZED_BOTH);
     }
 
     private void init(){
@@ -58,9 +59,9 @@ public class Login extends javax.swing.JFrame {
         cboSucursal = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnAceptar1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
@@ -94,7 +95,7 @@ public class Login extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 181, 110));
+        jPanel2.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 180, 90));
 
         txtPassword.setBackground(new java.awt.Color(68, 134, 187));
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -151,20 +152,31 @@ public class Login extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/is2.png"))); // NOI18N
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 240, 90));
 
+        btnAceptar1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        btnAceptar1.setFont(new java.awt.Font("DokChampa", 1, 18)); // NOI18N
+        btnAceptar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logout.png"))); // NOI18N
+        btnAceptar1.setText(" Salir");
+        btnAceptar1.setBorder(null);
+        btnAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptar1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 180, 90));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(60, 60, 430, 546);
+        jPanel2.setBounds(60, 36, 430, 570);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo2.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA.jpg"))); // NOI18N
+        jLabel4.setMaximumSize(new java.awt.Dimension(650, 144));
+        jLabel4.setMinimumSize(new java.awt.Dimension(650, 144));
+        jLabel4.setPreferredSize(new java.awt.Dimension(650, 144));
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(710, 100, 290, 130);
+        jLabel4.setBounds(570, 40, 650, 144);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Ceviche.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sub.png"))); // NOI18N
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(720, 220, 140, 90);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ceviche 3.jpg"))); // NOI18N
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(860, 220, 130, 90);
+        jLabel6.setBounds(570, 80, 650, 260);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -326,6 +338,13 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
+        int i = JOptionPane.showOptionDialog(null, "¿Desea salir del Sistema?", "Sistema Restaurante", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if(i== 0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnAceptar1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -361,6 +380,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAceptar1;
     private javax.swing.JComboBox<String> cboSucursal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -369,7 +389,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;

@@ -86,12 +86,12 @@ public class CargoL extends javax.swing.JPanel {
             }
         });
         add(btnSave);
-        btnSave.setBounds(585, 80, 170, 68);
+        btnSave.setBounds(773, 80, 170, 68);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO CARGO");
         add(jLabel16);
-        jLabel16.setBounds(280, 10, 280, 38);
+        jLabel16.setBounds(400, 0, 280, 38);
 
         btnEditar.setBackground(new java.awt.Color(153, 153, 255));
         btnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -103,7 +103,7 @@ public class CargoL extends javax.swing.JPanel {
             }
         });
         add(btnEditar);
-        btnEditar.setBounds(585, 160, 170, 68);
+        btnEditar.setBounds(773, 160, 170, 68);
 
         btnEliminar.setBackground(new java.awt.Color(153, 153, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,7 +115,7 @@ public class CargoL extends javax.swing.JPanel {
             }
         });
         add(btnEliminar);
-        btnEliminar.setBounds(585, 240, 170, 68);
+        btnEliminar.setBounds(773, 240, 170, 68);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -134,7 +134,7 @@ public class CargoL extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblCargos);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(14, 327, 741, 320);
+        jScrollPane1.setBounds(82, 320, 861, 300);
 
         jPanel2.setBackground(new java.awt.Color(248, 248, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -181,14 +181,14 @@ public class CargoL extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,17 +197,15 @@ public class CargoL extends javax.swing.JPanel {
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(cboOption, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(txtFilter)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(cboOption, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         add(jPanel2);
-        jPanel2.setBounds(14, 80, 530, 105);
+        jPanel2.setBounds(82, 80, 590, 130);
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -235,7 +233,7 @@ public class CargoL extends javax.swing.JPanel {
         );
 
         add(jPanel3);
-        jPanel3.setBounds(14, 41, 132, 39);
+        jPanel3.setBounds(82, 41, 132, 39);
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -263,7 +261,7 @@ public class CargoL extends javax.swing.JPanel {
         );
 
         add(jPanel5);
-        jPanel5.setBounds(14, 288, 114, 39);
+        jPanel5.setBounds(82, 280, 114, 39);
 
         jPanel6.setBackground(new java.awt.Color(248, 248, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -288,7 +286,7 @@ public class CargoL extends javax.swing.JPanel {
         );
 
         add(jPanel6);
-        jPanel6.setBounds(654, 647, 101, 30);
+        jPanel6.setBounds(842, 620, 101, 30);
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -315,7 +313,7 @@ public class CargoL extends javax.swing.JPanel {
         );
 
         add(jPanel4);
-        jPanel4.setBounds(474, 647, 180, 30);
+        jPanel4.setBounds(662, 620, 180, 30);
     }// </editor-fold>//GEN-END:initComponents
     private void LoadTable(){
         tblCargos.setModel(BD_RS.ListarCargos());

@@ -37,6 +37,10 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSave1 = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -45,63 +49,23 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         cboVip = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        btnSave1 = new javax.swing.JButton();
-        btnReturn = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1025, 661));
         setMinimumSize(new java.awt.Dimension(1025, 661));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Local:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 103, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Plato:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 171, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Precio:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 238, -1, -1));
-
-        cboPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboPlato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboPlatoActionPerformed(evt);
-            }
-        });
-        add(cboPlato, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 154, 260, 50));
-
-        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 86, 260, 50));
-
-        cboVip.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboVip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SI", "NO" }));
-        add(cboVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 290, 260, 50));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Vip:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 307, -1, -1));
-
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyTyped(evt);
-            }
-        });
-        add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 222, 260, 50));
-
         btnSave1.setBackground(new java.awt.Color(153, 153, 255));
         btnSave1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/save.png"))); // NOI18N
-        btnSave1.setText("Guardar");
+        btnSave1.setText("<html>Guardar Cambios</html>");
         btnSave1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSave1ActionPerformed(evt);
             }
         });
-        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 150, -1));
+        add(btnSave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 180, 70));
 
         btnReturn.setBackground(new java.awt.Color(153, 153, 255));
         btnReturn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -112,11 +76,126 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
                 btnReturnActionPerformed(evt);
             }
         });
-        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
+        add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 180, 70));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("EDITAR PLATO POR LOCAL");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, 38));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, 38));
+
+        jPanel1.setBackground(new java.awt.Color(248, 248, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Local:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Plato:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Precio:");
+
+        cboPlato.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboPlatoActionPerformed(evt);
+            }
+        });
+
+        cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        cboVip.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboVip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SI", "NO" }));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Vip:");
+
+        txtPrecio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPrecio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)
+                        .addComponent(cboPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(10, 10, 10)
+                        .addComponent(cboVip, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(10, 10, 10)
+                        .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel5))
+                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel8))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboVip, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6))))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 140, 781, 240));
+
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(204, 204, 204));
+
+        jLabel21.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel21.setFont(new java.awt.Font("Arial Black", 1, 17)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel21.setText("Registro");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addGap(30, 30, 30))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 101, 150, 39));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPlatoActionPerformed
@@ -165,10 +244,13 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
     public static javax.swing.JComboBox<String> cboPlato;
     public static javax.swing.JComboBox<String> cboVip;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     public static javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

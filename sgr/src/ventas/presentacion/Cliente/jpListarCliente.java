@@ -65,29 +65,32 @@ public class jpListarCliente extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCliente);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 831, 290));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 320, 861, 300));
 
         btnNew.setBackground(new java.awt.Color(153, 153, 255));
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new.png"))); // NOI18N
-        btnNew.setText("Nuevo");
+        btnNew.setText("   Nuevo  ");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
-        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 180, 70));
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 80, 170, 68));
 
         btnEdit.setBackground(new java.awt.Color(153, 153, 255));
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-        btnEdit.setText("Editar");
+        btnEdit.setText("Modificar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 180, 70));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 160, 170, 68));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
         btnDelete.setText("Eliminar");
         btnDelete.setPreferredSize(new java.awt.Dimension(130, 57));
@@ -96,7 +99,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 180, 70));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 240, 170, 68));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -123,7 +126,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 281, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -165,21 +168,21 @@ public class jpListarCliente extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -190,10 +193,10 @@ public class jpListarCliente extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 640, 110));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 80, 590, 130));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -220,7 +223,7 @@ public class jpListarCliente extends javax.swing.JPanel {
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 41, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -235,22 +238,22 @@ public class jpListarCliente extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel23)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, -1, -1));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 620, 180, 30));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel8.setForeground(new java.awt.Color(204, 204, 204));
 
         lblTotal1.setBackground(new java.awt.Color(153, 153, 153));
@@ -265,7 +268,7 @@ public class jpListarCliente extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(lblTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -275,11 +278,11 @@ public class jpListarCliente extends javax.swing.JPanel {
                 .addComponent(lblTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 590, 120, -1));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 620, 101, 30));
 
-        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO CLIENTE");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 38));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
     
     private DefaultTableModel formatearTabla(){
@@ -328,7 +331,7 @@ public class jpListarCliente extends javax.swing.JPanel {
             frmPrincipal.Comp(editarCliente);
             editarCliente.cargarCliente(cliente);            
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
         }        
     }//GEN-LAST:event_btnEditActionPerformed
 
