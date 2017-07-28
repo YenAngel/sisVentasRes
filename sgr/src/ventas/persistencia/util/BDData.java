@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Caja;
+import ventas.modelo.CajaLocal;
 import ventas.modelo.Categoria;
 import ventas.modelo.Cliente;
 import ventas.modelo.Comprobante;
@@ -41,6 +42,19 @@ public class BDData {
             System.out.println(ex.toString());   
             return null;
         }        
+    }
+    public static ResultSet getValid(Cliente cliente){
+        String sql="call sgr_sps_validCliente(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, cliente.getCo_tipo_documento());
+            cs.setString(2, cliente.getNu_documento());
+            ResultSet rs=cs.executeQuery();
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
     public static DefaultTableModel getListaCaja(DefaultTableModel dtm, Caja caja){
         String sql="call sgr_sps_getListaPedido(?,?,?)";
@@ -76,12 +90,14 @@ public class BDData {
             return null;
         }
     }
-    public static ResultSet getCorrelativo(String serie, String correlativo){
-        String sql="call sgr_sps_getCorrelativo(?,?)";
+    
+    public static ResultSet getCorrelativo(String serie, String correlativo, String documento){
+        String sql="call sgr_sps_getCorrelativo(?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, serie);
             cs.setString(2, correlativo);
+            cs.setString(3, documento);
             ResultSet rs=cs.executeQuery();
             return rs;
         } catch (Exception e) {
@@ -1102,25 +1118,69 @@ public class BDData {
         }
     }       
     public static boolean registrarVenta(Caja caja){
-        String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, caja.getCo_comprobante());
             cs.setString(2, caja.getNu_serie());
             cs.setString(3, caja.getNu_correlativo());
-            cs.setDate(4, (Date) caja.getFe_emision());
-            cs.setDouble(5, caja.getMt_subtotal());
-            cs.setDouble(6, caja.getMt_igv());
-            cs.setDouble(7, caja.getMt_total());
-            cs.setString(8, caja.getDoc_cliente());
-            cs.setInt(9, caja.getNid_pedido());
-            cs.setString(10, caja.getNo_local());
-            cs.setInt(11, caja.getNid_usuario_crea());            
+            cs.setDouble(4, caja.getMt_subtotal());
+            cs.setDouble(5, caja.getMt_igv());
+            cs.setDouble(6, caja.getMt_total());
+            cs.setString(7, caja.getDoc_cliente());
+            cs.setInt(8, caja.getNid_pedido());
+            cs.setString(9, caja.getNo_local());
+            cs.setInt(10, caja.getNid_usuario_crea());            
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
             System.out.println(e);
             return false;
+        }
+    }
+    public static boolean agregarCaja(CajaLocal caja){
+        String sql="call sgr_spi_caja(?,?,?,?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, caja.getVi_no_local());            
+            cs.setString(2, caja.getVi_co_comprobante());            
+            cs.setString(3, caja.getVi_nu_comprobante());            
+            cs.setDouble(4, caja.getVi_mt_importe());            
+            cs.setString(5, caja.getVi_nu_persona());            
+            cs.setInt(6, caja.getVi_nid_usuario_crea());            
+            cs.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static DefaultComboBoxModel getCaja(){
+        DefaultComboBoxModel dcbm= new  DefaultComboBoxModel();
+        String sql="select * from sgr_usuarioCaja";
+        try {
+            PreparedStatement ps=BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {                
+                dcbm.addElement(rs.getString(1));
+            }
+            return dcbm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static ResultSet getUserCajaValid(String documento, String local){        
+        String sql="call sgr_getUserCaja(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, documento);
+            cs.setString(2, local);
+            ResultSet rs=cs.executeQuery();            
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
         }
     }
 }

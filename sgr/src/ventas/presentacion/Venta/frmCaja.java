@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,9 +23,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Caja;
+import ventas.modelo.CajaLocal;
 import ventas.modelo.Cliente;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import ventas.persistencia.util.BDUtil;
+import ventas.persistencia.util.Usuario;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.Mesas_Selection1;
 import ventas.presentacion.frmPrincipal;
@@ -37,24 +41,33 @@ public class frmCaja extends javax.swing.JFrame {
     DefaultTableModel dtm;
     Caja caja=new Caja();
     Cliente cliente= new Cliente();
+    Usuario usuario=new Usuario();
     public static int nroPiso;
     public static int nroMesa;
+    public static String documento;
     int height=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int width=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;               
-    public frmCaja() {
+    public frmCaja(){
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         tblCaja.setModel(formatearTabla());
         cboComprobante.setSelectedIndex(-1);
         componentes();
         setLayout(null);
-        lblUser.setText(login_User.surcursal);   
+        lblLocal.setText(login_User.surcursal);   
         getNow();
-        cboDocumento.setSelectedIndex(-1);
-        jLabel16.setVisible(false);
-        jLabel17.setVisible(false);
-        txtApeMaterno.setVisible(false);
-        txtApePaterno.setVisible(false);
+        cboDocumento.setSelectedIndex(-1);        
+        getUsuario(documento, lblLocal.getText());
+    }
+    public void getUsuario(String documento, String local){        
+        ResultSet rs = BDData.getUserCajaValid(documento, local);
+        try {
+            if (rs.next()) {                
+                usuario.setId(rs.getInt(1));
+                usuario.setIdLocal(rs.getInt(2));
+            }
+        } catch (Exception e) {
+        }       
     }
     public void getMesa(MouseEvent event){
         String mesaString=event.toString().substring(event.toString().indexOf("on #")+4, event.toString().indexOf("$"));        
@@ -76,7 +89,7 @@ public class frmCaja extends javax.swing.JFrame {
         return  dtm;
     }
     public void cargarListaPedido(int piso, int mesa){
-        caja.setNo_local(lblUser.getText());                
+        caja.setNo_local(lblLocal.getText());                
         caja.setNu_mesa(mesa);
         caja.setNu_piso(piso);
         tblCaja.setModel(BDData.getListaCaja(dtm, caja));      
@@ -127,6 +140,7 @@ public class frmCaja extends javax.swing.JFrame {
         }else
             return false;
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,30 +150,24 @@ public class frmCaja extends javax.swing.JFrame {
         cboDocumento = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cboComprobante = new javax.swing.JComboBox<>();
-        txtSerie = new javax.swing.JTextField();
-        txtCorrelativo = new javax.swing.JTextField();
         Codigo = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblDocumento = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCaja = new javax.swing.JTable();
         txtCliente = new javax.swing.JTextField();
-        txtIGV = new javax.swing.JTextField();
-        txtTotal = new javax.swing.JTextField();
         Codigo1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnFactura = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblGroupCliente = new javax.swing.JLabel();
         txtDocumento = new javax.swing.JTextField();
-        txtSubTotal = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         btnValid = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         pnlCajaTitle = new javax.swing.JPanel();
-        lblUser = new javax.swing.JLabel();
+        lblLocal = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
         lblHome2 = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
@@ -170,8 +178,16 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtApeMaterno = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        lblSubTotal = new javax.swing.JLabel();
+        lblIGV = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1025, 661));
         setSize(new java.awt.Dimension(1025, 661));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -211,25 +227,15 @@ public class frmCaja extends javax.swing.JFrame {
                 cboComprobanteActionPerformed(evt);
             }
         });
-        getContentPane().add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 260, 50));
-
-        txtSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 260, 50));
-
-        txtCorrelativo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtCorrelativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 260, 50));
+        getContentPane().add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 110, 50));
 
         Codigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo.setText("Tipo de Documento:");
-        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        getContentPane().add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, 20));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Serie:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("Correlativo:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        lblDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblDocumento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 260, 30));
 
         jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -252,27 +258,26 @@ public class frmCaja extends javax.swing.JFrame {
         txtCliente.setAutoscrolls(false);
         getContentPane().add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 315, 260, 50));
 
-        txtIGV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtIGV, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 260, 50));
-
-        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 260, 50));
-
         Codigo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo1.setText("SubTotal:");
-        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
+        getContentPane().add(Codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("IGV:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Total:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/get-money.png"))); // NOI18N
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 210));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 290));
+        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/get-money.png"))); // NOI18N
+        btnFactura.setPreferredSize(new java.awt.Dimension(100, 210));
+        btnFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 290));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -291,9 +296,6 @@ public class frmCaja extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 227, 260, 50));
-
-        txtSubTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 260, 50));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Cliente:");
@@ -322,15 +324,15 @@ public class frmCaja extends javax.swing.JFrame {
 
         pnlCajaTitle.setBackground(new java.awt.Color(102, 153, 255));
 
-        lblUser.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblUser.setText(" Gestión de Ventas");
-        lblUser.setAlignmentX(30.0F);
-        lblUser.setAlignmentY(20.0F);
-        lblUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblUser.setIconTextGap(0);
-        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLocal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblLocal.setText(" Gestión de Ventas");
+        lblLocal.setAlignmentX(30.0F);
+        lblLocal.setAlignmentY(20.0F);
+        lblLocal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblLocal.setIconTextGap(0);
+        lblLocal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblUserMouseClicked(evt);
+                lblLocalMouseClicked(evt);
             }
         });
 
@@ -388,7 +390,7 @@ public class frmCaja extends javax.swing.JFrame {
             pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCajaTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblUser)
+                .addComponent(lblLocal)
                 .addGap(47, 47, 47)
                 .addComponent(lblDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -406,10 +408,11 @@ public class frmCaja extends javax.swing.JFrame {
                 .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(pnlCajaTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlCajaTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCajaTitleLayout.createSequentialGroup()
                 .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -449,6 +452,34 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Herramientas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 580, 300, 110));
 
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator1.setForeground(new java.awt.Color(102, 102, 255));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 263, 10));
+
+        jSeparator2.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator2.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 263, 10));
+
+        jSeparator3.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator3.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 263, 10));
+
+        jSeparator4.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator4.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 263, 10));
+
+        lblSubTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 170, 30));
+
+        lblIGV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblIGV, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 170, 30));
+
+        lblTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 170, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -458,9 +489,9 @@ public class frmCaja extends javax.swing.JFrame {
         mesas_Selection.setVisible(true);
     }//GEN-LAST:event_lblHomeMouseClicked
 
-    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
+    private void lblLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLocalMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblUserMouseClicked
+    }//GEN-LAST:event_lblLocalMouseClicked
 
     private void cboDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDocumentoActionPerformed
         // TODO add your handling code here:
@@ -476,35 +507,56 @@ public class frmCaja extends javax.swing.JFrame {
         double subtotal=0;
         double igv=0;
         double total=0;
+        DecimalFormat df=new DecimalFormat("S/ 0.00");
         if (cboComprobante.getSelectedIndex()!=-1) {
             rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
             try {
                 if (rs.next()) {
                     temp1=rs.getString(1);
                     temp2=rs.getString(2);                    
-                    txtSerie.setText(rs.getString(1));
+                    //txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
-                    if (!txtSerie.equals("")) {
-                        ResultSet rs1= BDData.getCorrelativo(temp1, temp2);
+                    
+                    if (!temp1.equals("")) {
+                        ResultSet rs1= BDData.getCorrelativo(temp1, lblLocal.getText(),cboComprobante.getSelectedItem().toString());
                         if (rs1.next()) {
-                            int correlativo=Integer.parseInt(rs1.getString(1));
                             int tempSerie=Integer.parseInt(temp1);
                             int tempCorrelativo=Integer.parseInt(temp2);
-                            if (tempCorrelativo<=correlativo) {
-                                int value=correlativo+1;
+                            int correlativo=Integer.parseInt(rs1.getString(1));
+                            System.out.println(correlativo);
+                            correlativo+=1;                            
+                            if (correlativo<=tempCorrelativo) {                                                                                               
                                 int len=temp2.length();
-                                int lenC=value+"".length();
+                                int lenC=Integer.toString(correlativo).length();
                                 StringBuffer buffer= new StringBuffer();
                                 String[] cad=new String[len];
-                                String[] cad1=new String[len];
-                                for (int i = len-1; i >0 ; i--) {
-                                    cad[i]=0+"";
-                                    for (int j = 0; j < lenC; j++) {
-                                        cad1[j]=value+"".substring(j, 1);
-                                        cad[i]=cad1[j];
-                                    }
+                                String[] cad1=new String[lenC];
+                                
+                                int count=1;                                
+                                if (count==lenC) {
+                                   cad1[count-1]=Integer.toString(correlativo).substring(count-1, 1);
+                                    count+=1;
                                 }
-                                txtCorrelativo.setText(buffer.toString());
+                                
+                                int counta=lenC;
+                                for (int i = len-1; i >=0 ; i--) {                                    
+                                    cad[i]=0+"";
+                                    counta--;
+                                    for (int j = lenC-1; j>=0; j--) {
+                                        if (counta==j) {
+                                            cad[i]=cad1[j];
+                                        }                                        
+                                    }
+                                    buffer.append(cad[i]);
+                                }
+                                int tempCount=len;                                
+                                StringBuffer sb=new StringBuffer();
+                                for (int i = 0; i < cad.length; i++) {
+                                    sb.append(cad[i]);
+                                }                   
+                                lblDocumento.setText(temp1+"-"+sb.toString());
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane, "El Correlativo se ha agotado");
                             }                            
                         }else{
                             int len=temp2.length();
@@ -519,7 +571,7 @@ public class frmCaja extends javax.swing.JFrame {
                                     buffer.append(cad[i]);
                                 }
                             }                                                        
-                            txtCorrelativo.setText(buffer.toString());
+                            lblDocumento.setText(temp1+"-"+buffer.toString());
                         }
                     }                    
                 }
@@ -527,38 +579,45 @@ public class frmCaja extends javax.swing.JFrame {
                 Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
         }   
-        if (cboComprobante.getSelectedIndex()==0) {
+        if (cboComprobante.getSelectedIndex()==0) {                        
             subtotal=getTotal(dtm);
-            igv=subtotal*0.18;
-            total=igv+subtotal;            
-            txtSubTotal.setText(subtotal+"");
-            txtIGV.setText(igv+"");
-            txtTotal.setText(total+"");
-            txtIGV.setVisible(true);
-            txtTotal.setVisible(true);
-            txtSubTotal.setVisible(true);
+            igv=(subtotal*0.18);
+            total=(igv+subtotal);
+            lblSubTotal.setText(df.format(subtotal));
+            lblIGV.setText(df.format(igv));
+            lblTotal.setText(df.format(total));
+            lblSubTotal.setVisible(true);
+            lblIGV.setVisible(true);
+            lblTotal.setVisible(true);
             jLabel13.setVisible(true);
             jLabel14.setVisible(true);
             Codigo1.setVisible(true);
             jLabel3.setVisible(true);
-            
-            jLabel14.setBounds(350, 290, 60, 30);
-            txtTotal.setBounds(350, 320, 260, 50);
+            jSeparator1.setVisible(true);
+            jSeparator2.setVisible(true);
+            jSeparator3.setVisible(true);
+            jSeparator4.setVisible(true);
+            jLabel14.setBounds(350, 320, 170, 30);
+            lblTotal.setBounds(440, 320, 170, 30);
         }
         if (cboComprobante.getSelectedIndex()==1 || cboComprobante.getSelectedIndex()==2) {
             subtotal=getTotal(dtm);
-            txtTotal.setText(subtotal+"");
+            lblTotal.setText(df.format(subtotal));
+            lblSubTotal.setText(df.format(subtotal));
+            lblIGV.setText(0+"");
             
-            jLabel14.setBounds(350, 190, 60, 30);
-            txtTotal.setBounds(350, 230, 260, 50);
+            jLabel14.setBounds(350, 220, 170, 30);
+            lblTotal.setBounds(440, 220, 170, 30);
                         
-            txtIGV.setVisible(false);
-            txtSubTotal.setVisible(false);
+            lblIGV.setVisible(false);
+            lblSubTotal.setVisible(false);
             jLabel13.setVisible(false);
             Codigo1.setVisible(false);
-            txtTotal.setVisible(true);
+            lblTotal.setVisible(true);
             jLabel3.setVisible(true);
             jLabel14.setVisible(true);
+            jSeparator1.setVisible(false);
+            jSeparator3.setVisible(false);
         }
                 
     }//GEN-LAST:event_cboComprobanteItemStateChanged
@@ -601,6 +660,10 @@ public class frmCaja extends javax.swing.JFrame {
             txtApeMaterno.setVisible(false);
             txtApePaterno.setVisible(false);
         }
+        txtApeMaterno.setText("");
+        txtApePaterno.setText("");
+        txtCliente.setText("");
+        txtDocumento.setText("");
     }//GEN-LAST:event_cboDocumentoItemStateChanged
 
     private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
@@ -623,6 +686,19 @@ public class frmCaja extends javax.swing.JFrame {
         }else{          
             if (cboDocumento.getSelectedIndex()!=-1 && !txtDocumento.equals("")) {
                 cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
+                cliente.setNu_documento(txtDocumento.getText());                            
+                ResultSet rs=BDData.getValid(cliente);                
+                try {
+                    if(rs.next()) {
+                        txtCliente.setText(rs.getString(1));
+                        txtApePaterno.setText(rs.getString(2));
+                        txtApeMaterno.setText(rs.getString(3));
+                    }
+                } catch (Exception e) {
+                }
+            }
+            if (cboDocumento.getSelectedIndex()!=-1 && !txtDocumento.equals("") && !txtCliente.equals("") || !txtApeMaterno.equals("") || !txtApePaterno.equals("")) {
+                cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
                 cliente.setNu_documento(txtDocumento.getText());            
                 cliente.setNo_cliente(txtCliente.getText());
                 cliente.setNo_ape_paterno(txtApePaterno.getText());
@@ -639,6 +715,41 @@ public class frmCaja extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnValidActionPerformed
+
+    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
+        Caja caja=new Caja();
+        Date fecha = new Date();
+        CajaLocal cl=new CajaLocal();
+        String tempComprobante="";
+        if (cboComprobante.getSelectedIndex()==0) {
+            tempComprobante=01+"";
+        }else if(cboComprobante.getSelectedIndex()==1){
+            tempComprobante=03+"";
+        }else if(cboComprobante.getSelectedIndex()==2){
+            tempComprobante=00+"";
+        }
+        caja.setCo_comprobante(tempComprobante);
+        caja.setNu_serie(lblDocumento.getText().substring(0, lblDocumento.getText().indexOf("-")));
+        caja.setNu_correlativo(lblDocumento.getText().substring(lblDocumento.getText().indexOf("-")+1, lblDocumento.getText().length()));
+        caja.setMt_subtotal(Double.parseDouble((lblSubTotal.getText().replace("S/ ", "")).replace(",", ".")));
+        caja.setMt_igv(Double.parseDouble((lblIGV.getText().replace("S/ ", "")).replace(",", ".")));
+        caja.setMt_total(Double.parseDouble((lblTotal.getText().replace("S/ ", "")).replace(",", ".")));
+        caja.setDoc_cliente(txtDocumento.getText());
+        caja.setNid_pedido(Integer.parseInt(dtm.getValueAt(0, 0).toString()));
+        caja.setNo_local(lblLocal.getText());        
+        caja.setNid_usuario_crea(usuario.getId());
+        if (BDData.registrarVenta(caja)) {
+            cl.setVi_no_local(lblLocal.getText());
+            cl.setVi_co_comprobante(tempComprobante);
+            cl.setVi_nu_comprobante(lblDocumento.getText());
+            cl.setVi_mt_importe(Double.parseDouble((lblTotal.getText().replace("S/ ", "")).replace(",", ".")));
+            cl.setVi_nu_persona(txtDocumento.getText());
+            cl.setVi_nid_usuario_crea(usuario.getId());
+            if (BDData.agregarCaja(cl)) {
+                JOptionPane.showMessageDialog(rootPane, "Emitiendo");
+            }
+        }
+    }//GEN-LAST:event_btnFacturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -680,15 +791,13 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel Codigo1;
     private javax.swing.ButtonGroup bgCliente;
     private javax.swing.ButtonGroup bgDocumento;
+    private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnValid;
     public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboDocumento;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    public static javax.swing.JLabel jLabel11;
-    public static javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -698,22 +807,25 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblDate;
+    public static javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblGroupCliente;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblHome2;
     private javax.swing.JLabel lblHour;
-    private javax.swing.JLabel lblUser;
+    public static javax.swing.JLabel lblIGV;
+    private javax.swing.JLabel lblLocal;
+    public static javax.swing.JLabel lblSubTotal;
+    public static javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlCajaTitle;
     private javax.swing.JTable tblCaja;
     private javax.swing.JTextField txtApeMaterno;
     private javax.swing.JTextField txtApePaterno;
     private javax.swing.JTextField txtCliente;
-    public static javax.swing.JTextField txtCorrelativo;
     private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtIGV;
-    public static javax.swing.JTextField txtSerie;
-    private javax.swing.JTextField txtSubTotal;
-    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
