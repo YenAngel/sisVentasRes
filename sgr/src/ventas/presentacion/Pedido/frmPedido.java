@@ -8,15 +8,19 @@ package ventas.presentacion.Pedido;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +32,7 @@ import ventas.modelo.DPedido;
 import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Mesas_Selection;
+import ventas.presentacion.Teclado_Letters;
 
 /**
  *
@@ -46,13 +51,21 @@ public class frmPedido extends javax.swing.JFrame {
     public int r;
     public static int cat;
     public static int subcat;
-   
+    public static JTextArea ta;
+    public static JDialog jd = new JDialog();
+    public  Teclado_Letters t = new Teclado_Letters(this);
     public frmPedido() {
         
         //BDUtil.conectar();
         //jPanel2.setLayout(null);
         initComponents();
+        jd.add(t.getContentPane());
+        jd.setSize(t.getSize());
+        
+        jd.setModal(true);
+        //jd.setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
+        jd.setLocation(new Point(298+getLocation().x,491));
         cboMozo.setModel(BD_RS.ListarCBOMozo());
         w = jTabbedPane1.getSize().width;
         //LoadComp();
@@ -91,12 +104,12 @@ public class frmPedido extends javax.swing.JFrame {
         int cont = 0;
         int countitems = 0;
         int panelaum = 367;
-        String div = String.valueOf(Double.parseDouble(cantCat/3+""));
-        int cant3 = Integer.parseInt(div.substring(0,div.indexOf('.')));
-        for(int i = 0; i<cant3; i++){
-            x = 30;
+        String div = String.valueOf(Double.parseDouble(cantCat/2+""));
+        int cant2 = Integer.parseInt(div.substring(0,div.indexOf('.')));
+        for(int i = 0; i<cant2; i++){
+            x = 60;
             a = 1;
-            while(a <= 3){
+            while(a <= 2){
                 JButton jb = new JButton();
                 String cad = dlm.getElementAt(countitems).toString();
                 jb.setText("<html>"+cad.substring(cad.indexOf('%')+1,cad.length())+ "</html>");
@@ -108,7 +121,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jb(evt);
             }
         });
-                x+=249;
+                if(a != 2)
+                x+=229;
                 a++;
                 countitems++;
                 jPanel2.add(jb);
@@ -117,11 +131,11 @@ public class frmPedido extends javax.swing.JFrame {
             cont++;
             if(cont>2){
             panelaum+=70;
-            jPanel2.setPreferredSize(new Dimension(721,panelaum));}
+            jPanel2.setPreferredSize(new Dimension(510,panelaum));}
         }
-        if ((cant3*3) != cantCat){
-             x = 30;
-            int res = cantCat - cant3*3 ;
+        if ((cant2*2) != cantCat){
+             x = 60;
+            int res = cantCat - cant2*2 ;
             int vecesrun = 1;
             while(vecesrun <= res){
                 JButton jb = new JButton();
@@ -135,7 +149,8 @@ public class frmPedido extends javax.swing.JFrame {
                 jb(evt);
             }
         });
-                x+=249;
+                
+                x+=229;
                 a++;
                 countitems++;
                 jPanel2.add(jb);
@@ -143,7 +158,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
             if(cont>2){
             panelaum+=70;
-            jPanel2.setPreferredSize(new Dimension(721,panelaum));}
+            jPanel2.setPreferredSize(new Dimension(510,panelaum));}
         }
     }
     private void jb(ActionEvent evt){
@@ -173,12 +188,12 @@ public class frmPedido extends javax.swing.JFrame {
         int cont = 0;
         int countitems = 0;
         int panelaum = 367;
-        String div = String.valueOf(Double.parseDouble(cantCat/3+""));
-        int cant3 = Integer.parseInt(div.substring(0,div.indexOf('.')));
-        for(int i = 0; i<cant3; i++){
-            x = 30;
+        String div = String.valueOf(Double.parseDouble(cantCat/2+""));
+        int cant2 = Integer.parseInt(div.substring(0,div.indexOf('.')));
+        for(int i = 0; i<cant2; i++){
+            x = 60;
             a = 1;
-            while(a <= 3){
+            while(a <= 2){
                 JButton jb = new JButton();
                 String cad = dlm.getElementAt(countitems).toString();
                 jb.setText("<html>"+cad.substring(cad.indexOf('%')+1,cad.length())+ "</html>");
@@ -190,6 +205,7 @@ public class frmPedido extends javax.swing.JFrame {
                 jb(evt);
             }
         });
+                if(a!=2)
                 x+=249;
                 a++;
                 countitems++;
@@ -199,11 +215,11 @@ public class frmPedido extends javax.swing.JFrame {
             cont++;
             if(cont>2){
             panelaum+=70;
-            jPanel2.setPreferredSize(new Dimension(721,panelaum));}
+            jPanel2.setPreferredSize(new Dimension(510,panelaum));}
         }
-        if ((cant3*3) != cantCat){
-             x = 30;
-            int res = cantCat - cant3*3 ;
+        if ((cant2*2) != cantCat){
+             x = 60;
+            int res = cantCat - cant2*2 ;
             int vecesrun = 1;
             while(vecesrun <= res){
                 JButton jb = new JButton();
@@ -225,7 +241,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
             if(cont>2){
             panelaum+=70;
-            jPanel2.setPreferredSize(new Dimension(721,panelaum));}
+            jPanel2.setPreferredSize(new Dimension(510,panelaum));}
         }}
     }
     private void LoadTree(){
@@ -297,14 +313,14 @@ public class frmPedido extends javax.swing.JFrame {
         int cont = 1;
         int countitems = 0;
         int panelaum = 367;
-        String div = String.valueOf(Double.parseDouble(cantPl/4+""));
-        int cant4 = Integer.parseInt(div.substring(0,div.indexOf('.')));
+        String div = String.valueOf(Double.parseDouble(cantPl/3+""));
+        int cant3 = Integer.parseInt(div.substring(0,div.indexOf('.')));
         //System.out.println("SIZE: " + dlmFilter.size());
-        for (int i = 0; i < cant4; i++){
+        for (int i = 0; i < cant3; i++){
             h = 30;
             
             c = 1;
-            while(c <= 4){
+            while(c <= 3){
                 //try{
                 JLabel jl = new JLabel();
                 JLabel jlname = new JLabel();
@@ -319,7 +335,7 @@ public class frmPedido extends javax.swing.JFrame {
                 //System.out.println("REC: " + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
                 jlname.setText("<html>" + rec.replace('_', ' ').trim() + "</html>");
-                jlprice.setText(cad.substring(cad.indexOf('%')+1, cad.length()));
+                jlprice.setText(cad.substring(cad.indexOf('%')+1, cad.indexOf('#')));
                 jlname.setBounds(h+5,a+87,120,30);
                 jlprice.setBounds(h+5,a+120,120,10);
                 /*
@@ -369,9 +385,9 @@ public class frmPedido extends javax.swing.JFrame {
             a+=108;
         }
         //Menos de 3 
-        if ((cant4*4) != cantPl){
+        if ((cant3*3) != cantPl){
             h = 30;
-            int res = cantPl - cant4*4 ;
+            int res = cantPl - cant3*3 ;
             int vecesrun = 1;
             while(vecesrun <= res){
                JLabel jl = new JLabel();
@@ -385,7 +401,7 @@ public class frmPedido extends javax.swing.JFrame {
                 System.out.println("REC:" + rec);
                 jl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/" + rec + ".jpg")));
                 jlname.setText("<html><center>" + rec.replace('_', ' ').trim() + "</center></html>");
-                jlprice.setText("S/. " +cad.substring(cad.indexOf('%')+1, cad.length()));
+                jlprice.setText("S/. " +cad.substring(cad.indexOf('%')+1, cad.indexOf('#')));
                 jlprice.setForeground(new Color(18, 133, 43));
                 System.out.println(rec.replace('_', ' ').trim().length());
                 int posx = 21 - rec.replace('_', ' ').trim().length();
@@ -418,12 +434,14 @@ public class frmPedido extends javax.swing.JFrame {
         String platName;
         valcant = 1;
         String costo;
+        String envio;
         in = evt.getSource().toString().indexOf("/recursos/") + 10;
         f = evt.getSource().toString().indexOf("disabledIcon=") - 5;
         Vector v = new Vector();
         
         platName = evt.getComponent().getName().substring(0,evt.getComponent().getName().indexOf('%'));
-        costo = evt.getComponent().getName().substring(evt.getComponent().getName().indexOf('%')+1,evt.getComponent().getName().length());
+        costo = evt.getComponent().getName().substring(evt.getComponent().getName().indexOf('%')+1,evt.getComponent().getName().indexOf('#'));
+        envio = evt.getComponent().getName().substring(evt.getComponent().getName().indexOf('#')+1,evt.getComponent().getName().length());
         // Here, this site is for get price of dish
         if(tblPedidos.getModel().getRowCount() == 0){
                     v.add(platName);
@@ -432,6 +450,7 @@ public class frmPedido extends javax.swing.JFrame {
                     v.add(Double.parseDouble(costo)*(double)valcant);
                     v.add("");
                     v.add("No");
+                    v.add(envio);
                     dtm.addRow(v);
         }else{
             for(int i=0; i < tblPedidos.getModel().getRowCount(); i++){
@@ -449,6 +468,7 @@ public class frmPedido extends javax.swing.JFrame {
                     v.add(Double.parseDouble(costo)*(double)valcant);
                     v.add("");
                     v.add("No");
+                    v.add(envio);
                     dtm.addRow(v);
         }
         ConfigTBL(tblPedidos);
@@ -513,9 +533,11 @@ public class frmPedido extends javax.swing.JFrame {
         jScrollPane1.setForeground(new java.awt.Color(153, 204, 255));
 
         jPanel1.setToolTipText("");
-        jPanel1.setPreferredSize(new java.awt.Dimension(825, 377));
+        jPanel1.setPreferredSize(new java.awt.Dimension(618, 377));
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(721, 367));
+        jPanel2.setMaximumSize(new java.awt.Dimension(521, 9999));
+        jPanel2.setPreferredSize(new java.awt.Dimension(521, 367));
+        jPanel2.setRequestFocusEnabled(false);
         jPanel2.setLayout(null);
         jScrollPane3.setViewportView(jPanel2);
 
@@ -541,8 +563,8 @@ public class frmPedido extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRetornarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInicioCat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -568,7 +590,7 @@ public class frmPedido extends javax.swing.JFrame {
         jTabbedPane1.addTab("        Platos  & Bebidas    ", new javax.swing.ImageIcon(getClass().getResource("/recursos/cereals.png")), jScrollPane1); // NOI18N
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(416, 20, 837, 470);
+        jTabbedPane1.setBounds(380, 20, 630, 470);
 
         btnCocina.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCocina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/TCocina_v.png"))); // NOI18N
@@ -631,7 +653,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCuenta);
-        btnCuenta.setBounds(1040, 630, 221, 71);
+        btnCuenta.setBounds(20, 670, 221, 71);
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
         btnAdd.setToolTipText("Aumentar la cantidad");
@@ -653,7 +675,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRetornar);
-        btnRetornar.setBounds(1040, 550, 221, 71);
+        btnRetornar.setBounds(20, 590, 221, 71);
 
         cboMozo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cboMozo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -668,7 +690,7 @@ public class frmPedido extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cboMozo);
-        cboMozo.setBounds(636, 490, 170, 40);
+        cboMozo.setBounds(600, 490, 170, 40);
 
         btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
         btnMin.setToolTipText("Disminuir la cantidad");
@@ -735,7 +757,7 @@ public class frmPedido extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 0, new java.awt.Color(0, 0, 0)));
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel18.setText("Atención - Mozo:");
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -750,7 +772,7 @@ public class frmPedido extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel18)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,7 +782,7 @@ public class frmPedido extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(416, 490, 220, 40);
+        jPanel4.setBounds(380, 490, 220, 40);
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -798,6 +820,19 @@ public class frmPedido extends javax.swing.JFrame {
         txtComents.setRows(5);
         txtComents.setWrapStyleWord(true);
         txtComents.setMaximumSize(new java.awt.Dimension(200, 200));
+        txtComents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtComentsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtComentsMouseEntered(evt);
+            }
+        });
+        txtComents.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtComentsKeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(txtComents);
 
         getContentPane().add(jScrollPane4);
@@ -853,12 +888,13 @@ public class frmPedido extends javax.swing.JFrame {
     private void btnCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCocinaActionPerformed
         DefaultListModel PedidoEnviar = new DefaultListModel();
         for(int i = 0; i < tblPedidos.getRowCount(); i++){
-            if(tblPedidos.getValueAt(i, 5).toString().contains("No")){
+            if(tblPedidos.getValueAt(i, 5).toString().contains("No") && tblPedidos.getValueAt(i, 6).toString().contains("C")){
                 PedidoEnviar.addElement(tblPedidos.getValueAt(i, 0).toString() + "%" + tblPedidos.getValueAt(i, 1).toString() + "$" + tblPedidos.getValueAt(i, 4).toString() + "#" + tblPedidos.getValueAt(i, 2).toString());
             }
         }
         if(PedidoEnviar.size() != 0){
             BD_RS.IngresarDetallP(PedidoEnviar, DPedido.nPedido);
+            //codigo para enviar a ticketera /COCINA/
         }
         dtm = BD_RS.DetallePedido(DPedido.nPedido);    
         tblPedidos.setModel(dtm);
@@ -961,17 +997,31 @@ public class frmPedido extends javax.swing.JFrame {
     private void btnBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarActionPerformed
         DefaultListModel PedidoEnviar = new DefaultListModel();
         for(int i = 0; i < tblPedidos.getRowCount(); i++){
-            if(tblPedidos.getValueAt(i, 5).toString().contains("No")){
+            if(tblPedidos.getValueAt(i, 5).toString().contains("No") && tblPedidos.getValueAt(i, 6).toString().contains("B")){
                 PedidoEnviar.addElement(tblPedidos.getValueAt(i, 0).toString() + "%" + tblPedidos.getValueAt(i, 1).toString() + "$" + tblPedidos.getValueAt(i, 4).toString() + "#" + tblPedidos.getValueAt(i, 2).toString());
             }
         }
         if(PedidoEnviar.size() != 0){
             BD_RS.IngresarDetallP(PedidoEnviar, DPedido.nPedido);
+            //codigo para enviar a ticketera /BAR/
         }
         dtm = BD_RS.DetallePedido(DPedido.nPedido);    
         tblPedidos.setModel(dtm);
         ConfigTBL(tblPedidos);
     }//GEN-LAST:event_btnBarActionPerformed
+
+    private void txtComentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComentsMouseClicked
+        ta = txtComents;
+        jd.setVisible(true);
+    }//GEN-LAST:event_txtComentsMouseClicked
+
+    private void txtComentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComentsKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComentsKeyPressed
+
+    private void txtComentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtComentsMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtComentsMouseEntered
     private int FoundCount(String cad, char car){
         int count = 0;
         for (int i = 0; i < cad.length(); i++){
@@ -1007,6 +1057,31 @@ public class frmPedido extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    // <editor-fold defaultstate="collapsed" desc="MethodosInputText-AnibalMA">                          
+    public void Llenar(String text) {
+        String nt = ta.getText().concat(text);
+        ta.setText(nt);
+    }
+
+    public void ClearCaracter() {
+        String nt = ta.getText();
+        int s = ta.getText().length();
+        if(s != 0){
+            nt = nt.substring(0,nt.length()-1);
+            ta.setText(nt);
+        
+        }
+        
+    }
+
+    public void Space() {
+        Llenar(" ");
+    }
+
+    public void CloseTeclado() {
+        jd.dispose();
+    }
+    //</editor-fold>
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

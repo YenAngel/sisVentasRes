@@ -114,16 +114,16 @@ public class Mesas_Selection extends javax.swing.JFrame {
         int a = 1;
         int mesas = dlm.size();
         Random rnd = new Random();
-        String div = String.valueOf(Double.parseDouble(mesas/4+""));
-        int cant4 = Integer.parseInt(div.substring(0,div.indexOf('.')));
+        String div = String.valueOf(Double.parseDouble(mesas/3+""));
+        int cant3 = Integer.parseInt(div.substring(0,div.indexOf('.')));
         //System.out.println(cant4);
         int panelaum = 20;
         int x = 40,y = 20;
         int cont = 1;
-        for (int i =0; i<cant4; i++){
-            x = 40;
+        for (int i =0; i<cant3; i++){
+            x = 75;
             a = 1;
-            while (a <= 4){
+            while (a <= 3){
             JPanel jp = new JPanel();
             JLabel jl = new JLabel();
             JLabel jlIMGChair = new JLabel();
@@ -207,11 +207,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
             }
             y+=215;
             panelaum+=225;
-            jPanel2.setPreferredSize(new Dimension(1210,panelaum));
+            jPanel2.setPreferredSize(new Dimension(980,panelaum));
         }
-        if ((cant4*4) != mesas){
-            x = 40;
-            int res = mesas - cant4*4 ;
+        if ((cant3*3) != mesas){
+            x = 75;
+            int res = mesas - cant3*3 ;
             int vecesrun = 1;
             while(vecesrun <= res){
                 JPanel jp = new JPanel();
@@ -263,7 +263,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                  //JOptionPane.showMessageDialog(rootPane,"JoinMesa: " + nmesa);
                     jlIMGChair.setBounds(20, 116, 24, 24);
                     jlTextNChair.setBounds(45, 116, 30, 24);
-                    jp.setBackground(new Color(210, 42, 14));
+                    jp.setBackground(new Color(210, 42, 14)); //Color Red
                     JLabel jMozo = new JLabel();
                     JLabel jNPed = new JLabel();
                     JLabel imgMozo = new JLabel();
@@ -288,7 +288,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
                     jp.add(jNPed);
                     jc.setVisible(false);
                 }else{
-                    jp.setBackground(new Color(18, 133, 43));
+                    jp.setBackground(new Color(18, 133, 43)); //Color Green
                     jc.setBackground(new Color(18, 133, 43));
                     jlIMG.setName("#" + nmesa+"$");
                     jc.setName("#" +nmesa + "$");
@@ -298,7 +298,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             }
             y+=215;
             panelaum+=225;
-            jPanel2.setPreferredSize(new Dimension(1210,panelaum));
+            jPanel2.setPreferredSize(new Dimension(980,panelaum));
         }
     }
     public void jlIMG(MouseEvent evt){
@@ -371,7 +371,6 @@ public class Mesas_Selection extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         FH = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
 
@@ -400,11 +399,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(240, 242, 220));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1260, 588));
+        jPanel2.setPreferredSize(new java.awt.Dimension(980, 588));
         jPanel2.setLayout(null);
         jScrollPane1.setViewportView(jPanel2);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 530));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1005, 530));
 
         btnGroupM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnGroupM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clipboard.png"))); // NOI18N
@@ -418,7 +417,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/leyenda2.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 370, 53));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 670, 370, 53));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/DateTime.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 50, 50));
@@ -426,11 +425,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         FH.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         FH.setForeground(new java.awt.Color(18, 133, 43));
         FH.setText("#FH");
-        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, 38));
-
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel18.setText("Fecha y Hora: ");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, 38));
+        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, 38));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logout.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -438,11 +433,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1222, 30, 30, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 30, -1));
 
         jLabel43.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel43.setText("Salir");
-        getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 70, 40, 30));
+        getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 70, 40, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -562,7 +557,6 @@ public class Mesas_Selection extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboPiso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel6;
