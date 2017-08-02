@@ -7,6 +7,8 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,10 +21,13 @@ import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Area;
 import ventas.modelo.Cargo;
 import ventas.modelo.DPedido;
+import ventas.modelo.Local;
 
 public class BD_RS {
     public static int idlocal;
     public static int numPiso;
+    public static int idUserLog;
+    public static int dniUserLog;
     public static DefaultTableModel FormatearTablaTrabajador(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Código", "Nombre", "Apellido Paterno", "Apellido Materno","DNI", "Ingreso Laboral", "Cargo"};
@@ -906,6 +911,20 @@ public class BD_RS {
             return -1;
         }
     }
+    public static int GetDniUserLOG(int id){
+        try {
+            String sql = "SELECT t.nu_documento from mae_trabajador t   inner join mae_usuario u on u.nid_trabajador = t.nid_trabajador where u.nid_usuario = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            return -1;
+        }
+ 
+           
+    }
     public static String GetDNIMozo(int idPedido){
         try {
             String sql = "SELECT t.nu_documento from mae_trabajador t   inner join tbl_pedido tp on tp.nid_mozo = t.nid_trabajador where tp.nid_pedido = ?";
@@ -952,6 +971,40 @@ public class BD_RS {
         } catch (SQLException e) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
             
+        }
+    }
+    public static int EstadoCaja(){
+        try {
+            String sql = "select nid_estado from tbl_caja where nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, 1);
+            ps.setInt(2, idlocal);
+            ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            return rs.getInt(1);
+            else return 0;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return -1;
+        }
+    }
+    public static void AbrirCaja(double monto){
+        try {
+            String sql = "INSERT INTO tbl_caja(nid_empresa, nid_local, co_operacion, co_medio_pago, mt_importe, nu_persona,nid_estado, nid_usuario_crea, fe_creacion) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, 1);
+            ps.setInt(2, idlocal);
+            ps.setString(3, "E");
+            ps.setString(4, "008");
+            ps.setDouble(5, monto);
+            ps.setInt(6, dniUserLog);
+            ps.setInt(7, 1);
+            ps.setInt(8, idUserLog);
+            ps.setTimestamp(9, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
     }
     

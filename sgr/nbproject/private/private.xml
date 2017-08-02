@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Venta/frmCalculadora.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Piso/jpNuevoPiso.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpEditarPlatoLocal.java</file>
@@ -59,6 +60,22 @@
             <file>file:/D:/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Usuario/Usuarios_Editar.java</file>
             <file>file:/D:/sisVentasRes/sgr/src/ventas/presentacion/Area/AreaL.java</file>
+=======
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/frmAdperturarCaja.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpNuevoPlato.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/Archivo.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Mesas_Selection.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/modelo/Plato.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Teclado_Letters.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Pedido/frmPedido.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Login.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Teclado.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpListarPlato.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpEditarPlato.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BD_RS.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Teclado_Num.java</file>
+>>>>>>> 12e5da7770fbbf269a6a2ceabb6a4659e03756c4
         </group>
     </open-files>
 </project-private>
