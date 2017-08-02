@@ -63,6 +63,7 @@ public class frmPedido extends javax.swing.JFrame {
         jd.setSize(t.getSize());
         
         jd.setModal(true);
+        jd.setResizable(false);
         //jd.setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         jd.setLocation(new Point(298+getLocation().x,491));

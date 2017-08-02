@@ -1,7 +1,9 @@
 
 package ventas.presentacion;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
@@ -15,10 +17,12 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
@@ -32,23 +36,52 @@ public class Login extends javax.swing.JFrame {
     public static JDialog jd = new JDialog();
     public  Teclado t = new Teclado(this);
     public Login() {
-        initComponents();       
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        Img p = new Img();
+        p.setBorder(new EmptyBorder(5, 5, 5, 5));
+        p.setLayout(new BorderLayout(0, 0));
+        p.setBackground(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg").getPath());
+        setContentPane(p);  
+        initComponents();
+        //jPanel1.setOpaque(false);
+        //jPanel1.setBackground(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg").getPath());
         setLocationRelativeTo(null);
         jd.add(t.getContentPane());
         jd.setSize(970, 275);
         jd.setLocation(new Point(30+getLocation().x, 453));
+        jd.setResizable(false);
         jd.setAlwaysOnTop(true);
+        Dimension d = super.getToolkit().getScreenSize();
+        jPanel1.setSize(d.width,lblEstado.getHeight());
+        jPanel1.setLocation(0, d.height-60);
         //jd.setModal(true);
-        //setExtendedState(MAXIMIZED_BOTH);
-       // jd.setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        //setSize(super.getToolkit().getScreenSize());
+        jLabel5.setLocation(d.width-290, 10);
+        //setUndecorated(true);
+        System.out.println(this.getSize().width + ";" + this.getSize().height);
+        System.out.println(this.getPreferredSize().toString());
+        System.out.println(getWidth() + ":::" + getHeight());
+        jd.setLocationRelativeTo(null);
         cboSucursal.setModel(BD_RS.ListarCBOLocal());
         ((JLabel)cboSucursal.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         init();
-        /*jLabel8.setSize(new Dimension(getWidth(),getHeight()-60));
-        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg"));
-        System.out.println(jLabel8.getWidth() + ";"+ jLabel8.getHeight());
-        Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));
-        jLabel8.setIcon(icon);*/
+       // jLabel8.setLocation(0,0);
+        //jLabel8.setSize(new Dimension(d.width,d.height-60));
+        
+        
+        //ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg"));
+        
+        //Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));
+        
+        //g.drawImage(imageIcon.getImage(),0,0,d.width, d.height, null);
+        //jLabel8.setIcon(icon);
+        //jLabel8.paint(g);
+        //jPanel1.repaint();
+        
+        
+        
         
         //System.out.println(getWidth() + "@" + getHeight());
         //System.out.println(this.getLocation().x + "@" + this.getLocation().y);
@@ -70,7 +103,9 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -83,20 +118,28 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnAceptar1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblEstado = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(java.awt.Color.white);
-        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
-        jPanel1.setLayout(null);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(500, 40, 660, 150);
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sistema para Restaurante v1.0");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(890, 10, 290, 20);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sub.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(500, 20, 650, 410);
 
         jPanel2.setBackground(new java.awt.Color(137, 197, 255));
         jPanel2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -197,42 +240,19 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 180, 90));
 
-        jPanel1.add(jPanel2);
+        getContentPane().add(jPanel2);
         jPanel2.setBounds(60, 36, 430, 570);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA.jpg"))); // NOI18N
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(570, 40, 650, 144);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.GridLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sub.png"))); // NOI18N
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(570, 80, 650, 260);
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Sistema para Restaurante v1.0");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(1050, 10, 220, 20);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg"))); // NOI18N
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(0, 0, 1280, 660);
-
+        lblEstado.setBackground(new java.awt.Color(255, 255, 255));
         lblEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblEstado.setText("Recuerde: Solo tiene 3 intentos para acceder al sistema.");
         jPanel1.add(lblEstado);
-        lblEstado.setBounds(0, 660, 1280, 60);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 710, 1030, 60);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -296,7 +316,8 @@ public class Login extends javax.swing.JFrame {
                 while(rs.next()) {
                     usuario.setNdi_usuario(rs.getInt(1));                
                     usuario.setNid_perfil(rs.getInt(2));
-                    
+                   BD_RS.idUserLog = rs.getInt(1);
+                   BD_RS.dniUserLog = BD_RS.GetDniUserLOG(BD_RS.idUserLog);
                    BD_RS.idlocal = BD_RS.GetIdLocal(cboSucursal.getSelectedItem().toString());
                 }                                  
             if (usuario.getNid_perfil()==1) {
@@ -305,10 +326,30 @@ public class Login extends javax.swing.JFrame {
                 TimerTask task =new TimerTask() {
                     @Override
                     public void run() {
+                        int estado = BD_RS.EstadoCaja();
+                        if(estado == 0){
+                        JDialog AC = new JDialog();
+                        frmAperturarCaja aperturarCaja = new frmAperturarCaja(AC);
+                        AC.add(aperturarCaja.getContentPane());
+                        AC.setModal(true);
+                        AC.setResizable(false);
+                        AC.setSize(aperturarCaja.getSize());
+                        AC.setLocationRelativeTo(null);
+                        AC.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                        AC.setVisible(true);
+                        
                         setVisible(false);
                         frmPrincipal frmP = new frmPrincipal();
                         frmP.Validar(usuario.getNid_perfil());
                         frmP.setVisible(true);
+                        }else if(estado == -1){
+                            JOptionPane.showMessageDialog(null, "Ocurrio un error al obtener el estado de la Caja");
+                        }else{
+                            setVisible(false);
+                            frmPrincipal frmP = new frmPrincipal();
+                            frmP.Validar(usuario.getNid_perfil());
+                            frmP.setVisible(true);
+                        }
                     }
                 };
                 t.schedule(task, 2000);                                    
@@ -360,6 +401,7 @@ public class Login extends javax.swing.JFrame {
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
+            jd.setVisible(false);
             usuario.setNo_usuario(txtUsuario.getText());
             usuario.setNo_clave(txtPassword.getText());
             usuario.setSurcursal(cboSucursal.getSelectedItem().toString());
@@ -454,7 +496,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
