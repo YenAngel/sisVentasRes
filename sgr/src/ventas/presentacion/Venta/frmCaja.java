@@ -45,6 +45,7 @@ public class frmCaja extends javax.swing.JFrame {
     public static int nroPiso;
     public static int nroMesa;
     public static String documento;
+    public static int idx=-1;
     int height=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int width=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;               
     public frmCaja(){
@@ -58,6 +59,24 @@ public class frmCaja extends javax.swing.JFrame {
         getNow();
         cboDocumento.setSelectedIndex(-1);        
         getUsuario(documento, lblLocal.getText());
+        init();
+    }
+    public void init(){        
+        DecimalFormat df= new DecimalFormat("#.00");
+        ResultSet rs=BDData.initDataCaja(lblLocal.getText());
+        double total=0,sustrayendo=0,apertura=0;
+        try {
+            if (rs.next()) {         
+                total=rs.getDouble(1)==0.0?0:rs.getDouble(1);
+                sustrayendo=rs.getDouble(2)==0.0?0:rs.getDouble(2);
+                apertura=rs.getDouble(3)==0.0?0:rs.getDouble(3);
+            }            
+            total-=sustrayendo;            
+            lblMontoActual.setText("S/. "+df.format(total));
+            lblMontoRetirado.setText("S/. "+df.format(sustrayendo));
+            lblMontoRetirado.setText("S/. "+df.format(apertura));
+        } catch (Exception e) {
+        }
     }
     public void getUsuario(String documento, String local){        
         ResultSet rs = BDData.getUserCajaValid(documento, local);
@@ -93,7 +112,7 @@ public class frmCaja extends javax.swing.JFrame {
         caja.setNu_mesa(mesa);
         caja.setNu_piso(piso);
         tblCaja.setModel(BDData.getListaCaja(dtm, caja));      
-        confTBL(tblCaja, dtm);
+        confTBL(tblCaja, dtm);        
     }
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
@@ -109,6 +128,17 @@ public class frmCaja extends javax.swing.JFrame {
         jTable.getColumnModel().getColumn(0).setMinWidth(0);        
         jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);  
+        if (dtm.getRowCount()==0) {
+            btnFactura.setEnabled(false);
+            btnValid.setEnabled(false);
+            cboComprobante.setEnabled(false);
+            cboDocumento.setEnabled(false);
+        }else{
+            btnFactura.setEnabled(true);
+            btnValid.setEnabled(true);
+            cboComprobante.setEnabled(true);
+            cboDocumento.setEnabled(true);
+        }
     }
     private double getTotal(DefaultTableModel model){
         double count=0;
@@ -186,6 +216,14 @@ public class frmCaja extends javax.swing.JFrame {
         lblIGV = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        lblMontoRetirado = new javax.swing.JLabel();
+        lblMontoActual = new javax.swing.JLabel();
+        lblMontoApertura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -281,9 +319,9 @@ public class frmCaja extends javax.swing.JFrame {
         getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 290));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Caja", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de Caja", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 300));
 
         lblGroupCliente.setBackground(new java.awt.Color(255, 255, 255));
         lblGroupCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -321,7 +359,7 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de la Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 300, 310));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 300, 300));
 
         pnlCajaTitle.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -460,7 +498,7 @@ public class frmCaja extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(51, 51, 255));
         jSeparator2.setForeground(new java.awt.Color(102, 102, 255));
         jSeparator2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 263, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 263, 10));
 
         jSeparator3.setBackground(new java.awt.Color(51, 51, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 102, 255));
@@ -482,8 +520,40 @@ public class frmCaja extends javax.swing.JFrame {
         getContentPane().add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 170, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Monto Actual:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        jLabel4.setText("Mont. Retirado:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Monto Actual:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Mont. Apertura:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        jSeparator5.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator5.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 263, 10));
+
+        jSeparator6.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator6.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 263, 10));
+
+        jSeparator7.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator7.setForeground(new java.awt.Color(102, 102, 255));
+        jSeparator7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 263, 10));
+
+        lblMontoRetirado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblMontoRetirado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 140, 30));
+
+        lblMontoActual.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblMontoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 140, 30));
+
+        lblMontoApertura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblMontoApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 140, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -811,12 +881,17 @@ public class frmCaja extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblDate;
     public static javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblGroupCliente;
@@ -825,6 +900,9 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel lblHour;
     public static javax.swing.JLabel lblIGV;
     private javax.swing.JLabel lblLocal;
+    private javax.swing.JLabel lblMontoActual;
+    private javax.swing.JLabel lblMontoApertura;
+    private javax.swing.JLabel lblMontoRetirado;
     public static javax.swing.JLabel lblSubTotal;
     public static javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlCajaTitle;

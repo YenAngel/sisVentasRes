@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -25,12 +26,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Caja;
+import ventas.modelo.CajaLocal;
 import ventas.modelo.DPedido;
+import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Pedido.frmPedido;
 import ventas.presentacion.Venta.frmCaja;
+import ventas.presentacion.Venta.frmCerrarCaja;
+import ventas.presentacion.Venta.frmRetiro;
 
 public class Mesas_Selection1 extends javax.swing.JFrame {
    /*public static frmPedido frmPe = new frmPedido();
@@ -49,9 +54,9 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
    public static int numberMesasGroup = 0;
    public static int nroPiso;
    public static int nroMesa;
-    /**
-     * Creates new form Mesas_Selection
-     */
+    
+    public int idx=frmCaja.idx;
+    Login_User lu= new Login_User();
     public Mesas_Selection1() {
         
         int s = 0;
@@ -61,7 +66,11 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         //System.out.println(jPanel11.getBackground().getRGB());
         setExtendedState(MAXIMIZED_BOTH);
         cboPiso.setModel(BD_RS.ListarCBOPisos());
-        
+
+        if (idx>=0) {
+            cboUsuario.setSelectedIndex(idx);
+            cboUsuario.setEnabled(false);            
+        }
         ((JLabel)cboPiso.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         if(cboPiso.getSelectedIndex() != -1){            
             nroPiso=Integer.parseInt(cboPiso.getSelectedItem().toString());
@@ -70,7 +79,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
-            dlmpedido = BD_RS.JoinPedido(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlmpedido = BD_RS.JoinPedido1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             LoadMesas();
             cboUsuario.setModel(BDData.getCaja());
             cboUsuario.setSelectedIndex(-1);
@@ -112,7 +121,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 jPanel8.setVisible(true);
                 jPanel9.setVisible(true);*/
     }
-    public void LoadMesas(){
+    public void LoadMesas(){                
         jPanel2.removeAll();
         jPanel2.updateUI();
         jPanel2.repaint();
@@ -370,11 +379,13 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         FH = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         cboUsuario = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        lblRetirar = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -405,7 +416,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jPanel2.setLayout(null);
         jScrollPane1.setViewportView(jPanel2);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 530));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 500));
 
         btnGroupM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnGroupM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/clipboard.png"))); // NOI18N
@@ -427,11 +438,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         FH.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         FH.setForeground(new java.awt.Color(18, 133, 43));
         FH.setText("#FH");
-        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, 38));
-
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel18.setText("Fecha y Hora: ");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, 38));
+        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, 38));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logout.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -451,10 +458,29 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 cboUsuarioItemStateChanged(evt);
             }
         });
-        getContentPane().add(cboUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 660, 200, 50));
+        getContentPane().add(cboUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 640, 200, 50));
 
         jLabel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuario"));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 640, 240, 90));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 620, 240, 90));
+
+        lblRetirar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money.png"))); // NOI18N
+        lblRetirar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRetirarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 640, 64, 64));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cash-register.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 640, 64, 64));
+
+        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Adicionales"));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 620, 220, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -510,11 +536,35 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void cboUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboUsuarioItemStateChanged
-        if (cboUsuario.getSelectedIndex()!=-1) {
+        if (cboUsuario.getSelectedIndex()!=-1) {          
+            if (idx!=-1) {
+                idx=cboUsuario.getSelectedIndex();
+                frmCaja.idx=idx;
+            }
             frmCaja c=new frmCaja();
-            c.documento=cboUsuario.getSelectedItem().toString();
+            c.documento=cboUsuario.getSelectedItem().toString();            
+            cboUsuario.setEnabled(false);
         }
     }//GEN-LAST:event_cboUsuarioItemStateChanged
+
+    private void lblRetirarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRetirarMouseClicked
+        frmRetiro retiro= new frmRetiro();
+
+        if (retiro.isVisible()==false) {
+            retiro.docUser=cboUsuario.getSelectedItem().toString().trim();
+            retiro.init(lu.getSurcursal());
+            retiro.show();            
+        }
+    }//GEN-LAST:event_lblRetirarMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        frmCerrarCaja cc=new frmCerrarCaja();
+        if (cc.isVisible()==false) {
+            cc.documento=cboUsuario.getSelectedItem().toString().trim();
+            cc.init(lu.getSurcursal());
+            cc.setVisible(true);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
     /*
      jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -583,12 +633,14 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblRetirar;
     // End of variables declaration//GEN-END:variables
 }
