@@ -49,7 +49,7 @@ public class BD_RS {
     }
      public static DefaultTableModel FormatearTablaDetalleP(){
         DefaultTableModel dtm = new DefaultTableModel();
-        String [] cab = {"Descripción","Cantidad","Precio","SubTotal","Obs","Estado"};
+        String [] cab = {"Descripción","Cantidad","Precio","SubTotal","Obs","Estado","Envio"};
         dtm.setColumnIdentifiers(cab);
         return dtm;
     }
@@ -742,7 +742,7 @@ public class BD_RS {
                 
                // System.out.println("Resultado: ");
                 //System.out.println(rs.getString(1));
-                dlm.addElement(rs.getString(1) + "%" + rs.getDouble(2));
+                dlm.addElement(rs.getString(1) + "%" + rs.getDouble(2) + "#" + rs.getString(3));
             }
             return dlm;
         } catch (SQLException ex) {

@@ -1,6 +1,9 @@
 
 package ventas.presentacion;
 
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Point;
 import java.io.File;
 import java.sql.ResultSet;
 import java.util.Timer;
@@ -11,8 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
@@ -23,13 +28,31 @@ public class Login extends javax.swing.JFrame {
     
     Login_User usuario=new Login_User();
     private int count=0;
+    public static JTextField j;
+    public static JDialog jd = new JDialog();
+    public  Teclado t = new Teclado(this);
     public Login() {
-        initComponents();        
+        initComponents();       
+        setLocationRelativeTo(null);
+        jd.add(t.getContentPane());
+        jd.setSize(970, 275);
+        jd.setLocation(new Point(30+getLocation().x, 453));
+        jd.setAlwaysOnTop(true);
+        //jd.setModal(true);
+        //setExtendedState(MAXIMIZED_BOTH);
+       // jd.setLocationRelativeTo(null);
         cboSucursal.setModel(BD_RS.ListarCBOLocal());
         ((JLabel)cboSucursal.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         init();
-        setLocationRelativeTo(null);
-        //setExtendedState(MAXIMIZED_BOTH);
+        /*jLabel8.setSize(new Dimension(getWidth(),getHeight()-60));
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg"));
+        System.out.println(jLabel8.getWidth() + ";"+ jLabel8.getHeight());
+        Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));
+        jLabel8.setIcon(icon);*/
+        
+        //System.out.println(getWidth() + "@" + getHeight());
+        //System.out.println(this.getLocation().x + "@" + this.getLocation().y);
+        
     }
 
     private void init(){
@@ -109,6 +132,11 @@ public class Login extends javax.swing.JFrame {
                 txtPasswordFocusGained(evt);
             }
         });
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -126,6 +154,11 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusGained(evt);
+            }
+        });
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUsuarioMouseClicked(evt);
             }
         });
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -168,9 +201,6 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setBounds(60, 36, 430, 570);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA.jpg"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(650, 144));
-        jLabel4.setMinimumSize(new java.awt.Dimension(650, 144));
-        jLabel4.setPreferredSize(new java.awt.Dimension(650, 144));
         jPanel1.add(jLabel4);
         jLabel4.setBounds(570, 40, 650, 144);
 
@@ -221,6 +251,7 @@ public class Login extends javax.swing.JFrame {
         if (txtUsuario.getText().equals("Ingresar Usuario")) {
             txtUsuario.setText("");
         }
+        
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void jPanel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel2FocusGained
@@ -345,6 +376,40 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptar1ActionPerformed
 
+    private void txtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseClicked
+        j = txtUsuario;
+        jd.setVisible(true);
+    }//GEN-LAST:event_txtUsuarioMouseClicked
+
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
+        j = txtPassword;
+        jd.setVisible(true);
+    }//GEN-LAST:event_txtPasswordMouseClicked
+    // <editor-fold defaultstate="collapsed" desc="MethodosInputText-AnibalMA">                          
+    public void Llenar(String text) {
+        String nt = j.getText().concat(text);
+        j.setText(nt);
+    }
+
+    public void ClearCaracter() {
+        String nt = j.getText();
+        int s = j.getText().length();
+        if(s != 0){
+            nt = nt.substring(0,nt.length()-1);
+            j.setText(nt);
+        
+        }
+        
+    }
+
+    public void Space() {
+        Llenar(" ");
+    }
+
+    public void CloseTeclado() {
+        jd.dispose();
+    }
+    //</editor-fold>
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
