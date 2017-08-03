@@ -1,44 +1,32 @@
 package ventas.presentacion;
 import javax.swing.*;
 import java.util.Timer;
-import ventas.presentacion.Reservacion.jpReservacion;
 import ventas.presentacion.Mesa.jpListarMesa;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
-import ventas.modelo.Plato;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
 import ventas.presentacion.Cliente.jpListarCliente;
-import ventas.presentacion.Cliente.jpNuevoCliente;
 import ventas.presentacion.Comprobante.jpListarComprobante;
-import ventas.presentacion.Comprobante.jpNuevoComprobante;
 import ventas.presentacion.Empresa.jpListarEmpresa;
-import ventas.presentacion.Empresa.jpNuevaEmpresa;
 import ventas.presentacion.Local.jpListarLocal;
-import ventas.presentacion.Local.jpNuevoLocal;
 import ventas.presentacion.Mesa.jpNuevaMesa;
 import ventas.presentacion.Piso.jpListarPiso;
-import ventas.presentacion.Piso.jpNuevoPiso;
-import ventas.presentacion.Plato.jpEditarPlato;
 import ventas.presentacion.Plato.jpListarPlato;
-import ventas.presentacion.Plato.jpNuevoPlato;
 import ventas.presentacion.Plato_Local.jpListarPlatoLocal;
-import ventas.presentacion.Plato_Local.jpNuevoPlatoLocal;
+import ventas.presentacion.Reporte.pReporte;
 import ventas.presentacion.Trabajador.Mant_Trabajador;
 import ventas.presentacion.Usuario.Mant_Usuarios;
-import ventas.presentacion.Venta.frmCaja;
 
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
@@ -48,10 +36,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     public int idx;
     public String lblFH = "";
     Login_User usuario =new Login_User();
+    Mesas_Selection ms = new Mesas_Selection();
     Login frmL;
     public int pnelActive = 0;
     public frmPrincipal() {
         initComponents();
+        
         HoraL();
         c = getContentPane();
         getContentPane().setLayout(null);
@@ -1151,25 +1141,23 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     private void mpPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpPedidoMouseClicked
-        mpPedido.setBackground(new java.awt.Color(255,51,51));
-        //pTrabajador.setBackground(new java.awt.Color(24,168,255));
-        //pUsuario.setBackground(new java.awt.Color(24,168,255));
-        mpReporte.setBackground(new java.awt.Color(24,168,255));
-        //pMesas.setBackground(new java.awt.Color(24,168,255));
+        mpPedido.setBackground(new java.awt.Color(255,51,51));          
+        mpReporte.setBackground(new java.awt.Color(24,168,255));          
         mpMante.setBackground(new java.awt.Color(24,168,255));
-        //pArea.setBackground(new java.awt.Color(24,168,255));
-        //pCargo.setBackground(new java.awt.Color(24,168,255));        
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));        
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
                 pnelActive = 2;
-            }
+                
+                setVisible(false);
+                ms.setVisible(true);
+           }
         };
-        t.schedule(task, 1000);    
-        Mesas_Selection ms = new Mesas_Selection();
-        this.setVisible(false);
-        ms.setVisible(true);
+        t.schedule(task, 500);            
     }//GEN-LAST:event_mpPedidoMouseClicked
     public static void Comp(JPanel j){
         try {
@@ -1190,19 +1178,27 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
     private void mpReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReporteMouseClicked
-       mpReporte.setBackground(new java.awt.Color(255,51,51));
-       mpPedido.setBackground(new java.awt.Color(24,168,255));
-       //pTrabajador.setBackground(new java.awt.Color(24,168,255));
-       //pUsuario.setBackground(new java.awt.Color(24,168,255));
-       //pMesas.setBackground(new java.awt.Color(24,168,255));
-       mpMante.setBackground(new java.awt.Color(24,168,255));
-       //pArea.setBackground(new java.awt.Color(24,168,255));
-       //pCargo.setBackground(new java.awt.Color(24,168,255));       
-       Timer t= new Timer();
+        mpReporte.setBackground(new java.awt.Color(255,51,51));          
+        mpMante.setBackground(new java.awt.Color(24,168,255));
+        mpCaja.setBackground(new java.awt.Color(24,168,255));
+        mpCarta.setBackground(new java.awt.Color(24,168,255));
+        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+        Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
-            public void run() {
-                pnelActive = 3;
+            public void run() {                
+                try {
+                    if(nPanel != null){
+                        getContentPane().remove(nPanel);
+                        getContentPane().repaint();
+                    }
+                    nPanel = new pReporte();
+                    nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+
+                    getContentPane().add(nPanel);
+                    validate();
+                } catch (Exception e) {
+                }
             }
         };
         t.schedule(task, 1000);        

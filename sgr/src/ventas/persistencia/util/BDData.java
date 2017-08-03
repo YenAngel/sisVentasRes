@@ -1203,4 +1203,70 @@ public class BDData {
             return null;
         }
     }
+    public static boolean saveRetiro(CajaLocal cl){        
+        String sql="call sgr_spi_retiro(?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, cl.getVi_no_local());
+            cs.setDouble(2, cl.getVi_mt_importe());
+            cs.setString(3, cl.getVi_nu_persona());
+            cs.executeUpdate();            
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static ResultSet initDataCaja(String local){        
+        String sql="call sgr_getCaja(?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, local);
+            ResultSet rs= cs.executeQuery();            
+            return rs;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public static boolean closeCaja(CajaLocal cl){        
+        String sql="call sgr_spi_cierreCaja(?,?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, cl.getVi_no_local());
+            cs.setDouble(2, cl.getVi_mt_importe());
+            cs.setString(3, cl.getVi_nu_persona());
+            cs.executeUpdate();            
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public static DefaultTableModel ReporteCaja(DefaultTableModel dtm, String local, String date){        
+        String sql="call sgr_sps_cajaReporte(?,?)";
+        try {
+            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);           
+            cs.setString(1, local);
+            cs.setString(2, date);
+            ResultSet rs=cs.executeQuery();         
+            while (rs.next()) {
+                Vector v=new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                v.add(rs.getString(7));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                dtm.addRow(v);
+            }
+            return dtm;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }

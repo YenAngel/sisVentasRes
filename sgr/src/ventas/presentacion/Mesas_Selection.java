@@ -2,7 +2,6 @@
 package ventas.presentacion;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Random;
-import javax.swing.Action;
 import javax.swing.DefaultListModel;
 
 import javax.swing.JCheckBox;
@@ -25,7 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.DPedido;
-import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Pedido.frmPedido;
 import ventas.presentacion.Venta.frmCaja;
@@ -61,8 +58,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
         
         ((JLabel)cboPiso.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         if(cboPiso.getSelectedIndex() != -1){
-            frmCaja c=new frmCaja();
-            c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            //frmCaja c=new frmCaja();
+            //c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
