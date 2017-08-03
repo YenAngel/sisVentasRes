@@ -525,6 +525,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().add(mpReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, -1, -1));
 
         pUsuario.setBackground(new java.awt.Color(24, 168, 255));
+        pUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
         pUsuario.setPreferredSize(new java.awt.Dimension(255, 120));
         pUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -552,7 +553,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuarioLayout.setVerticalGroup(
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pUsuarioLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -1765,45 +1766,45 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPiso.setLayout(null);
             
 //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
-            pUsuario.setBounds(0, 59 ,255,size);
-            jLabel9.setBounds(105, size/2 - 15, 95, 26);
-            jLabel10.setBounds(17, size/2 - 30, 64, 64);
-            
-            pTrabajador.setBounds(0, (59 + size), 255,size);
-            jLabel1.setBounds(105, size/2 - 20, 142, 26);
-            jLabel2.setBounds(17, size/2 - 30, 64, 64);
-            
-            pMesas.setBounds(0, 59 + (size*2), 255, size);
-            jLabel11.setBounds(105, size/2 - 20,68 ,26);
-            jLabel12.setBounds(17, size/2 - 30,64 ,64);                        
-            
-            pArea.setBounds(0,59 + (size*3),255,size);
-            jLabel18.setBounds(105, size/2 - 20,68 ,26);
-            jLabel19.setBounds(17, size/2 - 30, 64, 64);            
-            
-            pCargo.setBounds(0,59 + (size*4),255,size);
-            jLabel36.setBounds(105, size/2 - 20,68 ,26);
-            jLabel17.setBounds(17, size/2 - 30, 64, 64);
-            
-            pComprobante.setBounds(0, 59 + (size*5), 255, size);
-            jLabel20.setBounds(105, size/2 - 20,150 ,26);
-            jLabel21.setBounds(17, size/2 -30,64 ,64);
-            
-            pCategoria.setBounds(0,59 + (size*6),255,size);
-            jLabel39.setBounds(105, size/2 - 20,120 ,26);
-            jLabel40.setBounds(17, size/2 - 30, 64, 64);
-            
-            pCliente.setBounds(0,59 + (size*7),255,size);
-            jLabel26.setBounds(105, size/2 - 20,90 ,26);
-            jLabel27.setBounds(17, size/2 - 30, 64, 64);
-            
-            pEmpresa.setBounds(0,59 + (size*8),255,size);
+            pEmpresa.setBounds(0,59,255,size);
             jLabel24.setBounds(105, size/2 - 20,100 ,26);
             jLabel25.setBounds(17, size/2 - 30, 64, 64);
             
-            pLocal.setBounds(0,59 + (size*9),255,size);
+            pLocal.setBounds(0,59 + size,255,size);
             jLabel28.setBounds(105, size/2 - 20,68 ,26);
             jLabel29.setBounds(17, size/2 - 30, 64, 64);
+            
+            pPiso.setBounds(0,59 + (size*2),255,size);
+            jLabel22.setBounds(105, size/2 - 20,68 ,26);
+            jLabel23.setBounds(17, size/2 - 30, 64, 64);                        
+            
+            pMesas.setBounds(0, 59 + (size*3), 255, size);
+            jLabel11.setBounds(105, size/2 - 20,68 ,26);
+            jLabel12.setBounds(17, size/2 - 30,64 ,64);            
+            
+            pComprobante.setBounds(0, 59 + (size*4), 255, size);
+            jLabel20.setBounds(105, size/2 - 20,150 ,26);
+            jLabel21.setBounds(17, size/2 -30,64 ,64);
+            
+            pArea.setBounds(0,59 + (size*5),255,size);
+            jLabel18.setBounds(105, size/2 - 20,68 ,26);
+            jLabel19.setBounds(17, size/2 - 30, 64, 64);
+            
+            pCargo.setBounds(0,59 + (size*6),255,size);
+            jLabel36.setBounds(105, size/2 - 20,68 ,26);
+            jLabel17.setBounds(17, size/2 - 30, 64, 64);
+            
+            pTrabajador.setBounds(0, 59 + (size*7), 255,size);
+            jLabel1.setBounds(105, size/2 - 20, 142, 26);
+            jLabel2.setBounds(17, size/2 - 30, 64, 64);
+            
+            pUsuario.setBounds(0, 59 + (size*8) ,255,size);
+            jLabel9.setBounds(105, size/2 - 15, 95, 26);
+            jLabel10.setBounds(17, size/2 - 30, 64, 64);
+            
+            pCategoria.setBounds(0,59 + (size*9),255,size);
+            jLabel39.setBounds(105, size/2 - 20,120 ,26);
+            jLabel40.setBounds(17, size/2 - 30, 64, 64);
             
             pPlato.setBounds(0,59 + (size*10),255,size);
             jLabel30.setBounds(105, size/2 - 20,68 ,26);
@@ -1813,9 +1814,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel34.setBounds(105, size/2 - 20,130 ,26);
             jLabel35.setBounds(17, size/2 - 30, 64, 64);
             
-            pPiso.setBounds(0,59 + (size*12),255,size);
-            jLabel22.setBounds(105, size/2 - 20,68 ,26);
-            jLabel23.setBounds(17, size/2 - 30, 64, 64);
+            pCliente.setBounds(0,59 + (size*12),255,size);
+            jLabel26.setBounds(105, size/2 - 20,90 ,26);
+            jLabel27.setBounds(17, size/2 - 30, 64, 64);
                                     
     }
     /*public void options(int option){

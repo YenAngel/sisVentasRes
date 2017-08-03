@@ -27,6 +27,7 @@ import jdk.nashorn.internal.parser.TokenType;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BD_RS;
+import ventas.persistencia.util.EN_DES;
 
 public class Login extends javax.swing.JFrame {
     
@@ -36,6 +37,7 @@ public class Login extends javax.swing.JFrame {
     public static JDialog jd = new JDialog();
     public  Teclado t = new Teclado(this);
     public Login() {
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         Img p = new Img();
@@ -60,9 +62,14 @@ public class Login extends javax.swing.JFrame {
         //setSize(super.getToolkit().getScreenSize());
         jLabel5.setLocation(d.width-290, 10);
         //setUndecorated(true);
-        System.out.println(this.getSize().width + ";" + this.getSize().height);
+        /*System.out.println(this.getSize().width + ";" + this.getSize().height);
         System.out.println(this.getPreferredSize().toString());
         System.out.println(getWidth() + ":::" + getHeight());
+        try {
+            System.out.println(EN_DES.Encrypt_S("123"));
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         jd.setLocationRelativeTo(null);
         cboSucursal.setModel(BD_RS.ListarCBOLocal());
         ((JLabel)cboSucursal.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);

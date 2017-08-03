@@ -495,21 +495,22 @@ public class frmPedido extends javax.swing.JFrame {
         btnBar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
-        btnCuenta = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
-        btnRetornar = new javax.swing.JButton();
-        cboMozo = new javax.swing.JComboBox<>();
         btnMin = new javax.swing.JButton();
-        btnSavePedido = new javax.swing.JButton();
         btnDescr = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtComents = new javax.swing.JTextArea();
+        jPanel6 = new javax.swing.JPanel();
+        btnRetornar = new javax.swing.JButton();
+        btnCuenta = new javax.swing.JButton();
+        btnSavePedido = new javax.swing.JButton();
+        cboMozo = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -644,18 +645,6 @@ public class frmPedido extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(10, 60, 304, 280);
 
-        btnCuenta.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        btnCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/recibo.png"))); // NOI18N
-        btnCuenta.setText("    Cuenta");
-        btnCuenta.setToolTipText("Cerrar Pedido");
-        btnCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCuentaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCuenta);
-        btnCuenta.setBounds(20, 670, 221, 71);
-
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
         btnAdd.setToolTipText("Aumentar la cantidad");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -666,33 +655,6 @@ public class frmPedido extends javax.swing.JFrame {
         getContentPane().add(btnAdd);
         btnAdd.setBounds(320, 130, 44, 44);
 
-        btnRetornar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        btnRetornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Arrow-reload-2-icon.png"))); // NOI18N
-        btnRetornar.setText("  Retornar");
-        btnRetornar.setToolTipText("Regresar a la selección de Mesas");
-        btnRetornar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetornarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRetornar);
-        btnRetornar.setBounds(20, 590, 221, 71);
-
-        cboMozo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboMozo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
-        cboMozo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboMozoItemStateChanged(evt);
-            }
-        });
-        cboMozo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboMozoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cboMozo);
-        cboMozo.setBounds(600, 490, 170, 40);
-
         btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
         btnMin.setToolTipText("Disminuir la cantidad");
         btnMin.addActionListener(new java.awt.event.ActionListener() {
@@ -702,16 +664,6 @@ public class frmPedido extends javax.swing.JFrame {
         });
         getContentPane().add(btnMin);
         btnMin.setBounds(320, 80, 44, 44);
-
-        btnSavePedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
-        btnSavePedido.setToolTipText("Iniciar Pedido");
-        btnSavePedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSavePedidoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSavePedido);
-        btnSavePedido.setBounds(122, 473, 81, 60);
 
         btnDescr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDescr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/obs3.png"))); // NOI18N
@@ -753,37 +705,6 @@ public class frmPedido extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(10, 20, 304, 40);
-
-        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel18.setText("Atención - Mozo:");
-        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel18MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel18)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(380, 490, 220, 40);
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -838,6 +759,117 @@ public class frmPedido extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(10, 380, 304, 80);
+
+        jPanel6.setBackground(new java.awt.Color(248, 248, 255));
+
+        btnRetornar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnRetornar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Arrow-reload-2-icon.png"))); // NOI18N
+        btnRetornar.setText("  Retornar");
+        btnRetornar.setToolTipText("Regresar a la selección de Mesas");
+        btnRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetornarActionPerformed(evt);
+            }
+        });
+
+        btnCuenta.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/recibo.png"))); // NOI18N
+        btnCuenta.setText("    Cuenta");
+        btnCuenta.setToolTipText("Cerrar Pedido");
+        btnCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuentaActionPerformed(evt);
+            }
+        });
+
+        btnSavePedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
+        btnSavePedido.setToolTipText("Iniciar Pedido");
+        btnSavePedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSavePedidoActionPerformed(evt);
+            }
+        });
+
+        cboMozo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboMozo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        cboMozo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboMozoItemStateChanged(evt);
+            }
+        });
+        cboMozo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMozoActionPerformed(evt);
+            }
+        });
+
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel18.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        jLabel18.setText("Atención - Mozo:");
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel18)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(cboMozo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)
+                    .addComponent(btnSavePedido)
+                    .addGap(89, 89, 89)
+                    .addComponent(btnCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(btnRetornar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 14, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnRetornar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addComponent(btnCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboMozo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSavePedido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 15, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel6);
+        jPanel6.setBounds(0, 620, 1020, 100);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1136,6 +1168,7 @@ public class frmPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
