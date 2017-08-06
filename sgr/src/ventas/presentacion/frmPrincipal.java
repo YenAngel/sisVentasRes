@@ -1672,7 +1672,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mpCartaMouseClicked
         
     private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
-            if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
+            
             pMesas.setVisible(false);
             pUsuario.setVisible(false);
             pTrabajador.setVisible(false);
@@ -1700,14 +1700,33 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPlato.setBackground(new java.awt.Color(24,168,255));
             pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
             pPiso.setBackground(new java.awt.Color(24,168,255));
-
-            mpMante.setVisible(true);
-            mpPedido.setVisible(true);
-            mpReporte.setVisible(true);
-            mpCaja.setVisible(true);
+            if (usuario.getNid_perfil() == 1){
+                    mpMante.setVisible(true);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(true);
+                    mpCaja.setVisible(true);
+                    mpReporte.setVisible(true);
+                    mpReservacion.setVisible(true);
+            }
+            else if(usuario.getNid_perfil() == 2){
+                    mpMante.setVisible(true);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(false);
+                    mpCaja.setVisible(false);
+                    mpReporte.setVisible(false);
+                    mpReservacion.setVisible(false);
+                   
+            }else{
+                    mpMante.setVisible(false);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(false);
+                    mpCaja.setVisible(false);
+                    mpReporte.setVisible(false);
+                    mpReservacion.setVisible(false);
+            }
             //mpCarta.setVisible(true);
             
-            mpReservacion.setVisible(true);
+            
             mpPedido.setBackground(new java.awt.Color(24,168,255));
             mpReporte.setBackground(new java.awt.Color(24,168,255));
             mpMante.setBackground(new java.awt.Color(24,168,255));
@@ -1718,7 +1737,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-        }
+        
     }//GEN-LAST:event_jLabel44MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
