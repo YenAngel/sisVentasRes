@@ -134,7 +134,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jl.setText(nmesa+"");
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
-            jl.setBounds(20, 10, 60, 52);
+            jl.setBounds(20, 10, 80, 52);
             jc.setBounds(223, 7, 21, 21);
             
             jc.addItemListener(new java.awt.event.ItemListener() {
@@ -158,7 +158,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jlIMG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jlIMG(evt);     
-                System.out.println("click1");
+                //System.out.println("click1");
             }
         });
             a++;
@@ -231,7 +231,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jl.setText(nmesa+"");
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
-            jl.setBounds(20, 10, 60, 52);
+            jl.setBounds(20, 10, 80, 52);
             jc.setBounds(223, 7, 21, 21);
             jlIMGChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/chair.png")));
             jlIMGChair.setBounds(20, 146, 24, 24);
@@ -244,7 +244,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jlIMG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jlIMG(evt);
-               System.out.println("click1");
+               //System.out.println("click1");
             }
         });
             jp.add(jl);

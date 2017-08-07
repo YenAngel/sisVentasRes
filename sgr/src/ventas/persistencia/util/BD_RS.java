@@ -845,6 +845,21 @@ public class BD_RS {
         }
         
     }
+    public static String GetMozoByDNI(String DNI){
+        
+        try {
+            String sql = "select concat(no_natural,' ', no_ape_paterno, ' ',no_ape_materno) as NameComplete from mae_trabajador where nu_documento = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setString(1, DNI);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            System.err.println(e);
+            return null;
+        }
+    }
     public static boolean RegUnionCargo(int idCargo){
         try {
             String sql = "select * from mae_trabajador where nid_cargo = ? and nid_estado = 1";
@@ -958,7 +973,7 @@ public class BD_RS {
             }
         } catch (SQLException e) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
-            
+            System.out.println(e.getMessage());
         }
     }
     public static void CerrarPedido(int idPedido){

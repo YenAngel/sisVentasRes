@@ -28,6 +28,7 @@ import javax.swing.tree.DefaultTreeModel;
 import ventas.modelo.DPedido;
 import ventas.modelo.Local;
 import ventas.modelo.Login_User;
+import ventas.modelo.PrintFormat;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.Teclado_Letters;
@@ -51,6 +52,7 @@ public class frmPedido extends javax.swing.JFrame {
     public int r;
     public static int cat;
     public static int subcat;
+    public static String NameMozo;
     public static JTextArea ta;
     public static JDialog jd = new JDialog();
     public  Teclado_Letters t = new Teclado_Letters(this);
@@ -96,6 +98,7 @@ public class frmPedido extends javax.swing.JFrame {
         lblSucursal.setText(lSucursal);
         if(DPedido.nPedido != 0){
             cboMozo.setSelectedItem(BD_RS.GetDNIMozo(DPedido.nPedido));
+            NameMozo = BD_RS.GetMozoByDNI(cboMozo.getSelectedItem().toString());
             btnSavePedido.setVisible(false);
             btnCocina.setVisible(true);
             btnBar.setVisible(true);
@@ -738,17 +741,16 @@ public class frmPedido extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
@@ -1238,8 +1240,30 @@ public class frmPedido extends javax.swing.JFrame {
             }
         }
         if(PedidoEnviar.size() != 0){
+            PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
             BD_RS.IngresarDetallP(PedidoEnviar, DPedido.nPedido);
             //codigo para enviar a ticketera /COCINA/
+            for(int i = 0; i<PedidoEnviar.size(); i++){
+                
+                String cad = PedidoEnviar.getElementAt(i).toString();
+                System.out.println("INFO: " + cad);
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                PrintFormat.DishCantidad[i] = cant;
+                PrintFormat.ListPlatosName[i] = nPlato;
+                System.out.println("DescripciónP: " + descr);
+                if(descr.length()==0){
+                PrintFormat.ListPlatosDescr[i] = "-1";}
+                else {PrintFormat.ListPlatosDescr[i] = descr;}
+            }
+            PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+            PrintFormat.Mesero = NameMozo;
+            PrintFormat.NPedido = DPedido.nPedido;
+            PrintFormat.TipoEnvio = "COCINA";
+            PrintFormat.ImprimirToCocina();
         }
         dtm = BD_RS.DetallePedido(DPedido.nPedido);    
         tblPedidos.setModel(dtm);
@@ -1299,6 +1323,7 @@ public class frmPedido extends javax.swing.JFrame {
                 btnCocina.setVisible(true);
                 btnBar.setVisible(true);
                 cboMozo.setEnabled(false);
+                NameMozo = BD_RS.GetMozoByDNI(cboMozo.getSelectedItem().toString());
             }else{
                 btnSavePedido.setVisible(true);
                 btnCocina.setVisible(false);
@@ -1352,8 +1377,29 @@ public class frmPedido extends javax.swing.JFrame {
             }
         }
         if(PedidoEnviar.size() != 0){
+                PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
             BD_RS.IngresarDetallP(PedidoEnviar, DPedido.nPedido);
-            //codigo para enviar a ticketera /BAR/
+            for(int i = 0; i<PedidoEnviar.size(); i++){
+                
+                String cad = PedidoEnviar.getElementAt(i).toString();
+                System.out.println("INFO: " + cad);
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                PrintFormat.DishCantidad[i] = cant;
+                PrintFormat.ListPlatosName[i] = nPlato;
+                System.out.println("DescripciónP: " + descr);
+                if(descr.length()==0){
+                PrintFormat.ListPlatosDescr[i] = "-1";}
+                else {PrintFormat.ListPlatosDescr[i] = descr;}
+            }
+            PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+            PrintFormat.Mesero = NameMozo;
+            PrintFormat.NPedido = DPedido.nPedido;
+            PrintFormat.TipoEnvio = "BAR";
+            PrintFormat.ImprimirToCocina();
         }
         dtm = BD_RS.DetallePedido(DPedido.nPedido);    
         tblPedidos.setModel(dtm);
