@@ -2,7 +2,6 @@
 package ventas.presentacion;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Random;
-import javax.swing.Action;
 import javax.swing.DefaultListModel;
 
 import javax.swing.JCheckBox;
@@ -25,7 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import ventas.modelo.DPedido;
-import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Pedido.frmPedido;
 import ventas.presentacion.Venta.frmCaja;
@@ -61,8 +58,8 @@ public class Mesas_Selection extends javax.swing.JFrame {
         
         ((JLabel)cboPiso.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         if(cboPiso.getSelectedIndex() != -1){
-            frmCaja c=new frmCaja();
-            c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            //frmCaja c=new frmCaja();
+            //c.getpiso(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
@@ -137,7 +134,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jl.setText(nmesa+"");
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
-            jl.setBounds(20, 10, 60, 52);
+            jl.setBounds(20, 10, 80, 52);
             jc.setBounds(223, 7, 21, 21);
             
             jc.addItemListener(new java.awt.event.ItemListener() {
@@ -161,7 +158,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jlIMG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jlIMG(evt);     
-                System.out.println("click1");
+                //System.out.println("click1");
             }
         });
             a++;
@@ -234,7 +231,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jl.setText(nmesa+"");
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
-            jl.setBounds(20, 10, 60, 52);
+            jl.setBounds(20, 10, 80, 52);
             jc.setBounds(223, 7, 21, 21);
             jlIMGChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/chair.png")));
             jlIMGChair.setBounds(20, 146, 24, 24);
@@ -247,7 +244,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
             jlIMG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                jlIMG(evt);
-               System.out.println("click1");
+               //System.out.println("click1");
             }
         });
             jp.add(jl);
@@ -312,13 +309,17 @@ public class Mesas_Selection extends javax.swing.JFrame {
         }else{
             DPedido.nPedido = 0;
         }
+        if(BD_RS.EstadoCaja()==1){
         DPedido.dlmDP.addElement(nMesa);
         // llamar al formulario pedido
         frmPedido frmPed = new frmPedido();
            this.setVisible(false);
            frmPed.setVisible(true);
-        frmCaja c=new frmCaja();
-        c.getMesa(evt);       
+        //frmCaja c=new frmCaja();
+        //c.getMesa(evt);
+        }else{
+            JOptionPane.showMessageDialog(null, "La caja está cerrada o falta aperturar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     public void jc(ItemEvent evt){
         String nmesa = evt.toString().substring(evt.toString().lastIndexOf('#')+1, evt.toString().length()).replace("$", "");
@@ -477,6 +478,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
     private void btnGroupMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroupMActionPerformed
            if(DPedido.dlmDP.size() != 0){
+               if(BD_RS.EstadoCaja()==1){
                 DPedido.nPedido = 0;
              //llamar al formulario
                 /*for(int i = 0; i < DPedido.dlmDP.size(); i++){
@@ -485,6 +487,9 @@ public class Mesas_Selection extends javax.swing.JFrame {
                 frmPedido frmPed = new frmPedido();
                 this.setVisible(false);
                 frmPed.setVisible(true);
+               }else{
+                   JOptionPane.showMessageDialog(null, "La caja está cerrada o falta aperturar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+               }
            }
     }//GEN-LAST:event_btnGroupMActionPerformed
 

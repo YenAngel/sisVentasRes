@@ -1,45 +1,32 @@
 package ventas.presentacion;
 import javax.swing.*;
 import java.util.Timer;
-import ventas.presentacion.Reservacion.jpReservacion;
 import ventas.presentacion.Mesa.jpListarMesa;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
-import ventas.modelo.Plato;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
 import ventas.presentacion.Cliente.jpListarCliente;
-import ventas.presentacion.Cliente.jpNuevoCliente;
 import ventas.presentacion.Comprobante.jpListarComprobante;
-import ventas.presentacion.Comprobante.jpNuevoComprobante;
 import ventas.presentacion.Empresa.jpListarEmpresa;
-import ventas.presentacion.Empresa.jpNuevaEmpresa;
 import ventas.presentacion.Local.jpListarLocal;
-import ventas.presentacion.Local.jpNuevoLocal;
 import ventas.presentacion.Mesa.jpNuevaMesa;
 import ventas.presentacion.Piso.jpListarPiso;
-import ventas.presentacion.Piso.jpNuevoPiso;
-import ventas.presentacion.Plato.jpEditarPlato;
 import ventas.presentacion.Plato.jpListarPlato;
-import ventas.presentacion.Plato.jpNuevoPlato;
 import ventas.presentacion.Plato_Local.jpListarPlatoLocal;
-import ventas.presentacion.Plato_Local.jpNuevoPlatoLocal;
 import ventas.presentacion.Reporte.pReporte;
 import ventas.presentacion.Trabajador.Mant_Trabajador;
 import ventas.presentacion.Usuario.Mant_Usuarios;
-import ventas.presentacion.Venta.frmCaja;
 
 public class frmPrincipal extends javax.swing.JFrame {
     public static JPanel nPanel;
@@ -49,10 +36,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     public int idx;
     public String lblFH = "";
     Login_User usuario =new Login_User();
+    Mesas_Selection ms = new Mesas_Selection();
     Login frmL;
     public int pnelActive = 0;
     public frmPrincipal() {
         initComponents();
+        
         HoraL();
         c = getContentPane();
         getContentPane().setLayout(null);
@@ -526,6 +515,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().add(mpReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, -1, -1));
 
         pUsuario.setBackground(new java.awt.Color(24, 168, 255));
+        pUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
         pUsuario.setPreferredSize(new java.awt.Dimension(255, 120));
         pUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -553,7 +543,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pUsuarioLayout.setVerticalGroup(
             pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pUsuarioLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(pUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -1162,12 +1152,12 @@ public class frmPrincipal extends javax.swing.JFrame {
             @Override
             public void run() {
                 pnelActive = 2;
-                Mesas_Selection ms = new Mesas_Selection();
+                
                 setVisible(false);
                 ms.setVisible(true);
-            }
+           }
         };
-        t.schedule(task, 1000);            
+        t.schedule(task, 500);            
     }//GEN-LAST:event_mpPedidoMouseClicked
     public static void Comp(JPanel j){
         try {
@@ -1682,7 +1672,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mpCartaMouseClicked
         
     private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
-            if (usuario.getNid_perfil() == 1 || usuario.getNid_perfil() == 2){
+            
             pMesas.setVisible(false);
             pUsuario.setVisible(false);
             pTrabajador.setVisible(false);
@@ -1710,14 +1700,33 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPlato.setBackground(new java.awt.Color(24,168,255));
             pPlatoLocal.setBackground(new java.awt.Color(24,168,255));
             pPiso.setBackground(new java.awt.Color(24,168,255));
-
-            mpMante.setVisible(true);
-            mpPedido.setVisible(true);
-            mpReporte.setVisible(true);
-            mpCaja.setVisible(true);
+            if (usuario.getNid_perfil() == 1){
+                    mpMante.setVisible(true);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(true);
+                    mpCaja.setVisible(true);
+                    mpReporte.setVisible(true);
+                    mpReservacion.setVisible(true);
+            }
+            else if(usuario.getNid_perfil() == 2){
+                    mpMante.setVisible(true);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(false);
+                    mpCaja.setVisible(false);
+                    mpReporte.setVisible(false);
+                    mpReservacion.setVisible(false);
+                   
+            }else{
+                    mpMante.setVisible(false);
+                    mpPedido.setVisible(true);
+                    mpReporte.setVisible(false);
+                    mpCaja.setVisible(false);
+                    mpReporte.setVisible(false);
+                    mpReservacion.setVisible(false);
+            }
             //mpCarta.setVisible(true);
             
-            mpReservacion.setVisible(true);
+            
             mpPedido.setBackground(new java.awt.Color(24,168,255));
             mpReporte.setBackground(new java.awt.Color(24,168,255));
             mpMante.setBackground(new java.awt.Color(24,168,255));
@@ -1728,7 +1737,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
             }
-        }
+        
     }//GEN-LAST:event_jLabel44MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -1772,45 +1781,45 @@ public class frmPrincipal extends javax.swing.JFrame {
             pPiso.setLayout(null);
             
 //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
-            pUsuario.setBounds(0, 59 ,255,size);
-            jLabel9.setBounds(105, size/2 - 15, 95, 26);
-            jLabel10.setBounds(17, size/2 - 30, 64, 64);
-            
-            pTrabajador.setBounds(0, (59 + size), 255,size);
-            jLabel1.setBounds(105, size/2 - 20, 142, 26);
-            jLabel2.setBounds(17, size/2 - 30, 64, 64);
-            
-            pMesas.setBounds(0, 59 + (size*2), 255, size);
-            jLabel11.setBounds(105, size/2 - 20,68 ,26);
-            jLabel12.setBounds(17, size/2 - 30,64 ,64);                        
-            
-            pArea.setBounds(0,59 + (size*3),255,size);
-            jLabel18.setBounds(105, size/2 - 20,68 ,26);
-            jLabel19.setBounds(17, size/2 - 30, 64, 64);            
-            
-            pCargo.setBounds(0,59 + (size*4),255,size);
-            jLabel36.setBounds(105, size/2 - 20,68 ,26);
-            jLabel17.setBounds(17, size/2 - 30, 64, 64);
-            
-            pComprobante.setBounds(0, 59 + (size*5), 255, size);
-            jLabel20.setBounds(105, size/2 - 20,150 ,26);
-            jLabel21.setBounds(17, size/2 -30,64 ,64);
-            
-            pCategoria.setBounds(0,59 + (size*6),255,size);
-            jLabel39.setBounds(105, size/2 - 20,120 ,26);
-            jLabel40.setBounds(17, size/2 - 30, 64, 64);
-            
-            pCliente.setBounds(0,59 + (size*7),255,size);
-            jLabel26.setBounds(105, size/2 - 20,90 ,26);
-            jLabel27.setBounds(17, size/2 - 30, 64, 64);
-            
-            pEmpresa.setBounds(0,59 + (size*8),255,size);
+            pEmpresa.setBounds(0,59,255,size);
             jLabel24.setBounds(105, size/2 - 20,100 ,26);
             jLabel25.setBounds(17, size/2 - 30, 64, 64);
             
-            pLocal.setBounds(0,59 + (size*9),255,size);
+            pLocal.setBounds(0,59 + size,255,size);
             jLabel28.setBounds(105, size/2 - 20,68 ,26);
             jLabel29.setBounds(17, size/2 - 30, 64, 64);
+            
+            pPiso.setBounds(0,59 + (size*2),255,size);
+            jLabel22.setBounds(105, size/2 - 20,68 ,26);
+            jLabel23.setBounds(17, size/2 - 30, 64, 64);                        
+            
+            pMesas.setBounds(0, 59 + (size*3), 255, size);
+            jLabel11.setBounds(105, size/2 - 20,68 ,26);
+            jLabel12.setBounds(17, size/2 - 30,64 ,64);            
+            
+            pComprobante.setBounds(0, 59 + (size*4), 255, size);
+            jLabel20.setBounds(105, size/2 - 20,150 ,26);
+            jLabel21.setBounds(17, size/2 -30,64 ,64);
+            
+            pArea.setBounds(0,59 + (size*5),255,size);
+            jLabel18.setBounds(105, size/2 - 20,68 ,26);
+            jLabel19.setBounds(17, size/2 - 30, 64, 64);
+            
+            pCargo.setBounds(0,59 + (size*6),255,size);
+            jLabel36.setBounds(105, size/2 - 20,68 ,26);
+            jLabel17.setBounds(17, size/2 - 30, 64, 64);
+            
+            pTrabajador.setBounds(0, 59 + (size*7), 255,size);
+            jLabel1.setBounds(105, size/2 - 20, 142, 26);
+            jLabel2.setBounds(17, size/2 - 30, 64, 64);
+            
+            pUsuario.setBounds(0, 59 + (size*8) ,255,size);
+            jLabel9.setBounds(105, size/2 - 15, 95, 26);
+            jLabel10.setBounds(17, size/2 - 30, 64, 64);
+            
+            pCategoria.setBounds(0,59 + (size*9),255,size);
+            jLabel39.setBounds(105, size/2 - 20,120 ,26);
+            jLabel40.setBounds(17, size/2 - 30, 64, 64);
             
             pPlato.setBounds(0,59 + (size*10),255,size);
             jLabel30.setBounds(105, size/2 - 20,68 ,26);
@@ -1820,9 +1829,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel34.setBounds(105, size/2 - 20,130 ,26);
             jLabel35.setBounds(17, size/2 - 30, 64, 64);
             
-            pPiso.setBounds(0,59 + (size*12),255,size);
-            jLabel22.setBounds(105, size/2 - 20,68 ,26);
-            jLabel23.setBounds(17, size/2 - 30, 64, 64);
+            pCliente.setBounds(0,59 + (size*12),255,size);
+            jLabel26.setBounds(105, size/2 - 20,90 ,26);
+            jLabel27.setBounds(17, size/2 - 30, 64, 64);
                                     
     }
     /*public void options(int option){

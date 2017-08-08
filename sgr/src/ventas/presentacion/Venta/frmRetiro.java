@@ -162,21 +162,23 @@ public class frmRetiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        double totalCaja=Double.parseDouble((txtCaja.getText().replace("S/. ", "")).replace(",", "."));
-        if (!txtRetiro.equals(""))
+        if (!txtRetiro.equals("")){
+            double totalCaja=Double.parseDouble((txtCaja.getText().replace("S/. ", "")).replace(",", "."));
             totalCaja-=Double.parseDouble(txtRetiro.getText());
-        cl.setVi_no_local(local);
-        cl.setVi_mt_importe(Double.parseDouble(txtRetiro.getText()));
-        cl.setVi_nu_persona(docUser);
-        if (totalCaja>0 && !txtRetiro.equals("")) {
-            if (BDData.saveRetiro(cl)) {
-                JOptionPane.showMessageDialog(null, "Monto Retirado");
+            cl.setVi_no_local(local);
+            cl.setVi_mt_importe(Double.parseDouble(txtRetiro.getText()));
+            cl.setVi_nu_persona(docUser);
+            if (totalCaja>0 && !txtRetiro.equals("")) {
+                if (BDData.saveRetiro(cl)) {
+                    JOptionPane.showMessageDialog(null, "Monto Retirado");
+                }else
+                    JOptionPane.showMessageDialog(null, "Error: No pudo realizar esta operación");
             }else
-                JOptionPane.showMessageDialog(null, "Error: No pudo realizar esta operación");
+                JOptionPane.showMessageDialog(null, "Error: El monto ingresado es mayor");
+            init(local);
+            this.setVisible(false);
         }else
-            JOptionPane.showMessageDialog(null, "Error: El monto ingresado es mayor");
-        init(local);
-        this.setVisible(false);
+            JOptionPane.showMessageDialog(rootPane, "No puede retirar");
     }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
