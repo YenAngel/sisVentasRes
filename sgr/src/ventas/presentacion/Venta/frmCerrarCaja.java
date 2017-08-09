@@ -42,8 +42,8 @@ public class frmCerrarCaja extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setFocusableWindowState(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 

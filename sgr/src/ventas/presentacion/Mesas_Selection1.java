@@ -560,7 +560,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         frmCerrarCaja cc=new frmCerrarCaja();
         if (cc.isVisible()==false) {
-            cc.documento=cboUsuario.getSelectedItem().toString().trim();
+            cc.documento=cboUsuario.getSelectedItem().toString();
             cc.init(lu.getSurcursal());
             cc.setVisible(true);
         }

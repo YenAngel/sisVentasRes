@@ -1,7 +1,6 @@
 
 package ventas.presentacion.Reporte;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
