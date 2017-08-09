@@ -18,6 +18,7 @@ import ventas.modelo.Login_User;
 import ventas.modelo.Plato;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
+import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.frmPrincipal;
 
 public class jpNuevoPlato extends javax.swing.JPanel {
@@ -27,6 +28,7 @@ public class jpNuevoPlato extends javax.swing.JPanel {
     public jpNuevoPlato() {
         initComponents();
         addItems();
+        plato.setNid_plato(BD_RS.GetNewIDPlato());
         cboCategoria1.setSelectedIndex(-1);
         cboCategoria2.setSelectedIndex(-1);
         cboCategoria3.setSelectedIndex(-1);
@@ -220,6 +222,7 @@ public class jpNuevoPlato extends javax.swing.JPanel {
     public  void imgPlato(String plato){       
         //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
         //URL url = this.getClass().getResource(path);
+        System.out.println(plato);
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
         Icon icon= new ImageIcon(imageIcon.getImage());
         lblPlatoImg.setIcon(icon);        
@@ -234,7 +237,7 @@ public class jpNuevoPlato extends javax.swing.JPanel {
         if (!txtPlato.getText().equals("")) {
             Archivo archivo=new Archivo();
             archivo.setVisible(true);
-            archivo.name=txtPlato.getText();
+            archivo.name= Plato.nid_plato+"";
             archivo.nroFrm=1;
             if(!archivo.isVisible()){
                 JOptionPane.showMessageDialog(null, "yes");

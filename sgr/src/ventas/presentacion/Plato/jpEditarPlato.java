@@ -2,6 +2,7 @@
 package ventas.presentacion.Plato;
 
 import java.awt.Image;
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,10 +32,21 @@ public class jpEditarPlato extends javax.swing.JPanel {
     public  void imgPlato(String plato){       
         //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
         //URL url = this.getClass().getResource(path);
-        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
-        Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
-        lblPlatoImg.setIcon(icon);                
-        this.repaint();
+                File tempfile=new File("src/recursos/" + plato);
+                if(tempfile.exists()){
+                    ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
+                    Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+                    lblPlatoImg.setIcon(icon);                
+                    this.repaint();
+                }else{
+                    ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/default_dish.jpg"));
+                    Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+                    lblPlatoImg.setIcon(icon);                
+                    this.repaint();
+                }
+                
+                
+        
         
     }
     public static void cargarPlato(Plato p){

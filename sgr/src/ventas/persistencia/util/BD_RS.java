@@ -130,6 +130,7 @@ public class BD_RS {
         }
         
     }
+    
     public static DefaultComboBoxModel ListarCBOAreas(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
@@ -459,6 +460,20 @@ public class BD_RS {
             return -1;
         }
     }
+    public static int GetNewIDPlato(){
+        try {
+            String sql = "select nid_plato +1  from mae_plato order by 1 desc limit 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+            return -1;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
     public static int GetIdRol(String c){
         try {
             String sql = "SELECT nid_perfil FROM mae_perfil where no_perfil = ?";
@@ -747,7 +762,8 @@ public class BD_RS {
                 
                // System.out.println("Resultado: ");
                 //System.out.println(rs.getString(1));
-                dlm.addElement(rs.getString(1) + "%" + rs.getDouble(2) + "#" + rs.getString(3));
+                dlm.addElement(rs.getString(1) + "%" + rs.getDouble(2) + "#" + rs.getString(3) + "+" + rs.getInt(4));
+                
             }
             return dlm;
         } catch (SQLException ex) {
@@ -828,7 +844,7 @@ public class BD_RS {
     public static DefaultComboBoxModel ListarCBOMozo(){
         DefaultComboBoxModel CBOT = new DefaultComboBoxModel();
         try {
-            String sql = "select mtr.nu_documento from mae_trabajador mtr inner join mae_usuario u on u.nid_trabajador = mtr.nid_trabajador inner join mae_usuario_local mul on mul.nid_usuario = u.nid_usuario where mtr.nid_cargo = 3 and mul.nid_local = ? and mtr.nid_estado = 1";
+            String sql = "select concat(left(mtr.no_natural,1),left(mtr.no_ape_paterno,1), lower(mid(mtr.no_ape_paterno,2,length(mtr.no_ape_paterno)))) as Mozo from mae_trabajador mtr inner join mae_usuario u on u.nid_trabajador = mtr.nid_trabajador inner join mae_usuario_local mul on mul.nid_usuario = u.nid_usuario where mtr.nid_cargo = 3 and mul.nid_local = ? and mtr.nid_estado = 1";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idlocal);
             ResultSet rs = ps.executeQuery();
@@ -845,12 +861,12 @@ public class BD_RS {
         }
         
     }
-    public static String GetMozoByDNI(String DNI){
+    public static String GetDNIBycboMozo(String NameApe){
         
         try {
-            String sql = "select concat(no_natural,' ', no_ape_paterno, ' ',no_ape_materno) as NameComplete from mae_trabajador where nu_documento = ?";
+            String sql = "select nu_documento as DNI from mae_trabajador where concat(left(no_natural,1), no_ape_paterno) = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
-            ps.setString(1, DNI);
+            ps.setString(1, NameApe);
             ResultSet rs = ps.executeQuery();
             rs.next();
             return rs.getString(1);
@@ -860,6 +876,22 @@ public class BD_RS {
             return null;
         }
     }
+    public static String GetNCompletoBycboMozo(String NameApe){
+        
+        try {
+            String sql = "select concat(no_natural,' ', no_ape_paterno,' ', no_ape_materno) as NameCompleto from mae_trabajador where concat(left(no_natural,1), no_ape_paterno) = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setString(1, NameApe);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            System.err.println(e);
+            return null;
+        }
+    }
+    
     public static boolean RegUnionCargo(int idCargo){
         try {
             String sql = "select * from mae_trabajador where nid_cargo = ? and nid_estado = 1";
@@ -940,9 +972,9 @@ public class BD_RS {
  
            
     }
-    public static String GetDNIMozo(int idPedido){
+    public static String GetMozoByPedido(int idPedido){
         try {
-            String sql = "SELECT t.nu_documento from mae_trabajador t   inner join tbl_pedido tp on tp.nid_mozo = t.nid_trabajador where tp.nid_pedido = ?";
+            String sql = "SELECT concat(left(t.no_natural,1),left(t.no_ape_paterno,1),lower(mid(t.no_ape_paterno,2,length(t.no_ape_paterno)))) as Mozo from mae_trabajador t   inner join tbl_pedido tp on tp.nid_mozo = t.nid_trabajador where tp.nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idPedido);
             ResultSet rs = ps.executeQuery();
@@ -979,6 +1011,18 @@ public class BD_RS {
     public static void CerrarPedido(int idPedido){
         try {
             String sql = "UPDATE tbl_pedido set nid_estado = 4 where nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
+            
+        }
+    }
+    public static void AnularPedido(int idPedido){
+        try {
+            String sql = "UPDATE tbl_pedido set nid_estado = 6 where nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, idPedido);
             ps.executeUpdate();

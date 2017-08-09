@@ -2,7 +2,7 @@
 package ventas.modelo;
 
 public class Plato {
-    int nid_plato;
+    public static int nid_plato;
     String no_categoria3_plato;
     String no_categoria2_plato;
     String no_categoria1_plato;
