@@ -398,7 +398,6 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         cboPiso = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         FH = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -406,12 +405,16 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblRetirar = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        lblIngreso = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         lblApertura = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        lblIngreso = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         lblEgreso = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -444,10 +447,6 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 500));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/leyenda2.png"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, 140, 53));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/DateTime.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 50, 50));
 
@@ -465,7 +464,12 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jLabel4.setText("Refrescar");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 70, 90));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, 70, 90));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/off-button.png"))); // NOI18N
@@ -477,7 +481,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 70, 90));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 90));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -490,7 +494,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
 
         lblRetirar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblRetirar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money.png"))); // NOI18N
@@ -502,33 +506,43 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 lblRetirarMouseClicked(evt);
             }
         });
-        jPanel1.add(lblRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, 100));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 750, 120));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Ingreso:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 700, -1, -1));
+        jPanel1.add(lblRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Apertura:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, 10));
+
+        lblApertura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(lblApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 120, 20));
+
+        jSeparator1.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, 10));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Egreso:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 670, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 210, 10));
 
         lblIngreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblIngreso.setText("jLabel3");
-        getContentPane().add(lblIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 700, -1, -1));
+        jPanel1.add(lblIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 120, 20));
 
-        lblApertura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblApertura.setText("jLabel3");
-        getContentPane().add(lblApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 640, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Ingreso:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         lblEgreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblEgreso.setText("jLabel3");
-        getContentPane().add(lblEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 670, -1, -1));
+        jPanel1.add(lblEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 120, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/leyenda2.png"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 350, 53));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, 1260, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -588,6 +602,11 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             cc.setVisible(true);
         }
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        loadCaja();
+        LoadMesas();
+    }//GEN-LAST:event_jLabel4MouseClicked
     /*
      jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -664,6 +683,9 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblApertura;
     private javax.swing.JLabel lblEgreso;
     private javax.swing.JLabel lblIngreso;
