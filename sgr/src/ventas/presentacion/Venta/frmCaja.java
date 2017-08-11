@@ -60,16 +60,16 @@ public class frmCaja extends javax.swing.JFrame {
         cboComprobante.setSelectedIndex(-1);
         componentes();
         setLayout(null);
-        txtCLocal.setText("Sucursal :  "+login_User.surcursal);
+        txtCLocal.setText(login_User.surcursal);
         //lblLocal.setText(login_User.surcursal);   
         getNow();
         cboDocumento.setSelectedIndex(-1);     
-        String local=txtCLocal.getText().substring(txtCLocal.getText().indexOf("Sucursal :  ")+12,txtCLocal.getText().length());
+        String local=txtCLocal.getText();
         getUsuario(documento, local);
         init();
     }
     public void init(){        
-       /* DecimalFormat df= new DecimalFormat("#.00");
+       /* DecimalFormat df= new DecimalFormat("0.##");
         ResultSet rs=BDData.initDataCaja(lblLocal.getText());
         double total=0,sustrayendo=0,apertura=0;
         try {
@@ -99,11 +99,11 @@ public class frmCaja extends javax.swing.JFrame {
         String mesaString=event.toString().substring(event.toString().indexOf("on #")+4, event.toString().indexOf("$"));        
         int mesa=Integer.parseInt(mesaString);        
         nroMesa=mesa;
-        txtCMesa.setText("Mesa : "+mesa);
+        txtCMesa.setText(mesa+"");
     }    
     public void getpiso(int piso){        
         nroPiso=piso;
-        txtCPiso.setText("Piso : "+piso);
+        txtCPiso.setText(piso+"");
     }
     private void componentes(){               
         //pnlCajaTitle.setVisible(true);
@@ -115,13 +115,13 @@ public class frmCaja extends javax.swing.JFrame {
         return  dtm;
     }
     public void cargarListaPedido(int piso, int mesa){
-        String local=txtCLocal.getText().substring(txtCLocal.getText().indexOf("Sucursal :  ")+12,txtCLocal.getText().length());
+        String local=txtCLocal.getText();
         caja.setNo_local(local);            
         caja.setNu_mesa(mesa);
         caja.setNu_piso(piso);
-        txtCMesa.setText("Mesa : "+mesa);
-        txtCPiso.setText("Piso : "+piso);
-        tblCaja.setModel(BDData.getListaCaja(dtm, caja));      
+        txtCMesa.setText(mesa+"");
+        txtCPiso.setText(piso+"");
+        tblCaja.setModel(BDData.getListaCaja(formatearTabla(), caja));      
         confTBL(tblCaja, dtm);        
     }
     public void confTBL(JTable jTable, DefaultTableModel model){
@@ -150,6 +150,21 @@ public class frmCaja extends javax.swing.JFrame {
             btnValid.setEnabled(true);
             cboComprobante.setEnabled(true);
             cboDocumento.setEnabled(true);
+        }       
+        String nroPedido=model.getValueAt(0, 0).toString();
+        if (nroPedido!=null) {                       
+            StringBuffer sb=new StringBuffer();
+            String[] nroPedidoArray= new String[10];
+            for (int i = 0; i < 10; i++) {
+                if (i<nroPedido.length()) {              
+                   nroPedidoArray[i]=nroPedido.substring(i,i+1);
+                }else
+                    nroPedidoArray[i]="0";            
+            }
+            for (int j = 9; j >=0; j--) {                
+                sb.append(nroPedidoArray[j]);
+            }
+            txtCNroPedido.setText(sb.toString());
         }
     }
     private double getTotal(DefaultTableModel model){
@@ -186,6 +201,7 @@ public class frmCaja extends javax.swing.JFrame {
     
     private void obtenerNumber(ActionEvent e){        
         StringBuffer sb=new  StringBuffer();
+        DecimalFormat df=new DecimalFormat("0.##");
         String number=e.toString().substring(e.toString().indexOf("text=")+5,e.toString().length()-21);
         vec.add(number);        
         for (int i = 0; i < vec.size(); i++) {
@@ -196,7 +212,7 @@ public class frmCaja extends javax.swing.JFrame {
         double montoTotal=Double.parseDouble(txtTotalPagar.getText().replace("S/ ", ""));
         double vuelto=montoIngresado-montoTotal;
         System.out.println(vuelto);
-        txtVuelto.setText("S/. "+vuelto);
+        txtVuelto.setText("S/ "+df.format(vuelto).replace(",", "."));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -323,8 +339,9 @@ public class frmCaja extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 960, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 222, 222));
+        jPanel2.setBackground(new java.awt.Color(204, 153, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 3));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -341,26 +358,35 @@ public class frmCaja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblCaja);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 14, 440, 320));
+
         txtApeMaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApeMaterno.setAutoscrolls(false);
+        jPanel2.add(txtApeMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 189, 137, 50));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Apellido Materno:");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 159, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Apellido Paterno:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 159, -1, -1));
 
         txtApePaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApePaterno.setAutoscrolls(false);
+        jPanel2.add(txtApePaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 189, 160, 50));
 
         txtCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCliente.setAutoscrolls(false);
+        jPanel2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 189, 130, 50));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Cliente:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 159, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Documento:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 119, -1, -1));
 
         cboDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "DNI" }));
@@ -374,10 +400,12 @@ public class frmCaja extends javax.swing.JFrame {
                 cboDocumentoActionPerformed(evt);
             }
         });
+        jPanel2.add(cboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 102, 70, 50));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField2.setText("Nro Doc.");
         jTextField2.setEnabled(false);
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 100, 100, 50));
 
         txtDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDocumento.addActionListener(new java.awt.event.ActionListener() {
@@ -385,6 +413,7 @@ public class frmCaja extends javax.swing.JFrame {
                 txtDocumentoActionPerformed(evt);
             }
         });
+        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 99, 120, 50));
 
         btnValid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnValid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
@@ -395,12 +424,15 @@ public class frmCaja extends javax.swing.JFrame {
                 btnValidActionPerformed(evt);
             }
         });
+        jPanel2.add(btnValid, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 99, 50, 50));
 
         txtTDCorrelativos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTDCorrelativos.setEnabled(false);
+        jPanel2.add(txtTDCorrelativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 140, 50));
 
         Codigo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Codigo.setText("-");
+        jPanel2.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, -1, 20));
 
         txtTDSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTDSerie.setEnabled(false);
@@ -409,6 +441,7 @@ public class frmCaja extends javax.swing.JFrame {
                 txtTDSerieActionPerformed(evt);
             }
         });
+        jPanel2.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 41, 140, 50));
 
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Boleta", "Ticket" }));
@@ -422,13 +455,16 @@ public class frmCaja extends javax.swing.JFrame {
                 cboComprobanteActionPerformed(evt);
             }
         });
+        jPanel2.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 40, 140, 50));
 
         Codigo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo2.setText("Tipo de Documento:");
+        jPanel2.add(Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 14, -1, 20));
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField7.setText("Tipo de Pago");
         jTextField7.setEnabled(false);
+        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 250, 110, 54));
 
         btn6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn6.setText("6");
@@ -440,6 +476,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn6ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 310, -1, -1));
 
         btn3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn3.setText("3");
@@ -451,6 +488,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn3ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 250, -1, -1));
 
         btn2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn2.setText("2");
@@ -462,6 +500,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn2ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 250, -1, -1));
 
         btn5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn5.setText("5");
@@ -473,6 +512,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn5ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 310, -1, -1));
 
         btn4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn4.setText("4");
@@ -484,6 +524,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn4ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 310, -1, -1));
 
         btn1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn1.setText("1");
@@ -495,6 +536,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 250, -1, -1));
 
         btn7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn7.setText("7");
@@ -506,6 +548,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn7ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 376, -1, -1));
 
         btn8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn8.setText("8");
@@ -517,6 +560,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn8ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 376, -1, -1));
 
         btn9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn9.setText("9");
@@ -528,6 +572,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn9ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 376, -1, -1));
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit-clear-locationbar-rtl.png"))); // NOI18N
         jButton14.setMaximumSize(new java.awt.Dimension(54, 54));
@@ -538,6 +583,7 @@ public class frmCaja extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 436, -1, -1));
 
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton16.setText(".");
@@ -549,6 +595,7 @@ public class frmCaja extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 436, -1, -1));
 
         btn0.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn0.setText("0");
@@ -560,23 +607,29 @@ public class frmCaja extends javax.swing.JFrame {
                 btn0ActionPerformed(evt);
             }
         });
+        jPanel2.add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 436, -1, -1));
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField6.setText("Vuelto");
         jTextField6.setEnabled(false);
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 436, 110, 54));
 
         txtVuelto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtVuelto.setEnabled(false);
+        jPanel2.add(txtVuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 436, 110, 54));
 
         txtTotalPagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTotalPagar.setEnabled(false);
+        jPanel2.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 376, 110, 54));
 
         jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField9.setText("Total a Pagar");
         jTextField9.setEnabled(false);
+        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 376, 110, 54));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/soles.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 310, 110, 54));
 
         txtMontoIngresado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMontoIngresado.setEnabled(false);
@@ -590,238 +643,53 @@ public class frmCaja extends javax.swing.JFrame {
                 txtMontoIngresadoKeyPressed(evt);
             }
         });
+        jPanel2.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 310, 110, 54));
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField3.setText("Efectivo");
         jTextField3.setEnabled(false);
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 250, 110, 54));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("SubTotal:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
         lblSubTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 170, 30));
 
         jSeparator4.setBackground(new java.awt.Color(51, 51, 255));
         jSeparator4.setForeground(new java.awt.Color(102, 102, 255));
         jSeparator4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 263, 10));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("IGV:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
 
         jSeparator3.setBackground(new java.awt.Color(51, 51, 255));
         jSeparator3.setForeground(new java.awt.Color(102, 102, 255));
         jSeparator3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 263, 10));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Total:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(51, 51, 255));
         jSeparator1.setForeground(new java.awt.Color(102, 102, 255));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 263, 10));
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 170, 30));
 
         lblIGV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(lblIGV, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 170, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(23, 23, 23)
-                                .addComponent(lblSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(58, 58, 58)
-                                .addComponent(lblIGV, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(50, 50, 50)
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addGap(88, 88, 88)
-                            .addComponent(jLabel16)
-                            .addGap(52, 52, 52)
-                            .addComponent(jLabel17))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(txtApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(txtApeMaterno))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(Codigo2)
-                            .addGap(10, 10, 10)
-                            .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTDSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Codigo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTDCorrelativos))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cboDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnValid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(txtMontoIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(txtVuelto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel12))
-                            .addComponent(lblSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel13))
-                            .addComponent(lblIGV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel14))
-                            .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(Codigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cboComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtTDSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTDCorrelativos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel15)
-                                    .addComponent(cboDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnValid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField7)
-                            .addComponent(jTextField3))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMontoIngresado)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField9)
-                            .addComponent(txtTotalPagar))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtVuelto)
-                            .addComponent(jTextField6))))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 960, 530));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 960, 510));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
-        jPanel3.setBackground(new java.awt.Color(255, 222, 222));
-
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Arrow-reload-2-icon.png"))); // NOI18N
         jButton1.setText("Retornar");
@@ -874,7 +742,7 @@ public class frmCaja extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 960, 70));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 960, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -900,10 +768,10 @@ public class frmCaja extends javax.swing.JFrame {
             try {
                 if (rs.next()) {
                     temp1=rs.getString(1);
-                    temp2=rs.getString(2);                    
+                    temp2=rs.getString(2);                          
                     //txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
-                    String local=txtCLocal.getText().substring(txtCLocal.getText().indexOf("Sucursal :  ")+12,txtCLocal.getText().length());
+                    String local=txtCLocal.getText();
                     if (!temp1.equals("")) {
                         ResultSet rs1= BDData.getCorrelativo(temp1, local,cboComprobante.getSelectedItem().toString());
                         if (rs1.next()) {
@@ -911,17 +779,18 @@ public class frmCaja extends javax.swing.JFrame {
                             int tempCorrelativo=Integer.parseInt(temp2);
                             int correlativo=Integer.parseInt(rs1.getString(1));
                             
-                            correlativo+=1;                            
-                            if (correlativo<=tempCorrelativo) {                                                                                               
+                            correlativo+=1;
+                            if (tempCorrelativo<=correlativo) {                                                                                               
                                 int len=temp2.length();
-                                int lenC=Integer.toString(correlativo).length();
+                                int lenC=Integer.toString(tempCorrelativo).length();
+                                
                                 StringBuffer buffer= new StringBuffer();
                                 String[] cad=new String[len];
                                 String[] cad1=new String[lenC];
                                 
                                 int count=1;                                
                                 if (count==lenC) {
-                                   cad1[count-1]=Integer.toString(correlativo).substring(count-1, 1);
+                                   cad1[count-1]=Integer.toString(tempCorrelativo).substring(count-1, 1);
                                     count+=1;
                                 }
                                 
@@ -934,13 +803,15 @@ public class frmCaja extends javax.swing.JFrame {
                                             cad[i]=cad1[j];
                                         }                                        
                                     }
-                                    buffer.append(cad[i]);
+                                    buffer.append(cad[i]);                                    
                                 }
                                 int tempCount=len;                                
                                 StringBuffer sb=new StringBuffer();
+                                
                                 for (int i = 0; i < cad.length; i++) {
                                     sb.append(cad[i]);
                                 }
+                                
                                 txtTDCorrelativos.setText(sb.toString());
                                 txtTDSerie.setText(temp1);
                                 //lblDocumento.setText(temp1+"-"+sb.toString());
@@ -1163,9 +1034,10 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSaveSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSaleActionPerformed
-        String local=txtCLocal.getText().substring(txtCLocal.getText().indexOf("Sucursal :  ")+12,txtCLocal.getText().length());
+        String local=txtCLocal.getText();
         String document=txtTDSerie.getText()+"-"+txtTDCorrelativos.getText();
         Caja caja=new Caja();
+        System.out.println(login_User.getNdi_usuario());
         Date fecha = new Date();
         CajaLocal cl=new CajaLocal();
         String tempComprobante="";
@@ -1185,14 +1057,14 @@ public class frmCaja extends javax.swing.JFrame {
         caja.setDoc_cliente(txtDocumento.getText());
         caja.setNid_pedido(Integer.parseInt(dtm.getValueAt(0, 0).toString()));
         caja.setNo_local(local);        
-        caja.setNid_usuario_crea(usuario.getId());
+        caja.setNid_usuario_crea(login_User.getNdi_usuario());
         if (BDData.registrarVenta(caja)) {
             cl.setVi_no_local(local);
             cl.setVi_co_comprobante(tempComprobante);
             cl.setVi_nu_comprobante(document);
             cl.setVi_mt_importe(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
             cl.setVi_nu_persona(txtDocumento.getText());
-            cl.setVi_nid_usuario_crea(usuario.getId());
+            cl.setVi_nid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.agregarCaja(cl)) {
                 JOptionPane.showMessageDialog(rootPane, "Venta guardada");
             }
