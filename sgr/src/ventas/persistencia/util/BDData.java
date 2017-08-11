@@ -1141,7 +1141,7 @@ public class BDData {
         String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
-            cs.setString(1, caja.getCo_comprobante());
+            cs.setString(1, caja.getCo_comprobante());            
             cs.setString(2, caja.getNu_serie());
             cs.setString(3, caja.getNu_correlativo());
             cs.setDouble(4, caja.getMt_subtotal());

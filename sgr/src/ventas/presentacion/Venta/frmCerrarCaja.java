@@ -18,7 +18,7 @@ public class frmCerrarCaja extends javax.swing.JFrame {
     
     public void init(String vl_local){
         local=vl_local;
-        DecimalFormat df= new DecimalFormat("#.00");
+        DecimalFormat df= new DecimalFormat("0.##");
         ResultSet rs=BDData.initDataCaja(vl_local);
         double total=0,sustrayendo=0;
         try {

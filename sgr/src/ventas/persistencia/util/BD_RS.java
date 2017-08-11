@@ -802,7 +802,7 @@ public class BD_RS {
         try {
             DefaultListModel dlm = new DefaultListModel();
             String sql = "select tpm.nid_pedido,mm.nu_mesa, concat(t.no_natural,' ', t.no_ape_paterno) from tbl_pedido_mesa tpm inner join mae_mesa mm on mm.nid_mesa = tpm.nid_mesa inner join tbl_pedido ped " +
-                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and tp.nid_estado = 4 "; //and mp.nid_local = ?;";
+                " on ped.nid_pedido = tpm.nid_pedido inner join mae_trabajador t on ped.nid_mozo = t.nid_trabajador inner join mae_piso mp on mm.nid_piso = mp.nid_piso inner join tbl_pedido tp on tp.nid_pedido = tpm.nid_pedido where mp.nu_piso = ? and mp.nid_local = ? and tp.nid_estado = 4 and mm.nid_estado=1"; //and mp.nid_local = ?;";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPiso);
             ps.setInt(2, idlocal);
