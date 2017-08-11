@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import ventas.modelo.Plato;
 import ventas.presentacion.frmPrincipal;
 
 public class Archivo extends javax.swing.JFrame {
@@ -75,7 +76,7 @@ public class Archivo extends javax.swing.JFrame {
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         JFileChooser selector = (JFileChooser)evt.getSource();        
         String command = evt.getActionCommand();              
-        File tempfile=new File(name.toLowerCase().replace(" ", "_")+".png");
+        File tempfile=new File(Plato.nid_plato+".jpg");
              
             try {
                 if (tempfile.exists()) {   
@@ -87,16 +88,16 @@ public class Archivo extends javax.swing.JFrame {
                     String tempRoad="C:\\sisVentasRes\\sgr\\src\\recursos";                                
                     Path finalRoad=Paths.get(tempRoad);
                     Path finalOrgin=Paths.get(archivoseleccionado.getAbsolutePath());
-                    Files.move(finalOrgin, finalRoad.resolve(name.toLowerCase().replace(" ", "_")+".jpg"), StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(finalOrgin, finalRoad.resolve(Plato.nid_plato+".jpg"), StandardCopyOption.REPLACE_EXISTING);
                     JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con éxito.");
                     if (nroFrm==2) {
-                        rutaIMG = name.toLowerCase().replace(" ", "_")+".jpg";
+                        rutaIMG = Plato.nid_plato+".jpg";
                         jpEditarPlato editarPlato=new jpEditarPlato();
-                        editarPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
+                        editarPlato.imgPlato(Plato.nid_plato+".jpg");
                     }else{
-                        rutaIMG = name.toLowerCase().replace(" ", "_")+".jpg";
+                        rutaIMG = Plato.nid_plato+".jpg";
                         jpNuevoPlato nuevoPlato=new jpNuevoPlato();
-                        nuevoPlato.imgPlato(name.toLowerCase().replace(" ", "_")+".jpg");
+                        nuevoPlato.imgPlato(Plato.nid_plato+".jpg");
                     }                        
                     setVisible(false);
                 }else if (command.equals(JFileChooser.CANCEL_SELECTION)) {

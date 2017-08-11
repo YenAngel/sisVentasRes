@@ -320,7 +320,7 @@ public class jpListarPlato extends javax.swing.JPanel {
             plato.setCo_tipo(GetTipoEnvioS(dtm.getValueAt(idx, 5).toString(), false));
             frmPrincipal.Comp(editarPlato);
             editarPlato.cargarPlato(plato);
-            editarPlato.imgPlato(plato.getNo_plato().toLowerCase().replace(" ", "_")+".jpg");
+            editarPlato.imgPlato(plato.getNid_plato()+".jpg");
         }else{
             JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
         }        
