@@ -5,7 +5,6 @@ import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class BDUtil {    
     private static String driver="com.mysql.jdbc.Driver";
@@ -45,7 +44,7 @@ public class BDUtil {
     }        
     public static boolean setTimeout(){
         try {
-            String sql = "SET SESSION wait_timeout = 28800";
+            String sql = "SET SESSION wait_timeout = 5184000";
             PreparedStatement ps = getCnn().prepareStatement(sql);
             ps.executeQuery();
             return true;
@@ -71,7 +70,15 @@ public class BDUtil {
     }
 
     public static Connection getCnn() {
-        return cnn;
+        try {
+            if(cnn.isClosed())
+                conectar();
+            return cnn;    
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return cnn;
+        }
+        
     }
 
     public static void setCnn(Connection cnn) {

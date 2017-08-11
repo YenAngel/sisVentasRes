@@ -309,6 +309,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
         String nPedido = cadena.substring(cadena.indexOf('$')+1,cadena.length());
         if(nPedido.length() != 0){
             DPedido.nPedido = Integer.parseInt(nPedido);
+            if(BD_RS.EstadoPedidoinMS(DPedido.nPedido) == 4){
+                JOptionPane.showMessageDialog(null, "El pedido se encuentra con Estado: Atendido","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            // Ver Estado
         }else{
             DPedido.nPedido = 0;
         }
@@ -558,6 +563,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
         if(DPedido.dlmDP.size() != 0){
+                
                if(BD_RS.EstadoCaja()==1){
                 DPedido.nPedido = 0;
              //llamar al formulario

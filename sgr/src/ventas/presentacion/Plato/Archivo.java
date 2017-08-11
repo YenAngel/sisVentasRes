@@ -13,15 +13,24 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import ventas.modelo.Plato;
-import ventas.presentacion.frmPrincipal;
 
 public class Archivo extends javax.swing.JFrame {
-
+    public jpEditarPlato jpE;
+    public jpNuevoPlato jp;
     public String name;
     public int nroFrm;
     public static String rutaIMG;
     public Archivo() {
         initComponents();
+    }
+    public Archivo(jpEditarPlato f1) {
+        jpE = f1;
+        initComponents();
+    }
+    public Archivo(jpNuevoPlato f2) {
+        jp = f2;
+        initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -92,12 +101,11 @@ public class Archivo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Imagen ha sido subida con éxito.");
                     if (nroFrm==2) {
                         rutaIMG = Plato.nid_plato+".jpg";
-                        jpEditarPlato editarPlato=new jpEditarPlato();
-                        editarPlato.imgPlato(Plato.nid_plato+".jpg");
+                        
+                       jpE.imgPlato(Plato.nid_plato+".jpg");
                     }else{
                         rutaIMG = Plato.nid_plato+".jpg";
-                        jpNuevoPlato nuevoPlato=new jpNuevoPlato();
-                        nuevoPlato.imgPlato(Plato.nid_plato+".jpg");
+                        jp.imgPlato(Plato.nid_plato+".jpg");
                     }                        
                     setVisible(false);
                 }else if (command.equals(JFileChooser.CANCEL_SELECTION)) {

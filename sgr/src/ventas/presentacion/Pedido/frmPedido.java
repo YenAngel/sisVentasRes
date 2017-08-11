@@ -96,7 +96,7 @@ public class frmPedido extends javax.swing.JFrame {
         lblFecha.setText(Date.valueOf(LocalDate.now()).toString());
         if(lNumMesa != -1)
         lblMesa.setText(lNumMesa+"");
-        else lblMesa.setText("~");
+        else lblMesa.setText(DPedido.dlmDP.getElementAt(0) + "," + DPedido.dlmDP.getElementAt(1));
         
         lblPiso.setText(lNumPiso+"");
         lblSucursal.setText(lSucursal);
@@ -107,6 +107,10 @@ public class frmPedido extends javax.swing.JFrame {
             lblSubConfirmar.setVisible(false);
             btnCocina.setVisible(true);
             btnBar.setVisible(true);
+            lblCuenta.setVisible(true);
+            jLabel46.setVisible(true);
+            lblAnular.setVisible(true);
+            jLabel47.setVisible(true);
             cboMozo.setEnabled(false);
             lblNPedido.setText(lNPedido+"");
         }else{
@@ -114,6 +118,10 @@ public class frmPedido extends javax.swing.JFrame {
             lblSubConfirmar.setVisible(true);
             btnCocina.setVisible(false);
             btnBar.setVisible(false);
+            lblCuenta.setVisible(false);
+            jLabel46.setVisible(false);
+            lblAnular.setVisible(false);
+            jLabel47.setVisible(false);
             cboMozo.setEnabled(true);
             lblNPedido.setText("-");
         }
@@ -883,7 +891,7 @@ public class frmPedido extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImgComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -974,6 +982,9 @@ public class frmPedido extends javax.swing.JFrame {
         lblAnular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAnularMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblAnularMouseReleased(evt);
             }
         });
         jPanel6.add(lblAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 30, -1));
@@ -1102,8 +1113,88 @@ public class frmPedido extends javax.swing.JFrame {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
        if(tblPedidos.getSelectedRow() >=0){
-           DefaultTableModel modelo = (DefaultTableModel)tblPedidos.getModel(); 
-            modelo.removeRow(tblPedidos.getSelectedRow()); 
+           boolean del = false;
+           System.out.println(tblPedidos.getModel().toString());
+           int ind = tblPedidos.getSelectedRow();
+           if(tblPedidos.getValueAt(ind, 5).equals("Si")){
+                    System.out.println("NColumnas:" + tblPedidos.getColumnCount());
+                 RecienEnviado.removeAllElements();
+                 DefaultListModel PedidoEnviar = new DefaultListModel();
+                        System.out.println(tblPedidos.getModel().getValueAt(ind, 6));
+                     if(tblPedidos.getValueAt(ind, 6).toString().contains("C")){
+                         PedidoEnviar.addElement(tblPedidos.getValueAt(ind, 0).toString() + "%" + tblPedidos.getValueAt(ind, 1).toString() + "$" + tblPedidos.getValueAt(ind, 4).toString() + "#" + tblPedidos.getValueAt(ind, 2).toString());
+                         RecienEnviado.addElement(ind);
+                                if(PedidoEnviar.size() != 0){
+                                    PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                                        PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                                        PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
+                                        
+                                    for(int i = 0; i<PedidoEnviar.size(); i++){
+
+                                        String cad = PedidoEnviar.getElementAt(i).toString();
+                                        System.out.println("INFO: " + cad);
+                                        String nPlato = cad.substring(0,cad.indexOf('%'));
+                                        del = BD_RS.EliminarPlatoB(DPedido.nPedido, nPlato);
+                                        int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                                        String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                                        PrintFormat.DishCantidad[i] = cant;
+                                        PrintFormat.ListPlatosName[i] = nPlato;
+                                        System.out.println("DescripciónP: " + descr);
+                                        if(descr.length()==0){
+                                        PrintFormat.ListPlatosDescr[i] = "-1";}
+                                        else {PrintFormat.ListPlatosDescr[i] = descr;}
+                                    }
+                                    PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+                                    PrintFormat.Mesero = NameMozo;
+                                    PrintFormat.NPedido = DPedido.nPedido;
+                                    PrintFormat.TipoEnvio = "COCINA";
+                                    PrintFormat.NumSalon = lblPiso.getText();
+                                    PrintFormat.ImpCancelToCocinaBar();
+                                }
+                 
+                     }else if (tblPedidos.getValueAt(ind, 6).toString().contains("B")){
+                                PedidoEnviar.addElement(tblPedidos.getValueAt(ind, 0).toString() + "%" + tblPedidos.getValueAt(ind, 1).toString() + "$" + tblPedidos.getValueAt(ind, 4).toString() + "#" + tblPedidos.getValueAt(ind, 2).toString());
+                                RecienEnviado.addElement(ind);
+                                if(PedidoEnviar.size() != 0){
+                                    PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                                        PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                                        PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
+                                    //codigo para enviar a ticketera /COCINA/
+                                    for(int i = 0; i<PedidoEnviar.size(); i++){
+
+                                        String cad = PedidoEnviar.getElementAt(i).toString();
+                                        System.out.println("INFO: " + cad);
+                                        String nPlato = cad.substring(0,cad.indexOf('%'));
+                                        int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                                        String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                                        PrintFormat.DishCantidad[i] = cant;
+                                        PrintFormat.ListPlatosName[i] = nPlato;
+                                        del = BD_RS.EliminarPlatoB(DPedido.nPedido, nPlato);
+                                        System.out.println("DescripciónP: " + descr);
+                                        if(descr.length()==0){
+                                        PrintFormat.ListPlatosDescr[i] = "-1";}
+                                        else {PrintFormat.ListPlatosDescr[i] = descr;}
+                                    }
+                                    // BD
+                                    PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+                                    PrintFormat.Mesero = NameMozo;
+                                    PrintFormat.NPedido = DPedido.nPedido;
+                                    PrintFormat.TipoEnvio = "BAR";
+                                    PrintFormat.NumSalon = lblPiso.getText();
+                                    PrintFormat.ImpCancelToCocinaBar();
+                                }
+                     }
+                 
+                     if(del){
+                    DefaultTableModel modelo = (DefaultTableModel)tblPedidos.getModel(); 
+                     modelo.removeRow(tblPedidos.getSelectedRow());}
+        
+           }else{
+               
+                    DefaultTableModel modelo = (DefaultTableModel)tblPedidos.getModel(); 
+                     modelo.removeRow(tblPedidos.getSelectedRow());
+           }
+                    
        }
        ConfigTBL(tblPedidos);
        CalcTotal();
@@ -1111,17 +1202,22 @@ public class frmPedido extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
        if(tblPedidos.getSelectedRow() >=0){
-           int indx = tblPedidos.getSelectedRow();
-           int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
-           String costo = tblPedidos.getValueAt(indx, 2).toString();
+            int indx = tblPedidos.getSelectedRow();
+            
+           if(tblPedidos.getValueAt(indx, 5) == "No"){
            
-               
-               val += 1;
-               
-           
-           tblPedidos.getModel().setValueAt(val, indx, 1);
-           tblPedidos.getModel().setValueAt(Return2Dec(Double.parseDouble(costo)*(double)val), indx, 3);
+                int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
+                String costo = tblPedidos.getValueAt(indx, 2).toString();
+
+
+                    val += 1;
+
+
+                tblPedidos.getModel().setValueAt(val, indx, 1);
+                tblPedidos.getModel().setValueAt(Return2Dec(Double.parseDouble(costo)*(double)val), indx, 3);
+            }
        }
+       
         ConfigTBL(tblPedidos);
         CalcTotal();
     }//GEN-LAST:event_btnAddActionPerformed
@@ -1199,7 +1295,8 @@ public class frmPedido extends javax.swing.JFrame {
             PrintFormat.Mesero = NameMozo;
             PrintFormat.NPedido = DPedido.nPedido;
             PrintFormat.TipoEnvio = "COCINA";
-            PrintFormat.ImprimirToCocina();
+            PrintFormat.NumSalon = lblPiso.getText();
+            PrintFormat.ImprimirToCocinaBar();
         }
         if(RecienEnviado.size() > 0){
             for(int i = 0; i < RecienEnviado.size(); i++){
@@ -1236,6 +1333,7 @@ public class frmPedido extends javax.swing.JFrame {
     private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
        if(tblPedidos.getSelectedRow() >=0){
            int indx = tblPedidos.getSelectedRow();
+           if(tblPedidos.getValueAt(indx, 5) == "No"){
            int val = Integer.parseInt(tblPedidos.getValueAt(indx, 1).toString());
            String costo = tblPedidos.getValueAt(indx, 2).toString();
            
@@ -1245,6 +1343,7 @@ public class frmPedido extends javax.swing.JFrame {
            
            tblPedidos.getModel().setValueAt(val, indx, 1);
            tblPedidos.getModel().setValueAt(Return2Dec(Double.parseDouble(costo)*(double)val), indx, 3);
+            }
        }
         ConfigTBL(tblPedidos);
         CalcTotal();
@@ -1308,7 +1407,8 @@ public class frmPedido extends javax.swing.JFrame {
             PrintFormat.Mesero = NameMozo;
             PrintFormat.NPedido = DPedido.nPedido;
             PrintFormat.TipoEnvio = "BAR";
-            PrintFormat.ImprimirToCocina();
+            PrintFormat.NumSalon = lblPiso.getText();
+            PrintFormat.ImprimirToCocinaBar();
         }
         if(RecienEnviado.size() > 0){
             for(int i = 0; i < RecienEnviado.size(); i++){
@@ -1358,6 +1458,10 @@ public class frmPedido extends javax.swing.JFrame {
                 lblSubConfirmar.setVisible(false);
                 btnCocina.setVisible(true);
                 btnBar.setVisible(true);
+                lblCuenta.setVisible(true);
+                jLabel46.setVisible(true);
+                lblAnular.setVisible(true);
+                jLabel47.setVisible(true);
                 cboMozo.setEnabled(false);
                 lblNPedido.setText(DPedido.nPedido+"");
                 NameMozo = BD_RS.GetNCompletoBycboMozo(cboMozo.getSelectedItem().toString());
@@ -1367,6 +1471,10 @@ public class frmPedido extends javax.swing.JFrame {
                 lblSubConfirmar.setVisible(true);
                 btnCocina.setVisible(false);
                 btnBar.setVisible(false);
+                lblCuenta.setVisible(false);
+                jLabel46.setVisible(false);
+                lblAnular.setVisible(false);
+                jLabel47.setVisible(false);
                 cboMozo.setEnabled(true);
             }
     }//GEN-LAST:event_lblConfirmarMouseClicked
@@ -1390,13 +1498,86 @@ public class frmPedido extends javax.swing.JFrame {
     private void lblAnularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnularMouseClicked
         int i = JOptionPane.showOptionDialog(null,"¿Confirmar: Anular Pedido?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
                 if(i==0) {    
-                    BD_RS.CerrarPedido(DPedido.nPedido);
-                    
-                    Mesas_Selection ms = new Mesas_Selection();
-                    this.setVisible(false);
-                    ms.setVisible(true);
+                    if(BD_RS.AnularPedido(DPedido.nPedido)){
+                        AnularPedidoMethodo();
+                        JOptionPane.showMessageDialog(null, "Pedido Anulado","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                        Mesas_Selection ms = new Mesas_Selection();
+                        this.setVisible(false);
+                        ms.setVisible(true);
+                    }
                 }
     }//GEN-LAST:event_lblAnularMouseClicked
+    private void AnularPedidoMethodo(){
+        RecienEnviado.removeAllElements();
+        DefaultListModel PedidoEnviar = new DefaultListModel();
+        for(int i = 0; i < tblPedidos.getRowCount(); i++){
+            if(tblPedidos.getValueAt(i, 5).toString().contains("Si") && tblPedidos.getValueAt(i, 6).toString().contains("C")){
+                PedidoEnviar.addElement(tblPedidos.getValueAt(i, 0).toString() + "%" + tblPedidos.getValueAt(i, 1).toString() + "$" + tblPedidos.getValueAt(i, 4).toString() + "#" + tblPedidos.getValueAt(i, 2).toString());
+                RecienEnviado.addElement(i);
+            }
+        }
+        if(PedidoEnviar.size() != 0){
+                PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
+            for(int i = 0; i<PedidoEnviar.size(); i++){
+                
+                String cad = PedidoEnviar.getElementAt(i).toString();
+                System.out.println("INFO: " + cad);
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                PrintFormat.DishCantidad[i] = cant;
+                PrintFormat.ListPlatosName[i] = nPlato;
+                System.out.println("DescripciónP: " + descr);
+                if(descr.length()==0){
+                PrintFormat.ListPlatosDescr[i] = "-1";}
+                else {PrintFormat.ListPlatosDescr[i] = descr;}
+            }
+            PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+            PrintFormat.Mesero = NameMozo;
+            PrintFormat.NPedido = DPedido.nPedido;
+            PrintFormat.TipoEnvio = "Cocina";
+            PrintFormat.NumSalon = lblPiso.getText();
+            PrintFormat.ImpAnuladoToCocinaBar();
+        }
+        RecienEnviado.removeAllElements();
+        PedidoEnviar = new DefaultListModel();
+        for(int i = 0; i < tblPedidos.getRowCount(); i++){
+            if(tblPedidos.getValueAt(i, 5).toString().contains("Si") && tblPedidos.getValueAt(i, 6).toString().contains("B")){
+                PedidoEnviar.addElement(tblPedidos.getValueAt(i, 0).toString() + "%" + tblPedidos.getValueAt(i, 1).toString() + "$" + tblPedidos.getValueAt(i, 4).toString() + "#" + tblPedidos.getValueAt(i, 2).toString());
+                RecienEnviado.addElement(i);
+            }
+        }
+        if(PedidoEnviar.size() != 0){
+                PrintFormat.ListPlatosDescr = new String[PedidoEnviar.size()];
+                PrintFormat.ListPlatosName = new String[PedidoEnviar.size()];
+                PrintFormat.DishCantidad = new int[PedidoEnviar.size()];
+            for(int i = 0; i<PedidoEnviar.size(); i++){
+                
+                String cad = PedidoEnviar.getElementAt(i).toString();
+                System.out.println("INFO: " + cad);
+                String nPlato = cad.substring(0,cad.indexOf('%'));
+                int cant = Integer.parseInt(cad.substring(cad.indexOf('%')+1,cad.indexOf('$')));
+                String descr = cad.substring(cad.indexOf('$')+1,cad.indexOf('#'));
+                PrintFormat.DishCantidad[i] = cant;
+                PrintFormat.ListPlatosName[i] = nPlato;
+                System.out.println("DescripciónP: " + descr);
+                if(descr.length()==0){
+                PrintFormat.ListPlatosDescr[i] = "-1";}
+                else {PrintFormat.ListPlatosDescr[i] = descr;}
+            }
+            PrintFormat.NMesa = Integer.parseInt(DPedido.dlmDP.getElementAt(0).toString());
+            PrintFormat.Mesero = NameMozo;
+            PrintFormat.NPedido = DPedido.nPedido;
+            PrintFormat.TipoEnvio = "BAR";
+            PrintFormat.NumSalon = lblPiso.getText();
+            PrintFormat.ImpAnuladoToCocinaBar();
+        }
+    }
+    private void lblAnularMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnularMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAnularMouseReleased
     private int FoundCount(String cad, char car){
         int count = 0;
         for (int i = 0; i < cad.length(); i++){

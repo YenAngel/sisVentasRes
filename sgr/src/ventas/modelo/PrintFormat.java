@@ -36,7 +36,8 @@ public class PrintFormat {
         public static int NMesa, NPedido;
         public static String Mesero;
         public static String TipoEnvio;
-    public static void ImprimirToCocina()   {
+        public static String NumSalon;
+    public static void ImprimirToCocinaBar()   {
         String Print = "";
         SimpleDateFormat hFormat = new SimpleDateFormat("hh:mm:ss a");
         SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
@@ -50,6 +51,59 @@ public class PrintFormat {
         body   += "MESA............:  Mesa " + NMesa + "\n";
         body   += "CLIENTE.........:  (Publico General) \n";
         body   += "MESERO..........:  " + Mesero + "\n";
+        body   += "ESTADO..........:  " + "Atención" + "\n";
+        body   += "SALÓN...........:  " + NumSalon + "\n";
+        body   += "FECHA...........:  " + fecha + " " + hora + "\n\n";
+        body   += getDetallePedidoCocina();
+        
+        
+        String footer = "\n" + getCaracter("=",55) + "\n";
+        Print = header + body + footer;
+        System.out.println(Print);
+        imprimirCocinaBar(Print);
+    }
+    public static void ImpCancelToCocinaBar()   {
+        String Print = "";
+        SimpleDateFormat hFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
+        String hora = hFormat.format(Time.valueOf(LocalTime.now())).toString();
+        String fecha = dFormat.format(Date.valueOf(LocalDate.now())).toString();
+        String header = "\n\n\n" + getCaracter("=", 18) + "   DONDE ALFREDO   " + getCaracter("=", 18) + "\n\n";
+        header += getCaracter(" ", 19) + "PLATO O BEBIDA ELIMINADA" + "\n";
+        header += getCaracter("=", 55) + "\n\n";
+        String body = getCaracter(" ", 15) + "N° PEDIDO: " + NPedido + "\n\n";
+        
+        body   += "TIPO ENVIO......:  " + TipoEnvio + "\n";
+        body   += "MESA............:  Mesa " + NMesa + "\n";
+        body   += "CLIENTE.........:  (Publico General) \n";
+        body   += "MESERO..........:  " + Mesero + "\n";
+        body   += "SALÓN...........:  " + NumSalon + "\n";
+        body   += "FECHA...........:  " + fecha + " " + hora + "\n\n";
+        body   += getDetallePedidoCocina();
+        
+        
+        String footer = "\n" + getCaracter("=",55) + "\n";
+        Print = header + body + footer;
+        System.out.println(Print);
+        imprimirCocinaBar(Print);
+    }
+    public static void ImpAnuladoToCocinaBar()   {
+        String Print = "";
+        SimpleDateFormat hFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
+        String hora = hFormat.format(Time.valueOf(LocalTime.now())).toString();
+        String fecha = dFormat.format(Date.valueOf(LocalDate.now())).toString();
+        String header = "\n\n\n" + getCaracter("=", 18) + "   DONDE ALFREDO   " + getCaracter("=", 18) + "\n";
+        header += getCaracter(" ", 23) + "ANULADO" + "\n";
+        header += getCaracter("=", 55) + "\n\n";
+        String body = getCaracter(" ", 19) + "N° PEDIDO: " + NPedido + "\n\n";
+        
+        body   += "TIPO ENVIO......:  " + TipoEnvio + "\n";
+        body   += "MESA............:  Mesa " + NMesa + "\n";
+        body   += "CLIENTE.........:  (Publico General) \n";
+        body   += "MESERO..........:  " + Mesero + "\n";
+        body   += "ESTADO..........:  " + "Anulado" + "\n";
+        body   += "SALÓN...........:  " + NumSalon + "\n";
         body   += "FECHA...........:  " + fecha + " " + hora + "\n\n";
         body   += getDetallePedidoCocina();
         
@@ -70,9 +124,9 @@ public class PrintFormat {
         String Result = "";
         for(int i=0; i<DishCantidad.length; i++){
             Result+= "\n " + getCaracter(" ", 17) + DishCantidad[i] + " " + ListPlatosName[i] + " ";
-            System.out.println("Index Current: " + i);
+           /* System.out.println("Index Current: " + i);
             System.out.println("Tamaño Array: " + ListPlatosDescr.length);
-            System.out.println("Plato: " + ListPlatosDescr[i]);
+            System.out.println("Plato: " + ListPlatosDescr[i]);*/
             if(!ListPlatosDescr[i].equals("-1")){
                 Result+= "(" + ListPlatosDescr[i] + ")";
             }
