@@ -5,6 +5,10 @@ import ventas.presentacion.Mesa.jpListarMesa;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -72,7 +76,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpPedido.setVisible(false);
             mpCarta.setVisible(false);
             mpCaja.setVisible(false);
-            mpReservacion.setVisible(false);
+            mpBackup.setVisible(false);
         //jpContenedor.setBounds(255, 59, widthvar - 255, heightvar-59);
         jpContenedor.setVisible(false);
         jLabel15.setLocation(15, 15);
@@ -162,7 +166,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         pPlatoLocal = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        mpReservacion = new javax.swing.JPanel();
+        mpBackup = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         pCategoria = new javax.swing.JPanel();
@@ -985,12 +989,12 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(pPlatoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, -1, -1));
 
-        mpReservacion.setBackground(new java.awt.Color(24, 168, 255));
-        mpReservacion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
-        mpReservacion.setPreferredSize(new java.awt.Dimension(255, 120));
-        mpReservacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        mpBackup.setBackground(new java.awt.Color(24, 168, 255));
+        mpBackup.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
+        mpBackup.setPreferredSize(new java.awt.Dimension(255, 120));
+        mpBackup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mpReservacionMouseClicked(evt);
+                mpBackupMouseClicked(evt);
             }
         });
 
@@ -1000,31 +1004,31 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bck.png"))); // NOI18N
 
-        javax.swing.GroupLayout mpReservacionLayout = new javax.swing.GroupLayout(mpReservacion);
-        mpReservacion.setLayout(mpReservacionLayout);
-        mpReservacionLayout.setHorizontalGroup(
-            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mpReservacionLayout.createSequentialGroup()
+        javax.swing.GroupLayout mpBackupLayout = new javax.swing.GroupLayout(mpBackup);
+        mpBackup.setLayout(mpBackupLayout);
+        mpBackupLayout.setHorizontalGroup(
+            mpBackupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpBackupLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel38)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel37)
                 .addContainerGap(83, Short.MAX_VALUE))
         );
-        mpReservacionLayout.setVerticalGroup(
-            mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mpReservacionLayout.createSequentialGroup()
-                .addGroup(mpReservacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mpReservacionLayout.createSequentialGroup()
+        mpBackupLayout.setVerticalGroup(
+            mpBackupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mpBackupLayout.createSequentialGroup()
+                .addGroup(mpBackupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mpBackupLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel37))
-                    .addGroup(mpReservacionLayout.createSequentialGroup()
+                    .addGroup(mpBackupLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel38)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        getContentPane().add(mpReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
+        getContentPane().add(mpBackup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
 
         pCategoria.setBackground(new java.awt.Color(24, 168, 255));
         pCategoria.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(61, 217, 237)));
@@ -1147,7 +1151,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));        
+        mpBackup.setBackground(new java.awt.Color(24,168,255));        
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
@@ -1183,7 +1187,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+        mpBackup.setBackground(new java.awt.Color(24,168,255));
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
@@ -1269,7 +1273,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(255,51,51));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));
+        mpBackup.setBackground(new java.awt.Color(24,168,255));
         
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
@@ -1280,7 +1284,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 mpReporte.setVisible(false);
                 mpCaja.setVisible(false);
                 mpCarta.setVisible(false);
-                mpReservacion.setVisible(false);
+                mpBackup.setVisible(false);
                 ValidarSub(usuario.getNid_perfil());
                 pnelActive = 1;
             }
@@ -1545,7 +1549,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(255,51,51));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(24,168,255));               
+        mpBackup.setBackground(new java.awt.Color(24,168,255));               
                 
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
@@ -1556,7 +1560,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 mpReporte.setVisible(false);
                 mpCaja.setVisible(false);
                 mpCarta.setVisible(false);
-                mpReservacion.setVisible(false);
+                mpBackup.setVisible(false);
                 //pnelActive = 1;
                 setVisible(false);
                 Mesas_Selection1 caja=new Mesas_Selection1();
@@ -1595,41 +1599,31 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pPlatoLocalMouseClicked
 
-    private void mpReservacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReservacionMouseClicked
-       /* mpPedido.setBackground(new java.awt.Color(24,168,255));
+    private void mpBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpBackupMouseClicked
+        mpPedido.setBackground(new java.awt.Color(24,168,255));
         mpReporte.setBackground(new java.awt.Color(24,168,255));       
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
-        mpReservacion.setBackground(new java.awt.Color(255,51,51));
+        mpBackup.setBackground(new java.awt.Color(255,51,51));
        
         mpMante.setVisible(true);
         mpPedido.setVisible(true);
         mpReporte.setVisible(true);
         mpCaja.setVisible(true);
         mpCarta.setVisible(true);
-        mpReservacion.setVisible(true);
-        try {
-            if(nPanel != null){
-                getContentPane().remove(nPanel);
-                getContentPane().repaint();
-            }
-            nPanel = new jpReservacion();
-            nPanel.setBounds(255,59, widthvar-255, heightvar-59);
+        mpBackup.setVisible(true);
         
-            getContentPane().add(nPanel);
-            this.validate();
-        } catch (Exception e) {
-        }
-        /*Timer t= new Timer();
+        Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
-                options(4);
+                //Modal 'Generando Backup'
+                GBackup();
             }
         };
-        t.schedule(task, 1000);   */     
-    }//GEN-LAST:event_mpReservacionMouseClicked
+        t.schedule(task, 1000);    
+    }//GEN-LAST:event_mpBackupMouseClicked
 
     private void pCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCategoriaMouseClicked
         pMesas.setBackground(new java.awt.Color(24,168,255));
@@ -1707,14 +1701,14 @@ public class frmPrincipal extends javax.swing.JFrame {
                     mpReporte.setVisible(true);
                     mpCaja.setVisible(true);
                     mpReporte.setVisible(true);
-                    mpReservacion.setVisible(true);
+                    mpBackup.setVisible(true);
             }
             else if(usuario.getNid_perfil() == 2){
                     mpMante.setVisible(false);
                     mpPedido.setVisible(true);
                     mpReporte.setVisible(true);
                     mpCaja.setVisible(false);
-                    mpReservacion.setVisible(true);
+                    mpBackup.setVisible(true);
                    
             }else{
                 if(BD_RS.idCargoLog == 5){
@@ -1722,7 +1716,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     mpPedido.setVisible(false);
                     mpReporte.setVisible(true);
                     mpCaja.setVisible(true);
-                    mpReservacion.setVisible(true);
+                    mpBackup.setVisible(true);
                 }
             }
             //mpCarta.setVisible(true);
@@ -1733,7 +1727,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpMante.setBackground(new java.awt.Color(24,168,255));
             mpCaja.setBackground(new java.awt.Color(24,168,255));
             mpCarta.setBackground(new java.awt.Color(24,168,255));
-            mpReservacion.setBackground(new java.awt.Color(24,168,255));
+            mpBackup.setBackground(new java.awt.Color(24,168,255));
             if(nPanel != null){
                 getContentPane().remove(nPanel);
                 getContentPane().repaint();
@@ -1893,7 +1887,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             mpPedido.setVisible(true);
             mpCaja.setVisible(true);
             //mpCarta.setVisible(true);
-            mpReservacion.setVisible(true);
+            mpBackup.setVisible(true);
             
             //Los mismos paneles que se ha hecho VISIBLE, se setea LAYOUT = NULL (Para posicionar)
             //pTrabajador.setLayout(null);
@@ -1905,7 +1899,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             
             
             //mpCarta.setLayout(null);
-            mpReservacion.setLayout(null);
+            mpBackup.setLayout(null);
             
             //Primer panel .... Lo mismo en los demás paneles, lo que varía es la posicion Y ( 59 + size * numeropanel) (EASY by Anibal XD)
             /*
@@ -1938,7 +1932,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel8.setBounds(17, size/2 - 40, 64, 64);
             
             
-            mpReservacion.setBounds(0,59 + size*4,255,size);
+            mpBackup.setBounds(0,59 + size*4,255,size);
             jLabel37.setBounds(105, size/2 - 15,160 ,26);
             jLabel38.setBounds(17, size/2 - 40, 64, 64);
         }else if(id==2){
@@ -1950,12 +1944,12 @@ public class frmPrincipal extends javax.swing.JFrame {
             //pTrabajador.setVisible(true);
             mpReporte.setVisible(true);
             mpPedido.setVisible(true);
-            mpReservacion.setVisible(true);
+            mpBackup.setVisible(true);
             //pCargo.setVisible(true);
             //pArea.setVisible(true);
             //pTrabajador.setLayout(null);
             mpPedido.setLayout(null);
-            mpReservacion.setLayout(null);
+            mpBackup.setLayout(null);
             mpReporte.setLayout(null);
             //pUsuario.setLayout(null);
             //pMesas.setLayout(null);
@@ -1996,23 +1990,26 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel8.setBounds(17, size/2 - 40, 64, 64);
             
             
-            mpReservacion.setBounds(0,59 + size*2,255,size);
+            mpBackup.setBounds(0,59 + size*2,255,size);
             jLabel37.setBounds(105, size/2 - 15,160 ,26);
             jLabel38.setBounds(17, size/2 - 40, 64, 64);
             
         }else{
-            vis = 2;
+            vis = 3;
             size = (heightvar - pTop.getHeight())/vis;
             mpCaja.setVisible(true);
             mpCaja.setLayout(null);
-            mpReservacion.setVisible(true);
-            mpReservacion.setLayout(null);
-            
+            mpBackup.setVisible(true);
+            mpBackup.setLayout(null);
+            mpReporte.setVisible(true);
+            mpReporte.setLayout(null);
             mpCaja.setBounds(0,59,255,size);
             jLabel32.setBounds(105, size/2 - 15, 85, 26);
             jLabel33.setBounds(17, size/2 -40,64 ,64);
-            
-            mpReservacion.setBounds(0,59 + size,255,size);
+            mpReporte.setBounds(0,59 + size,255,size);
+            jLabel7.setBounds(105, size/2 - 15, 85, 26);
+            jLabel8.setBounds(17, size/2 - 40, 64, 64);
+            mpBackup.setBounds(0,59 + size*2,255,size);
             jLabel37.setBounds(105, size/2 - 15,160 ,26);
             jLabel38.setBounds(17, size/2 - 40, 64, 64);
             //pMesas.setVisible(true);
@@ -2045,7 +2042,34 @@ public class frmPrincipal extends javax.swing.JFrame {
         timer.start();
         
     }
-    
+    public void GBackup(){
+        try{
+                
+                Runtime runtime = Runtime.getRuntime();
+                File backupFile = new File("Backup_DondeAlfredo"
+                        +"_"+ Date.valueOf(LocalDate.now()).toString() +".sql");
+                System.out.println(backupFile.getAbsolutePath());
+                FileWriter fw = new FileWriter(backupFile);
+                Process child = runtime.exec(System.getProperty("user.dir") +"/UtilBD/mysqldump.exe " + "-h107.180.46.230 -P3306 -upruebabd -plasfijas123 "
+                        + "-B sgr_ventas_da -R"
+                        + ""); 
+                InputStreamReader irs = new InputStreamReader(child.getInputStream());
+                BufferedReader br = new BufferedReader(irs);
+
+                String line;
+                while( (line=br.readLine()) != null ) {
+                    fw.write(line + "\n");
+                }
+                fw.close();
+                irs.close();
+                br.close();
+                //C:\Users\AnibalMA\Documents\NetBeansProjects\PruebaShowDialog/UtilBD/mysqldump.exe -h107.180.46.230 -P3306 -upruebabd -plasfijas123 -B srg_ventas -R
+                //Caja 123
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error no se genero el archivo por el siguiente motivo:"+e.getMessage(), "Verificar",JOptionPane.ERROR_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(null, "Backup Generado","Verificar",JOptionPane.INFORMATION_MESSAGE);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2132,12 +2156,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JPanel jpContenedor;
     private javax.swing.JLabel lblSuc;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JPanel mpBackup;
     private javax.swing.JPanel mpCaja;
     private javax.swing.JPanel mpCarta;
     private javax.swing.JPanel mpMante;
     private javax.swing.JPanel mpPedido;
     private javax.swing.JPanel mpReporte;
-    private javax.swing.JPanel mpReservacion;
     private javax.swing.JPanel pArea;
     private javax.swing.JPanel pCargo;
     private javax.swing.JPanel pCategoria;

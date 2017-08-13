@@ -248,7 +248,7 @@ public class frmPedido extends javax.swing.JFrame {
         String div = String.valueOf(Double.parseDouble(cantCat/2+""));
         int cant2 = Integer.parseInt(div.substring(0,div.indexOf('.')));
         for(int i = 0; i<cant2; i++){
-            cont ++;
+            ContRows++;
             x = 105;
             a = 1;
             while(a <= 2){
@@ -413,8 +413,12 @@ public class frmPedido extends javax.swing.JFrame {
                 jlname.setText("<html>" + rec + "</html>");
                 jlprice.setText("S/. " +cad.substring(cad.indexOf('%')+1, cad.indexOf('#')));
                 jlprice.setForeground(new Color(18, 133, 43));
-                jlname.setBounds(h+5,a+87,120,30);
-                jlprice.setBounds(h+5,a+120,120,10);
+                int posx = 21 - rec.length();
+                if(posx!= 0)
+                    posx+=2;
+                jlname.setBounds(h,a+87,140,30);
+                jlname.setVerticalAlignment(JLabel.TOP);
+                jlprice.setBounds(h+52,a+120,120,10);
                 /*
                 switch (i) {
                     case 1:
@@ -492,7 +496,8 @@ public class frmPedido extends javax.swing.JFrame {
                 int posx = 21 - rec.length();
                 if(posx!= 0)
                     posx+=2;
-                jlname.setBounds(h+posx * 3,a+87,140,30);
+                jlname.setBounds(h,a+87,140,30);
+                jlname.setVerticalAlignment(JLabel.TOP);
                 jlprice.setBounds(h+52,a+120,120,10);
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

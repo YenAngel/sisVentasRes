@@ -5,14 +5,19 @@
         <group>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/Archivo.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpNuevoPlato.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/modelo/PrintFormat.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Mesas_Selection.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BD_RS.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpEditarPlato.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BDUtil.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Pedido/frmPedido.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Login.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Venta/frmCaja.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/modelo/PrintFormat.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Mesas_Selection1.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Area/Area_new.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Area/AreaL.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato/jpEditarPlato.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BD_RS.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Venta/frmCerrarCaja.java</file>
         </group>
     </open-files>
 </project-private>
