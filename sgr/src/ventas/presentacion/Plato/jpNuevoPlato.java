@@ -1,6 +1,7 @@
 
 package ventas.presentacion.Plato;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -220,22 +221,22 @@ public class jpNuevoPlato extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPlatoKeyTyped
     public  void imgPlato(String plato){       
-        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
-        //URL url = this.getClass().getResource(path);
-        System.out.println(plato);
-        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
-        Icon icon= new ImageIcon(imageIcon.getImage());
-        lblPlatoImg.setIcon(icon);        
-        this.repaint();
-        lblPlatoImg.repaint();
-        lblPlatoImg.updateUI();
-        lblPlatoImg.validate();
-        this.updateUI();
-        this.validate();
+            File tempfile=new File("src/recursos/" + plato);
+                if(tempfile.exists()){
+                    ImageIcon imageIcon = new ImageIcon(tempfile.getAbsolutePath());
+                    Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+                    lblPlatoImg.setIcon(icon);                
+                    this.repaint();
+                }else{
+                    ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/default_dish.jpg"));
+                    Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
+                    lblPlatoImg.setIcon(icon);                
+                    this.repaint();
+                }
     }
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         if (!txtPlato.getText().equals("")) {
-            Archivo archivo=new Archivo();
+            Archivo archivo=new Archivo(this);
             archivo.setVisible(true);
             archivo.name= Plato.nid_plato+"";
             archivo.nroFrm=1;
@@ -282,6 +283,8 @@ public class jpNuevoPlato extends javax.swing.JPanel {
                     plato.setCo_tipo(GetTipoEnvioS(cboEnvio.getSelectedItem().toString(),false));
                     if (BDData.nuevoPlato(plato)) {
                         cleanControls();
+                        jpListarPlato listarPlato=new jpListarPlato();
+                        frmPrincipal.Comp(listarPlato);
                     }
                 }else
                     JOptionPane.showMessageDialog(null, "Completar los campos");

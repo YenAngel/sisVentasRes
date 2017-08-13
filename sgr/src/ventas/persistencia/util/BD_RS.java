@@ -28,6 +28,7 @@ public class BD_RS {
     public static int numPiso;
     public static int idUserLog;
     public static int dniUserLog;
+    public static int idCargoLog;
     public static DefaultTableModel FormatearTablaTrabajador(){
         DefaultTableModel dtm = new DefaultTableModel();
         String [] cab = {"Código", "Nombre", "Apellido Paterno", "Apellido Materno","DNI", "Ingreso Laboral", "Cargo"};
@@ -820,7 +821,7 @@ public class BD_RS {
         try {
             DPedido.DetalleAPedido.removeAllElements();
             DefaultTableModel dtm = FormatearTablaDetalleP();
-            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio),tpd.tx_observacion, tpd.co_estado from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
+            String sql = "select mpl.no_plato, tpd.qt_pedido,tpd.mt_precio, (tpd.qt_pedido * tpd.mt_precio),tpd.tx_observacion, tpd.co_estado, mpl.co_envio from tbl_pedido_detalle tpd inner join mae_plato mpl on mpl.nid_plato = tpd.nid_plato where tpd.nid_pedido = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, nPedido);
             ResultSet rs = ps.executeQuery();
@@ -832,6 +833,7 @@ public class BD_RS {
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
                 v.add(rs.getString(6));
+                v.add(rs.getString(7));
                 DPedido.DetalleAPedido.addElement(rs.getString(1) + "$" + rs.getString(2));
                 dtm.addRow(v);
             }
@@ -1016,20 +1018,21 @@ public class BD_RS {
             ps.executeUpdate();
             
         } catch (SQLException e) {
+            System.err.println(e.getMessage());
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
             
         }
     }
-    public static void AnularPedido(int idPedido){
+    public static boolean AnularPedido(int idPedido){
         try {
-            String sql = "UPDATE tbl_pedido set nid_estado = 6 where nid_pedido = ?";
-            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
-            ps.setInt(1, idPedido);
-            ps.executeUpdate();
-            
+            String sql = "Call usp_anularpedido_dp(?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1, idPedido);
+            cs.executeUpdate();
+            return true;
         } catch (SQLException e) {
             Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, e);
-            
+            return false;
         }
     }
     public static int EstadoCaja(){
@@ -1039,6 +1042,20 @@ public class BD_RS {
             ps.setInt(1, 1);
             ps.setInt(2, idlocal);
             ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            return rs.getInt(1);
+            else return 0;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return -1;
+        }
+    }
+    public static int EstadoPedidoinMS(int nPedido){
+        try {
+            String sql = "select nid_estado from tbl_pedido where nid_pedido = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, nPedido);
             ResultSet rs = ps.executeQuery();
             if(rs.next())
             return rs.getInt(1);
@@ -1064,6 +1081,20 @@ public class BD_RS {
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+    }
+    public static boolean EliminarPlatoB(int idPedido, String NamePlatoB){
+        try {
+            String sql = "CALL usp_deleteplato_dpedido(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1, idPedido);
+            cs.setString(2, NamePlatoB);
+            cs.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
     

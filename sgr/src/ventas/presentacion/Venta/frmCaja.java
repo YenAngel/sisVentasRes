@@ -57,13 +57,14 @@ public class frmCaja extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         tblCaja.setModel(formatearTabla());
-        cboComprobante.setSelectedIndex(-1);
+        cboComprobante.setSelectedIndex(0);
         componentes();
         setLayout(null);
         txtCLocal.setText(login_User.surcursal);
         //lblLocal.setText(login_User.surcursal);   
         getNow();
-        cboDocumento.setSelectedIndex(-1);     
+        cboDocumento.setSelectedIndex(0);     
+        
         String local=txtCLocal.getText();
         getUsuario(documento, local);
         init();
@@ -430,7 +431,7 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         cboDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "DNI" }));
+        cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Documento", "RUC", "DNI" }));
         cboDocumento.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboDocumentoItemStateChanged(evt);
@@ -485,7 +486,7 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel2.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 41, 140, 40));
 
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Boleta", "Ticket" }));
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo Doc", "Factura", "Boleta", "Ticket" }));
         cboComprobante.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboComprobanteItemStateChanged(evt);
@@ -931,7 +932,7 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void cboDocumentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDocumentoItemStateChanged
-        if (cboDocumento.getSelectedIndex()==1) {
+        if (cboDocumento.getSelectedIndex()==2) {
             
             jLabel16.setVisible(true);
             jLabel17.setVisible(true);
@@ -1082,11 +1083,11 @@ public class frmCaja extends javax.swing.JFrame {
         Date fecha = new Date();
         CajaLocal cl=new CajaLocal();
         String tempComprobante="";
-        if (cboComprobante.getSelectedIndex()==0) {
+        if (cboComprobante.getSelectedIndex()==1) {
             tempComprobante=01+"";
-        }else if(cboComprobante.getSelectedIndex()==1){
-            tempComprobante=03+"";
         }else if(cboComprobante.getSelectedIndex()==2){
+            tempComprobante=03+"";
+        }else if(cboComprobante.getSelectedIndex()==3){
             tempComprobante=00+"";
         }
         caja.setCo_comprobante(tempComprobante);

@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.TimerTask;
 import javax.swing.JPanel;
 import ventas.modelo.Login_User;
+import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.Area.AreaL;
 import ventas.presentacion.Cargo.CargoL;
 import ventas.presentacion.Categoria.jpListarCategoria;
@@ -1709,20 +1710,20 @@ public class frmPrincipal extends javax.swing.JFrame {
                     mpReservacion.setVisible(true);
             }
             else if(usuario.getNid_perfil() == 2){
-                    mpMante.setVisible(true);
-                    mpPedido.setVisible(true);
-                    mpReporte.setVisible(false);
-                    mpCaja.setVisible(false);
-                    mpReporte.setVisible(false);
-                    mpReservacion.setVisible(false);
-                   
-            }else{
                     mpMante.setVisible(false);
                     mpPedido.setVisible(true);
-                    mpReporte.setVisible(false);
+                    mpReporte.setVisible(true);
                     mpCaja.setVisible(false);
-                    mpReporte.setVisible(false);
-                    mpReservacion.setVisible(false);
+                    mpReservacion.setVisible(true);
+                   
+            }else{
+                if(BD_RS.idCargoLog == 5){
+                    mpMante.setVisible(false);
+                    mpPedido.setVisible(false);
+                    mpReporte.setVisible(true);
+                    mpCaja.setVisible(true);
+                    mpReservacion.setVisible(true);
+                }
             }
             //mpCarta.setVisible(true);
             
@@ -1941,20 +1942,24 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel37.setBounds(105, size/2 - 15,160 ,26);
             jLabel38.setBounds(17, size/2 - 40, 64, 64);
         }else if(id==2){
-            vis = 2;
+            vis = 3;
             size = (heightvar - pTop.getHeight())/vis;    
             //pMesas.setVisible(true);
-            mpMante.setVisible(true);
+            //mpMante.setVisible(true);
             //pUsuario.setVisible(true);
             //pTrabajador.setVisible(true);
+            mpReporte.setVisible(true);
             mpPedido.setVisible(true);
+            mpReservacion.setVisible(true);
             //pCargo.setVisible(true);
             //pArea.setVisible(true);
             //pTrabajador.setLayout(null);
             mpPedido.setLayout(null);
+            mpReservacion.setLayout(null);
+            mpReporte.setLayout(null);
             //pUsuario.setLayout(null);
             //pMesas.setLayout(null);
-            mpMante.setLayout(null);
+            //mpMante.setLayout(null);
             //pCargo.setLayout(null);
             //pArea.setLayout(null);
             
@@ -1969,11 +1974,11 @@ public class frmPrincipal extends javax.swing.JFrame {
             pMesas.setBounds(0, 59 + size*2, 255, size);
             jLabel11.setBounds(105, size/2 - 20,68 ,26);
             jLabel12.setBounds(17, size/2 - 40,64 ,64);*/
-            
+            /*
             mpMante.setBounds(0, 59, 255, size);
             jLabel13.setBounds(90, size/2 - 15,160 ,26);
             jLabel14.setBounds(17, size/2 -40,64 ,64);
-            /*
+            
             pCargo.setBounds(0, 59 + size*4, 255, size);
             jLabel16.setBounds(105, size/2 - 20,68 ,26);
             jLabel17.setBounds(17, size/2 - 40,64 ,64);
@@ -1982,25 +1987,46 @@ public class frmPrincipal extends javax.swing.JFrame {
             jLabel18.setBounds(105, size/2 - 20,68 ,26);
             jLabel19.setBounds(17, size/2 - 40,64 ,64);
             */
-            mpPedido.setBounds(0, 59 + size, 255, size);
+            mpPedido.setBounds(0, 59, 255, size);
             jLabel3.setBounds(105, size/2 - 15, 73, 26);
             jLabel4.setBounds(17, size/2 - 30, 64, 64);
-        }else{
-            vis = 1;
-            size = (heightvar - pTop.getHeight())/vis;
             
+            mpReporte.setBounds(0,59 + size,255,size);
+            jLabel7.setBounds(105, size/2 - 15, 85, 26);
+            jLabel8.setBounds(17, size/2 - 40, 64, 64);
+            
+            
+            mpReservacion.setBounds(0,59 + size*2,255,size);
+            jLabel37.setBounds(105, size/2 - 15,160 ,26);
+            jLabel38.setBounds(17, size/2 - 40, 64, 64);
+            
+        }else{
+            vis = 2;
+            size = (heightvar - pTop.getHeight())/vis;
+            mpCaja.setVisible(true);
+            mpCaja.setLayout(null);
+            mpReservacion.setVisible(true);
+            mpReservacion.setLayout(null);
+            
+            mpCaja.setBounds(0,59,255,size);
+            jLabel32.setBounds(105, size/2 - 15, 85, 26);
+            jLabel33.setBounds(17, size/2 -40,64 ,64);
+            
+            mpReservacion.setBounds(0,59 + size,255,size);
+            jLabel37.setBounds(105, size/2 - 15,160 ,26);
+            jLabel38.setBounds(17, size/2 - 40, 64, 64);
             //pMesas.setVisible(true);
-            mpPedido.setVisible(true);
-            mpPedido.setLayout(null);
+            //mpPedido.setVisible(true);
+            //mpPedido.setLayout(null);
             //pMesas.setLayout(null);
         
             //pMesas.setBounds(0, 59, 255, size);
             //jLabel11.setBounds(105, size/2 - 20,68 ,26);
             //jLabel12.setBounds(17, size/2 - 40,64 ,64);
             
-            mpPedido.setBounds(0, 59, 255, size);
-            jLabel3.setBounds(105, size/2 - 15, 73, 26);
-            jLabel4.setBounds(17, size/2 - 30, 64, 64);
+            //mpPedido.setBounds(0, 59, 255, size);
+            //jLabel3.setBounds(105, size/2 - 15, 73, 26);
+            //jLabel4.setBounds(17, size/2 - 30, 64, 64);
         }
     }
     

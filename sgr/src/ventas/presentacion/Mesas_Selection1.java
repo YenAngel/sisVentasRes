@@ -439,7 +439,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1328, 588));
 
-        jPanel2.setBackground(new java.awt.Color(240, 242, 220));
+        jPanel2.setBackground(new java.awt.Color(222, 252, 187));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         jPanel2.setPreferredSize(new java.awt.Dimension(1260, 588));
         jPanel2.setLayout(null);

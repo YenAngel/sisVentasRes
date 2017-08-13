@@ -29,12 +29,10 @@ public class jpEditarPlato extends javax.swing.JPanel {
     private void addItems(){
         cboCategoria1.setModel(BDData.getCategoria1());        
     }
-    public  void imgPlato(String plato){       
-        //String path = "D:/sisVentasRes/sgr/src/recursos/"+status+".png";
-        //URL url = this.getClass().getResource(path);
+    public  void imgPlato(String plato){     
                 File tempfile=new File("src/recursos/" + plato);
                 if(tempfile.exists()){
-                    ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/recursos/"+plato));
+                    ImageIcon imageIcon = new ImageIcon(tempfile.getAbsolutePath());
                     Icon icon= new ImageIcon(imageIcon.getImage().getScaledInstance(lblPlatoImg.getWidth(), lblPlatoImg.getHeight(), Image.SCALE_DEFAULT));
                     lblPlatoImg.setIcon(icon);                
                     this.repaint();
@@ -270,7 +268,7 @@ public class jpEditarPlato extends javax.swing.JPanel {
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         if (!txtPlato.getText().equals("")) {
-            Archivo archivo=new Archivo();
+            Archivo archivo=new Archivo(this);
             archivo.setVisible(true);
             archivo.name=txtPlato.getText();
             archivo.nroFrm=2;

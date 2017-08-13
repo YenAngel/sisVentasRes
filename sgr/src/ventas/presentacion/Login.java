@@ -36,6 +36,7 @@ public class Login extends javax.swing.JFrame {
     public static JTextField j;
     public static JDialog jd = new JDialog();
     public  Teclado t = new Teclado(this);
+    public static JDialog AC;
     public Login() {
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +47,14 @@ public class Login extends javax.swing.JFrame {
         p.setBackground(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg").getPath());
         setContentPane(p);  
         initComponents();
+        AC = new JDialog();
+        frmAperturarCaja aperturarCaja = new frmAperturarCaja(AC);
+        AC.add(aperturarCaja.getContentPane());
+        AC.setModal(true);
+        AC.setResizable(false);
+        AC.setSize(aperturarCaja.getSize());
+        AC.setLocationRelativeTo(null);
+        AC.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //jPanel1.setOpaque(false);
         //jPanel1.setBackground(this.getClass().getResource("/recursos/fondopersonalizado720_filtro.jpg").getPath());
         setLocationRelativeTo(null);
@@ -326,6 +335,7 @@ public class Login extends javax.swing.JFrame {
                    BD_RS.idUserLog = rs.getInt(1);
                    BD_RS.dniUserLog = BD_RS.GetDniUserLOG(BD_RS.idUserLog);
                    BD_RS.idlocal = BD_RS.GetIdLocal(cboSucursal.getSelectedItem().toString());
+                   BD_RS.idCargoLog = rs.getInt(3);
                 }                                  
             if (usuario.getNid_perfil()==1) {
                 getStatus("success");
@@ -333,30 +343,14 @@ public class Login extends javax.swing.JFrame {
                 TimerTask task =new TimerTask() {
                     @Override
                     public void run() {
-                        int estado = BD_RS.EstadoCaja();
-                        if(estado == 0){
-                        JDialog AC = new JDialog();
-                        frmAperturarCaja aperturarCaja = new frmAperturarCaja(AC);
-                        AC.add(aperturarCaja.getContentPane());
-                        AC.setModal(true);
-                        AC.setResizable(false);
-                        AC.setSize(aperturarCaja.getSize());
-                        AC.setLocationRelativeTo(null);
-                        AC.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-                        AC.setVisible(true);
+                        
+                        
                         
                         setVisible(false);
                         frmPrincipal frmP = new frmPrincipal();
                         frmP.Validar(usuario.getNid_perfil());
                         frmP.setVisible(true);
-                        }else if(estado == -1){
-                            JOptionPane.showMessageDialog(null, "Ocurrio un error al obtener el estado de la Caja");
-                        }else{
-                            setVisible(false);
-                            frmPrincipal frmP = new frmPrincipal();
-                            frmP.Validar(usuario.getNid_perfil());
-                            frmP.setVisible(true);
-                        }
+                       
                     }
                 };
                 t.schedule(task, 2000);                                    
@@ -366,10 +360,28 @@ public class Login extends javax.swing.JFrame {
                 frmP.Validar(2);
                 frmP.setVisible(true);            
             }else if (usuario.getNid_perfil()==3) {
-                setVisible(false);
-                frmPrincipal frmP = new frmPrincipal();
-                frmP.Validar(3);
-                frmP.setVisible(true);            
+                        if(BD_RS.idCargoLog == 3){
+                            int estado = BD_RS.EstadoCaja();
+                            if(estado == 0){
+                                AC.setVisible(true);
+                                setVisible(false);
+                                frmPrincipal frmP = new frmPrincipal();
+                                frmP.Validar(usuario.getNid_perfil());
+                                frmP.setVisible(true);
+                            }else if(estado == -1){
+                                JOptionPane.showMessageDialog(null, "Ocurrio un error al obtener el estado de la Caja");
+                            }else{
+                                setVisible(false);
+                                frmPrincipal frmP = new frmPrincipal();
+                                frmP.Validar(usuario.getNid_perfil());
+                                frmP.setVisible(true);
+                            }
+                        }else{
+                                setVisible(false);
+                                frmPrincipal frmP = new frmPrincipal();
+                                frmP.Validar(usuario.getNid_perfil());
+                                frmP.setVisible(true);
+                        }
             }else{
                 count++;
                 txtPassword.setText("");

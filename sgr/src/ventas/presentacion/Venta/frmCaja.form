@@ -351,9 +351,10 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="RUC"/>
-                <StringItem index="1" value="DNI"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Seleccione Documento"/>
+                <StringItem index="1" value="RUC"/>
+                <StringItem index="2" value="DNI"/>
               </StringArray>
             </Property>
           </Properties>
@@ -471,10 +472,11 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Factura"/>
-                <StringItem index="1" value="Boleta"/>
-                <StringItem index="2" value="Ticket"/>
+              <StringArray count="4">
+                <StringItem index="0" value="Seleccione Tipo Doc"/>
+                <StringItem index="1" value="Factura"/>
+                <StringItem index="2" value="Boleta"/>
+                <StringItem index="3" value="Ticket"/>
               </StringArray>
             </Property>
           </Properties>
