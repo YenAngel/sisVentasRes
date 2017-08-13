@@ -1204,12 +1204,15 @@ public class BDData {
         }
     }
     public static boolean saveRetiro(CajaLocal cl){        
-        String sql="call sgr_spi_retiro(?,?,?)";
+        String sql="call sgr_spi_retiro(?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, cl.getVi_no_local());
             cs.setDouble(2, cl.getVi_mt_importe());
             cs.setString(3, cl.getVi_nu_persona());
+            cs.setInt(4, cl.getVi_nid_usuario_crea());
+            cs.setInt(5, cl.getVi_co_concepto_pago());
+            cs.setString(6, cl.getVi_no_persona());            
             cs.executeUpdate();            
             return true;
         } catch (Exception e) {

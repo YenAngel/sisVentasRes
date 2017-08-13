@@ -248,7 +248,7 @@ public class frmPedido extends javax.swing.JFrame {
         String div = String.valueOf(Double.parseDouble(cantCat/2+""));
         int cant2 = Integer.parseInt(div.substring(0,div.indexOf('.')));
         for(int i = 0; i<cant2; i++){
-            cont ++;
+            ContRows++;
             x = 105;
             a = 1;
             while(a <= 2){
@@ -413,8 +413,12 @@ public class frmPedido extends javax.swing.JFrame {
                 jlname.setText("<html>" + rec + "</html>");
                 jlprice.setText("S/. " +cad.substring(cad.indexOf('%')+1, cad.indexOf('#')));
                 jlprice.setForeground(new Color(18, 133, 43));
-                jlname.setBounds(h+5,a+87,120,30);
-                jlprice.setBounds(h+5,a+120,120,10);
+                int posx = 21 - rec.length();
+                if(posx!= 0)
+                    posx+=2;
+                jlname.setBounds(h,a+87,140,30);
+                jlname.setVerticalAlignment(JLabel.TOP);
+                jlprice.setBounds(h+52,a+120,120,10);
                 /*
                 switch (i) {
                     case 1:
@@ -492,7 +496,8 @@ public class frmPedido extends javax.swing.JFrame {
                 int posx = 21 - rec.length();
                 if(posx!= 0)
                     posx+=2;
-                jlname.setBounds(h+posx * 3,a+87,140,30);
+                jlname.setBounds(h,a+87,140,30);
+                jlname.setVerticalAlignment(JLabel.TOP);
                 jlprice.setBounds(h+52,a+120,120,10);
                 jl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -594,9 +599,6 @@ public class frmPedido extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         lblImgDetalleP = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        lblImgComentario = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtComents = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
@@ -862,42 +864,6 @@ public class frmPedido extends javax.swing.JFrame {
 
         jpContenedo.add(jPanel3);
         jPanel3.setBounds(10, 80, 304, 40);
-
-        jPanel5.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(0, 18, 153)));
-
-        jLabel19.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel19.setText("Comentario:");
-        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel19MouseClicked(evt);
-            }
-        });
-
-        lblImgComentario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/comentario.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImgComentario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblImgComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        jpContenedo.add(jPanel5);
-        jPanel5.setBounds(10, 400, 304, 40);
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 18, 153)));
 
@@ -1364,10 +1330,6 @@ public class frmPedido extends javax.swing.JFrame {
         nivel = 1;
     }//GEN-LAST:event_btnInicioCatActionPerformed
 
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel19MouseClicked
-
     private void tblPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPedidosMouseClicked
        int ind = tblPedidos.getSelectedRow();
        if(ind != -1){
@@ -1686,7 +1648,6 @@ public class frmPedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1698,7 +1659,6 @@ public class frmPedido extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -1716,7 +1676,6 @@ public class frmPedido extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstadoPed;
     private javax.swing.JLabel lblEstadoPedido;
     private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblImgComentario;
     private javax.swing.JLabel lblImgDetalleP;
     private javax.swing.JLabel lblMesa;
     private javax.swing.JLabel lblNPedido;

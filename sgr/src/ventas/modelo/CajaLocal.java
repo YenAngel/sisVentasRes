@@ -11,7 +11,25 @@ public class CajaLocal {
     public double vi_mt_importe;
     public String vi_nu_persona;
     public int vi_nid_usuario_crea;
+    public int vi_co_concepto_pago;
+    public String vi_no_persona;
 
+    public int getVi_co_concepto_pago() {
+        return vi_co_concepto_pago;
+    }
+
+    public void setVi_co_concepto_pago(int vi_co_concepto_pago) {
+        this.vi_co_concepto_pago = vi_co_concepto_pago;
+    }
+
+    public String getVi_no_persona() {
+        return vi_no_persona;
+    }
+
+    public void setVi_no_persona(String vi_no_persona) {
+        this.vi_no_persona = vi_no_persona;
+    }
+    
     public Date getVi_fe_emision() {
         return vi_fe_emision;
     }

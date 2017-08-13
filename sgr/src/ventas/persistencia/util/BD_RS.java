@@ -316,6 +316,24 @@ public class BD_RS {
         }
         
     }
+    public static DefaultListModel ListarMesasSelection1(int piso){
+        try {
+            DefaultListModel dlm = new DefaultListModel();
+            String sql = "select mes.nu_mesa, mes.qt_silla from mae_mesa mes inner join mae_piso pis on pis.nid_piso = mes.nid_piso inner join tbl_pedido_mesa tpm on tpm.nid_mesa = mes.nid_mesa inner join tbl_pedido ped on ped.nid_pedido = tpm.nid_pedido where mes.nid_estado = 1 and pis.nu_piso = ? and pis.nid_local = ? and ped.nid_estado = 4 order by 1";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, piso);
+            ps.setInt(2, idlocal);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                dlm.addElement(rs.getString(1) + "#" + rs.getInt(2));
+            }
+            return dlm;
+        } catch (SQLException ex) {
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
     public static boolean CTrabajador(Trabajador trabajador, int tipo){
         //sp_trabajador(in codT varchar(5),in dni varchar(20),in nombre varchar(50),in ape_pat varchar(50),in ape_mat varchar(50),in fe_ingreso date,in cargo int,in estado int,in fec_crecion date,in fec_mod date,in tipo int) 
         String sp = "Call sp_trabajador(?,?,?,?,?,?,?,?,?,?,?)";
@@ -374,7 +392,7 @@ public class BD_RS {
             cs.setObject(5, area.getFe_mod());
             cs.setInt(6,tipo);
             
-            cs.executeQuery();
+            cs.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.err.println(e);

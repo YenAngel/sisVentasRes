@@ -55,20 +55,21 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
    public static int numberMesasGroup = 0;
    public static int nroPiso;
    public static int nroMesa;
-    
+    public  static frmCerrarCaja cc = new frmCerrarCaja();
     public int idx=frmCaja.idx;
     Login_User lu= new Login_User();
     public Mesas_Selection1() {
         
         int s = 0;
         initComponents();
+        
         HoraL();
         loadCaja();
         //btnGroupM.setVisible(false);
         //System.out.println(jPanel11.getBackground().getRGB());
         setExtendedState(MAXIMIZED_BOTH);
         cboPiso.setModel(BD_RS.ListarCBOPisos());
-
+        lblSuc.setText(Login_User.surcursal);
         ((JLabel)cboPiso.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         if(cboPiso.getSelectedIndex() != -1){            
             nroPiso=Integer.parseInt(cboPiso.getSelectedItem().toString());
@@ -76,7 +77,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
             //System.out.println(Integer.parseInt(cboPiso.getSelectedItem().toString()));
-            dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlm = BD_RS.ListarMesasSelection1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             dlmpedido = BD_RS.JoinPedido1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             LoadMesas();
             //cboUsuario.setModel(BDData.getCaja());
@@ -135,9 +136,6 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             sustrayendo=sustrayendo>0?sustrayendo:0;
             apertura=apertura>0?apertura:0;
             total-=sustrayendo;
-            System.out.println(total);
-            System.out.println(sustrayendo);
-            System.out.println(apertura);
             lblIngreso.setText("S/. "+df.format(total));
             lblEgreso.setText("S/. "+df.format(sustrayendo));
             lblApertura.setText("S/. "+df.format(apertura));
@@ -165,7 +163,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             JLabel jl = new JLabel();
             JLabel jlIMGChair = new JLabel();
             JLabel jlTextNChair = new JLabel();
-            JCheckBox jc = new JCheckBox();
+            //JCheckBox jc = new JCheckBox();
             JLabel jlIMG = new JLabel();
             String cad = dlm.getElementAt(cont-1).toString();
             int nmesa  = Integer.parseInt(cad.substring(0,cad.indexOf('#')));
@@ -175,13 +173,13 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
             jl.setBounds(20, 10, 60, 52);
-            jc.setBounds(223, 7, 21, 21);
+            //jc.setBounds(223, 7, 21, 21);
             
-            jc.addItemListener(new java.awt.event.ItemListener() {
+            /*jc.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jc(evt);
             }
-        });
+        });*/
             jlIMGChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/chair.png")));
             jlIMGChair.setBounds(20, 146, 24, 24);
             jlTextNChair.setText(cad.substring(cad.indexOf('#')+1,cad.length())+"");
@@ -191,7 +189,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             jlIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo4_min.png")));
             jlIMG.setBounds(60, 50, 140, 66);
             jp.add(jl);
-            jp.add(jc);
+            //jp.add(jc);
             jp.add(jlIMG);
             jp.add(jlIMGChair);
             jp.add(jlTextNChair);
@@ -226,24 +224,24 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                     imgPed.setBounds(70, 116, 24, 24);
                     jlIMG.setName("#" + nmesa + "$" + numberPedido);
                     
-                    jc.setName("#" + nmesa + "$" + numberPedido);
-                    jc.setVisible(false);
+                    //jc.setName("#" + nmesa + "$" + numberPedido);
+                    //jc.setVisible(false);
                     jp.add(jMozo);
                     jp.add(imgMozo);
                     jp.add(imgPed);
                     jp.add(jNPed);
                 }else{
                     jp.setBackground(new Color(18, 133, 43));
-                    jc.setBackground(new Color(18, 133, 43));
+                    //jc.setBackground(new Color(18, 133, 43));
                     jlIMG.setName("#" + nmesa + "$");
-                    jc.setName("#" + nmesa + "$");
-                    jc.setVisible(true);
+                    //jc.setName("#" + nmesa + "$");
+                    //jc.setVisible(true);
                 }
                 jPanel2.add(jp);
             }
             y+=215;
             panelaum+=225;
-            jPanel2.setPreferredSize(new Dimension(1210,panelaum));
+            jPanel2.setPreferredSize(new Dimension(1260,panelaum));
         }
         if ((cant4*4) != mesas){
             x = 40;
@@ -254,12 +252,12 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 JLabel jl = new JLabel();
                 JLabel jlIMGChair = new JLabel();
                 JLabel jlTextNChair = new JLabel();
-                JCheckBox jc = new JCheckBox();
+                /*JCheckBox jc = new JCheckBox();
                 jc.addItemListener(new java.awt.event.ItemListener() {
                 public void itemStateChanged(java.awt.event.ItemEvent evt) {
                     jc(evt);
                 }
-                });
+                });*/
                 
             JLabel jlIMG = new JLabel();
             String cad = dlm.getElementAt(cont-1).toString();
@@ -271,7 +269,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             jl.setFont(new Font("Arial Black", 1, 36));
             jl.setForeground(Color.WHITE);
             jl.setBounds(20, 10, 60, 52);
-            jc.setBounds(223, 7, 21, 21);
+            //jc.setBounds(223, 7, 21, 21);
             jlIMGChair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/chair.png")));
             jlIMGChair.setBounds(20, 146, 24, 24);
             jlTextNChair.setText(cad.substring(cad.indexOf('#')+1,cad.length())+"");
@@ -286,7 +284,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             }
         });
             jp.add(jl);
-            jp.add(jc);
+            //jp.add(jc);
             jp.add(jlIMG);
             jp.add(jlIMGChair);
             jp.add(jlTextNChair);
@@ -316,24 +314,24 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                     imgPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/listped.png")));
                     imgPed.setBounds(70, 116, 24, 24);
                     jlIMG.setName("#" +nmesa + "$" + numberPedido);
-                    jc.setName("#" +nmesa + "$" + numberPedido);
+                    //jc.setName("#" +nmesa + "$" + numberPedido);
                     jp.add(jMozo);
                     jp.add(imgMozo);
                     jp.add(imgPed);
                     jp.add(jNPed);
-                    jc.setVisible(false);
+                    //jc.setVisible(false);
                 }else{
                     jp.setBackground(new Color(18, 133, 43));
-                    jc.setBackground(new Color(18, 133, 43));
+                    //jc.setBackground(new Color(18, 133, 43));
                     jlIMG.setName("#" + nmesa+"$");
-                    jc.setName("#" +nmesa + "$");
-                    jc.setVisible(true);
+                    //jc.setName("#" +nmesa + "$");
+                    //jc.setVisible(true);
                 }
              jPanel2.add(jp);
             }
             y+=215;
             panelaum+=225;
-            jPanel2.setPreferredSize(new Dimension(1210,panelaum));
+            jPanel2.setPreferredSize(new Dimension(1260,panelaum));
         }
     }
     public void jlIMG(MouseEvent evt){
@@ -346,6 +344,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             DPedido.nPedido = Integer.parseInt(nPedido);
         }else{
             DPedido.nPedido = 0;
+            return;
         }
         DPedido.dlmDP.addElement(nMesa);
         // llamar al formulario pedido
@@ -394,6 +393,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         cboPiso = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -405,24 +405,34 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblRetirar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         lblApertura = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        lblEgreso = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        lblIngreso = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblEgreso = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblIngreso = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel17 = new javax.swing.JLabel();
+        lblSuc = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(183, 222, 232));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51), 2));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel16.setText("Piso:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 47, -1, 38));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Salon.png"))); // NOI18N
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, 38));
 
         cboPiso.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cboPiso.addItemListener(new java.awt.event.ItemListener() {
@@ -435,7 +445,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 cboPisoActionPerformed(evt);
             }
         });
-        getContentPane().add(cboPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 46, 211, 46));
+        jPanel3.add(cboPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 80, -1));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1328, 588));
 
@@ -445,34 +455,32 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         jPanel2.setLayout(null);
         jScrollPane1.setViewportView(jPanel2);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 500));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1260, 500));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/DateTime.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 50, 50));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Calendario.png"))); // NOI18N
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 50, 40));
 
         FH.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        FH.setForeground(new java.awt.Color(18, 133, 43));
         FH.setText("#FH");
-        getContentPane().add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, 38));
+        jPanel3.add(FH, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, 50));
 
-        jPanel1.setBackground(new java.awt.Color(240, 242, 220));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 5, 5), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/reload.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Refrescar.png"))); // NOI18N
         jLabel4.setText("Refrescar");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel4.setVerifyInputWhenFocusTarget(false);
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, 70, 90));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 70, 90));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/off-button.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Salir.png"))); // NOI18N
         jLabel6.setText("Salir");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -481,7 +489,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 10, 70, 90));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 90));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -494,7 +502,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 60, 80));
 
         lblRetirar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblRetirar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money.png"))); // NOI18N
@@ -506,43 +514,66 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
                 lblRetirarMouseClicked(evt);
             }
         });
-        jPanel1.add(lblRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, -1, 100));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Apertura:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jSeparator2.setBackground(new java.awt.Color(153, 0, 153));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, 10));
-
-        lblApertura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(lblApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 120, 20));
-
-        jSeparator1.setBackground(new java.awt.Color(153, 0, 153));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, 10));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Egreso:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        jSeparator3.setBackground(new java.awt.Color(153, 0, 153));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 210, 10));
-
-        lblIngreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(lblIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 120, 20));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Ingreso:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-
-        lblEgreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(lblEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 120, 20));
+        jPanel1.add(lblRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/leyenda2.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 350, 53));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 26, 350, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, 1260, 120));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Apertura:");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        lblApertura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel5.add(lblApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 120, 20));
+
+        jSeparator2.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel5.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 210, 10));
+
+        lblEgreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel5.add(lblEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 120, 20));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Egreso:");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel5.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 210, 10));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Ingreso:");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        lblIngreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel5.add(lblIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 120, 20));
+
+        jSeparator1.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, 10));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 240, 100));
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 1260, 100));
+
+        jLabel17.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Local.png"))); // NOI18N
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 38));
+
+        lblSuc.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lblSuc.setText("#Suc");
+        jPanel3.add(lblSuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 38));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_da_pedido.jpg"))); // NOI18N
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 0, 370, 65));
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 65, 1258, 4));
+
+        jPanel6.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 594, 1258, 4));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -573,8 +604,8 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             DPedido.dlmDP.removeAllElements();
             DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
             BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
-            dlm = BD_RS.ListarMesasSelection(Integer.parseInt(cboPiso.getSelectedItem().toString()));
-            dlmpedido = BD_RS.JoinPedido(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlm = BD_RS.ListarMesasSelection1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+            dlmpedido = BD_RS.JoinPedido1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
             LoadMesas();            
         }        
     }//GEN-LAST:event_cboPisoActionPerformed
@@ -595,11 +626,14 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     }//GEN-LAST:event_lblRetirarMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        frmCerrarCaja cc=new frmCerrarCaja();
+            //cc = new frmCerrarCaja();
         if (cc.isVisible()==false) {
+            
             //cc.documento=cboUsuario.getSelectedItem().toString();
             cc.init(lu.getSurcursal());
+            cc.setAlwaysOnTop(true);
             cc.setVisible(true);
+            
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -673,6 +707,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboPiso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -680,8 +715,13 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -690,5 +730,6 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JLabel lblEgreso;
     private javax.swing.JLabel lblIngreso;
     private javax.swing.JLabel lblRetirar;
+    private javax.swing.JLabel lblSuc;
     // End of variables declaration//GEN-END:variables
 }

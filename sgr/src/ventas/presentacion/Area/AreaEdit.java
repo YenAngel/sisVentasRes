@@ -204,7 +204,6 @@ public class AreaEdit extends javax.swing.JPanel {
 
                 t = 2;
                 msg = "Área Modificada";
-                area.setId(BD_RS.CodArea());
                 area.setEstado(1);
                 area.setFe_mod(Date.valueOf(LocalDate.now()));
                 area.setNombre(txtName_Area.getText());
