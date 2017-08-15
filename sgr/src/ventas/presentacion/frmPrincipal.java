@@ -39,6 +39,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static Container c ;
     public String namePanel;
     public int idx;
+    JDialog LoadB;
     public String lblFH = "";
     Login_User usuario =new Login_User();
     Mesas_Selection ms = new Mesas_Selection();
@@ -96,6 +97,14 @@ public class frmPrincipal extends javax.swing.JFrame {
        lblSuc.setFont(new java.awt.Font("Arial Black", 1, 16));
        IconFH.setLocation(335, 4);
        FHLbl.setBounds(390, 20, 300, 20);
+       LoadingBck lb = new LoadingBck();
+        LoadB= new JDialog();
+        LoadB.add(lb.getContentPane());
+        LoadB.setSize(lb.getSize());
+        LoadB.setLocationRelativeTo(null);
+        LoadB.setUndecorated(true);
+        //LoadB.setModal(true);
+        LoadB.setAlwaysOnTop(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -1146,6 +1155,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     private void mpPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpPedidoMouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         mpPedido.setBackground(new java.awt.Color(255,51,51));          
         mpReporte.setBackground(new java.awt.Color(24,168,255));          
         mpMante.setBackground(new java.awt.Color(24,168,255));
@@ -1183,11 +1195,31 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
     private void mpReporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpReporteMouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         mpReporte.setBackground(new java.awt.Color(255,51,51));          
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
         mpBackup.setBackground(new java.awt.Color(24,168,255));
+        if(Login_User.nid_perfil == 3){
+           mpReporte.setVisible(true);
+        mpCaja.setVisible(true);
+        //mpCarta.setVisible(true);
+        mpBackup.setVisible(true);
+       }else if(Login_User.nid_perfil == 1){
+            mpMante.setVisible(true);
+            mpPedido.setVisible(true);
+            mpReporte.setVisible(true);
+            mpCaja.setVisible(true);
+            //mpCarta.setVisible(true);
+            mpBackup.setVisible(true);
+       }else{
+            mpPedido.setVisible(true);
+            mpReporte.setVisible(true);
+            mpBackup.setVisible(true);
+       }
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
@@ -1268,6 +1300,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pMesasMouseClicked
 
     private void mpManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpManteMouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         mpPedido.setBackground(new java.awt.Color(24,168,255));        
         mpReporte.setBackground(new java.awt.Color(24,168,255));       
         mpMante.setBackground(new java.awt.Color(255,51,51));
@@ -1544,6 +1579,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pPlatoMouseClicked
 
     private void mpCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpCajaMouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         mpPedido.setBackground(new java.awt.Color(24,168,255));
         mpReporte.setBackground(new java.awt.Color(24,168,255));       
         mpMante.setBackground(new java.awt.Color(24,168,255));
@@ -1600,25 +1638,41 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pPlatoLocalMouseClicked
 
     private void mpBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mpBackupMouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         mpPedido.setBackground(new java.awt.Color(24,168,255));
         mpReporte.setBackground(new java.awt.Color(24,168,255));       
         mpMante.setBackground(new java.awt.Color(24,168,255));
         mpCaja.setBackground(new java.awt.Color(24,168,255));
         mpCarta.setBackground(new java.awt.Color(24,168,255));
         mpBackup.setBackground(new java.awt.Color(255,51,51));
-       
-        mpMante.setVisible(true);
-        mpPedido.setVisible(true);
-        mpReporte.setVisible(true);
+       if(Login_User.nid_perfil == 3){
+           mpReporte.setVisible(true);
         mpCaja.setVisible(true);
         //mpCarta.setVisible(true);
         mpBackup.setVisible(true);
+       }else if(Login_User.nid_perfil == 1){
+            mpMante.setVisible(true);
+            mpPedido.setVisible(true);
+            mpReporte.setVisible(true);
+            mpCaja.setVisible(true);
+            //mpCarta.setVisible(true);
+            mpBackup.setVisible(true);
+       }else{
+            mpPedido.setVisible(true);
+            mpReporte.setVisible(true);
+            mpBackup.setVisible(true);
+       }
+       
         
         Timer t= new Timer();
         TimerTask task =new TimerTask() {
             @Override
             public void run() {
                 //Modal 'Generando Backup'
+                
+                LoadB.setVisible(true);
                 GBackup();
             }
         };
@@ -1667,7 +1721,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mpCartaMouseClicked
         
     private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
-            
+        if(LoadB.isVisible()){
+            return;
+        }
             pMesas.setVisible(false);
             pUsuario.setVisible(false);
             pTrabajador.setVisible(false);
@@ -1736,6 +1792,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel44MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        if(LoadB.isVisible()){
+            return;
+        }
         int i = JOptionPane.showOptionDialog(null,"¿Desea salir del Sistema?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
         if(i==0) System.exit(0);
     }//GEN-LAST:event_jLabel6MouseClicked
@@ -2070,8 +2129,13 @@ public class frmPrincipal extends javax.swing.JFrame {
                 //Caja 123
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Error no se genero el archivo por el siguiente motivo:"+e.getMessage(), "Verificar",JOptionPane.ERROR_MESSAGE);
+                LoadB.setAlwaysOnTop(false);
+                LoadB.setVisible(false);
             }
+            LoadB.setAlwaysOnTop(false);
+            LoadB.setVisible(false);
             JOptionPane.showMessageDialog(null, "Backup Generado","Verificar",JOptionPane.INFORMATION_MESSAGE);
+            mpBackup.setBackground(new java.awt.Color(24,168,255));
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

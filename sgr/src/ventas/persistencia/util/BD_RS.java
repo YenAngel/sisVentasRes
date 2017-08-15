@@ -1072,7 +1072,7 @@ public class BD_RS {
     }
     public static int EstadoCierreCaja(){
         try {
-            String sql = "select nid_estado from tbl_caja where co_operacion = 'C' and nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
+            String sql = "select count(*) from tbl_caja where co_operacion = 'C' and nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, 1);
             ps.setInt(2, idlocal);
