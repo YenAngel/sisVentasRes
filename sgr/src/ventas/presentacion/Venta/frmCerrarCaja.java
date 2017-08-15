@@ -66,6 +66,7 @@ public class frmCerrarCaja extends javax.swing.JFrame {
         txtEgresos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setFocusableWindowState(false);
         setResizable(false);
@@ -139,6 +140,7 @@ public class frmCerrarCaja extends javax.swing.JFrame {
             }
         });
 
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/anular.png"))); // NOI18N
@@ -166,6 +168,7 @@ public class frmCerrarCaja extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
         );
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 410, 80));

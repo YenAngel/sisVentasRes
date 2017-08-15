@@ -112,6 +112,11 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         txtPrecio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioKeyTyped(evt);
@@ -235,6 +240,10 @@ public class jpEditarPlatoLocal extends javax.swing.JPanel {
         jpListarPlatoLocal listarPlatoLocal=new jpListarPlatoLocal();
         frmPrincipal.Comp(listarPlatoLocal);
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
