@@ -1,6 +1,7 @@
 
 package ventas.presentacion.Venta;
 
+import java.awt.Color;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,17 +56,18 @@ public class frmCaja extends javax.swing.JFrame {
     int width=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;               
     public frmCaja(){
         initComponents();
+        getContentPane().setBackground(new Color(183,222,232));
         setExtendedState(MAXIMIZED_BOTH);
         tblCaja.setModel(formatearTabla());
         cboComprobante.setSelectedIndex(0);
         componentes();
         setLayout(null);
-        txtCLocal.setText(login_User.surcursal);
+        lblCLocal.setText(login_User.surcursal);
         //lblLocal.setText(login_User.surcursal);   
         getNow();
         cboDocumento.setSelectedIndex(0);     
         
-        String local=txtCLocal.getText();
+        String local=lblCLocal.getText();
         getUsuario(documento, local);
         init();
     }
@@ -100,11 +102,11 @@ public class frmCaja extends javax.swing.JFrame {
         String mesaString=event.toString().substring(event.toString().indexOf("on #")+4, event.toString().indexOf("$"));        
         int mesa=Integer.parseInt(mesaString);        
         nroMesa=mesa;
-        txtCMesa.setText(mesa+"");
+        lblCMesa.setText(mesa+"");
     }    
     public void getpiso(int piso){        
         nroPiso=piso;
-        txtCPiso.setText(piso+"");
+        lblCPiso.setText(piso+"");
     }
     private void componentes(){               
         //pnlCajaTitle.setVisible(true);
@@ -116,12 +118,12 @@ public class frmCaja extends javax.swing.JFrame {
         return  dtm;
     }
     public void cargarListaPedido(int piso, int mesa){
-        String local=txtCLocal.getText();
+        String local=lblCLocal.getText();
         caja.setNo_local(local);            
         caja.setNu_mesa(mesa);
         caja.setNu_piso(piso);
-        txtCMesa.setText(mesa+"");
-        txtCPiso.setText(piso+"");
+        lblCMesa.setText(mesa+"");
+        lblCPiso.setText(piso+"");
         tblCaja.setModel(BDData.getListaCaja(formatearTabla(), caja));      
         confTBL(tblCaja, dtm);        
     }
@@ -165,7 +167,7 @@ public class frmCaja extends javax.swing.JFrame {
             for (int j = 9; j >=0; j--) {                
                 sb.append(nroPedidoArray[j]);
             }
-            txtCNroPedido.setText(sb.toString());
+            lblCNroPedido.setText(sb.toString());
         }
     }
     private double getTotal(DefaultTableModel model){
@@ -186,7 +188,7 @@ public class frmCaja extends javax.swing.JFrame {
             {   
                 String hora = hFormat.format(Time.valueOf(LocalTime.now())).toString();
                 String fecha = dFormat.format(java.sql.Date.valueOf(LocalDate.now())).toString();
-                txtCDate.setText(fecha);
+                lblCDate.setText(fecha);
                 //lblHour.setText(fecha + "  -  " + hora);
              }
         }); 
@@ -221,17 +223,17 @@ public class frmCaja extends javax.swing.JFrame {
         bgDocumento = new javax.swing.ButtonGroup();
         bgCliente = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        txtCDate = new javax.swing.JTextField();
-        txtCLocal = new javax.swing.JTextField();
-        txtCPiso = new javax.swing.JTextField();
-        txtCMesa = new javax.swing.JTextField();
-        txtCNroPedido = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        lblCDate = new javax.swing.JLabel();
+        lblCNroPedido = new javax.swing.JLabel();
+        lblCMesa = new javax.swing.JLabel();
+        lblCPiso = new javax.swing.JLabel();
+        lblCLocal = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCaja = new javax.swing.JTable();
@@ -303,55 +305,50 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCDate.setEnabled(false);
-        jPanel1.add(txtCDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(688, 11, 129, 40));
-
-        txtCLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCLocal.setEnabled(false);
-        txtCLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCLocalActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtCLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 11, 122, 40));
-
-        txtCPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCPiso.setEnabled(false);
-        jPanel1.add(txtCPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 11, 65, 40));
-
-        txtCMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCMesa.setEnabled(false);
-        jPanel1.add(txtCMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 11, 65, 40));
-
-        txtCNroPedido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCNroPedido.setEnabled(false);
-        jPanel1.add(txtCNroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 11, 140, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/store.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, 41, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vePiso.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 11, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/t2.png"))); // NOI18N
-        jLabel4.setText("jLabel1");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 12, 40, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/veComp.png"))); // NOI18N
-        jLabel5.setText("jLabel1");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 12, 40, -1));
-
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/veCalendar.png"))); // NOI18N
         jLabel6.setText("jLabel1");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 12, 41, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_da_pedido.jpg"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 160, 60));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 360, 60));
 
-        jPanel2.setBackground(new java.awt.Color(204, 153, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 3));
+        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Local.png"))); // NOI18N
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/mesa.png"))); // NOI18N
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Salon.png"))); // NOI18N
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pedido_frmpedido.png"))); // NOI18N
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        lblCDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCDate.setText("#");
+        jPanel1.add(lblCDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 100, 40));
+
+        lblCNroPedido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCNroPedido.setText("#");
+        jPanel1.add(lblCNroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 130, 40));
+
+        lblCMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCMesa.setText("#");
+        jPanel1.add(lblCMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 40, 40));
+
+        lblCPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCPiso.setText("#");
+        jPanel1.add(lblCPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 40, 40));
+
+        lblCLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCLocal.setText("#");
+        jPanel1.add(lblCLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 40));
+
+        jPanel2.setBackground(new java.awt.Color(183, 222, 232));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBackground(new java.awt.Color(102, 102, 255));
@@ -370,35 +367,35 @@ public class frmCaja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblCaja);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 440, 250));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 620, 250));
 
         txtApeMaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApeMaterno.setAutoscrolls(false);
-        jPanel2.add(txtApeMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 189, 137, 40));
+        jPanel2.add(txtApeMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 200, 137, 40));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Apellido Materno:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(787, 159, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 170, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Nro. Doc.:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 90, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 90, -1));
 
         txtApePaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApePaterno.setAutoscrolls(false);
-        jPanel2.add(txtApePaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 189, 160, 40));
+        jPanel2.add(txtApePaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, 160, 40));
 
         txtCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCliente.setAutoscrolls(false);
-        jPanel2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 189, 130, 40));
+        jPanel2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 130, 40));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Cliente:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Documento:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, -1));
 
         cboDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Documento", "RUC", "DNI" }));
@@ -412,7 +409,7 @@ public class frmCaja extends javax.swing.JFrame {
                 cboDocumentoActionPerformed(evt);
             }
         });
-        jPanel2.add(cboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 120, 40));
+        jPanel2.add(cboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 120, 40));
 
         txtDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDocumento.addActionListener(new java.awt.event.ActionListener() {
@@ -420,7 +417,7 @@ public class frmCaja extends javax.swing.JFrame {
                 txtDocumentoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 150, 40));
+        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 120, 150, 40));
 
         btnValid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnValid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
@@ -431,15 +428,15 @@ public class frmCaja extends javax.swing.JFrame {
                 btnValidActionPerformed(evt);
             }
         });
-        jPanel2.add(btnValid, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 99, 50, 50));
+        jPanel2.add(btnValid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 50, 50));
 
         txtTDCorrelativos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTDCorrelativos.setEnabled(false);
-        jPanel2.add(txtTDCorrelativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 140, 40));
+        jPanel2.add(txtTDCorrelativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 50, 140, 40));
 
         Codigo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Codigo.setText("-");
-        jPanel2.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 10, 20));
+        jPanel2.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 10, 20));
 
         txtTDSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTDSerie.setEnabled(false);
@@ -448,7 +445,7 @@ public class frmCaja extends javax.swing.JFrame {
                 txtTDSerieActionPerformed(evt);
             }
         });
-        jPanel2.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 41, 140, 40));
+        jPanel2.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 130, 40));
 
         cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo Doc", "Factura", "Boleta", "Ticket" }));
@@ -462,11 +459,11 @@ public class frmCaja extends javax.swing.JFrame {
                 cboComprobanteActionPerformed(evt);
             }
         });
-        jPanel2.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 40, 140, 40));
+        jPanel2.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 140, 40));
 
         Codigo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Codigo2.setText("Tipo de Documento:");
-        jPanel2.add(Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 14, -1, 20));
+        jPanel2.add(Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, -1, 20));
 
         btn6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn6.setText("6");
@@ -478,7 +475,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn6ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 310, -1, -1));
+        jPanel2.add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, -1, -1));
 
         btn3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn3.setText("3");
@@ -490,7 +487,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn3ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 250, -1, -1));
+        jPanel2.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, -1));
 
         btn2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn2.setText("2");
@@ -502,7 +499,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn2ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 250, -1, -1));
+        jPanel2.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
 
         btn5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn5.setText("5");
@@ -514,7 +511,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn5ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 310, -1, -1));
+        jPanel2.add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
 
         btn4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn4.setText("4");
@@ -526,7 +523,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn4ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 310, -1, -1));
+        jPanel2.add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, -1, -1));
 
         btn1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn1.setText("1");
@@ -538,7 +535,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 250, -1, -1));
+        jPanel2.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
 
         btn7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn7.setText("7");
@@ -550,7 +547,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn7ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 376, -1, -1));
+        jPanel2.add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, -1));
 
         btn8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn8.setText("8");
@@ -562,7 +559,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn8ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 376, -1, -1));
+        jPanel2.add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, -1, -1));
 
         btn9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn9.setText("9");
@@ -574,7 +571,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btn9ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 376, -1, -1));
+        jPanel2.add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, -1, -1));
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit-clear-locationbar-rtl.png"))); // NOI18N
         jButton14.setMaximumSize(new java.awt.Dimension(54, 54));
@@ -585,7 +582,7 @@ public class frmCaja extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 436, -1, -1));
+        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, -1, -1));
 
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton16.setText(".");
@@ -597,7 +594,7 @@ public class frmCaja extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 436, -1, -1));
+        jPanel2.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, -1, -1));
 
         btn0.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btn0.setText("0");
@@ -609,19 +606,19 @@ public class frmCaja extends javax.swing.JFrame {
                 btn0ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 436, -1, -1));
+        jPanel2.add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
 
         txtVuelto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtVuelto.setEnabled(false);
-        jPanel2.add(txtVuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 436, 150, 54));
+        jPanel2.add(txtVuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 450, 150, 54));
 
         txtTotalPagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTotalPagar.setEnabled(false);
-        jPanel2.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 376, 150, 54));
+        jPanel2.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 390, 150, 54));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money-in-peru.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 310, 110, 54));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, 110, 54));
 
         txtMontoIngresado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMontoIngresado.setEnabled(false);
@@ -635,7 +632,7 @@ public class frmCaja extends javax.swing.JFrame {
                 txtMontoIngresadoKeyPressed(evt);
             }
         });
-        jPanel2.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 310, 150, 54));
+        jPanel2.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 320, 150, 54));
 
         cboDocumento1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cboDocumento1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Debito", "Credito" }));
@@ -649,19 +646,19 @@ public class frmCaja extends javax.swing.JFrame {
                 cboDocumento1ActionPerformed(evt);
             }
         });
-        jPanel2.add(cboDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 150, 50));
+        jPanel2.add(cboDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 150, 50));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Vuelto:");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 50, 20));
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 460, 50, 20));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Apellido Paterno:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, -1, -1));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Tipo de Pago:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, -1, 20));
 
         jPanel4.setBackground(new java.awt.Color(137, 197, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255), 3));
@@ -675,10 +672,10 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(154, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(227, 227, 227)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -687,7 +684,7 @@ public class frmCaja extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 440, 70));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 620, 70));
 
         jPanel5.setBackground(new java.awt.Color(137, 197, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
@@ -701,10 +698,10 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,7 +710,7 @@ public class frmCaja extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 440, 70));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 620, 70));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
 
@@ -748,7 +745,7 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap(341, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -795,11 +792,11 @@ public class frmCaja extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 382, 440, -1));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 382, 620, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("Total a Pagar:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -823,7 +820,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btnPrintActionPerformed(evt);
             }
         });
-        jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 125, 50));
+        jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, 125, 50));
 
         btnSaveSale.setBackground(new java.awt.Color(153, 153, 255));
         btnSaveSale.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -833,7 +830,7 @@ public class frmCaja extends javax.swing.JFrame {
                 btnSaveSaleActionPerformed(evt);
             }
         });
-        jPanel3.add(btnSaveSale, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 125, 50));
+        jPanel3.add(btnSaveSale, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 125, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -842,10 +839,10 @@ public class frmCaja extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -853,8 +850,8 @@ public class frmCaja extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -876,7 +873,7 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSaveSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSaleActionPerformed
-        String local=txtCLocal.getText();
+        String local=lblCLocal.getText();
         String document=txtTDSerie.getText()+"-"+txtTDCorrelativos.getText();
         Caja caja=new Caja();
         System.out.println(login_User.getNdi_usuario());
@@ -889,6 +886,22 @@ public class frmCaja extends javax.swing.JFrame {
             tempComprobante=03+"";
         }else if(cboComprobante.getSelectedIndex()==3){
             tempComprobante=00+"";
+        }
+        if (cboDocumento.getSelectedIndex()!=-1 && !txtDocumento.equals("") && !txtCliente.equals("") || !txtApeMaterno.equals("") || !txtApePaterno.equals("")) {
+            cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
+            cliente.setNu_documento(txtDocumento.getText());
+            cliente.setNo_cliente(txtCliente.getText());
+            cliente.setNo_ape_paterno(txtApePaterno.getText());
+            cliente.setNo_ape_materno(txtApeMaterno.getText());
+            ResultSet rs=BDData.obtenerClienteFact(cliente);
+            try {
+                if(rs.next()) {
+                    txtCliente.setText(rs.getString(1));
+                    txtApePaterno.setText(rs.getString(2));
+                    txtApeMaterno.setText(rs.getString(3));
+                }
+            } catch (Exception e) {
+            }
         }
         caja.setCo_comprobante(tempComprobante);
         caja.setNu_serie(txtTDSerie.getText());
@@ -936,10 +949,6 @@ public class frmCaja extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnPrintActionPerformed
-
-    private void txtCLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCLocalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCLocalActionPerformed
 
     private void cboDocumento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDocumento1ActionPerformed
         // TODO add your handling code here:
@@ -1033,7 +1042,7 @@ public class frmCaja extends javax.swing.JFrame {
                     temp2=rs.getString(2);
                     //txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
-                    String local=txtCLocal.getText();
+                    String local=lblCLocal.getText();
                     if (!temp1.equals("")) {
                         ResultSet rs1= BDData.getCorrelativo(temp1, local,cboComprobante.getSelectedItem().toString());
                         if (rs1.next()) {
@@ -1077,7 +1086,7 @@ public class frmCaja extends javax.swing.JFrame {
                                 txtTDCorrelativos.setText(sb.toString());
                                 txtTDSerie.setText(temp1);
                                 //lblDocumento.setText(temp1+"-"+sb.toString());
-                                //txtCNroPedido.setText(+"-"+);
+                                //lblCNroPedido.setText(+"-"+);
                             }else{
                                 JOptionPane.showMessageDialog(rootPane, "El Correlativo se ha agotado");
                                 txtTDCorrelativos.setText("");
@@ -1174,23 +1183,7 @@ public class frmCaja extends javax.swing.JFrame {
                     }
                 } catch (Exception e) {
                 }
-            }
-            if (cboDocumento.getSelectedIndex()!=-1 && !txtDocumento.equals("") && !txtCliente.equals("") || !txtApeMaterno.equals("") || !txtApePaterno.equals("")) {
-                cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
-                cliente.setNu_documento(txtDocumento.getText());
-                cliente.setNo_cliente(txtCliente.getText());
-                cliente.setNo_ape_paterno(txtApePaterno.getText());
-                cliente.setNo_ape_materno(txtApeMaterno.getText());
-                ResultSet rs=BDData.obtenerClienteFact(cliente);
-                try {
-                    if(rs.next()) {
-                        txtCliente.setText(rs.getString(1));
-                        txtApePaterno.setText(rs.getString(2));
-                        txtApeMaterno.setText(rs.getString(3));
-                    }
-                } catch (Exception e) {
-                }
-            }
+            }            
         }
     }//GEN-LAST:event_btnValidActionPerformed
 
@@ -1258,8 +1251,8 @@ public class frmCaja extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Codigo;
-    private javax.swing.JLabel Codigo2;
+    public static javax.swing.JLabel Codigo;
+    public static javax.swing.JLabel Codigo2;
     private javax.swing.ButtonGroup bgCliente;
     private javax.swing.ButtonGroup bgDocumento;
     private javax.swing.JButton btn0;
@@ -1275,13 +1268,12 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnSaveSale;
     private javax.swing.JButton btnValid;
-    private javax.swing.JComboBox<String> cboComprobante;
-    private javax.swing.JComboBox<String> cboDocumento;
-    private javax.swing.JComboBox<String> cboDocumento1;
+    public static javax.swing.JComboBox<String> cboComprobante;
+    public static javax.swing.JComboBox<String> cboDocumento;
+    public static javax.swing.JComboBox<String> cboDocumento1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton16;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1294,9 +1286,10 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1311,17 +1304,17 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JLabel lblIGV;
-    private javax.swing.JLabel lblSubTotal;
-    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblCDate;
+    private javax.swing.JLabel lblCLocal;
+    private javax.swing.JLabel lblCMesa;
+    private javax.swing.JLabel lblCNroPedido;
+    private javax.swing.JLabel lblCPiso;
+    public static javax.swing.JLabel lblIGV;
+    public static javax.swing.JLabel lblSubTotal;
+    public static javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblCaja;
     private javax.swing.JTextField txtApeMaterno;
     private javax.swing.JTextField txtApePaterno;
-    private javax.swing.JTextField txtCDate;
-    private javax.swing.JTextField txtCLocal;
-    private javax.swing.JTextField txtCMesa;
-    private javax.swing.JTextField txtCNroPedido;
-    private javax.swing.JTextField txtCPiso;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtMontoIngresado;
