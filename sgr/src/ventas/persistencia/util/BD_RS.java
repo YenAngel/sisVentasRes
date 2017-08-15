@@ -25,6 +25,7 @@ import ventas.modelo.Local;
 
 public class BD_RS {
     public static int idlocal;
+    public static int idEmpresa;
     public static int numPiso;
     public static int idUserLog;
     public static int dniUserLog;
@@ -1053,9 +1054,9 @@ public class BD_RS {
             return false;
         }
     }
-    public static int EstadoCaja(){
+    public static int EstadoApeCaja(){
         try {
-            String sql = "select nid_estado from tbl_caja where nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
+            String sql = "select nid_estado from tbl_caja where co_operacion = 'A' and nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, 1);
             ps.setInt(2, idlocal);
@@ -1069,6 +1070,39 @@ public class BD_RS {
             return -1;
         }
     }
+    public static int EstadoCierreCaja(){
+        try {
+            String sql = "select nid_estado from tbl_caja where co_operacion = 'C' and nid_empresa = ? and nid_local = ? and fe_emision is null and Convert(fe_creacion,date) = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setInt(1, 1);
+            ps.setInt(2, idlocal);
+            ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            return rs.getInt(1);
+            else return 0;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return -1;
+        }
+    }
+    public static int VeriPedidoPendientes(){
+        try {
+            String sql = "select count(tp.nid_pedido) from tbl_pedido tp inner join mae_local ml on ml.nid_local = tp.nid_local where (tp.nid_estado = 3 or tp.nid_estado = 4) and Convert(tp.fe_creacion,date) = ? and tp.nid_local = ? and ml.nid_empresa = ?";
+            PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
+            ps.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
+            ps.setInt(2, idlocal);
+            ps.setInt(3, 1); //idEmpresa
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            return rs.getInt(1);
+            else return 0;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return -1;
+        }
+    }
+    //select count(*) from tbl_pedido where nid_estado = 3 and Convert(fe_creacion,date) = '2017-08-11';
     public static int EstadoPedidoinMS(int nPedido){
         try {
             String sql = "select nid_estado from tbl_pedido where nid_pedido = ?";
@@ -1089,8 +1123,8 @@ public class BD_RS {
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, 1);
             ps.setInt(2, idlocal);
-            ps.setString(3, "E");
-            ps.setString(4, "008");
+            ps.setString(3, "A");
+            ps.setString(4, "8");
             ps.setDouble(5, monto);
             ps.setInt(6, dniUserLog);
             ps.setInt(7, 1);

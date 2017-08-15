@@ -361,7 +361,7 @@ public class Login extends javax.swing.JFrame {
                 frmP.setVisible(true);            
             }else if (usuario.getNid_perfil()==3) {
                         if(BD_RS.idCargoLog == 5){
-                            int estado = BD_RS.EstadoCaja();
+                            int estado = BD_RS.EstadoApeCaja();
                             if(estado == 0){
                                 AC.setVisible(true);
                                 setVisible(false);

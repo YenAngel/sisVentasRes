@@ -1,8 +1,11 @@
 
 package ventas.presentacion.Venta;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import ventas.modelo.CajaLocal;
 import ventas.modelo.Login_User;
@@ -19,7 +22,9 @@ public class frmCerrarCaja extends javax.swing.JFrame {
     }
     
     public void init(String vl_local){
+        SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM/yyy");
         setLocationRelativeTo(null);
+        txtFecha.setText(dFormat.format(Date.valueOf(LocalDate.now())));
         loadCaja();
         local=vl_local;
         DecimalFormat df= new DecimalFormat("0.##");
@@ -225,6 +230,7 @@ public class frmCerrarCaja extends javax.swing.JFrame {
         cl.setVi_no_local(local);
         cl.setVi_mt_importe(totalCaja);
         cl.setVi_nu_persona(documento);
+        this.setAlwaysOnTop(false);
         int value = JOptionPane.showConfirmDialog(null, "Desea cerrar caja","Warning",JOptionPane.YES_NO_OPTION);            
         if(value == 0){
             if (BDData.closeCaja(cl)) {

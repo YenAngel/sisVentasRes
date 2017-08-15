@@ -317,7 +317,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
         }else{
             DPedido.nPedido = 0;
         }
-        if(BD_RS.EstadoCaja()==1){
+        if(BD_RS.EstadoApeCaja() == 0){
+            JOptionPane.showMessageDialog(null, "La caja aún no ha sido aperturada ","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(BD_RS.EstadoCierreCaja()==0){
         DPedido.dlmDP.addElement(nMesa);
         // llamar al formulario pedido
         frmPedido frmPed = new frmPedido();
@@ -326,7 +330,7 @@ public class Mesas_Selection extends javax.swing.JFrame {
         //frmCaja c=new frmCaja();
         //c.getMesa(evt);
         }else{
-            JOptionPane.showMessageDialog(null, "La caja está cerrada o falta aperturar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La caja se encuentra cerrada ","Aviso",JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public void jc(ItemEvent evt){
@@ -563,8 +567,11 @@ public class Mesas_Selection extends javax.swing.JFrame {
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
         if(DPedido.dlmDP.size() != 0){
-                
-               if(BD_RS.EstadoCaja()==1){
+                if(BD_RS.EstadoApeCaja() == 0){
+                    JOptionPane.showMessageDialog(null, "La caja aún no ha sido aperturada ","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+               if(BD_RS.EstadoCierreCaja()==0){
                 DPedido.nPedido = 0;
              //llamar al formulario
                 /*for(int i = 0; i < DPedido.dlmDP.size(); i++){

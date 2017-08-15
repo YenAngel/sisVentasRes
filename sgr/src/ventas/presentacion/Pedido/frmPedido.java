@@ -1451,7 +1451,7 @@ public class frmPedido extends javax.swing.JFrame {
     private void lblConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConfirmarMouseClicked
         btnCocina.setVisible(true);
             btnBar.setVisible(true);
-            if(BD_RS.EstadoCaja() != 1){
+            if(BD_RS.EstadoApeCaja() != 1){
                 JOptionPane.showMessageDialog(null, "La caja está cerrada o falta aperturar","Aviso",JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
@@ -1504,6 +1504,7 @@ public class frmPedido extends javax.swing.JFrame {
         int i = JOptionPane.showOptionDialog(null,"¿Confirmar: Anular Pedido?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
                 if(i==0) {    
                     if(BD_RS.AnularPedido(DPedido.nPedido)){
+                        
                         AnularPedidoMethodo();
                         JOptionPane.showMessageDialog(null, "Pedido Anulado","Aviso",JOptionPane.INFORMATION_MESSAGE);
                         Mesas_Selection ms = new Mesas_Selection();

@@ -1611,7 +1611,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         mpPedido.setVisible(true);
         mpReporte.setVisible(true);
         mpCaja.setVisible(true);
-        mpCarta.setVisible(true);
+        //mpCarta.setVisible(true);
         mpBackup.setVisible(true);
         
         Timer t= new Timer();
@@ -2044,9 +2044,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
     public void GBackup(){
         try{
-                
+                File dir = new File("C:\\Backup");
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
                 Runtime runtime = Runtime.getRuntime();
-                File backupFile = new File("Backup_DondeAlfredo"
+                File backupFile = new File("C:\\Backup\\Backup_DondeAlfredo"
                         +"_"+ Date.valueOf(LocalDate.now()).toString() +".sql");
                 System.out.println(backupFile.getAbsolutePath());
                 FileWriter fw = new FileWriter(backupFile);

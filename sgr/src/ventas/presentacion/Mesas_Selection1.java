@@ -627,6 +627,25 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
             //cc = new frmCerrarCaja();
+        if (BD_RS.VeriPedidoPendientes() > 0){
+          JOptionPane.showMessageDialog(null, "No se puede cerrar caja:  Aún hay pedidos en espera","Aviso",JOptionPane.INFORMATION_MESSAGE);
+          return;
+        }
+        DecimalFormat df= new DecimalFormat("0.##");
+        double apertura = Double.parseDouble(lblApertura.getText().replace("S/. ", ""));
+        double ingresos = Double.parseDouble(lblIngreso.getText().replace("S/. ", ""));
+        double egresos = Double.parseDouble(lblEgreso.getText().replace("S/. ", ""));
+        //ResultSet rs=BDData.initDataCaja(vl_local);
+        double total= apertura + ingresos - egresos;
+         String cierrec = "S/. "+df.format(total);  
+          if(BD_RS.EstadoApeCaja() == 0){
+                    JOptionPane.showMessageDialog(null, "La caja aún no ha sido aperturada ","Aviso",JOptionPane.INFORMATION_MESSAGE);
+                    return;
+          }
+         if(BD_RS.EstadoCierreCaja() != 0){
+             JOptionPane.showMessageDialog(null, "Ya se cerró la caja con un monto de: " + cierrec,"Aviso",JOptionPane.INFORMATION_MESSAGE);
+             return;
+         }
         if (cc.isVisible()==false) {
             
             //cc.documento=cboUsuario.getSelectedItem().toString();
@@ -638,8 +657,14 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        DPedido.dlmDP.removeAllElements();
+        DPedido.nPisoPedido = Integer.parseInt(cboPiso.getSelectedItem().toString());
+        BD_RS.numPiso = Integer.parseInt(cboPiso.getSelectedItem().toString());
+        dlm = BD_RS.ListarMesasSelection1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+        dlmpedido = BD_RS.JoinPedido1(Integer.parseInt(cboPiso.getSelectedItem().toString()));
+        LoadMesas(); 
         loadCaja();
-        LoadMesas();
+       
     }//GEN-LAST:event_jLabel4MouseClicked
     /*
      jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
