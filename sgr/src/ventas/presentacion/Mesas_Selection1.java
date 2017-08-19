@@ -350,8 +350,12 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         // llamar al formulario pedido
         nroMesa=Integer.parseInt(evt.toString().substring(evt.toString().indexOf("on #")+4, evt.toString().indexOf("$")));        
         this.setVisible(false);
-        frmCaja c=new frmCaja();       
-        c.cargarListaPedido(nroPiso, nroMesa);        
+        frmCaja c=new frmCaja();
+        frmCaja.nroMesa = nroMesa;
+        frmCaja.nroPiso = nroPiso;
+        frmCaja.nrPedido = DPedido.nPedido;
+        c.cargarListaPedido(nroPiso, nroMesa);   
+        c.setInitialValuesPedido();
         c.setVisible(true);              
     }
     public void jc(ItemEvent evt){

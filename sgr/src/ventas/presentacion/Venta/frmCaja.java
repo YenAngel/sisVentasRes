@@ -33,6 +33,7 @@ import ventas.modelo.Cliente;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
+import ventas.persistencia.util.BD_RS;
 import ventas.persistencia.util.Usuario;
 import ventas.presentacion.Mesas_Selection;
 import ventas.presentacion.Mesas_Selection1;
@@ -50,6 +51,10 @@ public class frmCaja extends javax.swing.JFrame {
     Usuario usuario=new Usuario();
     public static int nroPiso;
     public static int nroMesa;
+    public static int nrPedido;
+    public static int PCant[];
+    public static String PPlato[];
+    public static double PPrecio[];
     public static String documento;
     public static int idx=-1;
     int height=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -59,6 +64,7 @@ public class frmCaja extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(183,222,232));
         setExtendedState(MAXIMIZED_BOTH);
         tblCaja.setModel(formatearTabla());
+        
         cboComprobante.setSelectedIndex(0);
         componentes();
         setLayout(null);
@@ -70,6 +76,16 @@ public class frmCaja extends javax.swing.JFrame {
         String local=lblCLocal.getText();
         getUsuario(documento, local);
         init();
+    }
+    public void setInitialValuesPedido(){
+        PCant = new int[tblCaja.getRowCount()];
+        PPlato = new String[tblCaja.getRowCount()];
+        PPrecio = new double[tblCaja.getRowCount()];
+        for(int i = 0; i<tblCaja.getRowCount(); i++){
+            PPlato[i] = tblCaja.getValueAt(i, 1).toString();
+            PCant[i] = Integer.parseInt(tblCaja.getValueAt(i, 2).toString());
+            PPrecio[i] = Double.parseDouble(tblCaja.getValueAt(i, 3).toString());
+        }
     }
     public void init(){        
        /* DecimalFormat df= new DecimalFormat("0.##");
@@ -154,7 +170,7 @@ public class frmCaja extends javax.swing.JFrame {
             cboComprobante.setEnabled(true);
             cboDocumento.setEnabled(true);
         }       
-        String nroPedido=model.getValueAt(0, 0).toString();
+        String nroPedido = nrPedido+"";
         if (nroPedido!=null) {                       
             StringBuffer sb=new StringBuffer();
             String[] nroPedidoArray= new String[10];
@@ -287,6 +303,9 @@ public class frmCaja extends javax.swing.JFrame {
         lblTotal = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
+        btnMin = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
@@ -798,6 +817,34 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel21.setText("Total a Pagar:");
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, -1, -1));
 
+        btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
+        btnMin.setToolTipText("Disminuir la cantidad");
+        btnMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 44, 44));
+
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
+        btnAdd.setToolTipText("Aumentar la cantidad");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 44, 44));
+
+        btnDel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/del.png"))); // NOI18N
+        btnDel.setToolTipText("Eliminar el Plato/Bebida seleccionado");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 44, 44));
+
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -928,7 +975,7 @@ public class frmCaja extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         try {
-            File f = new File("sgr.jar");
+           /* File f = new File("sgr.jar");
             
             File destino = new File("C:/ANGEL/Escritorio/album.txt");
             String url= f.getAbsolutePath();
@@ -943,7 +990,9 @@ public class frmCaja extends javax.swing.JFrame {
             escribir.write(text);
 
             //Cerramos la conexion
-            escribir.close();
+            escribir.close();*/
+          
+           //Falta enviar los valores a PrintFormatCaja
             
         } catch (Exception e) {
         }
@@ -1215,6 +1264,56 @@ public class frmCaja extends javax.swing.JFrame {
         txtDocumento.setText("");
     }//GEN-LAST:event_cboDocumentoItemStateChanged
 
+    private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
+        if(tblCaja.getSelectedRow() >=0){
+            int indx = tblCaja.getSelectedRow();
+            
+                int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
+                String costo = tblCaja.getValueAt(indx, 3).toString();
+                String Plato = tblCaja.getValueAt(indx, 1).toString();
+                int nPed = Integer.parseInt(tblCaja.getValueAt(indx, 0).toString());
+                if (val-1 != 0){
+                        val -= 1;
+                        if(BD_RS.ModPlatoDPCaja(nPed, Plato, val, 1))
+                        cargarListaPedido(nroPiso, nroMesa);
+                }
+        }
+    }//GEN-LAST:event_btnMinActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if(tblCaja.getSelectedRow() >=0){
+            int indx = tblCaja.getSelectedRow();
+            
+                int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
+                String costo = tblCaja.getValueAt(indx, 3).toString();
+                String Plato = tblCaja.getValueAt(indx, 1).toString();
+                int nPed = Integer.parseInt(tblCaja.getValueAt(indx, 0).toString());
+                if (val+1 <= PCant[indx]){
+                        val += 1;
+                       if(BD_RS.ModPlatoDPCaja(nPed, Plato, val, 1))
+                        cargarListaPedido(nroPiso, nroMesa);
+                }
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        if(tblCaja.getSelectedRow() >=0){
+            int indx = tblCaja.getSelectedRow();
+            
+                int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
+                String costo = tblCaja.getValueAt(indx, 3).toString();
+                String Plato = tblCaja.getValueAt(indx, 1).toString();
+                int nPed = Integer.parseInt(tblCaja.getValueAt(indx, 0).toString());
+               
+                if (BD_RS.ModPlatoDPCaja(nPed, Plato, val, 2)){
+                    cargarListaPedido(nroPiso, nroMesa);
+                }
+                    //DefaultTableModel modelo = (DefaultTableModel)tblCaja.getModel(); 
+                     //modelo.removeRow(tblCaja.getSelectedRow());}
+               
+        }
+    }//GEN-LAST:event_btnDelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1265,6 +1364,9 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnMin;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnSaveSale;
     private javax.swing.JButton btnValid;

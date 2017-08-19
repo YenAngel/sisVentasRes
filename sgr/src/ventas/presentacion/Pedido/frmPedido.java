@@ -1198,8 +1198,6 @@ public class frmPedido extends javax.swing.JFrame {
         String rs = resultado+"";
         if(rs.substring(rs.indexOf('.')+1, rs.length()).length()!=2){
             rs = rs + "0";
-            System.out.println("RS: " + rs);
-            System.out.println("ReturnRS: " + Double.parseDouble(rs));
             return rs;
         }
         return resultado + "";
