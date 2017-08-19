@@ -620,6 +620,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void lblRetirarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRetirarMouseClicked
+        setVisible(false);
         frmRetiro retiro= new frmRetiro();
 
         if (retiro.isVisible()==false) {
@@ -755,9 +756,9 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JLabel lblApertura;
-    private javax.swing.JLabel lblEgreso;
-    private javax.swing.JLabel lblIngreso;
+    public static javax.swing.JLabel lblApertura;
+    public static javax.swing.JLabel lblEgreso;
+    public static javax.swing.JLabel lblIngreso;
     private javax.swing.JLabel lblRetirar;
     private javax.swing.JLabel lblSuc;
     // End of variables declaration//GEN-END:variables

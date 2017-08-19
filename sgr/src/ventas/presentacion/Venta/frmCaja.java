@@ -169,9 +169,21 @@ public class frmCaja extends javax.swing.JFrame {
             btnValid.setEnabled(true);
             cboComprobante.setEnabled(true);
             cboDocumento.setEnabled(true);
+
         }       
-        String nroPedido = nrPedido+"";
+/*        String nroPedido = nrPedido+"";
         if (nroPedido!=null) {                       
+
+        }   */
+        String nroPedido="";
+        if(model.getRowCount()>0){
+            nroPedido= nrPedido+"";
+        }else
+            nroPedido="";
+        
+        
+        /*if (nroPedido!=null) {                       
+>>>>>>> b44e81f6a9bc2cbf4524d5f4010fca1115c01254
             StringBuffer sb=new StringBuffer();
             String[] nroPedidoArray= new String[10];
             for (int i = 0; i < 10; i++) {
@@ -182,9 +194,9 @@ public class frmCaja extends javax.swing.JFrame {
             }
             for (int j = 9; j >=0; j--) {                
                 sb.append(nroPedidoArray[j]);
-            }
-            lblCNroPedido.setText(sb.toString());
-        }
+            }*/
+            lblCNroPedido.setText(nroPedido.toString());
+        //}
     }
     private double getTotal(DefaultTableModel model){
         double count=0;

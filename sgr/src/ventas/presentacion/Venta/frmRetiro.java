@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import ventas.modelo.CajaLocal;
 import ventas.modelo.Login_User;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.Mesas_Selection1;
 
 public class frmRetiro extends javax.swing.JFrame {
     
@@ -347,7 +348,7 @@ public class frmRetiro extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCancelMouseClicked
 
     private void lblSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSaveMouseClicked
-        if (validControl()){
+         if (validControl()){
             Login_User login_User=new Login_User();
             cl.setVi_no_local(local);
             cl.setVi_mt_importe(Double.parseDouble(txtRetiro.getText()));
@@ -359,8 +360,11 @@ public class frmRetiro extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Monto Retirado");
                 }else
                     JOptionPane.showMessageDialog(null, "Error: No pudo realizar esta operación");            
-            init(local);
+            init(local);    
             this.setVisible(false);
+            Mesas_Selection1 c=new Mesas_Selection1();             
+            c.setVisible(true);
+            
         }else
             JOptionPane.showMessageDialog(rootPane, "No puede retirar");
     }//GEN-LAST:event_lblSaveMouseClicked
