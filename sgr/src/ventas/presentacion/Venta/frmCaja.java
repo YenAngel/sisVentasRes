@@ -1114,7 +1114,7 @@ public class frmCaja extends javax.swing.JFrame {
         DecimalFormat df=new DecimalFormat("S/ 0.00");
 
         if (cboComprobante.getSelectedIndex()!=-1) {
-            rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
+            rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString(),lblCLocal.getText());
             try {
                 if (rs.next()) {
                     temp1=rs.getString(1);
@@ -1130,7 +1130,7 @@ public class frmCaja extends javax.swing.JFrame {
                             int tempSerie=Integer.parseInt(temp1);
                             int tempCorrelativo=Integer.parseInt(temp2);
                             int correlativo=Integer.parseInt(rs1.getString(1));
-                            
+                            System.out.println(tempCorrelativo);
                             if (tempCorrelativo<=correlativo+1) {
                                 btnSaveSale.setEnabled(true);
                                 btnPrint.setEnabled(true);

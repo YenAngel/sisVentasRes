@@ -78,11 +78,12 @@ public class BDData {
             return null;
         }
     }
-    public static ResultSet getDatosDocumento(String comprobante){
-        String sql="call sgr_sps_getDataComprobante(?)";
+    public static ResultSet getDatosDocumento(String comprobante, String local){
+        String sql="call sgr_sps_getDataComprobante(?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, comprobante);
+            cs.setString(2, local);
             ResultSet rs=cs.executeQuery();
             return rs;
         } catch (Exception e) {
