@@ -1138,7 +1138,7 @@ public class BDData {
         }
     }       
     public static boolean registrarVenta(Caja caja){
-        String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?)";
+        String sql="call sgr_spi_venta(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, caja.getCo_comprobante());            
@@ -1150,7 +1150,8 @@ public class BDData {
             cs.setString(7, caja.getDoc_cliente());
             cs.setInt(8, caja.getNid_pedido());
             cs.setString(9, caja.getNo_local());
-            cs.setInt(10, caja.getNid_usuario_crea());            
+            cs.setInt(10, caja.getTipo_pago());
+            cs.setInt(11, caja.getNid_usuario_crea());            
             cs.executeUpdate();
             return true;
         } catch (Exception e) {

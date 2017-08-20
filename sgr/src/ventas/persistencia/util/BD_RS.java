@@ -1149,5 +1149,21 @@ public class BD_RS {
             return false;
         }
     }
+    public static boolean ModPlatoDPCaja(int idPedido, String Plato, int Cant, int Tipo){
+        try {
+            String sql = "CALL usp_ModDetPedido(?,?,?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setInt(1, idPedido);
+            cs.setString(2, Plato);
+            cs.setInt(3, Cant);
+            cs.setInt(4,Tipo);
+            cs.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     
 }
