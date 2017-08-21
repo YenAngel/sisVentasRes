@@ -17,6 +17,7 @@ public class Caja {
     public int nu_mesa;
     public String no_local;
     public String no_estado;
+    public int tipo_pago;
     public int nid_usuario_crea;
     public int nid_usuario_modi;
 
@@ -138,6 +139,14 @@ public class Caja {
 
     public void setNo_estado(String no_estado) {
         this.no_estado = no_estado;
+    }
+
+    public int getTipo_pago() {
+        return tipo_pago;
+    }
+
+    public void setTipo_pago(int tipo_pago) {
+        this.tipo_pago = tipo_pago;
     }
     
 }

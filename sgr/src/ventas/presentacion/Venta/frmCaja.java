@@ -31,6 +31,7 @@ import ventas.modelo.Caja;
 import ventas.modelo.CajaLocal;
 import ventas.modelo.Cliente;
 import ventas.modelo.Login_User;
+import ventas.modelo.PrintFormatCaja;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
 import ventas.persistencia.util.BD_RS;
@@ -296,7 +297,7 @@ public class frmCaja extends javax.swing.JFrame {
         txtTotalPagar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtMontoIngresado = new javax.swing.JTextField();
-        cboDocumento1 = new javax.swing.JComboBox<>();
+        cboTipoPago = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -665,19 +666,19 @@ public class frmCaja extends javax.swing.JFrame {
         });
         jPanel2.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 320, 150, 54));
 
-        cboDocumento1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboDocumento1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Debito", "Credito" }));
-        cboDocumento1.addItemListener(new java.awt.event.ItemListener() {
+        cboTipoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Debito", "Credito" }));
+        cboTipoPago.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboDocumento1ItemStateChanged(evt);
+                cboTipoPagoItemStateChanged(evt);
             }
         });
-        cboDocumento1.addActionListener(new java.awt.event.ActionListener() {
+        cboTipoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboDocumento1ActionPerformed(evt);
+                cboTipoPagoActionPerformed(evt);
             }
         });
-        jPanel2.add(cboDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 150, 50));
+        jPanel2.add(cboTipoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 150, 50));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Vuelto:");
@@ -971,6 +972,7 @@ public class frmCaja extends javax.swing.JFrame {
         caja.setDoc_cliente(txtDocumento.getText());
         caja.setNid_pedido(Integer.parseInt(dtm.getValueAt(0, 0).toString()));
         caja.setNo_local(local);        
+        caja.setTipo_pago(cboTipoPago.getSelectedIndex()+1);        
         caja.setNid_usuario_crea(login_User.getNdi_usuario());
         if (BDData.registrarVenta(caja)) {
             cl.setVi_no_local(local);
@@ -987,37 +989,54 @@ public class frmCaja extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         try {
-           /* File f = new File("sgr.jar");
+            PrintFormatCaja.TipoPago=cboTipoPago.getSelectedItem().toString();
+            if (cboDocumento.getSelectedIndex()==1) {
+                PrintFormatCaja.Cliente=txtCliente.getText();
+            }else if (cboDocumento.getSelectedIndex()==2) {
+                PrintFormatCaja.Cliente=((txtCliente.getText().concat(" ")).concat(txtApePaterno.getText().concat(" "))).concat(txtApeMaterno.getText());
+            }
+            PrintFormatCaja.NroMesa=Integer.parseInt(lblCMesa.getText());
+            PrintFormatCaja.Correlativo=(txtTDSerie.getText().concat(" - ")).concat(txtTDCorrelativos.getText());
+            PrintFormatCaja.DNICliente=txtDocumento.getText();
+            PrintFormatCaja.CCant=new int[dtm.getRowCount()];
+            PrintFormatCaja.CPlato=new String[dtm.getRowCount()];
+            PrintFormatCaja.CPrecio= new double[dtm.getRowCount()];
             
-            File destino = new File("C:/ANGEL/Escritorio/album.txt");
-            String url= f.getAbsolutePath();
-            System.out.println(url);
-            String text="Donde Alfredo" + "\n"+
-                        "******************************" + "\n"+
-                        "Fecha de Emisión" + "\n";
-            //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
-            FileWriter escribir=new FileWriter(destino,true);
-
-            //Escribimos en el archivo con el metodo write 
-            escribir.write(text);
-
-            //Cerramos la conexion
-            escribir.close();*/
-          
-           //Falta enviar los valores a PrintFormatCaja
-            
+            for (int i = 0; i < dtm.getRowCount(); i++) {
+                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i, 1).toString());
+                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 0).toString();
+                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 2).toString());
+            }
+            PrintFormatCaja pfc = new PrintFormatCaja();
+            pfc.ImprimirCaja();
+            txtApeMaterno.setText("");
+            txtApePaterno.setText("");
+            txtCliente.setText("");
+            txtDocumento.setText("");
+            txtMontoIngresado.setText("");
+            txtTDCorrelativos.setText("");
+            txtTDSerie.setText("");
+            txtTotalPagar.setText("");
+            txtVuelto.setText("");
+            cboComprobante.setSelectedIndex(0);
+            cboDocumento.setSelectedIndex(0);
+            cboTipoPago.setSelectedIndex(0);
+            lblCMesa.setText("");
+            lblCNroPedido.setText("");
+            lblCPiso.setText("");
+            tblCaja.removeAll();
         } catch (Exception e) {
         }
         
     }//GEN-LAST:event_btnPrintActionPerformed
 
-    private void cboDocumento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDocumento1ActionPerformed
+    private void cboTipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoPagoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboDocumento1ActionPerformed
+    }//GEN-LAST:event_cboTipoPagoActionPerformed
 
-    private void cboDocumento1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDocumento1ItemStateChanged
+    private void cboTipoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTipoPagoItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboDocumento1ItemStateChanged
+    }//GEN-LAST:event_cboTipoPagoItemStateChanged
 
     private void txtMontoIngresadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoIngresadoKeyPressed
         if (txtMontoIngresado.getText().length()>0) {
@@ -1096,11 +1115,13 @@ public class frmCaja extends javax.swing.JFrame {
         DecimalFormat df=new DecimalFormat("S/ 0.00");
 
         if (cboComprobante.getSelectedIndex()!=-1) {
-            rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString());
+            rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString(),lblCLocal.getText());
             try {
                 if (rs.next()) {
                     temp1=rs.getString(1);
                     temp2=rs.getString(2);
+                    System.out.println(temp1);
+                    System.out.println(temp2);
                     //txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
                     String local=lblCLocal.getText();
@@ -1110,9 +1131,10 @@ public class frmCaja extends javax.swing.JFrame {
                             int tempSerie=Integer.parseInt(temp1);
                             int tempCorrelativo=Integer.parseInt(temp2);
                             int correlativo=Integer.parseInt(rs1.getString(1));
-
-                            correlativo+=1;
-                            if (tempCorrelativo<=correlativo) {
+                            System.out.println(tempCorrelativo);
+                            if (tempCorrelativo<=correlativo+1) {
+                                btnSaveSale.setEnabled(true);
+                                btnPrint.setEnabled(true);
                                 int len=temp2.length();
                                 int lenC=Integer.toString(tempCorrelativo).length();
 
@@ -1152,7 +1174,8 @@ public class frmCaja extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(rootPane, "El Correlativo se ha agotado");
                                 txtTDCorrelativos.setText("");
                                 txtTDSerie.setText("");
-
+                                btnSaveSale.setEnabled(false);
+                                btnPrint.setEnabled(false);
                             }
                         }else{
                             int len=temp2.length();
@@ -1384,7 +1407,7 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JButton btnValid;
     public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboDocumento;
-    public static javax.swing.JComboBox<String> cboDocumento1;
+    public static javax.swing.JComboBox<String> cboTipoPago;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton16;
