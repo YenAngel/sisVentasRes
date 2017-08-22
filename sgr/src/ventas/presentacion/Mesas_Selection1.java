@@ -640,9 +640,9 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
           return;
         }
         DecimalFormat df= new DecimalFormat("0.##");
-        double apertura = Double.parseDouble(lblApertura.getText().replace("S/. ", ""));
-        double ingresos = Double.parseDouble(lblIngreso.getText().replace("S/. ", ""));
-        double egresos = Double.parseDouble(lblEgreso.getText().replace("S/. ", ""));
+        double apertura = Double.parseDouble(lblApertura.getText().replace("S/. ", "").replace(",", "."));
+        double ingresos = Double.parseDouble(lblIngreso.getText().replace("S/. ", "").replace(",", "."));
+        double egresos = Double.parseDouble(lblEgreso.getText().replace("S/. ", "").replace(",", "."));
         //ResultSet rs=BDData.initDataCaja(vl_local);
         double total= apertura + ingresos - egresos;
          String cierrec = "S/. "+df.format(total);  

@@ -31,6 +31,7 @@ import ventas.modelo.Caja;
 import ventas.modelo.CajaLocal;
 import ventas.modelo.Cliente;
 import ventas.modelo.Login_User;
+import ventas.modelo.PrintFormat;
 import ventas.modelo.PrintFormatCaja;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
@@ -1001,13 +1002,15 @@ public class frmCaja extends javax.swing.JFrame {
             PrintFormatCaja.CCant=new int[dtm.getRowCount()];
             PrintFormatCaja.CPlato=new String[dtm.getRowCount()];
             PrintFormatCaja.CPrecio= new double[dtm.getRowCount()];
+            PrintFormatCaja.TipoDocImpr = cboComprobante.getSelectedItem().toString();
+            PrintFormatCaja.CantPago = Double.parseDouble(txtMontoIngresado.getText().replace("S/ ", ""));
             
             for (int i = 0; i < dtm.getRowCount(); i++) {
-                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i, 1).toString());
-                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 0).toString();
-                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 2).toString());
+                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i,2).toString());
+                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 1).toString();
+                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 3).toString());
             }
-            
+            PrintFormatCaja.ImprimirCaja();
             txtApeMaterno.setText("");
             txtApePaterno.setText("");
             txtCliente.setText("");
@@ -1017,14 +1020,18 @@ public class frmCaja extends javax.swing.JFrame {
             txtTDSerie.setText("");
             txtTotalPagar.setText("");
             txtVuelto.setText("");
-            cboComprobante.setSelectedIndex(0);
+            //cboComprobante.setSelectedIndex(0);
             cboDocumento.setSelectedIndex(0);
             cboTipoPago.setSelectedIndex(0);
             lblCMesa.setText("");
             lblCNroPedido.setText("");
             lblCPiso.setText("");
-            tblCaja.removeAll();
+            Mesas_Selection1 ms1 = new Mesas_Selection1();
+            this.setVisible(false);
+            ms1.setVisible(true);
         } catch (Exception e) {
+            System.out.println("Here");
+            System.err.println(e.toString());
         }
         
     }//GEN-LAST:event_btnPrintActionPerformed

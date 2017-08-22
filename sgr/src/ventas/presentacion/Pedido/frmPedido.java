@@ -1369,6 +1369,7 @@ public class frmPedido extends javax.swing.JFrame {
             PrintFormat.TipoEnvio = "BAR";
             PrintFormat.NumSalon = lblPiso.getText();
             PrintFormat.ImprimirToCocinaBar();
+           
         }
         if(RecienEnviado.size() > 0){
             for(int i = 0; i < RecienEnviado.size(); i++){

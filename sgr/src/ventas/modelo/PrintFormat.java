@@ -123,7 +123,12 @@ public class PrintFormat {
     public static String getDetallePedidoCocina(){
         String Result = "";
         for(int i=0; i<DishCantidad.length; i++){
-            Result+= "\n " + getCaracter(" ", 17) + DishCantidad[i] + " " + ListPlatosName[i] + " ";
+            String plato = ListPlatosName[i];
+            if (plato.length() > 31){
+                plato = plato.substring(0,31);
+            }
+                
+            Result+= "\n " + getCaracter(" ", 17) + DishCantidad[i] + " " + plato + " ";
            /* System.out.println("Index Current: " + i);
             System.out.println("Tamaño Array: " + ListPlatosDescr.length);
             System.out.println("Plato: " + ListPlatosDescr[i]);*/
