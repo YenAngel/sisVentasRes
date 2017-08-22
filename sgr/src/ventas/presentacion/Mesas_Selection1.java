@@ -127,7 +127,10 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
         double total=0,sustrayendo=0,apertura=0;
         
         try {
-            if (rs.next()) {         
+            if (rs.next()) {  
+                System.out.println(rs.getDouble(1));
+                System.out.println(rs.getDouble(2));
+                System.out.println(rs.getDouble(3));
                 total=rs.getDouble(1);
                 sustrayendo=rs.getDouble(2);
                 apertura=rs.getDouble(3);                
@@ -135,7 +138,7 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             total=total>0?total:0;
             sustrayendo=sustrayendo>0?sustrayendo:0;
             apertura=apertura>0?apertura:0;
-            total-=sustrayendo;
+            //total-=sustrayendo;
             lblIngreso.setText("S/. "+df.format(total));
             lblEgreso.setText("S/. "+df.format(sustrayendo));
             lblApertura.setText("S/. "+df.format(apertura));
