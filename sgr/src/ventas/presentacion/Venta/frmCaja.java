@@ -31,6 +31,7 @@ import ventas.modelo.Caja;
 import ventas.modelo.CajaLocal;
 import ventas.modelo.Cliente;
 import ventas.modelo.Login_User;
+import ventas.modelo.PrintFormat;
 import ventas.modelo.PrintFormatCaja;
 import ventas.persistencia.util.BDData;
 import ventas.persistencia.util.BDUtil;
@@ -1001,14 +1002,15 @@ public class frmCaja extends javax.swing.JFrame {
             PrintFormatCaja.CCant=new int[dtm.getRowCount()];
             PrintFormatCaja.CPlato=new String[dtm.getRowCount()];
             PrintFormatCaja.CPrecio= new double[dtm.getRowCount()];
+            PrintFormatCaja.TipoDocImpr = cboComprobante.getSelectedItem().toString();
+            PrintFormatCaja.CantPago = Double.parseDouble(txtMontoIngresado.getText().replace("S/ ", ""));
             
             for (int i = 0; i < dtm.getRowCount(); i++) {
-                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i, 1).toString());
-                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 0).toString();
-                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 2).toString());
+                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i,2).toString());
+                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 1).toString();
+                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 3).toString());
             }
-            PrintFormatCaja pfc = new PrintFormatCaja();
-            pfc.ImprimirCaja();
+            PrintFormatCaja.ImprimirCaja();
             txtApeMaterno.setText("");
             txtApePaterno.setText("");
             txtCliente.setText("");
@@ -1018,14 +1020,18 @@ public class frmCaja extends javax.swing.JFrame {
             txtTDSerie.setText("");
             txtTotalPagar.setText("");
             txtVuelto.setText("");
-            cboComprobante.setSelectedIndex(0);
+            //cboComprobante.setSelectedIndex(0);
             cboDocumento.setSelectedIndex(0);
             cboTipoPago.setSelectedIndex(0);
             lblCMesa.setText("");
             lblCNroPedido.setText("");
             lblCPiso.setText("");
-            tblCaja.removeAll();
+            Mesas_Selection1 ms1 = new Mesas_Selection1();
+            this.setVisible(false);
+            ms1.setVisible(true);
         } catch (Exception e) {
+            System.out.println("Here");
+            System.err.println(e.toString());
         }
         
     }//GEN-LAST:event_btnPrintActionPerformed
@@ -1112,41 +1118,45 @@ public class frmCaja extends javax.swing.JFrame {
         double subtotal=0;
         double igv=0;
         double total=0;
+        String tempComprobante=0+"";
         DecimalFormat df=new DecimalFormat("S/ 0.00");
-
+        if (cboComprobante.getSelectedIndex()==1) {
+            tempComprobante=1+"";
+        }else if(cboComprobante.getSelectedIndex()==2){
+            tempComprobante=3+"";
+        }else if(cboComprobante.getSelectedIndex()==3){
+            tempComprobante=0+"";
+        }
         if (cboComprobante.getSelectedIndex()!=-1) {
             rs=BDData.getDatosDocumento(cboComprobante.getSelectedItem().toString(),lblCLocal.getText());
             try {
                 if (rs.next()) {
                     temp1=rs.getString(1);
-                    temp2=rs.getString(2);
-                    System.out.println(temp1);
-                    System.out.println(temp2);
+                    temp2=rs.getString(2);                    
                     //txtSerie.setText(rs.getString(1));
                     //txtCorrelativo.setText(rs.getString(2));
                     String local=lblCLocal.getText();
                     if (!temp1.equals("")) {
-                        ResultSet rs1= BDData.getCorrelativo(temp1, local,cboComprobante.getSelectedItem().toString());
+                        ResultSet rs1= BDData.getCorrelativo(temp1, local,tempComprobante);
                         if (rs1.next()) {
                             int tempSerie=Integer.parseInt(temp1);
-                            int tempCorrelativo=Integer.parseInt(temp2);
-                            int correlativo=Integer.parseInt(rs1.getString(1));
-                            System.out.println(tempCorrelativo);
-                            if (tempCorrelativo<=correlativo+1) {
+                            int tempCorrelativo=Integer.valueOf(temp2);
+                            //string value=rs1.getString(1)?0+"":rs1.getString(1);
+                            int correlativo=Integer.valueOf(rs1.getString(1));
+                            correlativo+=1;                   
+                            if (correlativo<=tempCorrelativo) {                                
                                 btnSaveSale.setEnabled(true);
                                 btnPrint.setEnabled(true);
                                 int len=temp2.length();
-                                int lenC=Integer.toString(tempCorrelativo).length();
-
+                                int lenC=Integer.toString(correlativo).length();
+                                
                                 StringBuffer buffer= new StringBuffer();
                                 String[] cad=new String[len];
                                 String[] cad1=new String[lenC];
 
-                                int count=1;
-                                if (count==lenC) {
-                                    cad1[count-1]=Integer.toString(tempCorrelativo).substring(count-1, 1);
-                                    count+=1;
-                                }
+                                for (int i = 0; i < lenC; i++) {
+                                    cad1[i]=Integer.toString(correlativo).substring(i, i+1);
+                                }                                
 
                                 int counta=lenC;
                                 for (int i = len-1; i >=0 ; i--) {
@@ -1200,7 +1210,7 @@ public class frmCaja extends javax.swing.JFrame {
                 Logger.getLogger(frmCaja.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (cboComprobante.getSelectedIndex()==0) {
+        if (cboComprobante.getSelectedIndex()==1) {
             subtotal=getTotal(dtm);
             igv=(subtotal*0.18);
             total=(igv+subtotal);
@@ -1218,7 +1228,7 @@ public class frmCaja extends javax.swing.JFrame {
             jSeparator3.setVisible(true);
             jSeparator4.setVisible(true);
         }
-        if (cboComprobante.getSelectedIndex()==1 || cboComprobante.getSelectedIndex()==2) {
+        if (cboComprobante.getSelectedIndex()==2 || cboComprobante.getSelectedIndex()==3) {
             subtotal=getTotal(dtm);
             lblTotal.setText(df.format(subtotal).replace(",", "."));
             lblSubTotal.setText(df.format(subtotal).replace(",", "."));

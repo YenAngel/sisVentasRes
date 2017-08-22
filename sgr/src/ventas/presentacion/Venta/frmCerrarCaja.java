@@ -28,9 +28,9 @@ public class frmCerrarCaja extends javax.swing.JFrame {
         loadCaja();
         local=vl_local;
         DecimalFormat df= new DecimalFormat("0.##");
-        double apertura = Double.parseDouble(txtApertura.getText().replace("S/. ", ""));
-        double ingresos = Double.parseDouble(txtIngresos.getText().replace("S/. ", ""));
-        double egresos = Double.parseDouble(txtEgresos.getText().replace("S/. ", ""));
+        double apertura = Double.parseDouble(txtApertura.getText().replace("S/. ", "").replace(",", "."));
+        double ingresos = Double.parseDouble(txtIngresos.getText().replace("S/. ", "").replace(",", "."));
+        double egresos = Double.parseDouble(txtEgresos.getText().replace("S/. ", "").replace(",", "."));
         //ResultSet rs=BDData.initDataCaja(vl_local);
         double total= apertura + ingresos - egresos;
          txtCaja.setText("S/. "+df.format(total));//,sustrayendo=0;
@@ -264,9 +264,9 @@ public class frmCerrarCaja extends javax.swing.JFrame {
             sustrayendo=sustrayendo>0?sustrayendo:0;
             apertura=apertura>0?apertura:0;
             total-=sustrayendo;
-            txtIngresos.setText("S/. "+df.format(total));
-            txtEgresos.setText("S/. "+df.format(sustrayendo));
-            txtApertura.setText("S/. "+df.format(apertura));
+            txtIngresos.setText("S/. "+df.format(total).replace(",", "."));
+            txtEgresos.setText("S/. "+df.format(sustrayendo).replace(",", "."));
+            txtApertura.setText("S/. "+df.format(apertura).replace(",", "."));
         } catch (Exception e) {
         }
     };
