@@ -43,7 +43,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         tblPiso.setModel(BDData.listarPiso(formatearTabla()));        
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Id Piso","Numero de Piso","Local"};
+        String[] theader={"Id Salon","Número de Salón","Local"};
         dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
@@ -191,7 +191,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Nombre de Plato:");
+        jLabel5.setText("Nombre de Salón:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Local:");
@@ -298,7 +298,7 @@ public class jpListarPiso extends javax.swing.JPanel {
         add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 620, 101, 30));
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel16.setText("MANTENIMIENTO PISO");
+        jLabel16.setText("MANTENIMIENTO SALÓN");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, -1, 38));
     }// </editor-fold>//GEN-END:initComponents
 

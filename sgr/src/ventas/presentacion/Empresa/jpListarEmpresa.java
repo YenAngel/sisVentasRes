@@ -386,6 +386,10 @@ public class jpListarEmpresa extends javax.swing.JPanel {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");
+        }else{
+            if(txtRUC.getText().length() == 11){
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtRUCKeyTyped
 

@@ -1165,5 +1165,20 @@ public class BD_RS {
             return false;
         }
     }
+    //usp_DelPlatoLocal
+    public static boolean DelPlatoLocal(String Plato, String Local){
+        try {
+            String sql = "CALL usp_DelPlatoLocal(?,?)";
+            CallableStatement cs = BDUtil.getCnn().prepareCall(sql);
+            cs.setString(1, Plato);
+            cs.setString(2, Local);
+            cs.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(BD_RS.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     
 }

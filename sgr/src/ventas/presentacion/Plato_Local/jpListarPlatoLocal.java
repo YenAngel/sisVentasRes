@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import ventas.modelo.Login_User;
 import ventas.modelo.PlatoLocal;
 import ventas.persistencia.util.BDData;
+import ventas.persistencia.util.BD_RS;
 import ventas.presentacion.frmPrincipal;
 
 public class jpListarPlatoLocal extends javax.swing.JPanel {
@@ -55,7 +56,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     private void initComponents() {
 
         btnNew = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPlatoLocal = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -73,6 +74,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         lblTotal1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        btnEdit1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -87,16 +89,16 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         });
         add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 80, 170, 68));
 
-        btnEdit.setBackground(new java.awt.Color(153, 153, 255));
-        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
-        btnEdit.setText("Modificar");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setBackground(new java.awt.Color(153, 153, 255));
+        btnDel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/delete.png"))); // NOI18N
+        btnDel.setText("Eliminar");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnDelActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 160, 170, 68));
+        add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 240, 170, 68));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -290,6 +292,17 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("MANTENIMIENTO PLATO POR LOCAL");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, 38));
+
+        btnEdit1.setBackground(new java.awt.Color(153, 153, 255));
+        btnEdit1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_user.png"))); // NOI18N
+        btnEdit1.setText("Modificar");
+        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit1ActionPerformed(evt);
+            }
+        });
+        add(btnEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(773, 160, 170, 68));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -297,23 +310,23 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         frmPrincipal.Comp(local);
     }//GEN-LAST:event_btnNewActionPerformed
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         int idx=tblPlatoLocal.getSelectedRow();
         if (idx!=-1) {            
-            PlatoLocal platoLocal=new PlatoLocal();
-            jpEditarPlatoLocal editarPlatoLocal=new jpEditarPlatoLocal();
-            platoLocal.setNo_local(dtm.getValueAt(idx, 0).toString());
-            platoLocal.setNo_plato((String)dtm.getValueAt(idx, 1));
-            platoLocal.setMt_precio(Double.parseDouble(dtm.getValueAt(idx, 2).toString()));
-            platoLocal.setFl_vip((String)dtm.getValueAt(idx, 3)); 
-            platoLocal.setNid_usuario_modi(login_User.getNdi_usuario());        
-
-            frmPrincipal.Comp(editarPlatoLocal);
-            editarPlatoLocal.cargarPlatoLocal(platoLocal);        
+                String plate = tblPlatoLocal.getValueAt(idx, 1).toString();
+                String local = tblPlatoLocal.getValueAt(idx, 0).toString();
+                int dec = JOptionPane.showOptionDialog(null, "¿Está seguro de eliminar el plato " + plate + " del Local " + local, "Aviso", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,null,null);
+                if(dec == 1){
+                    if(BD_RS.DelPlatoLocal(plate, local)){
+                        JOptionPane.showMessageDialog(null, "Se eliminó el plato " + plate + " del Local " + local,"Aviso",JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "No se pudo eliminar el plato " + plate + " del Local " + local,"Aviso",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a eliminar");
         }        
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         if (txtPlato.getText().equals("") || cboLocal.getSelectedIndex()==-1) {
@@ -336,9 +349,14 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPlatoKeyTyped
 
+    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEdit1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSearch;
     public static javax.swing.JComboBox<String> cboLocal;

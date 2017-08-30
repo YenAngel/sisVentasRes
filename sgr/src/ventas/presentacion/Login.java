@@ -69,7 +69,7 @@ public class Login extends javax.swing.JFrame {
         //jd.setModal(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         //setSize(super.getToolkit().getScreenSize());
-        jLabel5.setLocation(d.width-290, 10);
+        //jLabel5.setLocation(d.width-290, 10);
         //setUndecorated(true);
         /*System.out.println(this.getSize().width + ";" + this.getSize().height);
         System.out.println(this.getPreferredSize().toString());
@@ -101,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         
         //System.out.println(getWidth() + "@" + getHeight());
         //System.out.println(this.getLocation().x + "@" + this.getLocation().y);
-        
+        jPanel3.setLocation((d.width/2)-215, 10);
     }
 
     private void init(){
@@ -119,9 +119,9 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblEstado = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -134,8 +134,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnAceptar1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        lblEstado = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -143,19 +144,18 @@ public class Login extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA.jpg"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(500, 40, 660, 150);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Sistema para Restaurante v1.0");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(890, 10, 290, 20);
+        lblEstado.setBackground(new java.awt.Color(255, 255, 255));
+        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblEstado.setText("Recuerde: Solo tiene 3 intentos para acceder al sistema.");
+        jPanel1.add(lblEstado);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sub.png"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(500, 20, 650, 410);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 710, 1030, 60);
+
+        jPanel3.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(137, 197, 255));
         jPanel2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 180, 90));
+        jPanel2.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 180, 90));
 
         txtPassword.setBackground(new java.awt.Color(68, 134, 187));
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -242,7 +242,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/is2.png"))); // NOI18N
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 240, 90));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 230, 90));
 
         btnAceptar1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
         btnAceptar1.setFont(new java.awt.Font("DokChampa", 1, 18)); // NOI18N
@@ -254,21 +254,26 @@ public class Login extends javax.swing.JFrame {
                 btnAceptar1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 180, 90));
+        jPanel2.add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 180, 90));
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(60, 36, 430, 570);
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel5.setText("Sistema para Restaurante v1.0");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 290, 20));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(0, 170, 430, 520);
 
-        lblEstado.setBackground(new java.awt.Color(255, 255, 255));
-        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblEstado.setText("Recuerde: Solo tiene 3 intentos para acceder al sistema.");
-        jPanel1.add(lblEstado);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_new_DA._min.jpg"))); // NOI18N
+        jPanel3.add(jLabel4);
+        jLabel4.setBounds(0, 0, 430, 95);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 710, 1030, 60);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/sub.png"))); // NOI18N
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(0, 40, 440, 160);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(297, 10, 430, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -518,6 +523,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblEstado;

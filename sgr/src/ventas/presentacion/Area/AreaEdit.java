@@ -98,7 +98,7 @@ public class AreaEdit extends javax.swing.JPanel {
         });
 
         jLabel17.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel17.setText("NOMBRE:");
+        jLabel17.setText("Nombre:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

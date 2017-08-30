@@ -320,6 +320,8 @@ public class frmCaja extends javax.swing.JFrame {
         btnMin = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
@@ -411,8 +413,8 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 170, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Nro. Doc.:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 90, -1));
+        jLabel16.setText("Nro Correlativo:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 130, -1));
 
         txtApePaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApePaterno.setAutoscrolls(false);
@@ -698,8 +700,8 @@ public class frmCaja extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(137, 197, 255));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/detalle.png"))); // NOI18N
-        jLabel8.setText("Detalle Pedido");
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/img_caja_pedidos.png"))); // NOI18N
+        jLabel8.setText("    Detalle Pedido");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -724,8 +726,8 @@ public class frmCaja extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(137, 197, 255));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/detalle.png"))); // NOI18N
-        jLabel9.setText("Detalle de Cuenta");
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/img_caja_cash.png"))); // NOI18N
+        jLabel9.setText("   Detalle de Cuenta");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -733,8 +735,8 @@ public class frmCaja extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(226, 226, 226)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -858,6 +860,14 @@ public class frmCaja extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 44, 44));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel26.setText("Nro. Doc.:");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 90, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("Nro Serie:");
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 100, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1437,6 +1447,8 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

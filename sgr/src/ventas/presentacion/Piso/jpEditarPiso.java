@@ -94,7 +94,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
         add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 180, 70));
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
-        jLabel16.setText("MODIFICAR PISO");
+        jLabel16.setText("MODIFICAR SALÓN");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 38));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
@@ -116,7 +116,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
         jLabel3.setText("Local:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Numero de Piso:");
+        jLabel4.setText("Numero de Salón:");
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -128,7 +128,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Id Piso:");
+        jLabel5.setText("Id Salón:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,7 +145,7 @@ public class jpEditarPiso extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(23, 23, 23)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(28, 28, 28)
                 .addComponent(txtNroPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
