@@ -316,7 +316,7 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
                 String plate = tblPlatoLocal.getValueAt(idx, 1).toString();
                 String local = tblPlatoLocal.getValueAt(idx, 0).toString();
                 int dec = JOptionPane.showOptionDialog(null, "¿Está seguro de eliminar el plato " + plate + " del Local " + local, "Aviso", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,null,null);
-                if(dec == 1){
+                if(dec == 0){
                     if(BD_RS.DelPlatoLocal(plate, local)){
                         JOptionPane.showMessageDialog(null, "Se eliminó el plato " + plate + " del Local " + local,"Aviso",JOptionPane.INFORMATION_MESSAGE);
                     }else{
@@ -350,7 +350,21 @@ public class jpListarPlatoLocal extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPlatoKeyTyped
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-        // TODO add your handling code here:
+        int idx=tblPlatoLocal.getSelectedRow();
+        if (idx!=-1) {            
+            PlatoLocal platoLocal=new PlatoLocal();
+            jpEditarPlatoLocal editarPlatoLocal=new jpEditarPlatoLocal();
+            platoLocal.setNo_local(dtm.getValueAt(idx, 0).toString());
+            platoLocal.setNo_plato((String)dtm.getValueAt(idx, 1));
+            platoLocal.setMt_precio(Double.parseDouble(dtm.getValueAt(idx, 2).toString()));
+            platoLocal.setFl_vip((String)dtm.getValueAt(idx, 3)); 
+            platoLocal.setNid_usuario_modi(login_User.getNdi_usuario());        
+            editarPlatoLocal.cargarPlatoLocal(platoLocal); 
+            frmPrincipal.Comp(editarPlatoLocal);
+                   
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar el registro a modificar");
+        }        
     }//GEN-LAST:event_btnEdit1ActionPerformed
 
 

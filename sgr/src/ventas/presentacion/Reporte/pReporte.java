@@ -2,7 +2,9 @@
 package ventas.presentacion.Reporte;
 
 import java.awt.Component;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -16,8 +18,10 @@ import ventas.persistencia.util.BDData;
 public class pReporte extends javax.swing.JPanel {
     DefaultTableModel dtm;
     DefaultComboBoxModel dcbm=BDData.getLocal();
+    
     public pReporte() {
         initComponents();
+        dcFecha.setDate(Date.valueOf(LocalDate.now()));
         cboLocal.setModel(dcbm);
         cboLocal.setSelectedIndex(-1);
         tblPlatoLocal.setModel(formatearTabla());        

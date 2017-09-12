@@ -51,6 +51,7 @@ public class PrintFormatCaja {
                
                h += "\n\n" + getCaracter(" ", 15) + "N° BOLETA: " + Correlativo + "\n"; 
                h += getCaracter(" ", 7) + "FECHA: " + fecha + "   HORA: " + hora + "\n\n";
+               if(Cliente.length() > 0 || DNICliente.length()  > 0)
                h += "CLIENTE: " + Cliente + getCaracter(" ",27 - Cliente.length()) + "DOC: " + DNICliente;
                h += "\n" + "MESA   : " + NroMesa + getCaracter(" ",27 - String.valueOf(NroMesa).length()) + "CAJA: CAJA 1";
                h += "\n" + "Tipo de Pago: " + TipoPago;
@@ -60,6 +61,7 @@ public class PrintFormatCaja {
                
                h += "\n\n" + getCaracter(" ", 15) + "N° TICKET: " + Correlativo + "\n";
                h += getCaracter(" ", 7) + "FECHA: " + fecha + "   HORA: " + hora + "\n\n";
+               if(Cliente.length() > 0 || DNICliente.length()  > 0)
                h += "CLIENTE: " + Cliente + getCaracter(" ",27 - Cliente.length()) + "DOC: " + DNICliente;
                h += "\n" + "MESA   : " + NroMesa + getCaracter(" ",27 - String.valueOf(NroMesa).length()) + "CAJA: CAJA 1";
                h += "\n" + "Tipo de Pago: " + TipoPago;

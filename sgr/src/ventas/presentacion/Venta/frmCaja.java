@@ -160,14 +160,14 @@ public class frmCaja extends javax.swing.JFrame {
         jTable.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         jTable.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);  
         if (dtm.getRowCount()==0) {
-            btnSaveSale.setEnabled(false);
-            btnPrint.setEnabled(false);
+            lblGuardar.setEnabled(false);
+            lblImprimir.setEnabled(false);
             btnValid.setEnabled(false);
             cboComprobante.setEnabled(false);
             cboDocumento.setEnabled(false);
         }else{
-            btnSaveSale.setEnabled(true);
-            btnPrint.setEnabled(true);
+            //btnSaveSale.setEnabled(true);
+            //btnPrint.setEnabled(true);
             btnValid.setEnabled(true);
             cboComprobante.setEnabled(true);
             cboDocumento.setEnabled(true);
@@ -252,56 +252,9 @@ public class frmCaja extends javax.swing.JFrame {
 
         bgDocumento = new javax.swing.ButtonGroup();
         bgCliente = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        lblCDate = new javax.swing.JLabel();
-        lblCNroPedido = new javax.swing.JLabel();
-        lblCMesa = new javax.swing.JLabel();
-        lblCPiso = new javax.swing.JLabel();
-        lblCLocal = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCaja = new javax.swing.JTable();
-        txtApeMaterno = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txtApePaterno = new javax.swing.JTextField();
-        txtCliente = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        cboDocumento = new javax.swing.JComboBox<>();
-        txtDocumento = new javax.swing.JTextField();
-        btnValid = new javax.swing.JButton();
-        txtTDCorrelativos = new javax.swing.JTextField();
-        Codigo = new javax.swing.JLabel();
-        txtTDSerie = new javax.swing.JTextField();
-        cboComprobante = new javax.swing.JComboBox<>();
-        Codigo2 = new javax.swing.JLabel();
-        btn6 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn5 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
-        btn1 = new javax.swing.JButton();
-        btn7 = new javax.swing.JButton();
-        btn8 = new javax.swing.JButton();
-        btn9 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        btn0 = new javax.swing.JButton();
-        txtVuelto = new javax.swing.JTextField();
-        txtTotalPagar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtMontoIngresado = new javax.swing.JTextField();
-        cboTipoPago = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -316,16 +269,73 @@ public class frmCaja extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel21 = new javax.swing.JLabel();
         btnMin = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
-        btnSaveSale = new javax.swing.JButton();
+        lblAtras = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        lblImprimir = new javax.swing.JLabel();
+        lblAtras1 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        lblCDate = new javax.swing.JLabel();
+        lblCNroPedido = new javax.swing.JLabel();
+        lblCMesa = new javax.swing.JLabel();
+        lblCPiso = new javax.swing.JLabel();
+        lblCLocal = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        txtTDSerie = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        Codigo2 = new javax.swing.JLabel();
+        cboComprobante = new javax.swing.JComboBox<>();
+        Codigo = new javax.swing.JLabel();
+        txtTDCorrelativos = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        cboDocumento = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txtDocumento = new javax.swing.JTextField();
+        btnValid = new javax.swing.JButton();
+        txtApeMaterno = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        txtApePaterno = new javax.swing.JTextField();
+        txtCliente = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        btn1 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
+        btn6 = new javax.swing.JButton();
+        btn5 = new javax.swing.JButton();
+        btn4 = new javax.swing.JButton();
+        btn7 = new javax.swing.JButton();
+        btn8 = new javax.swing.JButton();
+        btn9 = new javax.swing.JButton();
+        btn0 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        txtTotalPagar = new javax.swing.JTextField();
+        txtVuelto = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txtMontoIngresado = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        cboTipoPago = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -337,57 +347,11 @@ public class frmCaja extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/veCalendar.png"))); // NOI18N
-        jLabel6.setText("jLabel1");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 12, 41, -1));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_da_pedido.jpg"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 360, 60));
-
-        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Local.png"))); // NOI18N
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/mesa.png"))); // NOI18N
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-
-        jLabel24.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Salon.png"))); // NOI18N
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-
-        jLabel25.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pedido_frmpedido.png"))); // NOI18N
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
-
-        lblCDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCDate.setText("#");
-        jPanel1.add(lblCDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 100, 40));
-
-        lblCNroPedido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCNroPedido.setText("#");
-        jPanel1.add(lblCNroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 130, 40));
-
-        lblCMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCMesa.setText("#");
-        jPanel1.add(lblCMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 40, 40));
-
-        lblCPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCPiso.setText("#");
-        jPanel1.add(lblCPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 40, 40));
-
-        lblCLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCLocal.setText("#");
-        jPanel1.add(lblCLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 40));
-
         jPanel2.setBackground(new java.awt.Color(183, 222, 232));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setBackground(new java.awt.Color(102, 102, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
+        jScrollPane1.setBackground(new java.awt.Color(0, 153, 255));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3));
 
         tblCaja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -402,301 +366,10 @@ public class frmCaja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblCaja);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 620, 250));
-
-        txtApeMaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtApeMaterno.setAutoscrolls(false);
-        jPanel2.add(txtApeMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 200, 137, 40));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Apellido Materno:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 170, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Nro Correlativo:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 130, -1));
-
-        txtApePaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtApePaterno.setAutoscrolls(false);
-        jPanel2.add(txtApePaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, 160, 40));
-
-        txtCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCliente.setAutoscrolls(false);
-        jPanel2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 130, 40));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("Cliente:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setText("Documento:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, -1, -1));
-
-        cboDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Documento", "RUC", "DNI" }));
-        cboDocumento.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboDocumentoItemStateChanged(evt);
-            }
-        });
-        cboDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboDocumentoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cboDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 120, 40));
-
-        txtDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 120, 150, 40));
-
-        btnValid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnValid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
-        btnValid.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnValid.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnValid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnValid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 50, 50));
-
-        txtTDCorrelativos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTDCorrelativos.setEnabled(false);
-        jPanel2.add(txtTDCorrelativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 50, 140, 40));
-
-        Codigo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Codigo.setText("-");
-        jPanel2.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, 10, 20));
-
-        txtTDSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTDSerie.setEnabled(false);
-        txtTDSerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTDSerieActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 130, 40));
-
-        cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo Doc", "Factura", "Boleta", "Ticket" }));
-        cboComprobante.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboComprobanteItemStateChanged(evt);
-            }
-        });
-        cboComprobante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboComprobanteActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 140, 40));
-
-        Codigo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Codigo2.setText("Tipo de Documento:");
-        jPanel2.add(Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, -1, 20));
-
-        btn6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn6.setText("6");
-        btn6.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn6.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn6.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, -1, -1));
-
-        btn3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn3.setText("3");
-        btn3.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn3.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn3.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, -1));
-
-        btn2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn2.setText("2");
-        btn2.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn2.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn2.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
-
-        btn5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn5.setText("5");
-        btn5.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn5.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn5.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, -1, -1));
-
-        btn4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn4.setText("4");
-        btn4.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn4.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn4.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, -1, -1));
-
-        btn1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn1.setText("1");
-        btn1.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn1.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn1.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, -1, -1));
-
-        btn7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn7.setText("7");
-        btn7.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn7.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn7.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, -1));
-
-        btn8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn8.setText("8");
-        btn8.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn8.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn8.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn8ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, -1, -1));
-
-        btn9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn9.setText("9");
-        btn9.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn9.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn9.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn9ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 390, -1, -1));
-
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit-clear-locationbar-rtl.png"))); // NOI18N
-        jButton14.setMaximumSize(new java.awt.Dimension(54, 54));
-        jButton14.setMinimumSize(new java.awt.Dimension(54, 54));
-        jButton14.setPreferredSize(new java.awt.Dimension(54, 54));
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 450, -1, -1));
-
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton16.setText(".");
-        jButton16.setMaximumSize(new java.awt.Dimension(54, 54));
-        jButton16.setMinimumSize(new java.awt.Dimension(54, 54));
-        jButton16.setPreferredSize(new java.awt.Dimension(54, 54));
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 450, -1, -1));
-
-        btn0.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btn0.setText("0");
-        btn0.setMaximumSize(new java.awt.Dimension(54, 54));
-        btn0.setMinimumSize(new java.awt.Dimension(54, 54));
-        btn0.setPreferredSize(new java.awt.Dimension(54, 54));
-        btn0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn0ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
-
-        txtVuelto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtVuelto.setEnabled(false);
-        jPanel2.add(txtVuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 450, 150, 54));
-
-        txtTotalPagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTotalPagar.setEnabled(false);
-        jPanel2.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 390, 150, 54));
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money-in-peru.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, 110, 54));
-
-        txtMontoIngresado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMontoIngresado.setEnabled(false);
-        txtMontoIngresado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoIngresadoActionPerformed(evt);
-            }
-        });
-        txtMontoIngresado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtMontoIngresadoKeyPressed(evt);
-            }
-        });
-        jPanel2.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 320, 150, 54));
-
-        cboTipoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cboTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Debito", "Credito" }));
-        cboTipoPago.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboTipoPagoItemStateChanged(evt);
-            }
-        });
-        cboTipoPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTipoPagoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cboTipoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 150, 50));
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Vuelto:");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 460, 50, 20));
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setText("Apellido Paterno:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel20.setText("Tipo de Pago:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, -1, 20));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 620, 320));
 
         jPanel4.setBackground(new java.awt.Color(137, 197, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255), 3));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3));
 
         jLabel8.setBackground(new java.awt.Color(137, 197, 255));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -719,10 +392,10 @@ public class frmCaja extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 620, 70));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 620, 70));
 
         jPanel5.setBackground(new java.awt.Color(137, 197, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3));
 
         jLabel9.setBackground(new java.awt.Color(137, 197, 255));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -741,13 +414,13 @@ public class frmCaja extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
+                .addGap(0, 24, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 620, 70));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 620, 80));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("SubTotal:");
@@ -801,8 +474,8 @@ public class frmCaja extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -824,107 +497,546 @@ public class frmCaja extends javax.swing.JFrame {
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 382, 620, -1));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel21.setText("Total a Pagar:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, -1, -1));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 620, 280));
 
         btnMin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/min.png"))); // NOI18N
         btnMin.setToolTipText("Disminuir la cantidad");
+        btnMin.setEnabled(false);
+        btnMin.setOpaque(false);
         btnMin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 44, 44));
+        jPanel2.add(btnMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 44, 44));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
         btnAdd.setToolTipText("Aumentar la cantidad");
+        btnAdd.setEnabled(false);
+        btnAdd.setOpaque(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 44, 44));
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 44, 44));
 
         btnDel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/del.png"))); // NOI18N
         btnDel.setToolTipText("Eliminar el Plato/Bebida seleccionado");
+        btnDel.setEnabled(false);
+        btnDel.setOpaque(false);
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDelActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 44, 44));
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("Nro. Doc.:");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 90, -1));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel27.setText("Nro Serie:");
-        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 30, 100, -1));
+        jPanel2.add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, 44, 44));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Arrow-reload-2-icon.png"))); // NOI18N
-        jButton1.setText("Retornar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        lblAtras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Retornar.png"))); // NOI18N
+        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtrasMouseClicked(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 170, 50));
+        jPanel3.add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 50, -1));
 
-        btnPrint.setBackground(new java.awt.Color(153, 153, 255));
-        btnPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPrint.setText("Imprimir");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, 125, 50));
+        jLabel48.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("Atrás");
+        jPanel3.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 50, 20));
 
-        btnSaveSale.setBackground(new java.awt.Color(153, 153, 255));
-        btnSaveSale.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveSale.setText("Guardar");
-        btnSaveSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveSaleActionPerformed(evt);
+        lblGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/grabar.png"))); // NOI18N
+        lblGuardar.setEnabled(false);
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
             }
         });
-        jPanel3.add(btnSaveSale, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 125, 50));
+        jPanel3.add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 60, -1));
+
+        jLabel49.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel49.setText("Guardar");
+        jPanel3.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 60, 20));
+
+        jLabel50.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel50.setText("Imprimir");
+        jPanel3.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 60, 20));
+
+        lblImprimir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/printer.png"))); // NOI18N
+        lblImprimir.setEnabled(false);
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
+            }
+        });
+        jPanel3.add(lblImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 60, -1));
+
+        lblAtras1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAtras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit_caja.png"))); // NOI18N
+        lblAtras1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtras1MouseClicked(evt);
+            }
+        });
+        jPanel3.add(lblAtras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 50, -1));
+
+        jLabel51.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel51.setText("Editar");
+        jPanel3.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 50, 20));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 470, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/veCalendar.png"))); // NOI18N
+        jLabel6.setText("jLabel1");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 12, 41, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/logo_da_pedido.jpg"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, 360, 60));
+
+        jLabel22.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Local.png"))); // NOI18N
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/mesa.png"))); // NOI18N
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Salon.png"))); // NOI18N
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/pedido_frmpedido.png"))); // NOI18N
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        lblCDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCDate.setText("#");
+        jPanel1.add(lblCDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 100, 40));
+
+        lblCNroPedido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCNroPedido.setText("#");
+        jPanel1.add(lblCNroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 130, 40));
+
+        lblCMesa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCMesa.setText("#");
+        jPanel1.add(lblCMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 40, 40));
+
+        lblCPiso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCPiso.setText("#");
+        jPanel1.add(lblCPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 40, 40));
+
+        lblCLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCLocal.setText("#");
+        jPanel1.add(lblCLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 190, 40));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1260, -1));
+
+        jPanel7.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1258, 4));
+
+        jPanel8.setBackground(new java.awt.Color(0, 153, 51));
+        jPanel8.setPreferredSize(new java.awt.Dimension(450, 4));
+        jPanel8.setRequestFocusEnabled(false);
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 640, 470, -1));
+        jPanel8.getAccessibleContext().setAccessibleDescription("");
+
+        jPanel9.setBackground(new java.awt.Color(219, 249, 220));
+        jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 51), 2, true));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtTDSerie.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTDSerie.setEnabled(false);
+        txtTDSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTDSerieActionPerformed(evt);
+            }
+        });
+        jPanel9.add(txtTDSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 130, 40));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("Nro Serie:");
+        jPanel9.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 100, -1));
+
+        Codigo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Codigo2.setText("Tipo de Documento:");
+        jPanel9.add(Codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        cboComprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo Doc", "Factura", "Boleta", "Ticket" }));
+        cboComprobante.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboComprobanteItemStateChanged(evt);
+            }
+        });
+        cboComprobante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboComprobanteActionPerformed(evt);
+            }
+        });
+        jPanel9.add(cboComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 140, 40));
+
+        Codigo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Codigo.setText("-");
+        jPanel9.add(Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, 20));
+
+        txtTDCorrelativos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTDCorrelativos.setEnabled(false);
+        jPanel9.add(txtTDCorrelativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 140, 40));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Nro Correlativo:");
+        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 130, -1));
+
+        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, 470, 80));
+
+        jPanel10.setBackground(new java.awt.Color(219, 249, 220));
+        jPanel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 51), 2, true));
+
+        cboDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Documento", "RUC", "DNI" }));
+        cboDocumento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDocumentoItemStateChanged(evt);
+            }
+        });
+        cboDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDocumentoActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("Documento:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel26.setText("Nro. Doc.:");
+
+        txtDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDocumentoActionPerformed(evt);
+            }
+        });
+
+        btnValid.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnValid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/view-task.png"))); // NOI18N
+        btnValid.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnValid.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnValid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidActionPerformed(evt);
+            }
+        });
+
+        txtApeMaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtApeMaterno.setAutoscrolls(false);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("Apellido Materno:");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Apellido Paterno:");
+
+        txtApePaterno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtApePaterno.setAutoscrolls(false);
+
+        txtCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCliente.setAutoscrolls(false);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Cliente:");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(cboDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(btnValid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel10)
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel19)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(3, 3, 3)
+                        .addComponent(cboDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(3, 3, 3)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnValid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel17))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApePaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApeMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 190, 470, 160));
+
+        jPanel11.setBackground(new java.awt.Color(219, 249, 220));
+        jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 51), 2, true));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn1.setText("1");
+        btn1.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn1.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn1.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, -1, -1));
+
+        btn2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn2.setText("2");
+        btn2.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn2.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn2.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 12, -1, -1));
+
+        btn3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn3.setText("3");
+        btn3.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn3.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn3.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 12, -1, -1));
+
+        btn6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn6.setText("6");
+        btn6.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn6.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn6.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 77, -1, -1));
+
+        btn5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn5.setText("5");
+        btn5.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn5.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn5.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 77, -1, -1));
+
+        btn4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn4.setText("4");
+        btn4.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn4.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn4.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
+
+        btn7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn7.setText("7");
+        btn7.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn7.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn7.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        btn8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn8.setText("8");
+        btn8.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn8.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn8.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+
+        btn9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn9.setText("9");
+        btn9.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn9.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn9.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+
+        btn0.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btn0.setText("0");
+        btn0.setMaximumSize(new java.awt.Dimension(54, 54));
+        btn0.setMinimumSize(new java.awt.Dimension(54, 54));
+        btn0.setPreferredSize(new java.awt.Dimension(54, 54));
+        btn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn0ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        jButton16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton16.setText(".");
+        jButton16.setMaximumSize(new java.awt.Dimension(54, 54));
+        jButton16.setMinimumSize(new java.awt.Dimension(54, 54));
+        jButton16.setPreferredSize(new java.awt.Dimension(54, 54));
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/edit-clear-locationbar-rtl.png"))); // NOI18N
+        jButton14.setMaximumSize(new java.awt.Dimension(54, 54));
+        jButton14.setMinimumSize(new java.awt.Dimension(54, 54));
+        jButton14.setPreferredSize(new java.awt.Dimension(54, 54));
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setText("Total a Pagar:");
+        jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
+
+        txtTotalPagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTotalPagar.setEnabled(false);
+        jPanel11.add(txtTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 150, 54));
+
+        txtVuelto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtVuelto.setForeground(new java.awt.Color(255, 0, 0));
+        txtVuelto.setEnabled(false);
+        jPanel11.add(txtVuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 150, 54));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel18.setText("Vuelto:");
+        jPanel11.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 60, 50));
+
+        txtMontoIngresado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMontoIngresado.setEnabled(false);
+        txtMontoIngresado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontoIngresadoActionPerformed(evt);
+            }
+        });
+        txtMontoIngresado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMontoIngresadoKeyPressed(evt);
+            }
+        });
+        jPanel11.add(txtMontoIngresado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 150, 54));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/money-in-peru.png"))); // NOI18N
+        jPanel11.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("Tipo de Pago:");
+        jPanel11.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, 20));
+
+        cboTipoPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cboTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Debito", "Credito" }));
+        cboTipoPago.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTipoPagoItemStateChanged(evt);
+            }
+        });
+        cboTipoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTipoPagoActionPerformed(evt);
+            }
+        });
+        jPanel11.add(cboTipoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 150, 50));
+
+        jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 470, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -936,115 +1048,6 @@ public class frmCaja extends javax.swing.JFrame {
         //lblDate.setText(now.format(d));
              
     }//GEN-LAST:event_formWindowActivated
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);
-        Mesas_Selection1 mesas_Selection= new Mesas_Selection1();
-        mesas_Selection.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnSaveSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSaleActionPerformed
-        String local=lblCLocal.getText();
-        String document=txtTDSerie.getText()+"-"+txtTDCorrelativos.getText();
-        Caja caja=new Caja();
-        System.out.println(login_User.getNdi_usuario());
-        Date fecha = new Date();
-        CajaLocal cl=new CajaLocal();
-        String tempComprobante="";
-        if (cboComprobante.getSelectedIndex()==1) {
-            tempComprobante=01+"";
-        }else if(cboComprobante.getSelectedIndex()==2){
-            tempComprobante=03+"";
-        }else if(cboComprobante.getSelectedIndex()==3){
-            tempComprobante=00+"";
-        }
-        if (cboDocumento.getSelectedIndex()!=-1 && !txtDocumento.equals("") && !txtCliente.equals("") || !txtApeMaterno.equals("") || !txtApePaterno.equals("")) {
-            cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
-            cliente.setNu_documento(txtDocumento.getText());
-            cliente.setNo_cliente(txtCliente.getText());
-            cliente.setNo_ape_paterno(txtApePaterno.getText());
-            cliente.setNo_ape_materno(txtApeMaterno.getText());
-            ResultSet rs=BDData.obtenerClienteFact(cliente);
-            try {
-                if(rs.next()) {
-                    txtCliente.setText(rs.getString(1));
-                    txtApePaterno.setText(rs.getString(2));
-                    txtApeMaterno.setText(rs.getString(3));
-                }
-            } catch (Exception e) {
-            }
-        }
-        caja.setCo_comprobante(tempComprobante);
-        caja.setNu_serie(txtTDSerie.getText());
-        caja.setNu_correlativo(txtTDCorrelativos.getText());
-        caja.setMt_subtotal(Double.parseDouble(lblSubTotal.getText().replace("S/ ", "")));
-        caja.setMt_igv(Double.parseDouble(lblIGV.getText().replace("S/ ", "")));
-        caja.setMt_total(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
-        caja.setDoc_cliente(txtDocumento.getText());
-        caja.setNid_pedido(Integer.parseInt(dtm.getValueAt(0, 0).toString()));
-        caja.setNo_local(local);        
-        caja.setTipo_pago(cboTipoPago.getSelectedIndex()+1);        
-        caja.setNid_usuario_crea(login_User.getNdi_usuario());
-        if (BDData.registrarVenta(caja)) {
-            cl.setVi_no_local(local);
-            cl.setVi_co_comprobante(tempComprobante);
-            cl.setVi_nu_comprobante(document);
-            cl.setVi_mt_importe(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
-            cl.setVi_nu_persona(txtDocumento.getText());
-            cl.setVi_nid_usuario_crea(login_User.getNdi_usuario());
-            if (BDData.agregarCaja(cl)) {
-                JOptionPane.showMessageDialog(rootPane, "Venta guardada");
-            }
-        }
-    }//GEN-LAST:event_btnSaveSaleActionPerformed
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        try {
-            PrintFormatCaja.TipoPago=cboTipoPago.getSelectedItem().toString();
-            if (cboDocumento.getSelectedIndex()==1) {
-                PrintFormatCaja.Cliente=txtCliente.getText();
-            }else if (cboDocumento.getSelectedIndex()==2) {
-                PrintFormatCaja.Cliente=((txtCliente.getText().concat(" ")).concat(txtApePaterno.getText().concat(" "))).concat(txtApeMaterno.getText());
-            }
-            PrintFormatCaja.NroMesa=Integer.parseInt(lblCMesa.getText());
-            PrintFormatCaja.Correlativo=(txtTDSerie.getText().concat(" - ")).concat(txtTDCorrelativos.getText());
-            PrintFormatCaja.DNICliente=txtDocumento.getText();
-            PrintFormatCaja.CCant=new int[dtm.getRowCount()];
-            PrintFormatCaja.CPlato=new String[dtm.getRowCount()];
-            PrintFormatCaja.CPrecio= new double[dtm.getRowCount()];
-            PrintFormatCaja.TipoDocImpr = cboComprobante.getSelectedItem().toString();
-            PrintFormatCaja.CantPago = Double.parseDouble(txtMontoIngresado.getText().replace("S/ ", ""));
-            
-            for (int i = 0; i < dtm.getRowCount(); i++) {
-                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i,2).toString());
-                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 1).toString();
-                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 3).toString());
-            }
-            PrintFormatCaja.ImprimirCaja();
-            txtApeMaterno.setText("");
-            txtApePaterno.setText("");
-            txtCliente.setText("");
-            txtDocumento.setText("");
-            txtMontoIngresado.setText("");
-            txtTDCorrelativos.setText("");
-            txtTDSerie.setText("");
-            txtTotalPagar.setText("");
-            txtVuelto.setText("");
-            //cboComprobante.setSelectedIndex(0);
-            cboDocumento.setSelectedIndex(0);
-            cboTipoPago.setSelectedIndex(0);
-            lblCMesa.setText("");
-            lblCNroPedido.setText("");
-            lblCPiso.setText("");
-            Mesas_Selection1 ms1 = new Mesas_Selection1();
-            this.setVisible(false);
-            ms1.setVisible(true);
-        } catch (Exception e) {
-            System.out.println("Here");
-            System.err.println(e.toString());
-        }
-        
-    }//GEN-LAST:event_btnPrintActionPerformed
 
     private void cboTipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoPagoActionPerformed
         // TODO add your handling code here:
@@ -1119,10 +1122,11 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void cboComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboComprobanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboComprobanteActionPerformed
-
-    private void cboComprobanteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboComprobanteItemStateChanged
+        if (cboComprobante.getSelectedIndex()==-1 || cboComprobante.getSelectedIndex()==0){
+            lblGuardar.setEnabled(false);
+            return;
+        }
+            
         ResultSet rs;
         String temp1,temp2;
         double subtotal=0;
@@ -1155,8 +1159,7 @@ public class frmCaja extends javax.swing.JFrame {
                             int correlativo=Integer.valueOf(rs1.getString(1));
                             correlativo+=1;                   
                             if (correlativo<=tempCorrelativo) {                                
-                                btnSaveSale.setEnabled(true);
-                                btnPrint.setEnabled(true);
+                                lblGuardar.setEnabled(true);
                                 int len=temp2.length();
                                 int lenC=Integer.toString(correlativo).length();
                                 
@@ -1194,8 +1197,8 @@ public class frmCaja extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(rootPane, "El Correlativo se ha agotado");
                                 txtTDCorrelativos.setText("");
                                 txtTDSerie.setText("");
-                                btnSaveSale.setEnabled(false);
-                                btnPrint.setEnabled(false);
+                                lblGuardar.setEnabled(false);
+                                lblImprimir.setEnabled(false);
                             }
                         }else{
                             int len=temp2.length();
@@ -1255,6 +1258,10 @@ public class frmCaja extends javax.swing.JFrame {
             jSeparator3.setVisible(false);
         }
         txtTotalPagar.setText(lblTotal.getText());
+    }//GEN-LAST:event_cboComprobanteActionPerformed
+
+    private void cboComprobanteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboComprobanteItemStateChanged
+        
     }//GEN-LAST:event_cboComprobanteItemStateChanged
 
     private void txtTDSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTDSerieActionPerformed
@@ -1320,7 +1327,11 @@ public class frmCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_cboDocumentoItemStateChanged
 
     private void btnMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinActionPerformed
+        
         if(tblCaja.getSelectedRow() >=0){
+                int res = JOptionPane.showOptionDialog(null,"¿Está seguro de disminuir la cantidad?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                if(res != 0)
+                return;
             int indx = tblCaja.getSelectedRow();
             
                 int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
@@ -1337,6 +1348,9 @@ public class frmCaja extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if(tblCaja.getSelectedRow() >=0){
+            int res = JOptionPane.showOptionDialog(null,"¿Está seguro de aumentar la cantidad?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                if(res != 0)
+                return;
             int indx = tblCaja.getSelectedRow();
             
                 int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
@@ -1353,6 +1367,9 @@ public class frmCaja extends javax.swing.JFrame {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         if(tblCaja.getSelectedRow() >=0){
+            int res = JOptionPane.showOptionDialog(null,"¿Está seguro eliminar el plato de la lista?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+                if(res != 0)
+                return;
             int indx = tblCaja.getSelectedRow();
             
                 int val = Integer.parseInt(tblCaja.getValueAt(indx, 2).toString());
@@ -1368,6 +1385,178 @@ public class frmCaja extends javax.swing.JFrame {
                
         }
     }//GEN-LAST:event_btnDelActionPerformed
+
+    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
+        this.setVisible(false);
+        Mesas_Selection1 Ms = new Mesas_Selection1();
+        Ms.setVisible(true);
+    }//GEN-LAST:event_lblAtrasMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        if (txtMontoIngresado.getText().length() == 0 || Double.parseDouble(txtMontoIngresado.getText().replace(",", ".").replace("S/ ", "")) < Double.parseDouble(txtTotalPagar.getText().replace("S/ ", ""))){
+        JOptionPane.showMessageDialog(null, "Ingrese un monto igual o mayor al Total a pagar");
+        return;
+        }
+        int res = JOptionPane.showOptionDialog(null,"¿Está seguro de generar el documento?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if(res != 0)
+            return;
+        String local=lblCLocal.getText();
+        String document=txtTDSerie.getText()+"-"+txtTDCorrelativos.getText();
+        Caja caja=new Caja();
+        System.out.println(login_User.getNdi_usuario());
+        Date fecha = new Date();
+        CajaLocal cl=new CajaLocal();
+        String tempComprobante="";
+        if (cboComprobante.getSelectedIndex()==1) {
+            tempComprobante=01+"";
+        }else if(cboComprobante.getSelectedIndex()==2){
+            tempComprobante=03+"";
+        }else if(cboComprobante.getSelectedIndex()==3){
+            tempComprobante=00+"";
+        }
+        if (ConsultRegClienteCaja()==false)
+            return;
+        caja.setCo_comprobante(tempComprobante);
+        caja.setNu_serie(txtTDSerie.getText());
+        caja.setNu_correlativo(txtTDCorrelativos.getText());
+        caja.setMt_subtotal(Double.parseDouble(lblSubTotal.getText().replace("S/ ", "")));
+        caja.setMt_igv(Double.parseDouble(lblIGV.getText().replace("S/ ", "")));
+        caja.setMt_total(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
+        caja.setDoc_cliente(txtDocumento.getText());
+        caja.setNid_pedido(Integer.parseInt(dtm.getValueAt(0, 0).toString()));
+        caja.setNo_local(local);        
+        caja.setTipo_pago(cboTipoPago.getSelectedIndex()+1);        
+        caja.setNid_usuario_crea(login_User.getNdi_usuario());
+        if (BDData.registrarVenta(caja)) {
+            cl.setVi_no_local(local);
+            cl.setVi_co_comprobante(tempComprobante);
+            cl.setVi_nu_comprobante(document);
+            cl.setVi_mt_importe(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
+            cl.setVi_nu_persona(txtDocumento.getText());
+            cl.setVi_nid_usuario_crea(login_User.getNdi_usuario());
+            if (BDData.agregarCaja(cl)) {
+                JOptionPane.showMessageDialog(null, "Se registró el documento " + cboComprobante.getSelectedItem().toString() + ": " + document + " correctamente");
+                cboComprobante.setEnabled(false);
+                lblGuardar.setEnabled(false);
+                lblAtras1.setEnabled(false);
+                lblImprimir.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se registró el documento");
+            }
+        }
+    }//GEN-LAST:event_lblGuardarMouseClicked
+    private boolean ConsultRegClienteCaja(){
+        if(cboComprobante.getSelectedItem().equals("Factura")){
+            int c = cboDocumento.getSelectedIndex();
+            c += txtDocumento.getText().length();
+            c += txtCliente.getText().length();
+            c += txtApePaterno.getText().length();
+            c += txtApeMaterno.getText().length();
+            if (c<=4){
+                JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+                return false;
+            }
+        }else{
+            if(cboDocumento.getSelectedItem().equals("DNI")){
+                if(txtDocumento.getText().length() == 0 && txtCliente.getText().length() == 0 && txtApeMaterno.getText().length() == 0 && txtApePaterno.getText().length() == 0)
+                    return true;
+                if(txtDocumento.getText().length() > 0 && cboDocumento.getSelectedIndex() <= 0)
+                    return true;
+            }else if(cboDocumento.getSelectedItem().equals("RUC")){
+                if(txtDocumento.getText().length() == 0 && txtCliente.getText().length()==0)
+                        return true;
+                if(txtDocumento.getText().length() > 0 && cboDocumento.getSelectedIndex() <= 0)
+                    return true;
+            }else{
+                int c = cboDocumento.getSelectedIndex();
+                c += txtDocumento.getText().length();
+                c += txtCliente.getText().length();
+                c += txtApePaterno.getText().length();
+                c += txtApeMaterno.getText().length();
+                if(c==0)
+                    return true;
+            }
+            
+        }
+            if(cboDocumento.getSelectedIndex()!=0)
+                cliente.setCo_tipo_documento(cboDocumento.getSelectedItem().toString());
+            
+            cliente.setNu_documento(txtDocumento.getText());
+            cliente.setNo_cliente(txtCliente.getText());
+            cliente.setNo_ape_paterno(txtApePaterno.getText());
+            cliente.setNo_ape_materno(txtApeMaterno.getText());
+            ResultSet rs=BDData.obtenerClienteFact(cliente);
+            
+            try {
+                
+                if(rs.next()) {
+                    txtCliente.setText(rs.getString(1));
+                    txtApePaterno.setText(rs.getString(2));
+                    txtApeMaterno.setText(rs.getString(3));
+                    
+                }
+            } catch (Exception e) {
+                
+                return  true;
+            }
+            return  true;
+        /*}else{
+            JOptionPane.showMessageDialog(null, "Complete todos los campos para registrar el documento");
+        }*/
+    }
+            
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
+        try {
+            PrintFormatCaja.TipoPago=cboTipoPago.getSelectedItem().toString();
+            if (cboDocumento.getSelectedIndex()==1) {
+                PrintFormatCaja.Cliente=txtCliente.getText();
+            }else if (cboDocumento.getSelectedIndex()==2) {
+                PrintFormatCaja.Cliente=((txtCliente.getText().concat(" ")).concat(txtApePaterno.getText().concat(" "))).concat(txtApeMaterno.getText());
+            }
+            PrintFormatCaja.NroMesa=Integer.parseInt(lblCMesa.getText());
+            PrintFormatCaja.Correlativo=(txtTDSerie.getText().concat(" - ")).concat(txtTDCorrelativos.getText());
+            PrintFormatCaja.DNICliente=txtDocumento.getText();
+            PrintFormatCaja.CCant=new int[dtm.getRowCount()];
+            PrintFormatCaja.CPlato=new String[dtm.getRowCount()];
+            PrintFormatCaja.CPrecio= new double[dtm.getRowCount()];
+            PrintFormatCaja.TipoDocImpr = cboComprobante.getSelectedItem().toString();
+            PrintFormatCaja.CantPago = Double.parseDouble(txtMontoIngresado.getText().replace("S/ ", ""));
+            
+            for (int i = 0; i < dtm.getRowCount(); i++) {
+                PrintFormatCaja.CCant[i]=Integer.parseInt(tblCaja.getValueAt(i,2).toString());
+                PrintFormatCaja.CPlato[i]=tblCaja.getValueAt(i, 1).toString();
+                PrintFormatCaja.CPrecio[i]=Double.parseDouble(tblCaja.getValueAt(i, 3).toString());
+            }
+            PrintFormatCaja.ImprimirCaja();
+            txtApeMaterno.setText("");
+            txtApePaterno.setText("");
+            txtCliente.setText("");
+            txtDocumento.setText("");
+            txtMontoIngresado.setText("");
+            txtTDCorrelativos.setText("");
+            txtTDSerie.setText("");
+            txtTotalPagar.setText("");
+            txtVuelto.setText("");
+            //cboComprobante.setSelectedIndex(0);
+            cboDocumento.setSelectedIndex(0);
+            cboTipoPago.setSelectedIndex(0);
+            lblCMesa.setText("");
+            lblCNroPedido.setText("");
+            lblCPiso.setText("");
+            Mesas_Selection1 ms1 = new Mesas_Selection1();
+            this.setVisible(false);
+            ms1.setVisible(true);
+        } catch (Exception e) {
+            
+            System.err.println(e.toString());
+        }
+    }//GEN-LAST:event_lblImprimirMouseClicked
+
+    private void lblAtras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtras1MouseClicked
+        btnAdd.setEnabled(true);
+        btnMin.setEnabled(true);
+        btnDel.setEnabled(true);
+    }//GEN-LAST:event_lblAtras1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1422,13 +1611,10 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnMin;
-    private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnSaveSale;
     private javax.swing.JButton btnValid;
     public static javax.swing.JComboBox<String> cboComprobante;
     public static javax.swing.JComboBox<String> cboDocumento;
     public static javax.swing.JComboBox<String> cboTipoPago;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton16;
     private javax.swing.JLabel jLabel10;
@@ -1449,26 +1635,39 @@ public class frmCaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblAtras;
+    private javax.swing.JLabel lblAtras1;
     private javax.swing.JLabel lblCDate;
     private javax.swing.JLabel lblCLocal;
     private javax.swing.JLabel lblCMesa;
     private javax.swing.JLabel lblCNroPedido;
     private javax.swing.JLabel lblCPiso;
+    private javax.swing.JLabel lblGuardar;
     public static javax.swing.JLabel lblIGV;
+    private javax.swing.JLabel lblImprimir;
     public static javax.swing.JLabel lblSubTotal;
     public static javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblCaja;
