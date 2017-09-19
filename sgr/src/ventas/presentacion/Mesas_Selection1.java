@@ -349,17 +349,21 @@ public class Mesas_Selection1 extends javax.swing.JFrame {
             DPedido.nPedido = 0;
             return;
         }
-        DPedido.dlmDP.addElement(nMesa);
-        // llamar al formulario pedido
-        nroMesa=Integer.parseInt(evt.toString().substring(evt.toString().indexOf("on #")+4, evt.toString().indexOf("$")));        
-        this.setVisible(false);
-        frmCaja c=new frmCaja();
-        frmCaja.nroMesa = nroMesa;
-        frmCaja.nroPiso = nroPiso;
-        frmCaja.nrPedido = DPedido.nPedido;
-        c.cargarListaPedido(nroPiso, nroMesa);   
-        c.setInitialValuesPedido();
-        c.setVisible(true);              
+        if(BD_RS.EstadoCierreCaja()==0){
+            DPedido.dlmDP.addElement(nMesa);
+            // llamar al formulario pedido
+            nroMesa=Integer.parseInt(evt.toString().substring(evt.toString().indexOf("on #")+4, evt.toString().indexOf("$")));        
+            this.setVisible(false);
+            frmCaja c=new frmCaja();
+            frmCaja.nroMesa = nroMesa;
+            frmCaja.nroPiso = nroPiso;
+            frmCaja.nrPedido = DPedido.nPedido;
+            c.cargarListaPedido(nroPiso, nroMesa);   
+            c.setInitialValuesPedido();
+            c.setVisible(true);              
+        }else{
+            JOptionPane.showMessageDialog(null, "La caja se encuentra cerrada ","Aviso",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     public void jc(ItemEvent evt){
         String nmesa = evt.toString().substring(evt.toString().lastIndexOf('#')+1, evt.toString().length()).replace("$", "");

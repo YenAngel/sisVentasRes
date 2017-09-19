@@ -12,8 +12,17 @@ public class CajaLocal {
     public String vi_nu_persona;
     public int vi_nid_usuario_crea;
     public int vi_co_concepto_pago;
+    public int vi_tipo_pago;
     public String vi_no_persona;
 
+    public int getVi_tipo_pago() {
+        return vi_tipo_pago;
+    }
+
+    public void setVi_tipo_pago(int vi_tipo_pago) {
+        this.vi_tipo_pago = vi_tipo_pago;
+    }
+    
     public int getVi_co_concepto_pago() {
         return vi_co_concepto_pago;
     }

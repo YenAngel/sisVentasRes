@@ -1161,7 +1161,7 @@ public class BDData {
         }
     }
     public static boolean agregarCaja(CajaLocal caja){
-        String sql="call sgr_spi_caja(?,?,?,?,?,?)";
+        String sql="call sgr_spi_caja(?,?,?,?,?,?,?)";
         try {
             CallableStatement cs=BDUtil.getCnn().prepareCall(sql);
             cs.setString(1, caja.getVi_no_local());            
@@ -1169,7 +1169,8 @@ public class BDData {
             cs.setString(3, caja.getVi_nu_comprobante());            
             cs.setDouble(4, caja.getVi_mt_importe());            
             cs.setString(5, caja.getVi_nu_persona());            
-            cs.setInt(6, caja.getVi_nid_usuario_crea());            
+            cs.setInt(6, caja.getVi_nid_usuario_crea());
+            cs.setInt(7, caja.getVi_tipo_pago());
             cs.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -1248,12 +1249,22 @@ public class BDData {
             return false;
         }
     }
-    public static DefaultTableModel ReporteCaja(DefaultTableModel dtm, String local, String date){        
-        String sql="call sgr_sps_cajaReporte(?,?)";
+    public static DefaultTableModel ReporteCaja(DefaultTableModel dtm, String local, String dateInicio, String dateFin, String concepto, String TipoPago, String TipoDoc){        
+        String filter = " (str_to_date(fecha,'%d/%m/%Y') between str_to_date('" + dateInicio + "','%d/%m/%Y') and str_to_date('" + dateFin + "','%d/%m/%Y'))";
+        if(!local.equals("Todos"))
+            filter += " and no_local = '" + local + "'";
+        if(!concepto.equals("Todos"))
+            filter += " and concepto = '" + concepto + "'";
+        if(!TipoPago.equals("Todos"))
+            filter += " and co_medio_pago = '" + TipoPago + "'";
+        if(!TipoDoc.equals("Todos"))
+            filter += " and co_comprobante = '" + TipoDoc + "'";
+        filter += " order by STR_TO_DATE(fecha,'%d/%m/%Y') asc";
+        
+        String sql="select * from cReport where " + filter;
+        System.out.println(sql);
         try {
-            CallableStatement cs=BDUtil.getCnn().prepareCall(sql);           
-            cs.setString(1, local);
-            cs.setString(2, date);
+            PreparedStatement cs=BDUtil.getCnn().prepareStatement(sql);           
             ResultSet rs=cs.executeQuery();         
             while (rs.next()) {
                 Vector v=new Vector();
@@ -1266,6 +1277,7 @@ public class BDData {
                 v.add(rs.getString(7));
                 v.add(rs.getString(8));
                 v.add(rs.getString(9));
+                v.add(rs.getString(10));
                 dtm.addRow(v);
             }
             return dtm;
@@ -1273,5 +1285,8 @@ public class BDData {
             System.out.println(e);
             return null;
         }
+    }
+    public int SizeOf(String val){
+        return val.length();
     }
 }

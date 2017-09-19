@@ -141,6 +141,7 @@ public class Login extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(2, 126, 198));
         setUndecorated(true);
         getContentPane().setLayout(null);
 
@@ -158,6 +159,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(137, 197, 255));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(164, 200, 52), 1, true));
         jPanel2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jPanel2FocusGained(evt);

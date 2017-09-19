@@ -4,12 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Venta/frmCaja.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/modelo/Caja.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/modelo/CajaLocal.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BDUtil.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpListarPlatoLocal.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/frmPrincipal.java</file>
-            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Plato_Local/jpEditarPlatoLocal.java</file>
+            <file>file:/C:/sisVentasRes/sgr/src/ventas/presentacion/Reporte/pReporte.java</file>
             <file>file:/C:/sisVentasRes/sgr/src/ventas/persistencia/util/BDData.java</file>
         </group>
     </open-files>

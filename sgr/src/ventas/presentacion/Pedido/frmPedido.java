@@ -1447,7 +1447,21 @@ public class frmPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAtrasMouseClicked
 
     private void lblCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCuentaMouseClicked
-           int i = JOptionPane.showOptionDialog(null,"¿Confirmar: Solicitud CUENTA?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+        int lg = 0;
+        if(tblPedidos.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "No hay platos o bebidas en la lista de pedidos ","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        for(int i = 0; i < tblPedidos.getRowCount(); i++){
+            if(tblPedidos.getValueAt(i, 5).toString().contains("No")){
+                lg+=1;
+            }
+        }
+        if(lg!=0){
+            JOptionPane.showMessageDialog(null, "Hay platos o bebidas que aún no han sido enviados a Cocina/Bar","Aviso",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int i = JOptionPane.showOptionDialog(null,"¿Confirmar: Solicitud CUENTA?", "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
                 if(i==0) {    
                     BD_RS.CerrarPedido(DPedido.nPedido);
                     Mesas_Selection ms = new Mesas_Selection();

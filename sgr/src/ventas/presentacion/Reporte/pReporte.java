@@ -18,14 +18,36 @@ import ventas.persistencia.util.BDData;
 public class pReporte extends javax.swing.JPanel {
     DefaultTableModel dtm;
     DefaultComboBoxModel dcbm=BDData.getLocal();
+    DefaultComboBoxModel dcomb = new DefaultComboBoxModel();
+    DefaultComboBoxModel concepto = new DefaultComboBoxModel();
+    DefaultComboBoxModel medioP = new DefaultComboBoxModel();
     
     public pReporte() {
         initComponents();
-        dcFecha.setDate(Date.valueOf(LocalDate.now()));
+        dcFechaInicio.setDate(Date.valueOf(LocalDate.now()));
+        dcFechaFin.setDate(Date.valueOf(LocalDate.now()));
+        dcomb.addElement("Todos");
+        dcomb.addElement("Factura");
+        dcomb.addElement("Boleta");
+        dcomb.addElement("Ticket");
+        dcomb.addElement("Otros");
+        cboTipoDoc.setModel(dcomb);
+        concepto.addElement("Todos");
+        concepto.addElement("Caja");
+        concepto.addElement("Venta");
+        concepto.addElement("Gastos");
+        cboConcepto.setModel(concepto);
+        medioP.addElement("Todos");
+        medioP.addElement("Efectivo");
+        medioP.addElement("Debito");
+        medioP.addElement("Credito");
+        cboMedioPago.setModel(medioP);
         cboLocal.setModel(dcbm);
-        cboLocal.setSelectedIndex(-1);
+        dcbm.addElement("Todos");
+        cboLocal.setSelectedIndex(cboLocal.getItemCount()-1);
         tblPlatoLocal.setModel(formatearTabla());        
         confTBL(tblPlatoLocal, dtm);
+        
     }
     public void confTBL(JTable jTable, DefaultTableModel model){
 	DefaultTableCellRenderer centerRdr= new DefaultTableCellRenderer();
@@ -65,16 +87,17 @@ public class pReporte extends javax.swing.JPanel {
         lblTotal.setText(model.getRowCount()+"");         
     }
     private DefaultTableModel formatearTabla(){
-        String[] theader={"Local", "Operación", "Medio de Pago", "Comprobante", "Numeración", "Importe", "Fecha de Emisión", "Cliente", "Usuario"};
+        String[] theader={"Local", "Operación", "Medio de Pago", "Comprobante", "Numeración", "Importe", "Fecha de Emisión", "Concepto","Cliente", "Usuario"};
         dtm = new DefaultTableModel();
-        dcbm.addElement("Todos");
+        
         dtm.setColumnIdentifiers(theader);        
         return  dtm;
     }    
     private void init(){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");   
-        String temp =sdf.format(dcFecha.getDate());
-        tblPlatoLocal.setModel(BDData.ReporteCaja(formatearTabla(), cboLocal.getSelectedItem().toString(), temp));
+        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");   
+        String temp =sdf.format(dcFechaInicio.getDate());
+        String tempf =sdf.format(dcFechaFin.getDate());
+        tblPlatoLocal.setModel(BDData.ReporteCaja(formatearTabla(), cboLocal.getSelectedItem().toString(), temp,tempf,cboConcepto.getSelectedItem().toString(),cboMedioPago.getSelectedItem().toString(),cboTipoDoc.getSelectedItem().toString()));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,8 +107,18 @@ public class pReporte extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         cboLocal = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        dcFecha = new com.toedter.calendar.JDateChooser();
+        dcFechaInicio = new com.toedter.calendar.JDateChooser();
         btnSearch = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cboConcepto = new javax.swing.JComboBox<>();
+        cboTipoDoc = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        cboMedioPago = new javax.swing.JComboBox<>();
+        dcFechaFin = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        btnGenerar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -102,58 +135,71 @@ public class pReporte extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Local:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 12, -1, -1));
 
         cboLocal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(cboLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 35, 171, 31));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Fecha:");
+        jLabel5.setText("Fecha Inicio:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 79, -1, -1));
 
-        dcFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        dcFechaInicio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(dcFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 106, 161, 34));
 
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_2.png"))); // NOI18N
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/search_caja.png"))); // NOI18N
+        btnSearch.setText("Buscar");
         btnSearch.setPreferredSize(new java.awt.Dimension(130, 57));
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 130, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-        );
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Tipo Documento:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 79, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 710, 110));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Concepto:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 12, -1, -1));
+        jPanel1.add(cboConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 35, 161, 31));
+        jPanel1.add(cboTipoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 106, 171, 34));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Medio Pago:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 12, -1, -1));
+        jPanel1.add(cboMedioPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 35, 161, 33));
+
+        dcFechaFin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(dcFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 106, 161, 34));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Fecha Fin:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(537, 79, -1, -1));
+
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/settings_reset.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 130, 40));
+
+        btnGenerar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/excel.png"))); // NOI18N
+        btnGenerar.setText("Generar");
+        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, 130, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 960, 160));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -184,7 +230,7 @@ public class pReporte extends javax.swing.JPanel {
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel16.setText("Reporte Caja");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, 38));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, -1, 38));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -201,7 +247,7 @@ public class pReporte extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblPlatoLocal);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 710, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 960, 310));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 0, 1, new java.awt.Color(0, 0, 0)));
@@ -228,7 +274,7 @@ public class pReporte extends javax.swing.JPanel {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, -1));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 130, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 204, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -244,7 +290,7 @@ public class pReporte extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jLabel23)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -255,7 +301,7 @@ public class pReporte extends javax.swing.JPanel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 181, 30));
+        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(709, 610, 181, 30));
 
         jPanel8.setBackground(new java.awt.Color(248, 248, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
@@ -283,7 +329,7 @@ public class pReporte extends javax.swing.JPanel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, 101, 30));
+        add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(889, 610, 101, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -291,17 +337,38 @@ public class pReporte extends javax.swing.JPanel {
         confTBL(tblPlatoLocal, dtm);
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        cboLocal.setSelectedIndex(cboLocal.getItemCount()-1);
+        cboConcepto.setSelectedIndex(0);
+        cboMedioPago.setSelectedIndex(0);
+        cboTipoDoc.setSelectedIndex(0);
+        dcFechaInicio.setDate(Date.valueOf(LocalDate.now()));
+        dcFechaFin.setDate(Date.valueOf(LocalDate.now()));
+        tblPlatoLocal.setModel(formatearTabla());
+        confTBL(tblPlatoLocal, dtm);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cboConcepto;
     public static javax.swing.JComboBox<String> cboLocal;
-    private com.toedter.calendar.JDateChooser dcFecha;
+    private javax.swing.JComboBox<String> cboMedioPago;
+    private javax.swing.JComboBox<String> cboTipoDoc;
+    private com.toedter.calendar.JDateChooser dcFechaFin;
+    private com.toedter.calendar.JDateChooser dcFechaInicio;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

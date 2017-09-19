@@ -1235,6 +1235,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     getContentPane().add(nPanel);
                     validate();
                 } catch (Exception e) {
+                    System.err.println(e.toString());
                 }
             }
         };

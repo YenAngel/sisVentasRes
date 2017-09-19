@@ -1433,6 +1433,7 @@ public class frmCaja extends javax.swing.JFrame {
             cl.setVi_nu_comprobante(document);
             cl.setVi_mt_importe(Double.parseDouble(lblTotal.getText().replace("S/ ", "")));
             cl.setVi_nu_persona(txtDocumento.getText());
+            cl.setVi_tipo_pago(cboTipoPago.getSelectedIndex()+1);
             cl.setVi_nid_usuario_crea(login_User.getNdi_usuario());
             if (BDData.agregarCaja(cl)) {
                 JOptionPane.showMessageDialog(null, "Se registró el documento " + cboComprobante.getSelectedItem().toString() + ": " + document + " correctamente");
