@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class BDUtil {    
     private static String driver="com.mysql.jdbc.Driver";
-    private static String url="jdbc:mysql://107.180.46.230:3306/srg_ventas?zeroDateTimeBehavior=convertToNull";
+    private static String url="jdbc:mysql://107.180.46.230:3306/sgr_ventas_da?zeroDateTimeBehavior=convertToNull";
     private static Connection cnn;  
     
     public static boolean conectar(){

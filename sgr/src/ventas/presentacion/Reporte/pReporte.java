@@ -2,17 +2,25 @@
 package ventas.presentacion.Reporte;
 
 import java.awt.Component;
+import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import ventas.persistencia.util.BDData;
+import ventas.presentacion.Export_Excel;
+
 
 
 public class pReporte extends javax.swing.JPanel {
@@ -197,6 +205,11 @@ public class pReporte extends javax.swing.JPanel {
         btnGenerar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnGenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/excel.png"))); // NOI18N
         btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, 130, 40));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 960, 160));
@@ -347,6 +360,38 @@ public class pReporte extends javax.swing.JPanel {
         tblPlatoLocal.setModel(formatearTabla());
         confTBL(tblPlatoLocal, dtm);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        if (tblPlatoLocal.getRowCount() > 0) {
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle("Guardar archivo");
+            chooser.setAcceptAllFileFilterUsed(false);
+            SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");   
+            String dInicio =sdf.format(dcFechaInicio.getDate());
+            String dFin =sdf.format(dcFechaFin.getDate());
+            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                List<JTable> tb = new ArrayList();
+                List<String> nom = new ArrayList();
+                
+                tb.add(tblPlatoLocal);
+                nom.add("Reporte General - DondeAlfredo");
+                String file = chooser.getSelectedFile().toString().concat(".xls");
+                File fl = new  File(file);
+                try {
+                       Export_Excel e = new Export_Excel(fl, tb, nom,cboConcepto.getSelectedItem().toString(),cboMedioPago.getSelectedItem().toString(),dInicio,dFin,cboLocal.getSelectedItem().toString());
+                    if (e.export()) {
+                        JOptionPane.showMessageDialog(null, "Los datos fueron exportados a excel en el directorio seleccionado", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Hubo un error: " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay datos para exportar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
