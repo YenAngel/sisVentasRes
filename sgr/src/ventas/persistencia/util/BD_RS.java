@@ -1119,7 +1119,7 @@ public class BD_RS {
     }
     public static void AbrirCaja(double monto){
         try {
-            String sql = "INSERT INTO tbl_caja(nid_empresa, nid_local, co_operacion, co_medio_pago, mt_importe, nu_persona,nid_estado, nid_usuario_crea, fe_creacion) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tbl_caja(nid_empresa, nid_local, co_operacion, co_medio_pago, mt_importe, nu_persona,nid_estado, nid_usuario_crea, fe_creacion, co_concepto_pago) values(?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = BDUtil.getCnn().prepareStatement(sql);
             ps.setInt(1, 1);
             ps.setInt(2, idlocal);
@@ -1130,6 +1130,7 @@ public class BD_RS {
             ps.setInt(7, 1);
             ps.setInt(8, idUserLog);
             ps.setTimestamp(9, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+            ps.setInt(10, 1);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

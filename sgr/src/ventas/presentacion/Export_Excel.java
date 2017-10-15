@@ -26,6 +26,10 @@ public class Export_Excel {
     private String fechaInicio;
     private String fechaFin;
     private String Local;
+    private double countIngresos;
+    private double countEgresos;
+    private double countApertura;
+    
     public Export_Excel(File file, List<JTable> tabla, List<String> nom_files, String concepto, String medioPago, String fechaInicio, String fechaFin, String Local) throws Exception {
         this.file = file;
         this.tabla = tabla;
@@ -40,6 +44,9 @@ public class Export_Excel {
     }
     }
     public boolean export() {
+        countApertura = 0.0;
+        countIngresos = 0.0;
+        countEgresos = 0.0;
         try {
             DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
             WritableWorkbook w = Workbook.createWorkbook(out);
@@ -101,7 +108,26 @@ public class Export_Excel {
                     s.setColumnView(3, cv);
                 s.addCell(new Label(3,1,"REPORTE DE MOVIMIENTO DE CAJA",wcfb));
                 s.setPageSetup(PageOrientation.LANDSCAPE);
+                
+                s.getSettings().setBottomMargin(0.50);
+                s.getSettings().setTopMargin(0.50);
+                s.getSettings().setLeftMargin(0.50);
+                s.getSettings().setRightMargin(0.50);
+                
+                
                 //s.addCell(new Label(9,9,"Usuario"));
+                //System.out.println(table.getRowCount() + "/" + table.getColumnCount());
+                 for (int j = 0; j < table.getRowCount(); j++) {
+                       
+                        if (table.getValueAt(j, 1).equals("Apertura Caja")){
+                            countApertura+= Double.parseDouble(table.getValueAt(j, 5).toString());
+                        }else if (table.getValueAt(j, 1).equals("Entrada")){
+                            countIngresos+= Double.parseDouble(table.getValueAt(j, 5).toString());
+                        }else{
+                            countEgresos+= Double.parseDouble(table.getValueAt(j, 5).toString());
+                        }
+                         
+                   }
                 for (int i = 0; i < table.getColumnCount() - 1; i++) {
                     for (int j = 0; j < table.getRowCount(); j++) {
                         Object object;
@@ -115,7 +141,16 @@ public class Export_Excel {
                         
                     }
                 }
-                
+                int rcount = table.getRowCount() + 10;
+                s.addCell(new Label(7,rcount + 1,"Total Apertura",wcfb));
+                s.addCell(new Label(7,rcount + 2,"Total Ingresos",wcfb));
+                s.addCell(new Label(7,rcount + 3,"Total Egresos",wcfb));
+                s.addCell(new Label(8,rcount + 1,countApertura+"",wcfborder));    
+                s.addCell(new Label(8,rcount + 2,countIngresos+"",wcfborder));    
+                s.addCell(new Label(8,rcount + 3,countEgresos+"",wcfborder));    
+                System.out.println(countApertura);
+                System.out.println(countIngresos);
+                System.out.println(countEgresos);
             }
             w.write();
             w.close();
